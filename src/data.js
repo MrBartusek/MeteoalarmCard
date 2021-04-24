@@ -20,7 +20,7 @@ export const events =  [
 // [color, translation key]
 
 export const levels =  [
-	['#F79F1F', 'levels.yellow'],
+	['#ff9800', 'levels.yellow'],
 	['#EE5A24', 'levels.orange'],
 	['#db4437', 'levels.red']
 ]
