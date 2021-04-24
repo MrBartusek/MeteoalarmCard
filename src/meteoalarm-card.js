@@ -90,6 +90,7 @@ class MeteoalarmCard extends LitElement
 			state,
 			friendly_name,
 			event,
+			headline,
 			awareness_level,
 			awareness_type
 		} = entity.attributes;
@@ -102,20 +103,20 @@ class MeteoalarmCard extends LitElement
 		if(result.warning_active)
 		{
 			result = {...result, ...{
-				event,
+				headline: headline || event,
 				awareness_level: Number(awareness_level.split(';')[0]) - 2,
 				awareness_type: Number(awareness_type.split(';')[0]) -1
 			}}
 		}
 
-		// If event name is not issued, generate default name in format
+		// If headline is not issued, generate default name in format
 		// Translated Awareness Level - Translated Color
 		// eg. Orange - Thunderstorms
-		if(result.event == undefined)
+		if(result.headline == undefined)
 		{
 			if(result.warning_active)
 			{
-				result.event = localize(levels[result.awareness_level][1]) + ' - ' + localize(events[result.awareness_type][1])
+				result.headline = localize(levels[result.awareness_level][1]) + ' - ' + localize(events[result.awareness_type][1])
 			}
 		}
 
@@ -126,6 +127,25 @@ class MeteoalarmCard extends LitElement
 	{
 		const { warning_active, awareness_level } = this.getAttributes(this.entity);
 		return warning_active ? levels[awareness_level][0] : 'inherit'
+	}
+
+	renderHeader()
+	{
+		const { warning_active} = this.getAttributes(this.entity);
+		if(warning_active)
+		{
+			return html`
+				<div class="header">
+					<div class="title">
+					<ha-icon icon="mdi:checkbox-blank-circle-outline"></ha-icon> Meteoalarm
+					</div>
+				</div>
+			`
+		}
+		else
+		{
+			return ''
+		}
 	}
 
 	renderIcon()
@@ -144,12 +164,12 @@ class MeteoalarmCard extends LitElement
 
 	renderStatus()
 	{
-		const { warning_active, event } = this.getAttributes(this.entity);
+		const { warning_active, headline } = this.getAttributes(this.entity);
 		if(warning_active)
 		{
 			return html`
 				<div class="status"> 
-					${event}
+					${headline}
 				</div> 
 			`
 		}
@@ -186,7 +206,10 @@ class MeteoalarmCard extends LitElement
 					@click="${() => this.handleMore()}"
 					?more-info="true" 
 				>
-					${this.renderIcon()} ${this.renderStatus()}
+					${this.renderHeader()}
+					<div class="content">
+						${this.renderIcon()} ${this.renderStatus()}
+					</div>
 				</div>
 			</ha-card>
 		`;
