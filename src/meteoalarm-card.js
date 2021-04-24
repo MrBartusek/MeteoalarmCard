@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import localize from './localize';
 import styles from './styles';
+import { events, levels } from './data';
 
 class MeteoalarmCard extends LitElement
 {
@@ -93,85 +94,45 @@ class MeteoalarmCard extends LitElement
 			awareness_type
 		} = entity.attributes;
 
-		return {
-			status: status || state || entity.state,
+		let result = {
+			warning_active: (status || state || entity.state) != 'off',
 			friendly_name,
-			event,
-			awareness_level: Number(awareness_level.split(';')[0]),
-			awareness_type: Number(awareness_type.split(';')[0])
 		};
-	}
 
-	getAwarenessColor()
-	{
-		const { awareness_level } = this.getAttributes(this.entity);
-		switch(awareness_level)
+		if(result.warning_active)
 		{
-			case 1:
-				return 'var(--success-color)'
-			case 2:
-				return 'var(--warning-color)'
-			case 3:
-				return 'var(--error-color)'
-			default:
-				return 'var(--card-background-color)'
+			result = {...result, ...{
+				event,
+				awareness_level: Number(awareness_level.split(';')[0]),
+				awareness_type: Number(awareness_type.split(';')[0])
+			}}
 		}
+
+		// If event name is not issued, generate default name in format
+		// Translated Awareness Level - Translated Color
+		// eg. Orange - Thunderstorms
+		if(result.event == undefined)
+		{
+			if(result.warning_active)
+			{
+				result.event = localize(levels[result.awareness_level][1]) + ' - ' + localize(events[result.awareness_type][1])
+			}
+		}
+
+		return result
 	}
 
 	renderIcon()
 	{
 		const { awareness_type } = this.getAttributes(this.entity);
-		let icon;
-		switch(awareness_type)
-		{
-			case 1:
-				icon = 'windsock'
-				break;
-			case 2:
-				icon = 'snowflake'
-				break;
-			case 3:
-				icon = 'weather-lightning'
-				break;
-			case 4:
-				icon = 'waves'
-				break;
-			case 5:
-				icon = 'thermometer-chevron-up'
-				break;
-			case 6:
-				icon = 'thermometer-chevron-down'
-				break;
-			case 7:
-				icon = 'waves'
-				break;
-			case 8:
-				icon = 'pine-tree-fire'
-				break;
-			case 9:
-				icon = 'image-filter-hdr'
-				break;
-			case 10:
-				icon = 'weather-pouring'
-				break;
-			case 11:
-				icon = 'waves'
-				break;
-			case 12:
-				icon = 'weather-pouring'
-				break;
-			default:
-				icon = 'alert-circle-outline'
-				break;
-		}
 		return html`
-			<ha-icon class="main-icon" icon="mdi:${icon}"></ha-icon>
+			<ha-icon class="main-icon" icon="mdi:${events[awareness_type][0]}"></ha-icon>
 		`
 	}
 
 	renderStatus()
 	{
-		const { event } = this.getAttributes(this.entity);
+		let { event } = this.getAttributes(this.entity);
 		return html`
 			<div class="status"> 
 				${event}
@@ -181,7 +142,7 @@ class MeteoalarmCard extends LitElement
 
 	render()
 	{
-		if (!this.entity)
+		if(!this.entity)
 		{
 			return html`
 			  <ha-card>
@@ -193,10 +154,23 @@ class MeteoalarmCard extends LitElement
 			  </ha-card>
 			`;
 		}
+		const { warning_active, awareness_level } = this.getAttributes(this.entity);
+		if(!warning_active)
+		{
+			return html`
+			<ha-card>
+			  <div class="container">
+				  <div class="status"> 
+				  	<ha-icon class="main-icon" icon="mdi:shield-outline"></ha-icon> ${localize('events.no_warnings')}
+				  </div> 
+			  </div>
+			</ha-card>
+		  `;
+		}
 
 		return html`
 			<ha-card>
-				<div class="container" style="background-color: ${this.getAwarenessColor()};" @click="${() => this.handleMore()}" ?more-info="true">
+				<div class="container" style="background-color: ${levels[awareness_level][0]};" @click="${() => this.handleMore()}" ?more-info="true">
 					${this.renderIcon()} ${this.renderStatus()}
 				</div>
 			</ha-card>

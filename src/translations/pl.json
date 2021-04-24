@@ -6,5 +6,25 @@
   },
   "error": {
     "missing_entity": "Podanie encji jest wymagane!"
+  },
+  "events": {
+    "no_warnings": "Brak ostrzeżeń",
+    "wind": "Wiatr",
+    "snow_ice": "Śnieg/Oblodzenie",
+    "thunderstorms": "Burze",
+    "fog": "Mgła",
+    "hight_temperature": "Upały",
+    "low_temperature": "Silne Mrozy",
+    "coastal_event": "Zjawiska strefy brzegowej",
+    "forestfire": "Pożar lasu",
+    "avalanches": "Lawiny",
+    "rain": "Deszcz",
+    "flood": "Powódź",
+    "rain_flood": "Ulewa"
+  },
+  "levels": {
+    "yellow": "Zółty",
+    "orange": "Pomarańczowy",
+    "red": "Czerwony"
   }
 }
