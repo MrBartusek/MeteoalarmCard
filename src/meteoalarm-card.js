@@ -122,22 +122,45 @@ class MeteoalarmCard extends LitElement
 		return result
 	}
 
+	getBackgroundColor()
+	{
+		const { warning_active, awareness_level } = this.getAttributes(this.entity);
+		return warning_active ? levels[awareness_level][0] : 'inherit'
+	}
+
 	renderIcon()
 	{
-		const { awareness_type } = this.getAttributes(this.entity);
+		const { warning_active, awareness_type } = this.getAttributes(this.entity);
+		if(warning_active)
+		{
+			return html`
+				<ha-icon class="main-icon" icon="mdi:${events[awareness_type][0]}"></ha-icon>
+			`
+		}
 		return html`
-			<ha-icon class="main-icon" icon="mdi:${events[awareness_type][0]}"></ha-icon>
+			<ha-icon class="main-icon" icon="mdi:shield-outline"></ha-icon>
 		`
 	}
 
 	renderStatus()
 	{
-		let { event } = this.getAttributes(this.entity);
-		return html`
-			<div class="status"> 
-				${event}
-			</div> 
-		`
+		const { warning_active, event } = this.getAttributes(this.entity);
+		if(warning_active)
+		{
+			return html`
+				<div class="status"> 
+					${event}
+				</div> 
+			`
+		}
+		else
+		{
+			return html`
+				<div class="status"> 
+					${localize('events.no_warnings')}
+				</div> 
+			`
+		}
 	}
 
 	render()
@@ -154,23 +177,15 @@ class MeteoalarmCard extends LitElement
 			  </ha-card>
 			`;
 		}
-		const { warning_active, awareness_level } = this.getAttributes(this.entity);
-		if(!warning_active)
-		{
-			return html`
-			<ha-card>
-			  <div class="container">
-				  <div class="status"> 
-				  	<ha-icon class="main-icon" icon="mdi:shield-outline"></ha-icon> ${localize('events.no_warnings')}
-				  </div> 
-			  </div>
-			</ha-card>
-		  `;
-		}
 
 		return html`
 			<ha-card>
-				<div class="container" style="background-color: ${levels[awareness_level][0]};" @click="${() => this.handleMore()}" ?more-info="true">
+				<div 
+					class="container"
+					style="background-color: ${this.getBackgroundColor()};"
+					@click="${() => this.handleMore()}"
+					?more-info="true" 
+				>
 					${this.renderIcon()} ${this.renderStatus()}
 				</div>
 			</ha-card>
