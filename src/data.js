@@ -2,7 +2,6 @@
 // [icon name, translation key]
 
 export const events =  [
-	undefined,
 	['windsock', 'events.wind'],
 	['snowflake', 'events.snow_ice'],
 	['weather-lightning', 'events.thunderstorms'],
@@ -21,8 +20,7 @@ export const events =  [
 // [color, translation key]
 
 export const levels =  [
-	undefined,
-	['#f1c40f', 'levels.yellow'],
-	['var(--warning-color)', 'levels.orange'],
-	['var(--error-color)', 'levels.red']
+	['#F79F1F', 'levels.yellow'],
+	['#EE5A24', 'levels.orange'],
+	['#db4437', 'levels.red']
 ]

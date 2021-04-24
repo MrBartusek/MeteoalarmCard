@@ -103,8 +103,8 @@ class MeteoalarmCard extends LitElement
 		{
 			result = {...result, ...{
 				event,
-				awareness_level: Number(awareness_level.split(';')[0]),
-				awareness_type: Number(awareness_type.split(';')[0])
+				awareness_level: Number(awareness_level.split(';')[0]) - 2,
+				awareness_type: Number(awareness_type.split(';')[0]) -1
 			}}
 		}
 
