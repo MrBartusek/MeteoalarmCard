@@ -46,6 +46,7 @@ export default css`
     display: flex;
     flex-direction: column;
     font-size: 22px;
+    line-height: normal;
     margin: auto;
     text-align: center;
     overflow: hidden;
