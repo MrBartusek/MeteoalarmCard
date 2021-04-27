@@ -7,7 +7,7 @@ export const events =  [
 	['weather-lightning', 'events.thunderstorms'],
 	['waves', 'events.fog'],
 	['thermometer-chevron-up', 'events."hight_temperature'],
-	['thermometer-chevron-down', 'events.low_temperature'],
+	['snowflake', 'events.low_temperature'],
 	['waves', 'events.coastal_event'],
 	['pine-tree-fire', 'events.forestfire'],
 	['image-filter-hdr', 'events.avalanches'],

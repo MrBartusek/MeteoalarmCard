@@ -25,15 +25,11 @@ export default css`
     overflow: hidden;
     position: relative;
   }
+
   .content
   {
     display: flex;
-    padding: 32px 42px;
-  }
-  
-  .content:not(:first-child)
-  {
-    padding-top: 0px;
+    padding: 32px 28px;
   }
 
   .main-icon 
@@ -43,32 +39,19 @@ export default css`
     flex: 0;
     margin-right: 18px;
   }
+
   .status
   {
-    font-size: 22px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
     margin: auto;
     text-align: center;
-    color: var(--text-primary-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
-
-  .container.not-available {
-    filter: grayscale(1);
-  }
-
-  .header
-  {
-    padding: 12px 16px 16px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text-primary-color);
-  }
-  .title
-  {
-    text-align: center;
-  }
-
 `;

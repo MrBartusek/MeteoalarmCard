@@ -22,7 +22,6 @@ class MeteoalarmCard extends LitElement
 
 	static getStubConfig(hass, entities)
 	{
-		console.log(entities)
 		const [entity] = entities.filter(
 			(eid) => eid.includes('meteoalarm')
 		);
@@ -93,6 +92,7 @@ class MeteoalarmCard extends LitElement
 			headline,
 			awareness_level,
 			awareness_type
+
 		} = entity.attributes;
 
 		let result = {
@@ -103,7 +103,7 @@ class MeteoalarmCard extends LitElement
 		if(result.warning_active)
 		{
 			result = {...result, ...{
-				headline: headline || event,
+				headline: event || headline,
 				awareness_level: Number(awareness_level.split(';')[0]) - 2,
 				awareness_type: Number(awareness_type.split(';')[0]) -1
 			}}
@@ -129,23 +129,10 @@ class MeteoalarmCard extends LitElement
 		return warning_active ? levels[awareness_level][0] : 'inherit'
 	}
 
-	renderHeader()
+	getFontColor()
 	{
-		const { warning_active} = this.getAttributes(this.entity);
-		if(warning_active)
-		{
-			return html`
-				<div class="header">
-					<div class="title">
-					<ha-icon icon="mdi:checkbox-blank-circle-outline"></ha-icon> Meteoalarm
-					</div>
-				</div>
-			`
-		}
-		else
-		{
-			return ''
-		}
+		const { warning_active } = this.getAttributes(this.entity);
+		return warning_active ? '#fff' : '--primary-text-color'
 	}
 
 	renderIcon()
@@ -190,7 +177,7 @@ class MeteoalarmCard extends LitElement
 			return html`
 			  <ha-card>
 				<div class="container">
-					<div class="status"> 
+					<div class="content"> 
 						${localize('common.not_available')}
 					</div> 
 				</div>
@@ -202,11 +189,10 @@ class MeteoalarmCard extends LitElement
 			<ha-card>
 				<div 
 					class="container"
-					style="background-color: ${this.getBackgroundColor()};"
+					style="background-color: ${this.getBackgroundColor()}; color: ${this.getFontColor()};"
 					@click="${() => this.handleMore()}"
 					?more-info="true" 
 				>
-					${this.renderHeader()}
 					<div class="content">
 						${this.renderIcon()} ${this.renderStatus()}
 					</div>
