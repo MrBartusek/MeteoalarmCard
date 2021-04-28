@@ -2,6 +2,20 @@
 
 If you plan to contribute back to this repo, please fork & open a PR.
 
+## How to add translation
+
+We are currently looking to implement languages of all countries supported by meteoalarm. If you are able to add or improve translations in language you speak don't hastate to make a PR.
+
+1. Clone the repository - [How to run locally](#How-to-run-locally). Follow steps 1 and 2.
+2. Copy `src/translations/en.json` file and name it with appropriate language code.
+3. Translate only the keys (second quotation mark)
+4. Import your translation in `src/localize.js` file.
+5. Mention your translation in `README.md` file.
+6. Open a PR.
+7. Wait for maintainer to review your changes.
+
+**Note:** You can find translation for `events` and `levels` under _captions_ at [meteoalarm.eu](https://www.meteoalarm.eu)
+
 ## How to run locally
 
 1. Clone this repo to wherever you want:
@@ -22,4 +36,4 @@ If you plan to contribute back to this repo, please fork & open a PR.
    ```
 5. Add `http://localhost:5000/meteoalarm-card.js` to your Lovelace resources.
 
-Now you can make changes to files in `src` folder. Development server will automatically rebuild on changes. Lovelace will load resource from development server. Refresh the browser to see changes. Make sure cache is cleared or disabled.
+Now you can make changes to files in `src` folder. Development server will automatically rebuild on changes. Lovelace will load resource from development server. Refresh the browser to see changes. Be sure to disable cache in your browser developer tools.
