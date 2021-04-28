@@ -178,7 +178,9 @@ class MeteoalarmCard extends LitElement
 			  <ha-card>
 				<div class="container">
 					<div class="content"> 
-						${localize('common.not_available')}
+						<div class="status"> 
+							${localize('common.not_available')}
+						</div>
 					</div> 
 				</div>
 			  </ha-card>
