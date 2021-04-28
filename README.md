@@ -7,11 +7,11 @@ By default [Home Assistant](https://www.home-assistant.io/) does not provide any
 
 ## Installing
 
-## HACS
+### HACS
 
 Soon™
 
-### Manual Instalation
+### Manual Installation
 1. Download `meteoalarm-card.js` file from the [latest release](https://github.com/MrBartusek/MeteoalarmCard/releases/latest).
 2. Put `meteoalarm-card.js` file into your `config/www` folder. You can use _File Editor_ add-on.
 3. Add reference to `meteoalarm-card.js` in Lovelace. There's two way to do that:
