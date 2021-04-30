@@ -3,7 +3,7 @@
 
 By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warning for Lovelace UI.
 
-![cover](https://i.imgur.com/dUvEUw4.png)
+![cover](https://i.imgur.com/jsLOGIv.png)
 
 ## Installing
 
