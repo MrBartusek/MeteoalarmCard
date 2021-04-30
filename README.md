@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/meteoalarm-card?label=version) [![hacs_badge](https://img.shields.io/badge/HACS-custom-orange.svg)](https://github.com/custom-components/hacs) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)
 
-By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warning for Lovelace UI.
+By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warnings.
 
 ![cover](https://i.imgur.com/jsLOGIv.png)
 
@@ -10,9 +10,13 @@ By default [Home Assistant](https://www.home-assistant.io/) does not provide any
 
 ### HACS
 
-Soon™
+We recommend installing meteoalarm card via [Home Assistant Community Store](https://hacs.xyz)
+
+To add custom repositories please follow [this guide](https://hacs.xyz/docs/faq/custom_repositories/). Set URL to `https://github.com/MrBartusek/MeteoalarmCard` and category to `Lovelace`.
+
 
 ### Manual Installation
+
 1. Download `meteoalarm-card.js` file from the [latest release](https://github.com/MrBartusek/MeteoalarmCard/releases/latest).
 2. Put `meteoalarm-card.js` file into your `config/www` folder. You can use _File Editor_ add-on.
 3. Add reference to `meteoalarm-card.js` in Lovelace. There's two way to do that:
