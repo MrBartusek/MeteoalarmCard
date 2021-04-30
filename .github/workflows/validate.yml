@@ -6,6 +6,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v2"
+      - name: Validate
         uses: "hacs/action@main"
         with:
           category: "plugin"
