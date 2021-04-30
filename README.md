@@ -1,5 +1,6 @@
 # Meteoalarm Card
 
+![npm](https://img.shields.io/npm/v/meteoalarm-card?label=version) [![hacs_badge](https://img.shields.io/badge/HACS-custom-orange.svg)](https://github.com/custom-components/hacs) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)
 
 By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warning for Lovelace UI.
 
