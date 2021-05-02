@@ -109,15 +109,10 @@ class MeteoalarmCard extends LitElement
 			}}
 		}
 
-		// If headline is not issued, generate default name in format
-		// Translated Awareness Level - Translated Color
-		// eg. Orange - Thunderstorms
-		if(result.headline == undefined)
+		// If headline is not issued, generate default name
+		if(result.headline == undefined && result.warning_active)
 		{
-			if(result.warning_active)
-			{
-				result.headline = localize(levels[result.awareness_level][1]) + ' - ' + localize(events[result.awareness_type][1])
-			}
+			result.headline = localize(levels[result.awareness_level][1]).replace('{0}', localize(events[result.awareness_type][1]))
 		}
 
 		return result

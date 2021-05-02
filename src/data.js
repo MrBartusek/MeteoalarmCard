@@ -9,7 +9,7 @@ export const events =  [
 	['thermometer-chevron-up', 'events."hight_temperature'],
 	['snowflake', 'events.low_temperature'],
 	['waves', 'events.coastal_event'],
-	['pine-tree-fire', 'events.forestfire'],
+	['pine-tree-fire', 'events.forest_fire'],
 	['image-filter-hdr', 'events.avalanches'],
 	['weather-pouring', 'events.rain'],
 	['waves', 'events.flood'],
@@ -20,7 +20,7 @@ export const events =  [
 // [color, translation key]
 
 export const levels =  [
-	['#ff9800', 'levels.yellow'],
-	['#EE5A24', 'levels.orange'],
-	['#db4437', 'levels.red']
+	['#ff9800', 'messages.yellow'],
+	['#EE5A24', 'messages.orange'],
+	['#db4437', 'messages.red']
 ]

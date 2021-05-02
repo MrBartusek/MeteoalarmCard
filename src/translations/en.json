@@ -9,22 +9,22 @@
   },
   "events": {
     "no_warnings": "No warnings",
-    "wind": "Wind",
-    "snow_ice": "Snow/Ice",
-    "thunderstorms": "Thunderstorms",
-    "fog": "Fog",
-    "hight_temperature": "Extreme high temperature",
-    "low_temperature": "Extreme low temperature",
-    "coastal_event": "Coastal Event",
-    "forestfire": "Forestfire",
-    "avalanches": "Avalanches",
-    "rain": "Rain",
-    "flood": "Flood",
-    "rain_flood": "Rain Flood"
+    "wind": "wind",
+    "snow_ice": "snow/ice",
+    "thunderstorms": "thunderstorms",
+    "fog": "fog",
+    "hight_temperature": "extreme high temperature",
+    "low_temperature": "extreme low temperature",
+    "coastal_event": "coastal event",
+    "forest_fire": "forest fire",
+    "avalanches": "avalanches",
+    "rain": "rain",
+    "flood": "flood",
+    "rain_flood": "rain flood"
   },
-  "levels": {
-    "yellow": "Yellow",
-    "orange": "Orange",
-    "red": "Red"
+  "messages": {
+    "yellow": "Yellow {0} warning",
+    "orange": "Orange {0} warning",
+    "red": "Red {0} warning"
   }
 }

@@ -9,22 +9,22 @@
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",
-    "wind": "Wiatr",
-    "snow_ice": "Śnieg/Oblodzenie",
-    "thunderstorms": "Burze",
-    "fog": "Mgła",
-    "hight_temperature": "Upały",
-    "low_temperature": "Silne Mrozy",
-    "coastal_event": "Zjawiska strefy brzegowej",
-    "forestfire": "Pożar lasu",
-    "avalanches": "Lawiny",
-    "rain": "Deszcz",
-    "flood": "Powódź",
-    "rain_flood": "Ulewa"
+    "wind": "wiatr",
+    "snow_ice": "śnieg/oblodzenie",
+    "thunderstorms": "burze",
+    "fog": "mgły",
+    "hight_temperature": "upały",
+    "low_temperature": "silne Mrozy",
+    "coastal_event": "zjawiska strefy brzegowej",
+    "forest_fire": "pożary lasu",
+    "avalanches": "lawiny",
+    "rain": "deszcz",
+    "flood": "powodzie",
+    "rain_flood": "ulewy"
   },
-  "levels": {
-    "yellow": "Zółty",
-    "orange": "Pomarańczowy",
-    "red": "Czerwony"
+  "messages": {
+    "yellow": "Żółty alert na {0}",
+    "orange": "Pomarańczowy alert na {0}",
+    "red": "Czerwony alert na {0}"
   }
 }
