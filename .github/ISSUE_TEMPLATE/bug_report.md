@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: enhancement
+labels: bug
 assignees: ''
 
 ---
@@ -24,9 +24,9 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **System (please complete the following information):**
- - Card version: [e.g. 1.0]
- - Home asisstant version: [e.g. 5.12]
- - Instalation type: [e.g. HACS]
+ - Card version: [e.g. 1.1.0]
+ - Home assistant version: [e.g. 5.12]
+ - Installation type: [HACS/Manual]
 
 **Additional context**
 Add any other context about the problem here.
