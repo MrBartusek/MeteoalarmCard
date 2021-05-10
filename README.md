@@ -14,7 +14,6 @@ We recommend installing meteoalarm card via [Home Assistant Community Store](htt
 
 To add custom repositories please follow [this guide](https://hacs.xyz/docs/faq/custom_repositories/). Set URL to `https://github.com/MrBartusek/MeteoalarmCard` and category to `Lovelace`.
 
-
 ### Manual Installation
 
 1. Download `meteoalarm-card.js` file from the [latest release](https://github.com/MrBartusek/MeteoalarmCard/releases/latest).
@@ -29,6 +28,20 @@ To add custom repositories please follow [this guide](https://hacs.xyz/docs/faq/
           type: module
       ```
 4. Add `custom:meteoalarm-card` to Lovelace UI as any other card.
+
+## Using the card
+
+After completing installation you can add this card like any other to your dashboard.
+
+1. Navigate to your dashboard → click 3 dots in the top left corner.
+2. Select _Edit Dashboard_
+3. Click _+ New Card_ button
+4. Select `Custom: Meteoalarm Card`
+5. Select meteoalarm entity. If you don't see one make sure you have configured [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/)
+```yaml
+type: 'custom:meteoalarm-card'
+entity: 'binary_sensor.meteoalarm'
+```
 
 ## Supported languages
 
