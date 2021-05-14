@@ -92,7 +92,6 @@ class MeteoalarmCard extends LitElement
 			headline,
 			awareness_level,
 			awareness_type
-
 		} = entity.attributes;
 
 		let result = {
@@ -109,7 +108,7 @@ class MeteoalarmCard extends LitElement
 			}}
 		}
 
-		// If headline is not issued, generate default name
+		// If headline is not issued, generate default one
 		if(result.headline == undefined && result.warning_active)
 		{
 			result.headline = localize(levels[result.awareness_level][1]).replace('{0}', localize(events[result.awareness_type][1]))
