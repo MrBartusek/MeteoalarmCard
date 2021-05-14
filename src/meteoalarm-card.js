@@ -131,15 +131,18 @@ class MeteoalarmCard extends LitElement
 
 	renderIcon()
 	{
-		const { warning_active, awareness_type } = this.getAttributes(this.entity);
-		if(warning_active)
+		let iconName = ''
+		if(!this.entity)
 		{
-			return html`
-				<ha-icon class="main-icon" icon="mdi:${events[awareness_type][0]}"></ha-icon>
-			`
+			iconName = 'cloud-question'
+		}
+		else
+		{
+			const { warning_active, awareness_type } = this.getAttributes(this.entity);
+			iconName = warning_active ? events[awareness_type][0] : 'shield-outline'
 		}
 		return html`
-			<ha-icon class="main-icon" icon="mdi:shield-outline"></ha-icon>
+			<ha-icon class="main-icon" icon="mdi:${iconName}"></ha-icon>
 		`
 	}
 
@@ -172,6 +175,7 @@ class MeteoalarmCard extends LitElement
 			  <ha-card>
 				<div class="container">
 					<div class="content"> 
+						${this.renderIcon()}
 						<div class="status"> 
 							${localize('common.not_available')}
 						</div>
