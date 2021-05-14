@@ -1,6 +1,6 @@
 # Meteoalarm Card
 
-[![npm](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-default-orange.svg)](https://hacs.xyz) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions)
+[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs badge](https://img.shields.io/badge/HACS-default-orange.svg)](https://hacs.xyz) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases)
 
 By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warnings.
 
