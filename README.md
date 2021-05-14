@@ -1,6 +1,6 @@
 # Meteoalarm Card
 
-[![npm](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-custom-orange.svg)](https://hacs.xyz) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions)
+[![npm](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-default-orange.svg)](https://hacs.xyz) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions)
 
 By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warnings.
 
@@ -12,7 +12,7 @@ By default [Home Assistant](https://www.home-assistant.io/) does not provide any
 
 We recommend installing meteoalarm card via [Home Assistant Community Store](https://hacs.xyz)
 
-To add custom repositories please follow [this guide](https://hacs.xyz/docs/faq/custom_repositories/). Set URL to `https://github.com/MrBartusek/MeteoalarmCard` and category to `Lovelace`.
+Just search for `Meteoalarm Card` in `Frontend` tab.
 
 ### Manual Installation
 
