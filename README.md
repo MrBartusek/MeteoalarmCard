@@ -49,6 +49,7 @@ This card supports translations. Please, help to add more translations and impro
 
 - English
 - Polski (Polish)
+- Français (French)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Contributing
