@@ -47,9 +47,9 @@ entity: 'binary_sensor.meteoalarm'
 
 This card supports translations. Please, help to add more translations and improve existing ones. Here's a list of supported languages:
 
-- English
-- Polski (Polish)
+- English (Default language)
 - Français (French)
+- Polski (Polish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Contributing
