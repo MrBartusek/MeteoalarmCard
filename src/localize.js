@@ -10,8 +10,7 @@ var languages = {
 	en,
 	pl,
 	et,
-	fr,
-	pl
+	fr
 };
 
 const DEFAULT_LANG = 'en';
