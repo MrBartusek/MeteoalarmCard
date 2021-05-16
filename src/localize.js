@@ -2,13 +2,16 @@
 // https://github.com/custom-cards/boilerplate-card/blob/master/src/localize/localize.ts
 
 import * as en from './translations/en.json';
+import * as fr from './translations/fr.json';
 import * as pl from './translations/pl.json';
 import * as et from './translations/et.json';
 
 var languages = {
 	en,
 	pl,
-	et
+	et,
+	fr,
+	pl
 };
 
 const DEFAULT_LANG = 'en';
