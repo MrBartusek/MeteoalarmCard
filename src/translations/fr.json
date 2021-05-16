@@ -1,0 +1,31 @@
+
+{
+  "common": {
+    "name": "Carte Meteoalarm",
+    "description": "Carte Meteoalarm vous alerte des conditions météorologique courante.",
+    "not_available": "Meteoalarm n'est pas disponible"
+  },
+  "error": {
+    "missing_entity": "L'entité est requise!"
+  },
+  "events": {
+    "no_warnings": "Aucune alerte",
+    "wind": "vent",
+    "snow_ice": "neige/verglas",
+    "thunderstorms": "orages",
+    "fog": "brouillard",
+    "hight_temperature": "température extrêmement élevée",
+    "low_temperature": "température extrêmement basse",
+    "coastal_event": "événement côtier",
+    "forest_fire": "feu de forêt",
+    "avalanches": "avalanches",
+    "rain": "pluie",
+    "flood": "inondation",
+    "rain_flood": "pluie d'inondation"
+  },
+  "messages": {
+    "yellow": "Alerte jaune {0}",
+    "orange": "Alerte orange {0}",
+    "red": "Alerte rouge {0}"
+  }
+}
