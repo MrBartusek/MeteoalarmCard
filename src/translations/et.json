@@ -1,0 +1,30 @@
+{
+  "common": {
+    "name": "Ohtlike ilmanähtuste kaart",
+    "description": "Ohtlike ilmanähtuste kaart hoiatab ilmaohtude eest.",
+    "not_available": "Meteoalarm pole saadaval"
+  },
+  "error": {
+    "missing_entity": "Vajalik on Meteoalarmi olem!"
+  },
+  "events": {
+    "no_warnings": "Hoiatusi hetkel pole",
+    "wind": "tugev tuul",
+    "snow_ice": "lumi/jää",
+    "thunderstorms": "äike",
+    "fog": "udu",
+    "hight_temperature": "kuumalaine",
+    "low_temperature": "külmalaine",
+    "coastal_event": "rannikumeri",
+    "forest_fire": "metsapõleng",
+    "avalanches": "laviin",
+    "rain": "sademed",
+    "flood": "üleujutus",
+    "rain_flood": "paduvihm"
+  },
+  "messages": {
+    "yellow": "Kollane hoiatus {0}",
+    "orange": "Oranž hoiatus {0}",
+    "red": "Punane hoiatus {0}"
+  }
+}
