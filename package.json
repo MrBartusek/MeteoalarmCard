@@ -3,6 +3,25 @@
   "version": "1.2.0",
   "description": "Meteoalarm card for Home Assistant Lovelace UI",
   "main": "dist/meteoalarm-card.js",
+  "keywords": [
+    "home-assistant",
+    "homeassistant",
+    "lovelace",
+    "custom-cards",
+    "meteoalarm",
+    "lovelace-card",
+    "meteoalarmeu"
+  ],
+  "author": "MrBartusek",
+  "license": "MIT",
+  "homepage": "https://github.com/MrBartusek/MeteoalarmCard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrBartusek/MeteoalarmCard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrBartusek/MeteoalarmCard/issues"
+  },
   "scripts": {
     "start": "rollup -c --watch",
     "compile": "rollup -c",
@@ -10,8 +29,6 @@
     "lint:fix": "eslint src --fix",
     "build": "npm run lint && npm run compile"
   },
-  "author": "MrBartusek",
-  "license": "MIT",
   "dependencies": {
     "custom-card-helpers": "^1.6.4",
     "lit-element": "^2.3.1"
