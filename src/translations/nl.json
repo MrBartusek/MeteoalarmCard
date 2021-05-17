@@ -20,7 +20,7 @@
     "avalanches": "lawines",
     "rain": "regen",
     "flood": "hoogwater",
-    "rain_flood": "Wateroverlast"
+    "rain_flood": "wateroverlast"
   },
   "messages": {
     "yellow": "Geel {0} waarschuwing",
