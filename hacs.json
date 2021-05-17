@@ -2,5 +2,5 @@
     "name": "Meteoalarm Card",
     "render_readme": true,
     "filename": "meteoalarm-card.js",
-    "country": ["BG", "BS", "CZ", "DA", "DE", "EE", "EN", "ES", "ES", "ES", "FI", "FR", "GR", "HE", "HR", "HU", "IS", "IT", "LT", "LV", "ME", "MK", "MT", "NL", "NO", "PL", "PT", "RO", "RS", "SE", "SK", "SL", "VA"]
+    "country": ["AT", "BA", "BE", "BG", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IL", "IS", "IT", "LT", "LU", "LV", "MD", "ME", "MT", "NL", "NO", "PL", "PT", "RO", "RS", "SE", "SI", "SK", "UK"]
 }
