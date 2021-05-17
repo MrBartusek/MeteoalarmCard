@@ -1,0 +1,30 @@
+{
+  "common": {
+    "name": "Meteoalarm Kaart",
+    "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
+    "not_available": "Meteoalarm is niet beschikbaar"
+  },
+  "error": {
+    "missing_entity": "Het specificeren van de entiteit is vereist!"
+  },
+  "events": {
+    "no_warnings": "Geen waarschuwingen",
+    "wind": "wind",
+    "snow_ice": "sneeuw/ijzel/bevriezing",
+    "thunderstorms": "onweer",
+    "fog": "mist",
+    "hight_temperature": "hitte",
+    "low_temperature": "koude",
+    "coastal_event": "kustbedreiging",
+    "forest_fire": "bos- en heidebranden",
+    "avalanches": "lawines",
+    "rain": "regen",
+    "flood": "hoogwater",
+    "rain_flood": "Wateroverlast"
+  },
+  "messages": {
+    "yellow": "Geel {0} waarschuwing",
+    "orange": "Oranje {0} waarschuwing",
+    "red": "Rood {0} waarschuwing"
+  }
+}
