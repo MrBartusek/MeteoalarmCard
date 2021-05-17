@@ -3,11 +3,13 @@
 
 import * as en from './translations/en.json';
 import * as fr from './translations/fr.json';
+import * as nl from './translations/nl.json';
 import * as pl from './translations/pl.json';
 import * as et from './translations/et.json';
 
 var languages = {
 	en,
+	nl,
 	pl,
 	et,
 	fr
