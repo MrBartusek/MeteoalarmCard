@@ -1,11 +1,27 @@
 {
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
-    "not_available": "Meteoalarm is niet beschikbaar"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
-    "missing_entity": "Het specificeren van de entiteit is vereist!"
+    "missing_entity": "Het specificeren van de entiteit is vereist!",
+    "invalid_integration": "Deze integratie is niet geldig!",
+    "automatic_failed": null,
+    "entity_invalid": null
+  },
+  "editor": {
+    "entity": "Entiteit",
+    "integration": "Integratie",
+    "required": "Verplicht",
+    "automatic": "Automatisch",
+    "recommended": "Aanbevolen",
+    "override_headline": "Koptekst overschrijven",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",
@@ -20,11 +36,23 @@
     "avalanches": "lawines",
     "rain": "regen",
     "flood": "hoogwater",
-    "rain_flood": "Wateroverlast"
+    "rain_flood": "wateroverlast"
   },
   "messages": {
-    "yellow": "Geel {0} waarschuwing",
-    "orange": "Oranje {0} waarschuwing",
-    "red": "Rood {0} waarschuwing"
+    "yellow": {
+      "event": "Waarschuwing geel {event}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Waarschuwing oranje {event}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Waarschuwing rood {event}",
+      "generic": null,
+      "color": null
+    }
   }
 }
