@@ -52,6 +52,7 @@ This card supports translations. Please, help to add more translations and impro
 - Deutsch (German)
 - Eesti (Estonian)
 - Français (French)
+- Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
