@@ -49,6 +49,7 @@ This card supports translations. Please, help to add more translations and impro
 
 - English (Default language)
 - Français (French)
+- Deutsch (German)
 - Nederlands (Dutch)
 - Polski (Polish)
 - Eesti (Estonian)
