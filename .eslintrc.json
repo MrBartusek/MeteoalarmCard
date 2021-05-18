@@ -15,6 +15,7 @@
     "no-trailing-spaces": ["error"],
     "eol-last": ["error", "always"],
     "curly": ["error", "multi-line", "consistent"],
-    "indent": ["error", "tab", { "SwitchCase": 1 }]
+    "indent": ["error", "tab", { "SwitchCase": 1 }],
+    "camelcase": ["error", { "ignoreDestructuring": true}]
   }
 }
