@@ -1,6 +1,6 @@
 {
   "common": {
-    "name": "Meteoalarm Card",
+    "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
     "not_available": "Meteoalarm nie jest dostępny"
   },
