@@ -89,38 +89,38 @@ class MeteoalarmCard extends LitElement
 			state,
 			event,
 			headline,
-			awareness_level,
-			awareness_type
+			awareness_type: awarenessType,
+			awareness_level: awarenessLevel,
 		} = entity.attributes;
 
 		let result = {
-			warning_active: (status || state || entity.state) != 'off'
+			isWarningActive: (status || state || entity.state) != 'off'
 		};
 
-		if(result.warning_active)
+		if(result.isWarningActive)
 		{
-			if(awareness_level.includes(';'))
+			if(awarenessLevel.includes(';'))
 			{
 				// meteoalarm core
 				result = {...result, ...{
 					headline: event || headline,
-					awareness_level: LEVELS[Number(awareness_level.split(';')[0]) - 2],
-					awareness_type: EVENTS[Number(awareness_type.split(';')[0]) - 2]
+					awarenessLevel: LEVELS[Number(awarenessLevel.split(';')[0]) - 2],
+					awarenessType: EVENTS[Number(awarenessType.split(';')[0]) - 2]
 				}}
 			}
 			else
 			{
 				// custom_component xlcnd/meteoalarmeu
 				result = {...result, ...{
-					awareness_level: LEVELS.find(e => e.name == awareness_level),
-					awareness_type: EVENTS.find(l => l.name == awareness_type)
+					awarenessLevel: LEVELS.find(e => e.name == awarenessLevel),
+					awarenessType: EVENTS.find(l => l.name == awarenessType)
 				}}
 			}
 		}
 
-		if(result.headline == undefined && result.warning_active)
+		if(result.headline == undefined && result.isWarningActive)
 		{
-			result.headline = this.generateHeadline(result.awareness_type, result.awareness_level)
+			result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 		}
 
 		return result
@@ -134,14 +134,14 @@ class MeteoalarmCard extends LitElement
 
 	getBackgroundColor()
 	{
-		const { warning_active, awareness_level } = this.getAttributes(this.entity);
-		return warning_active ? awareness_level.color : 'inherit'
+		const { isWarningActive: isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
+		return isWarningActive ? awarenessLevel.color : 'inherit'
 	}
 
 	getFontColor()
 	{
-		const { warning_active } = this.getAttributes(this.entity);
-		return warning_active ? '#fff' : '--primary-text-color'
+		const { isWarningActive: isWarningActive } = this.getAttributes(this.entity);
+		return isWarningActive ? '#fff' : '--primary-text-color'
 	}
 
 	renderIcon()
@@ -153,8 +153,8 @@ class MeteoalarmCard extends LitElement
 		}
 		else
 		{
-			const { warning_active, awareness_type } = this.getAttributes(this.entity);
-			iconName = warning_active ? awareness_type.icon : 'shield-outline'
+			const { isWarningActive: isWarningActive, awarenessType } = this.getAttributes(this.entity);
+			iconName = isWarningActive ? awarenessType.icon : 'shield-outline'
 		}
 		return html`
 			<ha-icon class="main-icon" icon="mdi:${iconName}"></ha-icon>
@@ -163,8 +163,8 @@ class MeteoalarmCard extends LitElement
 
 	renderStatus()
 	{
-		const { warning_active, headline } = this.getAttributes(this.entity);
-		if(warning_active)
+		const { isWarningActive: isWarningActive, headline } = this.getAttributes(this.entity);
+		if(isWarningActive)
 		{
 			return html`
 				<div class="status"> 
