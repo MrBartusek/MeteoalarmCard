@@ -23,8 +23,8 @@
         "rain_flood": "Regenüberflutung"
     },
     "messages": {
-        "yellow": "Warnstufe Gelb: {0}",
-        "orange": "Warnstufe Orange: {0}",
-        "red": "Warnstufe Rot: {0}"
+        "yellow": "{0} der Warnstufe Gelb",
+        "orange": "{0} der Warnstufe Orange",
+        "red": "{0} der Warnstufe Rot"
     }
 }
