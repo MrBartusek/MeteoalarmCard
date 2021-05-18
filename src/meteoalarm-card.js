@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import localize from './localize';
 import styles from './styles';
-import { events, levels } from './data';
+import { EVENTS, LEVELS } from './data';
 
 class MeteoalarmCard extends LitElement
 {
@@ -87,7 +87,6 @@ class MeteoalarmCard extends LitElement
 		const {
 			status,
 			state,
-			friendly_name,
 			event,
 			headline,
 			awareness_level,
@@ -95,32 +94,48 @@ class MeteoalarmCard extends LitElement
 		} = entity.attributes;
 
 		let result = {
-			warning_active: (status || state || entity.state) != 'off',
-			friendly_name,
+			warning_active: (status || state || entity.state) != 'off'
 		};
 
 		if(result.warning_active)
 		{
-			result = {...result, ...{
-				headline: event || headline,
-				awareness_level: Number(awareness_level.split(';')[0]) - 2,
-				awareness_type: Number(awareness_type.split(';')[0]) -1
-			}}
+			if(awareness_level.includes(';'))
+			{
+				// meteoalarm core
+				result = {...result, ...{
+					headline: event || headline,
+					awareness_level: LEVELS[Number(awareness_level.split(';')[0]) - 2],
+					awareness_type: EVENTS[Number(awareness_type.split(';')[0]) - 2]
+				}}
+			}
+			else
+			{
+				// custom_component xlcnd/meteoalarmeu
+				result = {...result, ...{
+					awareness_level: LEVELS.find(e => e.name == awareness_level),
+					awareness_type: EVENTS.find(l => l.name == awareness_type)
+				}}
+			}
 		}
 
-		// If headline is not issued, generate default one
 		if(result.headline == undefined && result.warning_active)
 		{
-			result.headline = localize(levels[result.awareness_level][1]).replace('{0}', localize(events[result.awareness_type][1]))
+			result.headline = this.generateHeadline(result.awareness_type, result.awareness_level)
 		}
 
 		return result
 	}
 
+	generateHeadline(awarenessType, awarenessLevel)
+	{
+		// If headline is not issued, generate default one
+		return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
+	}
+
 	getBackgroundColor()
 	{
 		const { warning_active, awareness_level } = this.getAttributes(this.entity);
-		return warning_active ? levels[awareness_level][0] : 'inherit'
+		return warning_active ? awareness_level.color : 'inherit'
 	}
 
 	getFontColor()
@@ -139,7 +154,7 @@ class MeteoalarmCard extends LitElement
 		else
 		{
 			const { warning_active, awareness_type } = this.getAttributes(this.entity);
-			iconName = warning_active ? events[awareness_type][0] : 'shield-outline'
+			iconName = warning_active ? awareness_type.icon : 'shield-outline'
 		}
 		return html`
 			<ha-icon class="main-icon" icon="mdi:${iconName}"></ha-icon>
