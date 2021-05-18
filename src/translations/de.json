@@ -1,0 +1,30 @@
+{
+    "common": {
+        "name": "Meteoalarm-Karte",
+        "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
+        "not_available": "Meteoalarm ist nicht verfügbar"
+    },
+    "error": {
+        "missing_entity": "Die angegebene Entität ist nicht vorhanden!"
+    },
+    "events": {
+        "no_warnings": "Keine Warnungen",
+        "wind": "Wind",
+        "snow_ice": "Schnee/Eis",
+        "thunderstorms": "Gewitter",
+        "fog": "Nebel",
+        "hight_temperature": "Extrem hohe Temperaturen",
+        "low_temperature": "Extrem niedrige Temperaturen",
+        "coastal_event": "Küstenereignis",
+        "forest_fire": "Waldbrand",
+        "avalanches": "Lawinen",
+        "rain": "Regen",
+        "flood": "Überflutung",
+        "rain_flood": "Regenüberflutung"
+    },
+    "messages": {
+        "yellow": "Gelb {0} Warnung",
+        "orange": "Orange {0} Warnung",
+        "red": "Rot {0} Warnung"
+    }
+}
