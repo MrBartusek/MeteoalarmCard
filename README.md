@@ -20,7 +20,7 @@ Just search for `Meteoalarm Card` in `Frontend` tab.
 2. Put `meteoalarm-card.js` file into your `config/www` folder. You can use _File Editor_ add-on.
 3. Add reference to `meteoalarm-card.js` in Lovelace. There's two way to do that:
    1. **Using UI:** [Navigate to Lovelace Resources](https://my.home-assistant.io/redirect/lovelace_resources/) → Click Plus button → Set _URL_ as `/local/meteoalarm-card.js` → Set _Resource type_ as `JavaScript Module`.<br>
-      **Note:** If you do not see the Resources Tab, you will need to enable _Advanced Mode_ in your [User Profile](https://my.home-assistant.io/redirect/profile/)
+   **Note:** If you do not see the Resources Tab, you will need to enable _Advanced Mode_ in your [User Profile](https://my.home-assistant.io/redirect/profile/)
    2. **Using YAML:** Add following code to `lovelace` section.
       ```yaml
       resources:
@@ -38,10 +38,9 @@ After completing installation you can add this card like any other to your dashb
 3. Click _+ New Card_ button
 4. Select `Custom: Meteoalarm Card`
 5. Select meteoalarm entity. If you don't see one make sure you have configured [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/)
-
 ```yaml
-type: "custom:meteoalarm-card"
-entity: "binary_sensor.meteoalarm"
+type: 'custom:meteoalarm-card'
+entity: 'binary_sensor.meteoalarm'
 ```
 
 ## Supported languages
@@ -50,7 +49,6 @@ This card supports translations. Please, help to add more translations and impro
 
 - English (Default language)
 - Français (French)
-- Deutsch (German)
 - Nederlands (Dutch)
 - Polski (Polish)
 - Eesti (Estonian)
