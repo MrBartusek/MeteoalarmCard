@@ -20,16 +20,16 @@ class Level
 
 export const EVENTS = [
 	new Event('Wind', 'windsock', 'events.wind'),
-	new Event('Snow/Ice', 'snowflake', 'events.snow_ice'),
+	new Event('Snow/Ice', 'weather-snowy-heavy', 'events.snow_ice'),
 	new Event('Thunderstorms', 'weather-lightning', 'events.thunderstorms'),
-	new Event('Fog', 'waves', 'events.fog'),
+	new Event('Fog', 'weather-fog', 'events.fog'),
 	new Event('Extreme high temperature', 'thermometer-chevron-up', 'events."hight_temperature'),
-	new Event('Extreme high temperature', 'snowflake', 'events.low_temperature'),
+	new Event('Extreme low temperature', 'snowflake', 'events.low_temperature'),
 	new Event('Coastal Event', 'waves', 'events.coastal_event'),
 	new Event('Forestfire', 'pine-tree-fire', 'events.forest_fire'),
 	new Event('Avalanches', 'image-filter-hdr', 'events.avalanches'),
 	new Event('Rain', 'weather-pouring', 'events.rain'),
-	new Event('Flood', 'waves', 'events.flood'),
+	new Event('Flood', 'home-flood', 'events.flood'),
 	new Event('Rain-Flood', 'weather-pouring', 'events.rain_flood')
 ]
 
