@@ -23,8 +23,8 @@
     "rain_flood": "wateroverlast"
   },
   "messages": {
-    "yellow": "Geel {0} waarschuwing",
-    "orange": "Oranje {0} waarschuwing",
-    "red": "Rood {0} waarschuwing"
+    "yellow": "Waarschuwing geel {0}",
+    "orange": "Waarschuwing oranje {0}",
+    "red": "Waarschuwing rood {0}"
   }
 }
