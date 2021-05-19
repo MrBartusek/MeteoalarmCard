@@ -57,6 +57,14 @@ This card supports translations. Please, help to add more translations and impro
 - Polski (Polish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
+## Supported integrations
+
+This card supports two most popular integrations.
+
+- [Core Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Home Assistant core integration based on ATOM Feed.
+- [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore [_Read more_](https://github.com/xlcnd/meteoalarmeu/issues/1).
+- [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
+
 ## Contributing
 
 Want to contribute to the project?

@@ -21,12 +21,9 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+If applicable, add screenshots of your integration in HA developer tools and error from browser console.
 
 **System (please complete the following information):**
- - Card version: [e.g. 1.1.0]
- - Home assistant version: [e.g. 5.12]
- - Installation type: [HACS/Manual]
-
-**Additional context**
-Add any other context about the problem here.
+ - Card version: e.g. 1.1.0 (latest is not valid)
+ - Integration type: Core / xlcnd
+ - Installation type: HACS / Manual
