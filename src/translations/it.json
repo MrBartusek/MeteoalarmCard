@@ -1,0 +1,30 @@
+{
+  "common": {
+    "name": "Scheda Meteoalarm",
+    "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
+    "not_available": "Meteoalarm non è disponibile"
+  },
+  "error": {
+    "missing_entity": "È necessario specificare un'entità!"
+  },
+  "events": {
+    "no_warnings": "Nessun allarme",
+    "wind": "vento",
+    "snow_ice": "neve/ghiaccio",
+    "thunderstorms": "temporali",
+    "fog": "nebbia",
+    "hight_temperature": "alte temperature",
+    "low_temperature": "basse temperature",
+    "coastal_event": "eventi costieri",
+    "forest_fire": "incendi boschivi",
+    "avalanches": "valanghe",
+    "rain": "pioggia",
+    "flood": "inondazioni",
+    "rain_flood": "acquazzoni"
+  },
+  "messages": {
+    "yellow": "Allarme Giallo {0}",
+    "orange": "Allarme Arancione {0}",
+    "red": "Allarme Rosso {0}"
+  }
+}
