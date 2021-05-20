@@ -21,7 +21,7 @@
     "avalanches": "avalanches",
     "rain": "pluie",
     "flood": "inondation",
-    "rain_flood": "pluie d'inondation"
+    "rain_flood": "pluie/inondation"
   },
   "messages": {
     "yellow": "Alerte jaune {0}",
