@@ -56,11 +56,6 @@ export default function localize(string, search, replace)
 		tranlated = languages[DEFAULT_LANG][section][key];
 	}
 
-	if (tranlated === undefined)
-	{
-		return;
-	}
-
 	if (search !== '' && replace !== '')
 	{
 		tranlated = tranlated.replace(search, replace);
