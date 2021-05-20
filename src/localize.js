@@ -21,18 +21,14 @@ var languages = {
 
 const DEFAULT_LANG = 'en';
 
-export default function localize(string, search, replace)
-{
+export default function localize(string, search, replace) {
 	const [section, key] = string.toLowerCase().split('.');
 
 	let langStored;
 
-	try
-	{
+	try {
 		langStored = JSON.parse(localStorage.getItem('selectedLanguage'));
-	}
-	catch (e)
-	{
+	} catch (e) {
 		langStored = localStorage.getItem('selectedLanguage');
 	}
 
@@ -40,26 +36,21 @@ export default function localize(string, search, replace)
 		.replace(/['"]+/g, '')
 		.replace('-', '_');
 
-	let tranlated;
+	let translated;
 
-	try
-	{
-		tranlated = languages[lang][section][key];
-	}
-	catch (e)
-	{
-		tranlated = languages[DEFAULT_LANG][section][key];
+	try {
+		translated = languages[lang][section][key];
+	} catch (e) {
+		translated = languages[DEFAULT_LANG][section][key];
 	}
 
-	if (tranlated === undefined)
-	{
-		tranlated = languages[DEFAULT_LANG][section][key];
+	if (translated === undefined) {
+		translated = languages[DEFAULT_LANG][section][key];
 	}
 
-	if (search !== '' && replace !== '')
-	{
-		tranlated = tranlated.replace(search, replace);
+	if (search !== '' && replace !== '') {
+		translated = translated.replace(search, replace);
 	}
 
-	return tranlated;
+	return translated;
 }
