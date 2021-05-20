@@ -105,7 +105,7 @@ class MeteoalarmCard extends LitElement
 				result = {...result, ...{
 					headline: event || headline,
 					awarenessLevel: LEVELS[Number(awarenessLevel.split(';')[0]) - 2],
-					awarenessType: EVENTS[Number(awarenessType.split(';')[0]) - 2]
+					awarenessType: EVENTS[Number(awarenessType.split(';')[0]) - 1]
 				}}
 			}
 			else
