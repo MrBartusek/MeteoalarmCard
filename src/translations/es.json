@@ -1,0 +1,30 @@
+{
+  "common": {
+    "name": "Tarjeta Meteoalarm",
+    "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
+    "not_available": "Meteoalarm no está disponible"
+  },
+  "error": {
+    "missing_entity": "¡Se requiere especificar la entidad!"
+  },
+  "events": {
+    "no_warnings": "Sin avisos",
+    "wind": "viento",
+    "snow_ice": "nieve/hielo",
+    "thunderstorms": "tormentas",
+    "fog": "niebla",
+    "hight_temperature": "temperatura máxima extrema",
+    "low_temperature": "temperatura mínima extrema",
+    "coastal_event": "fenómeno costero",
+    "forest_fire": "incendios",
+    "avalanches": "aludes",
+    "rain": "lluvia",
+    "flood": "inundación",
+    "rain_flood": "inundación de lluvia"
+  },
+  "messages": {
+    "yellow": "Aviso de {0} amarillo",
+    "orange": "Aviso de {0} naranja",
+    "red": "Aviso de {0} rojo"
+  }
+}
