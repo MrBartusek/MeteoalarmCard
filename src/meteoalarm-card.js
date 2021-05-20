@@ -93,9 +93,13 @@ class MeteoalarmCard extends LitElement
 			awareness_level: awarenessLevel,
 		} = entity.attributes;
 
+		const entityState = (status || state || entity.state)
+
 		let result = {
-			isWarningActive: (status || state || entity.state) != 'off'
+			isAvailable: entityState != 'unavailable',
+			isWarningActive: entityState == 'on'
 		};
+		console.log(result)
 
 		if(result.isWarningActive)
 		{
@@ -147,7 +151,7 @@ class MeteoalarmCard extends LitElement
 	renderIcon()
 	{
 		let iconName = ''
-		if(!this.entity)
+		if(!this.entity || !this.getAttributes(this.entity).isAvailable)
 		{
 			iconName = 'cloud-question'
 		}
@@ -216,7 +220,7 @@ class MeteoalarmCard extends LitElement
 	{
 		try
 		{
-			if(!this.entity)
+			if(!this.entity || !this.getAttributes(this.entity).isAvailable)
 			{
 				return this.renderNotAvailable()
 			}
