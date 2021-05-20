@@ -2,15 +2,16 @@ import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import localize from './localize';
 import styles from './styles';
-import { EVENTS, LEVELS } from './data';
 
 import { MeteoAlarmStrategy } from './strategies/integrations/meteoalarm-strategy';
 import { MeteoFranceStrategy } from './strategies/integrations/meteofrance-strategy';
 
 import { MeteoAlarmeuStrategy } from './strategies/custom-integrations/meteoalarmeu-strategy';
 
-class MeteoalarmCard extends LitElement {
-	getStategies() {
+class MeteoalarmCard extends LitElement
+{
+	getStategies()
+	{
 		return [
 			MeteoAlarmStrategy,
 			MeteoFranceStrategy,
@@ -18,7 +19,8 @@ class MeteoalarmCard extends LitElement {
 		];
 	}
 
-	static get properties() {
+	static get properties()
+	{
 		return {
 			hass: Object,
 			config: Object,
@@ -26,89 +28,108 @@ class MeteoalarmCard extends LitElement {
 		};
 	}
 
-	static get styles() {
+	static get styles()
+	{
 		return styles;
 	}
 
-	static getStubConfig(hass, entities) {
+	static getStubConfig(hass, entities)
+	{
 		const [entity] = entities.filter(
 			(eid) => eid.includes('meteoalarm')
 		);
 
 		return {
 			entity: entity || '',
-			source_type: 'meteoalarm'
+			sourceType: 'meteoalarm'
 		};
 	}
 
-	get entity() {
+	get entity()
+	{
 		return this.hass.states[this.config.entity];
 	}
 
-	get sourceType() {
-		return this.config.source_type;
+	get sourceType()
+	{
+		return this.config.sourceType;
 	}
 
-	setConfig(config) {
-		if (!config.entity) {
+	setConfig(config)
+	{
+		if(!config.entity)
+		{
 			throw new Error(localize('error.missing_entity'));
 		}
 
-		if (!config.source_type) {
-			config.source_type = 'meteoalarm';
+		if(!config.sourceType)
+		{
+			config.sourceType = 'meteoalarm';
 		}
 
 		this.config = config;
 	}
 
-	getCardSize() {
+	getCardSize()
+	{
 		return 2;
 	}
 
-	shouldUpdate(changedProps) {
+	shouldUpdate(changedProps)
+	{
 		return hasConfigOrEntityChanged(this, changedProps);
 	}
 
-	updated(changedProps) {
-		if (
+	updated(changedProps)
+	{
+		if(
 			changedProps.get('hass') &&
 			changedProps.get('hass').states[this.config.entity].state !==
 			this.hass.states[this.config.entity].state
-		) {
+		)
+		{
 			this.requestInProgress = false;
 		}
 	}
 
-	handleMore() {
+	handleMore()
+	{
 		fireEvent(
 			this,
-			'hass-more-info', {
+			'hass-more-info',
+			{
 				entityId: this.entity.entity_id,
-			}, {
+			},
+			{
 				bubbles: true,
 				composed: true,
 			}
 		);
 	}
 
-	getAttributes(entity) {
+	getAttributes(entity)
+	{
 		let result = {
 			isAvailable: false,
 			isWarningActive: false
 		};
 
-		this.getStategies().forEach(strategy => {
-			if (!strategy.supports(this.sourceType)) {
+		this.getStategies().forEach(strategy =>
+		{
+			if(!strategy.supports(this.sourceType))
+			{
 				return;
 			}
 
-			if (!strategy.isAvailable(entity)) {
+			if(!strategy.isAvailable(entity))
+			{
 				return;
 			}
 
 			result.isAvailable = true;
 
-			if (!strategy.isWarningActive(entity)) {
+			if(!strategy.isWarningActive(entity))
+			{
 				return;
 			}
 
@@ -117,70 +138,68 @@ class MeteoalarmCard extends LitElement {
 			result = {
 				...result,
 				...strategy.getResult(entity)
-			}	
+			}
 		});
 
-		if (result.headline == undefined && result.isWarningActive) {
+		if(result.headline == undefined && result.isWarningActive)
+		{
 			result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 		}
 
 		return result
 	}
 
-	generateHeadline(awarenessType, awarenessLevel) {
+	generateHeadline(awarenessType, awarenessLevel)
+	{
 		// If headline is not issued, generate default one
 		return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
 	}
 
-	getBackgroundColor() {
-		const {
-			isWarningActive: isWarningActive,
-			awarenessLevel
-		} = this.getAttributes(this.entity);
-
+	getBackgroundColor()
+	{
+		const { isWarningActive: isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
 		return isWarningActive ? awarenessLevel.color : 'inherit'
 	}
 
-	getFontColor() {
-		const {
-			isWarningActive: isWarningActive
-		} = this.getAttributes(this.entity);
-
+	getFontColor()
+	{
+		const { isWarningActive: isWarningActive } = this.getAttributes(this.entity);
 		return isWarningActive ? '#fff' : '--primary-text-color'
 	}
 
-	renderIcon() {
+	renderIcon()
+	{
 		let iconName = ''
-
-		if (!this.entity || !this.getAttributes(this.entity).isAvailable) {
+		if(!this.entity || !this.getAttributes(this.entity).isAvailable)
+		{
 			iconName = 'cloud-question'
-		} else {
-			const {
-				isWarningActive: isWarningActive,
-				awarenessType
-			} = this.getAttributes(this.entity);
+		}
+		else
+		{
+			const { isWarningActive: isWarningActive, awarenessType } = this.getAttributes(this.entity);
 
 			iconName = isWarningActive ? awarenessType.icon : 'shield-outline'
 		}
-		return html `
+		return html`
 			<ha-icon class="main-icon" icon="mdi:${iconName}"></ha-icon>
 		`
 	}
 
-	renderStatus() {
-		const {
-			isWarningActive: isWarningActive,
-			headline
-		} = this.getAttributes(this.entity);
+	renderStatus()
+	{
+		const { isWarningActive: isWarningActive, headline } = this.getAttributes(this.entity);
 
-		if (isWarningActive) {
-			return html `
+		if(isWarningActive)
+		{
+			return html`
 				<div class="status"> 
 					${headline}
 				</div> 
 			`
-		} else {
-			return html `
+		}
+		else
+		{
+			return html`
 				<div class="status"> 
 					${localize('events.no_warnings')}
 				</div> 
@@ -188,8 +207,9 @@ class MeteoalarmCard extends LitElement {
 		}
 	}
 
-	renderNotAvailable() {
-		return html `
+	renderNotAvailable()
+	{
+		return html`
 			  <ha-card>
 				<div class="container">
 					<div class="content"> 
@@ -203,8 +223,9 @@ class MeteoalarmCard extends LitElement {
 			`;
 	}
 
-	renderError() {
-		return html `
+	renderError()
+	{
+		return html`
 			<ha-card>
 				<div class="container" style="background-color: #db4437; color: #fff">
 					<div class="content"> 
@@ -216,13 +237,16 @@ class MeteoalarmCard extends LitElement {
 		`;
 	}
 
-	render() {
-		try {
-			if (!this.entity || !this.getAttributes(this.entity).isAvailable) {
+	render()
+	{
+		try
+		{
+			if(!this.entity || !this.getAttributes(this.entity).isAvailable)
+			{
 				return this.renderNotAvailable()
 			}
 
-			return html `
+			return html`
 				<ha-card>
 					<div 
 						class="container"
@@ -236,7 +260,9 @@ class MeteoalarmCard extends LitElement {
 					</div>
 				</ha-card>
 			`;
-		} catch (e) {
+		}
+		catch(e)
+		{
 			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', e)
 			return this.renderError()
 		}

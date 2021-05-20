@@ -1,13 +1,17 @@
-class Event {
-	constructor(name, icon, translationKey) {
+class Event
+{
+	constructor(name, icon, translationKey)
+	{
 		this.name = name;
 		this.icon = icon;
 		this.translationKey = translationKey;
 	}
 }
 
-class Level {
-	constructor(name, color, translationKey) {
+class Level
+{
+	constructor(name, color, translationKey)
+	{
 		this.name = name;
 		this.color = color;
 		this.translationKey = translationKey;
