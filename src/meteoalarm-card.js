@@ -1,12 +1,24 @@
 import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
-import './editor'
+import './editor';
 import localize from './localize';
 import styles from './styles';
+import ResizeObserver from 'resize-observer-polyfill';
+import { debounce } from './debounce';
 
-import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
-import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
-import { MeteoAlarmeuIntegration } from './integrations/meteoalarmeu-integration';
+import { MeteoAlarmIntegration } from './integrations/meteoalarm';
+import { MeteoFranceIntegration } from './integrations/meteofrance';
+import { DWDIntegration } from './integrations/dwd';
+import { WeatherAlertsIntegration } from './integrations/weatheralerts';
+
+import { version } from '../package.json';
+import Data from './data';
+
+console.info(
+  `%c METEOALARM-CARD %c ${version} `,
+  'color: white; background: #1c1c1c; font-weight: 700;',
+  'color: white; background: #db4437; font-weight: 700;'
+);
 
 class MeteoalarmCard extends LitElement
 {
@@ -27,13 +39,11 @@ class MeteoalarmCard extends LitElement
 
 	static getStubConfig(hass, entities)
 	{
-		const [entity] = entities.filter(
-			(eid) => eid.includes('meteoalarm')
-		);
+		// Find fist entity that is supported by any integration
+		const entity = entities.find((eid) => this.integrations.some((integration) => integration.supports(hass.states[eid])));
 
 		return {
-			entity: entity || '',
-			integration: 'automatic'
+			entity: entity || ''
 		};
 	}
 
@@ -42,9 +52,9 @@ class MeteoalarmCard extends LitElement
 		return document.createElement('meteoalarm-card-editor');
 	}
 
-	get integrations()
+	static get integrations()
 	{
-		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration];
+		return [MeteoAlarmIntegration, MeteoFranceIntegration, DWDIntegration, WeatherAlertsIntegration];
 	}
 
 	get entity()
@@ -57,9 +67,14 @@ class MeteoalarmCard extends LitElement
 		return this.config.override_headline === true;
 	}
 
+	get hideWhenNoWarning()
+	{
+		return this.config.hide_when_no_warning === true;
+	}
+
 	get integration()
 	{
-		return this.keyToIntegration(this.config.integration)
+		return this.keyToIntegration(this.config.integration || 'automatic');
 	}
 
 	setConfig(config)
@@ -68,11 +83,7 @@ class MeteoalarmCard extends LitElement
 		{
 			throw new Error(localize('error.missing_entity'));
 		}
-		if(!config.integration)
-		{
-			throw new Error(localize('error.missing_integration'));
-		}
-		if(config.integration != 'automatic' && this.keyToIntegration(config.integration, config.entity) == undefined)
+		if(config.integration != 'automatic' && config.integration != undefined && this.keyToIntegration(config.integration, config.entity) == undefined)
 		{
 			throw new Error(localize('error.invalid_integration'));
 		}
@@ -117,132 +128,250 @@ class MeteoalarmCard extends LitElement
 		);
 	}
 
+	firstUpdated()
+	{
+		this.measureCard();
+		this.attachObserver();
+	}
+
+	async attachObserver()
+	{
+		if (!this._resizeObserver)
+		{
+			this.resizeObserver = new ResizeObserver(
+				debounce(() => this.measureCard(), 250, false)
+			);
+		}
+		const card = this.shadowRoot.querySelector('ha-card');
+		if (!card) return;
+		this.resizeObserver.observe(card);
+	}
+
+	measureCard()
+	{
+		if (!this.isConnected) return;
+		const card = this.shadowRoot.querySelector('ha-card');
+		if (!card) return;
+		const regular = card.querySelector('.headline-regular');
+		const narrow = card.querySelector('.headline-narrow');
+		const veryNarrow = card.querySelector('.headline-verynarrow');
+
+		// Normal Size
+		regular.style.display = 'flex';
+		narrow.style.display = 'none';
+		veryNarrow.style.display = 'none';
+
+		// Narrow Size
+		if(regular.scrollWidth > regular.clientWidth)
+		{
+			regular.style.display = 'none';
+			narrow.style.display = 'flex';
+			veryNarrow.style.display = 'none';
+		}
+
+		// Very Narrow Size
+		if(narrow.scrollWidth > narrow.clientWidth)
+		{
+			regular.style.display = 'none';
+			narrow.style.display = 'none';
+			veryNarrow.style.display = 'flex';
+		}
+
+		// Only Icon Size
+		if(veryNarrow.scrollWidth > veryNarrow.clientWidth)
+		{
+			regular.style.display = 'none';
+			narrow.style.display = 'none';
+			veryNarrow.style.display = 'none';
+		}
+	}
+
 	keyToIntegration(key, entity = this.entity)
 	{
 		if(key == 'automatic')
 		{
-			return this.integrations.find((i) => i.supports(entity))
+			const result = MeteoalarmCard.integrations.find((i) => i.supports(entity));
+			if(result == undefined)
+			{
+				throw Error(localize('error.automatic_failed'));
+			}
+			return result;
 		}
 		else
 		{
-			return this.integrations.find((i) => i.name == key)
+			return MeteoalarmCard.integrations.find((i) => i.name == key);
 		}
 	}
 
 	isEntityAvailable(entity)
 	{
-		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable'
+		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable';
 	}
 
 	getAttributes(entity)
 	{
 		let result = {
 			isAvailable: this.isEntityAvailable(entity),
-			isWarningActive: this.integration.isWarningActive(entity)
+			isWarningActive: this.isEntityAvailable(entity) ? this.integration.isWarningActive(entity) : false,
 		};
 
 		if(result.isWarningActive)
 		{
 			result = {
 				...result,
-				...this.integration.getResult(entity)
+				...this.filterResults(this.integration.getResult(entity)),
+			};
+
+			// Handle entity parsing errors
+			if(result.level == undefined || result.event == undefined)
+			{
+				console.log('level', result.level);
+				console.log('event', result.event);
+				throw Error(
+					localize('error.entity_invalid')
+						.replace('{entity}', `(${entity.entity_id})`)
+						.replace('{integration}', `(${this.integration.name})`)
+				);
 			}
 
+			// Generate Headlines
 			if(result.headline === undefined || this.overrideHeadline)
 			{
-				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
+				result.headline = this.generateHeadline(result.event, result.level);
 			}
+			result.headlineNarrow = this.generateHeadline(result.event, result.level);
+			result.headlineVeryNarrow = this.generateHeadline(result.event, result.level, true);
 
 		}
-		return result
+		return result;
 	}
 
-	generateHeadline(awarenessType, awarenessLevel)
+	filterResults(results)
 	{
-		// If headline is not issued, generate default one
-		return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
+		if(!Array.isArray(results)) results = [ results ];
+		let topResult = results[0];
+		for(const result of results)
+		{
+			const isHigherLevel = Data.levels.findIndex(x => x.name == result.level.name) > Data.levels.findIndex(x => x.name == topResult.level.name);
+			const isHigherEvent = Data.events.findIndex(x => x.name == result.event.name) < Data.events.findIndex(x => x.name == topResult.event.name);
+			if(isHigherEvent || isHigherLevel)
+			{
+				topResult = result;
+			}
+		}
+		return topResult;
+	}
+
+	generateHeadline(event, level, narrow = false)
+	{
+		if(event.name == 'Unknown Event')
+		{
+			if(narrow)
+			{
+				return localize(level.translationKey).color;
+			}
+			else
+			{
+				return localize(level.translationKey).generic;
+			}
+		}
+		else
+		{
+			if(narrow)
+			{
+				const awareness = localize(event.translationKey);
+				return awareness.charAt(0).toUpperCase() + awareness.slice(1);
+			}
+			else
+			{
+				return localize(level.translationKey).event.replace('{event}', localize(event.translationKey));
+			}
+		}
 	}
 
 	getBackgroundColor()
 	{
-		const { isWarningActive: isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
-		return isWarningActive ? awarenessLevel.color : 'inherit'
+		const { isWarningActive, level } = this.getAttributes(this.entity);
+		return isWarningActive ? level.color : 'inherit';
 	}
 
 	getFontColor()
 	{
-		const { isWarningActive: isWarningActive } = this.getAttributes(this.entity);
-		return isWarningActive ? '#fff' : '--primary-text-color'
+		const { isWarningActive } = this.getAttributes(this.entity);
+		return isWarningActive ? '#fff' : '--primary-text-color';
 	}
 
 	renderIcon()
 	{
-		let iconName = ''
+		let iconName = '';
 		if(!this.entity || !this.getAttributes(this.entity).isAvailable)
 		{
-			iconName = 'cloud-question'
+			iconName = 'cloud-question';
 		}
 		else
 		{
-			const { isWarningActive: isWarningActive, awarenessType } = this.getAttributes(this.entity);
+			const { isWarningActive, event } = this.getAttributes(this.entity);
 
-			iconName = isWarningActive ? awarenessType.icon : 'shield-outline'
+			iconName = isWarningActive ? event.icon : 'shield-outline';
 		}
 		return html`
 			<ha-icon class="main-icon" icon="mdi:${iconName}"></ha-icon>
-		`
+		`;
 	}
 
 	renderStatus()
 	{
-		const { isWarningActive: isWarningActive, headline } = this.getAttributes(this.entity);
+		const {
+			isWarningActive,
+			headline,
+			headlineNarrow,
+			headlineVeryNarrow,
+		} = this.getAttributes(this.entity);
 
 		if(isWarningActive)
 		{
 			return html`
-				<div class="status"> 
-					${headline}
-				</div> 
-			`
+				<div class="headline headline-regular"> ${headline}</div> 
+				<div class="headline headline-narrow"> ${headlineNarrow}</div> 
+				<div class="headline headline-verynarrow"> ${headlineVeryNarrow}</div> 
+			`;
 		}
 		else
 		{
 			return html`
-				<div class="status"> 
-					${localize('events.no_warnings')}
-				</div> 
-			`
+				<div class="headline headline-regular">${localize('events.no_warnings')}</div>
+				<div class="headline headline-narrow">${localize('events.no_warnings')}</div>
+				<div class="headline headline-verynarrow">${localize('events.no_warnings')}</div> 
+			`;
 		}
 	}
 
 	renderNotAvailable()
 	{
 		return html`
-			  <ha-card>
+			<ha-card>
 				<div class="container">
 					<div class="content"> 
 						${this.renderIcon()}
-						<div class="status"> 
-							${localize('common.not_available')}
-						</div>
+						<div class="headline headline-regular">${localize('common.unavailable').long}</div>
+						<div class="headline headline-narrow">${localize('common.unavailable').short}</div>
+						<div class="headline headline-verynarrow">${localize('common.unavailable').short}</div> 
 					</div> 
-				</div>
-			  </ha-card>
-			`;
-	}
-
-	renderError()
-	{
-		return html`
-			<ha-card>
-				<div class="container" style="background-color: #db4437; color: #fff">
-					<div class="content"> 
-						<ha-icon class="main-icon" icon="mdi:alert-circle-outline"></ha-icon>
-						<div class="status"> Error (see console) </div>
-					</div>
 				</div>
 			</ha-card>
 		`;
+	}
+
+	renderError(error)
+	{
+		const errorCard = document.createElement('hui-error-card');
+		errorCard.setConfig({
+			type: 'error',
+			error,
+			origConfig: this.config,
+		});
+
+		return html`${errorCard}`;
 	}
 
 	render()
@@ -251,7 +380,28 @@ class MeteoalarmCard extends LitElement
 		{
 			if(!this.entity || !this.getAttributes(this.entity).isAvailable)
 			{
-				return this.renderNotAvailable()
+				return this.renderNotAvailable();
+			}
+			else if(!this.getAttributes(this.entity).isWarningActive && this.hideWhenNoWarning)
+			{
+				// This is a VERY sketchy and hacky way of removing default card margin
+				// The original problem comes from:
+				// https://github.com/MrBartusek/MeteoalarmCard/issues/54#issuecomment-955714948
+
+				// This code adds a stylesheet that disabled displaying of card when meteoalarm-card
+				// element is not empty
+				// The element is empty by default because shadow root doesn't count as an element
+				// It also adds <div> element that makes the meteoalarm-card element not empty because
+				// when card is re-render it's removed and the added css doesn't work anymore
+				return html`<img src onerror='
+					const parent = this.getRootNode().host.getRootNode().host.shadowRoot;
+					const style = document.createElement("style");
+					style.type = "text/css"
+					style.innerText = "meteoalarm-card:not(:empty) {display: none;}"
+					parent.append(style);
+					console.log(style.parentNode)
+					parent.querySelector("meteoalarm-card").append(document.createElement("div"))
+				'>`;
 			}
 
 			return html`
@@ -269,10 +419,10 @@ class MeteoalarmCard extends LitElement
 				</ha-card>
 			`;
 		}
-		catch(e)
+		catch(error)
 		{
-			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', e)
-			return this.renderError()
+			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', error);
+			return this.renderError(error);
 		}
 	}
 }
