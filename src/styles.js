@@ -1,6 +1,8 @@
-import { css } from 'lit-element';
+import {
+  css
+} from 'lit-element';
 
-export default css`
+export default css `
   :host 
   {
     display: flex;
