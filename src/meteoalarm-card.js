@@ -182,11 +182,9 @@ class MeteoalarmCard extends LitElement
 		}
 	}
 
-	render()
+	renderNotAvailable()
 	{
-		if(!this.entity)
-		{
-			return html`
+		return html`
 			  <ha-card>
 				<div class="container">
 					<div class="content"> 
@@ -198,22 +196,51 @@ class MeteoalarmCard extends LitElement
 				</div>
 			  </ha-card>
 			`;
-		}
+	}
 
+	renderError()
+	{
 		return html`
 			<ha-card>
-				<div 
-					class="container"
-					style="background-color: ${this.getBackgroundColor()}; color: ${this.getFontColor()};"
-					@click="${() => this.handleMore()}"
-					?more-info="true" 
-				>
-					<div class="content">
-						${this.renderIcon()} ${this.renderStatus()}
+				<div class="container" style="background-color: #db4437; color: #fff">
+					<div class="content"> 
+						<ha-icon class="main-icon" icon="mdi:alert-circle-outline"></ha-icon>
+						<div class="status"> Error (see console) </div>
 					</div>
 				</div>
 			</ha-card>
 		`;
+	}
+
+	render()
+	{
+		try
+		{
+			if(!this.entity)
+			{
+				return this.renderNotAvailable()
+			}
+
+			return html`
+				<ha-card>
+					<div 
+						class="container"
+						style="background-color: ${this.getBackgroundColor()}; color: ${this.getFontColor()};"
+						@click="${() => this.handleMore()}"
+						?more-info="true" 
+					>
+						<div class="content">
+							${this.renderIcon()} ${this.renderStatus()}
+						</div>
+					</div>
+				</ha-card>
+			`;
+		}
+		catch(e)
+		{
+			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', e)
+			return this.renderError()
+		}
 	}
 }
 
