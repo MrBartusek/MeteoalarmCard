@@ -55,6 +55,7 @@ This card supports translations. Please, help to add more translations and impro
 - Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
+- Español (Spanish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Supported integrations
