@@ -3,19 +3,18 @@ import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import localize from './localize';
 import styles from './styles';
 
-import { MeteoAlarmStrategy } from './strategies/integrations/meteoalarm-strategy';
-import { MeteoFranceStrategy } from './strategies/integrations/meteofrance-strategy';
-
-import { MeteoAlarmeuStrategy } from './strategies/custom-integrations/meteoalarmeu-strategy';
+import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
+import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
+import { MeteoAlarmeuIntegration } from './integrations/meteoalarmeu-integration';
 
 class MeteoalarmCard extends LitElement
 {
 	getStategies()
 	{
 		return [
-			MeteoAlarmStrategy,
-			MeteoFranceStrategy,
-			MeteoAlarmeuStrategy
+			MeteoAlarmIntegration,
+			MeteoFranceIntegration,
+			MeteoAlarmeuIntegration
 		];
 	}
 
@@ -40,8 +39,7 @@ class MeteoalarmCard extends LitElement
 		);
 
 		return {
-			entity: entity || '',
-			sourceType: 'meteoalarm'
+			entity: entity || ''
 		};
 	}
 
@@ -60,11 +58,6 @@ class MeteoalarmCard extends LitElement
 		if(!config.entity)
 		{
 			throw new Error(localize('error.missing_entity'));
-		}
-
-		if(!config.sourceType)
-		{
-			config.sourceType = 'meteoalarm';
 		}
 
 		this.config = config;
@@ -107,6 +100,11 @@ class MeteoalarmCard extends LitElement
 		);
 	}
 
+	entityIsAvailable(entity)
+	{
+		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable'
+	}
+
 	getAttributes(entity)
 	{
 		let result = {
@@ -116,12 +114,12 @@ class MeteoalarmCard extends LitElement
 
 		this.getStategies().forEach(strategy =>
 		{
-			if(!strategy.supports(this.sourceType))
+			if(!strategy.supports(this.sourceType, entity))
 			{
 				return;
 			}
 
-			if(!strategy.isAvailable(entity))
+			if(!this.entityIsAvailable(entity))
 			{
 				return;
 			}

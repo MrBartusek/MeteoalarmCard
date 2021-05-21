@@ -66,8 +66,8 @@ This card supports many other integrations.
 - [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore [_Read more_](https://github.com/xlcnd/meteoalarmeu/issues/1).
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
-To use one of these custom integration just add "sourceType" key into your card configuration and choose one of these type.
-Also use the right entity for each entity.
+Currently the card will try to auto detect the "sourceType" of your entity but in case this doesn't work or you want to manually override this value just add "sourceType" key into your card configuration and choose one of these type.
+In case of problem check you use the right entity for each integration.
 
 ---
 
@@ -79,7 +79,7 @@ Also use the right entity for each entity.
 
 ---
 
-Like this for exemple
+Like this for example
 
 ```yaml
 type: 'custom:meteoalarm-card'
@@ -87,7 +87,6 @@ entity: 'sensor.75_weather_alert'
 sourceType: 'meteofrance'
 ```
 
-By default the source type is `meteoalarm`
 ## Contributing
 
 Want to contribute to the project?

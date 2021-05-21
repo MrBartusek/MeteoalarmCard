@@ -1,15 +1,20 @@
-import { EVENTS, LEVELS } from '../../data';
+import { EVENTS, LEVELS } from '../data';
 
-export class MeteoAlarmeuStrategy
+export class MeteoAlarmeuIntegration
 {
-	static supports(sourceType)
+	static supports(sourceType, entity)
 	{
-		return sourceType === 'meteoalarmeu';
-	}
+		if(sourceType)
+		{
+			return sourceType === 'meteoalarmeu';
+		}
 
-	static isAvailable(entity)
-	{
-		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable'
+		if(!('awarenessLevel' in entity.attributes))
+		{
+			return false;
+		}
+
+		return !entity.attributes.awarenessLevel.includes(';');
 	}
 
 	static isWarningActive(entity)

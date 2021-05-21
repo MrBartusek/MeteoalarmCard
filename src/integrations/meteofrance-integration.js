@@ -1,4 +1,4 @@
-import { EVENTS, LEVELS } from '../../data';
+import { EVENTS, LEVELS } from '../data';
 
 const STATE_GREEN  = 'Vert';
 const STATE_YELLOW = 'Jaune';
@@ -11,7 +11,7 @@ const EVENT_THUNDERSTORMS = 'Orages';
 const EVENT_FLOOD         = 'Inondation';
 const EVENT_RAIN_FLOOD    = 'Pluie-inondation';
 
-export class MeteoFranceStrategy
+export class MeteoFranceIntegration
 {
 	static getStatesLevels()
 	{
@@ -33,14 +33,19 @@ export class MeteoFranceStrategy
 		}
 	}
 
-	static supports(sourceType)
+	static supports(sourceType, entity)
 	{
-		return sourceType === 'meteofrance';
-	}
+		if(sourceType)
+		{
+			return sourceType === 'meteofrance';
+		}
 
-	static isAvailable(entity)
-	{
-		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable'
+		if(!('attribution' in entity.attributes))
+		{
+			return false;
+		}
+
+		return entity.attributes.attribution === 'Data provided by Météo-France';
 	}
 
 	static isWarningActive(entity)
