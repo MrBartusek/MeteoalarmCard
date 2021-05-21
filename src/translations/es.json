@@ -1,14 +1,18 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
-    "not_available": "Meteoalarm no está disponible"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
-    "missing_integration": "¡Se requiere especificar la integracion!",
-    "invalid_integration": "¡Esta integración no es válida!"
+    "invalid_integration": "¡Esta integración no es válida!",
+    "automatic_failed": "¡No se pudo detectar automáticamente la integración!",
+    "entity_invalid": null
   },
   "editor": {
     "entity": "Entidad",
@@ -16,7 +20,8 @@
     "required": "Necesario",
     "automatic": "Automático",
     "recommended": "Recomendado",
-    "override_headline": "Sobreescribir cabecera"
+    "override_headline": "Sobreescribir cabecera",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Sin avisos",
@@ -34,8 +39,20 @@
     "rain_flood": "inundación de lluvia"
   },
   "messages": {
-    "yellow": "Alerta amarilla por {0}",
-    "orange": "Alerta naranja por {0}",
-    "red": "Alerta roja {0}"
+    "yellow": {
+      "event": "Alerta amarilla por {event}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Alerta naranja por {event}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Alerta roja {event}",
+      "generic": null,
+      "color": null
+    }
   }
 }
