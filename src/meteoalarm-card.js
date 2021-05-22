@@ -2,10 +2,14 @@ import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import localize from './localize';
 import styles from './styles';
-import { EVENTS, LEVELS } from './data';
+
+import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
+import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
+import { MeteoAlarmeuIntegration } from './integrations/meteoalarmeu-integration';
 
 class MeteoalarmCard extends LitElement
 {
+
 	static get properties()
 	{
 		return {
@@ -28,7 +32,13 @@ class MeteoalarmCard extends LitElement
 
 		return {
 			entity: entity || '',
+			integration: 'automatic'
 		};
+	}
+
+	get integrations()
+	{
+		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration];
 	}
 
 	get entity()
@@ -36,12 +46,26 @@ class MeteoalarmCard extends LitElement
 		return this.hass.states[this.config.entity];
 	}
 
+	get integration()
+	{
+		return this.keyToIntegration(this.config.integration)
+	}
+
 	setConfig(config)
 	{
-		if (!config.entity)
+		if(!config.entity)
 		{
 			throw new Error(localize('error.missing_entity'));
 		}
+		if(!config.integration)
+		{
+			throw new Error(localize('error.missing_integration'));
+		}
+		if(config.integration != 'automatic' && this.keyToIntegration(config.integration, config.entity) == undefined)
+		{
+			throw new Error(localize('error.invalid_integration'));
+		}
+
 		this.config = config;
 	}
 
@@ -57,10 +81,10 @@ class MeteoalarmCard extends LitElement
 
 	updated(changedProps)
 	{
-		if (
+		if(
 			changedProps.get('hass') &&
 			changedProps.get('hass').states[this.config.entity].state !==
-				this.hass.states[this.config.entity].state
+			this.hass.states[this.config.entity].state
 		)
 		{
 			this.requestInProgress = false;
@@ -82,51 +106,43 @@ class MeteoalarmCard extends LitElement
 		);
 	}
 
+	keyToIntegration(key, entity = this.entity)
+	{
+		if(key == 'automatic')
+		{
+			return this.integrations.find((i) => i.supports(entity))
+		}
+		else
+		{
+			return this.integrations.find((i) => i.name == key)
+		}
+	}
+
+	isEntityAvailable(entity)
+	{
+		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable'
+	}
+
 	getAttributes(entity)
 	{
-		const {
-			status,
-			state,
-			event,
-			headline,
-			awareness_type: awarenessType,
-			awareness_level: awarenessLevel,
-		} = entity.attributes;
-
-		const entityState = (status || state || entity.state)
-
 		let result = {
-			isAvailable: entityState != 'unavailable',
-			isWarningActive: entityState == 'on'
+			isAvailable: this.isEntityAvailable(entity),
+			isWarningActive: this.integration.isWarningActive(entity)
 		};
-		console.log(result)
 
 		if(result.isWarningActive)
 		{
-			if(awarenessLevel.includes(';'))
-			{
-				// meteoalarm core
-				result = {...result, ...{
-					headline: event || headline,
-					awarenessLevel: LEVELS[Number(awarenessLevel.split(';')[0]) - 2],
-					awarenessType: EVENTS[Number(awarenessType.split(';')[0]) - 1]
-				}}
+			result = {
+				...result,
+				...this.integration.getResult(entity)
 			}
-			else
+
+			if(result.headline == undefined)
 			{
-				// custom_component xlcnd/meteoalarmeu
-				result = {...result, ...{
-					awarenessLevel: LEVELS.find(e => e.name == awarenessLevel),
-					awarenessType: EVENTS.find(l => l.name == awarenessType)
-				}}
+				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 			}
-		}
 
-		if(result.headline == undefined && result.isWarningActive)
-		{
-			result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 		}
-
 		return result
 	}
 
@@ -158,6 +174,7 @@ class MeteoalarmCard extends LitElement
 		else
 		{
 			const { isWarningActive: isWarningActive, awarenessType } = this.getAttributes(this.entity);
+
 			iconName = isWarningActive ? awarenessType.icon : 'shield-outline'
 		}
 		return html`
@@ -168,6 +185,7 @@ class MeteoalarmCard extends LitElement
 	renderStatus()
 	{
 		const { isWarningActive: isWarningActive, headline } = this.getAttributes(this.entity);
+
 		if(isWarningActive)
 		{
 			return html`

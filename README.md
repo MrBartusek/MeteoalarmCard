@@ -60,11 +60,33 @@ This card supports translations. Please, help to add more translations and impro
 
 ## Supported integrations
 
-This card supports two most popular integrations.
+This card supports many other integrations.
 
 - [Core Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Home Assistant core integration based on ATOM Feed.
+- [Core Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Home Assistant core integration based on Météo France alert.
 - [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore [_Read more_](https://github.com/xlcnd/meteoalarmeu/issues/1).
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
+
+Currently the card will try to auto detect the "sourceType" of your entity but in case this doesn't work or you want to manually override this value just add "sourceType" key into your card configuration and choose one of these type.
+In case of problem check you use the right entity for each integration.
+
+---
+
+| Integration        | SourceType   | Entity                     |
+| ------------------ | ------------ | -------------------------- |
+| Core Meteoalarm    | meteoalarm   | binary_sensor.meteoalarm   |
+| Core Météo-France  | meteofrance  | sensor.XX_weather_alert    |
+| xlcnd/meteoalarmeu | meteoalarmeu | binary_sensor.meteoalarmeu |
+
+---
+
+Like this for example
+
+```yaml
+type: 'custom:meteoalarm-card'
+entity: 'sensor.75_weather_alert'
+sourceType: 'meteofrance'
+```
 
 ## Contributing
 
