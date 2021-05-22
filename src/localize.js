@@ -53,12 +53,7 @@ export default function localize(string, search, replace)
 
 	if (translated === undefined)
 	{
-		translated = languages[DEFAULT_LANG][section][key];
-	}
-
-	if (search !== '' && replace !== '')
-	{
-		translated = translated.replace(search, replace);
+		translated = languages[DEFAULT_LANG][section][key] || string.toLowerCase();
 	}
 
 	return translated;

@@ -9,14 +9,6 @@ import { MeteoAlarmeuIntegration } from './integrations/meteoalarmeu-integration
 
 class MeteoalarmCard extends LitElement
 {
-	getStategies()
-	{
-		return [
-			MeteoAlarmIntegration,
-			MeteoFranceIntegration,
-			MeteoAlarmeuIntegration
-		];
-	}
 
 	static get properties()
 	{
@@ -39,8 +31,14 @@ class MeteoalarmCard extends LitElement
 		);
 
 		return {
-			entity: entity || ''
+			entity: entity || '',
+			integration: 'automatic'
 		};
+	}
+
+	get integrations()
+	{
+		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration];
 	}
 
 	get entity()
@@ -48,9 +46,9 @@ class MeteoalarmCard extends LitElement
 		return this.hass.states[this.config.entity];
 	}
 
-	get sourceType()
+	get integration()
 	{
-		return this.config.sourceType;
+		return this.keyToIntegration(this.config.integration)
 	}
 
 	setConfig(config)
@@ -58,6 +56,14 @@ class MeteoalarmCard extends LitElement
 		if(!config.entity)
 		{
 			throw new Error(localize('error.missing_entity'));
+		}
+		if(!config.integration)
+		{
+			throw new Error(localize('error.missing_integration'));
+		}
+		if(config.integration != "automatic" && this.keyToIntegration(config.integration, config.entity) == undefined)
+		{
+			throw new Error(localize('error.invalid_integration'));
 		}
 
 		this.config = config;
@@ -100,7 +106,19 @@ class MeteoalarmCard extends LitElement
 		);
 	}
 
-	entityIsAvailable(entity)
+	keyToIntegration(key, entity = this.entity)
+	{
+		if(key == "automatic")
+		{
+			return this.integrations.find((i) => i.supports(entity))
+		}
+		else
+		{
+			return this.integrations.find((i) => i.name == key)
+		}
+	}
+
+	isEntityAvailable(entity)
 	{
 		return (entity.attributes.status || entity.attributes.state || entity.state) != 'unavailable'
 	}
@@ -108,42 +126,23 @@ class MeteoalarmCard extends LitElement
 	getAttributes(entity)
 	{
 		let result = {
-			isAvailable: false,
-			isWarningActive: false
+			isAvailable: this.isEntityAvailable(entity),
+			isWarningActive: this.integration.isWarningActive(entity)
 		};
-
-		this.getStategies().forEach(strategy =>
+		
+		if(result.isWarningActive)
 		{
-			if(!strategy.supports(this.sourceType, entity))
-			{
-				return;
-			}
-
-			if(!this.entityIsAvailable(entity))
-			{
-				return;
-			}
-
-			result.isAvailable = true;
-
-			if(!strategy.isWarningActive(entity))
-			{
-				return;
-			}
-
-			result.isWarningActive = true;
-
 			result = {
 				...result,
-				...strategy.getResult(entity)
+				...this.integration.getResult(entity)
 			}
-		});
 
-		if(result.headline == undefined && result.isWarningActive)
-		{
-			result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
+			if(result.headline == undefined)
+			{
+				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
+			}
+	
 		}
-
 		return result
 	}
 

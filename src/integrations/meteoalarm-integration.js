@@ -2,19 +2,14 @@ import { EVENTS, LEVELS } from '../data';
 
 export class MeteoAlarmIntegration
 {
-	static supports(sourceType, entity)
+	static get name()
 	{
-		if(sourceType)
-		{
-			return sourceType === 'meteoalarm';
-		}
+		return 'meteoalarm'
+	}
 
-		if(!('awarenessLevel' in entity.attributes))
-		{
-			return false;
-		}
-
-		return entity.attributes.awarenessLevel.includes(';');
+	static supports(entity)
+	{
+		return entity.attributes.attribution == 'Information provided by MeteoAlarm'
 	}
 
 	static isWarningActive(entity)
@@ -24,10 +19,17 @@ export class MeteoAlarmIntegration
 
 	static getResult(entity)
 	{
+		const {
+			event,
+			headline,
+			awareness_type: awarenessType,
+			awareness_level: awarenessLevel,
+		} = entity.attributes;
+
 		return {
-			headline: entity.attributes.event || entity.attributes.headline,
-			awarenessLevel: LEVELS[Number(entity.attributes.awarenessLevel.split(';')[0]) - 2],
-			awarenessType: EVENTS[Number(entity.attributes.awarenessType.split(';')[0]) - 2]
+			headline: event || headline,
+			awarenessLevel: LEVELS[Number(awarenessLevel.split(';')[0]) - 2],
+			awarenessType: EVENTS[Number(awarenessType.split(';')[0]) - 1]
 		}
 	}
 }

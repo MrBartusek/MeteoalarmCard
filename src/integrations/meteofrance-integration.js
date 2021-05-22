@@ -13,6 +13,11 @@ const EVENT_RAIN_FLOOD    = 'Pluie-inondation';
 
 export class MeteoFranceIntegration
 {
+	static get name()
+	{
+		return 'meteofrance'
+	}
+
 	static getStatesLevels()
 	{
 		return {
@@ -33,18 +38,8 @@ export class MeteoFranceIntegration
 		}
 	}
 
-	static supports(sourceType, entity)
+	static supports(entity)
 	{
-		if(sourceType)
-		{
-			return sourceType === 'meteofrance';
-		}
-
-		if(!('attribution' in entity.attributes))
-		{
-			return false;
-		}
-
 		return entity.attributes.attribution === 'Data provided by Météo-France';
 	}
 
