@@ -61,7 +61,7 @@ class MeteoalarmCard extends LitElement
 		{
 			throw new Error(localize('error.missing_integration'));
 		}
-		if(config.integration != "automatic" && this.keyToIntegration(config.integration, config.entity) == undefined)
+		if(config.integration != 'automatic' && this.keyToIntegration(config.integration, config.entity) == undefined)
 		{
 			throw new Error(localize('error.invalid_integration'));
 		}
@@ -108,7 +108,7 @@ class MeteoalarmCard extends LitElement
 
 	keyToIntegration(key, entity = this.entity)
 	{
-		if(key == "automatic")
+		if(key == 'automatic')
 		{
 			return this.integrations.find((i) => i.supports(entity))
 		}
@@ -129,7 +129,7 @@ class MeteoalarmCard extends LitElement
 			isAvailable: this.isEntityAvailable(entity),
 			isWarningActive: this.integration.isWarningActive(entity)
 		};
-		
+
 		if(result.isWarningActive)
 		{
 			result = {
@@ -141,7 +141,7 @@ class MeteoalarmCard extends LitElement
 			{
 				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 			}
-	
+
 		}
 		return result
 	}

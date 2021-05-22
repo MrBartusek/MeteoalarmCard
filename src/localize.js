@@ -21,7 +21,7 @@ var languages = {
 
 const DEFAULT_LANG = 'en';
 
-export default function localize(string, search, replace)
+export default function localize(string)
 {
 	const [section, key] = string.toLowerCase().split('.');
 
