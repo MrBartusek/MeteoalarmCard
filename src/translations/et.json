@@ -23,8 +23,8 @@
     "rain_flood": "paduvihm"
   },
   "messages": {
-    "yellow": "Kollane hoiatus {0}",
-    "orange": "Oranž hoiatus {0}",
-    "red": "Punane hoiatus {0}"
+    "yellow": "{0}",
+    "orange": "{0}",
+    "red": "P{0}"
   }
 }
