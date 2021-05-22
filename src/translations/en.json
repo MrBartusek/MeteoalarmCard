@@ -1,14 +1,18 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card warns you about current weather events.",
-    "not_available": "Meteoalarm is not available"
+    "unavailable": {
+      "long": "Integration is unavailable",
+      "short": "Unavailable"
+    }
   },
   "error": {
     "missing_entity": "Specifying entity is required!",
-    "missing_integration": "Specifying integration is required!",
-    "invalid_integration": "This integration is not valid!"
+    "invalid_integration": "This integration is not valid!",
+    "automatic_failed": "Failed to automatically detect integration!",
+    "entity_invalid": "This entity {entity} cannot be parsed by selected integration {integration}!"
   },
   "editor": {
     "entity": "Entity",
@@ -16,7 +20,8 @@
     "required": "Required",
     "automatic": "Automatic",
     "recommended": "Recommended",
-    "override_headline": "Override headline"
+    "override_headline": "Override headline",
+    "hide_when_no_warning": "Hide when there are no warnings"
   },
   "events": {
     "no_warnings": "No warnings",
@@ -34,8 +39,20 @@
     "rain_flood": "rain flood"
   },
   "messages": {
-    "yellow": "Yellow {0} warning",
-    "orange": "Orange {0} warning",
-    "red": "Red {0} warning"
+    "yellow": {
+      "event": "Yellow {event} warning",
+      "generic": "Yellow warning",
+      "color": "Yellow"
+    },
+    "orange": {
+      "event": "Orange {event} warning",
+      "generic": "Orange warning",
+      "color": "Orange"
+    },
+    "red": {
+      "event": "Red {event} warning",
+      "generic": "Red warning",
+      "color": "Red"
+    }
   }
 }
