@@ -1,11 +1,21 @@
 {
+  "$schema": "../schema.json",
   "common": {
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
     "not_available": "Meteoalarm nie jest dostępny"
   },
   "error": {
-    "missing_entity": "Podanie encji jest wymagane!"
+    "missing_entity": "Podanie encji jest wymagane!",
+    "missing_integration": "Podanie integracji jest wymagane!",
+    "invalid_integration": "Nieprawidłowa integracja"
+  },
+  "editor": {
+    "entity": "Encja",
+    "integration": "Integracja",
+    "required": "Wymagane",
+    "automatic": "Automatyczne",
+    "recommended": "Zalecane"
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",

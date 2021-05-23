@@ -13,6 +13,7 @@
     "meteoalarmeu"
   ],
   "author": "MrBartusek",
+  "type": "module",
   "license": "MIT",
   "homepage": "https://github.com/MrBartusek/MeteoalarmCard",
   "repository": {

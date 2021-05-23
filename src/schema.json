@@ -1,0 +1,156 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "common": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": ["string", "null"]
+          },
+          "description": {
+            "type": ["string", "null"]
+          },
+          "not_available": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "not_available"
+        ]
+      },
+      "error": {
+        "type": "object",
+        "properties": {
+          "missing_entity": {
+            "type": ["string", "null"]
+          },
+          "missing_integration": {
+            "type": ["string", "null"]
+          },
+          "invalid_integration": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "missing_entity",
+          "missing_integration",
+          "invalid_integration"
+        ]
+      },
+      "editor": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": ["string", "null"]
+          },
+          "integration": {
+            "type": ["string", "null"]
+          },
+          "required": {
+            "type": ["string", "null"]
+          },
+          "automatic": {
+            "type": ["string", "null"]
+          },
+          "recommended": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "entity",
+          "integration",
+          "required",
+          "automatic",
+          "recommended"
+        ]
+      },
+      "events": {
+        "type": "object",
+        "properties": {
+          "no_warnings": {
+            "type": ["string", "null"]
+          },
+          "wind": {
+            "type": ["string", "null"]
+          },
+          "snow_ice": {
+            "type": ["string", "null"]
+          },
+          "thunderstorms": {
+            "type": ["string", "null"]
+          },
+          "fog": {
+            "type": ["string", "null"]
+          },
+          "hight_temperature": {
+            "type": ["string", "null"]
+          },
+          "low_temperature": {
+            "type": ["string", "null"]
+          },
+          "coastal_event": {
+            "type": ["string", "null"]
+          },
+          "forest_fire": {
+            "type": ["string", "null"]
+          },
+          "avalanches": {
+            "type": ["string", "null"]
+          },
+          "rain": {
+            "type": ["string", "null"]
+          },
+          "flood": {
+            "type": ["string", "null"]
+          },
+          "rain_flood": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "no_warnings",
+          "wind",
+          "snow_ice",
+          "thunderstorms",
+          "fog",
+          "hight_temperature",
+          "low_temperature",
+          "coastal_event",
+          "forest_fire",
+          "avalanches",
+          "rain",
+          "flood",
+          "rain_flood"
+        ]
+      },
+      "messages": {
+        "type": "object",
+        "properties": {
+          "yellow": {
+            "type": ["string", "null"]
+          },
+          "orange": {
+            "type": ["string", "null"]
+          },
+          "red": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": [
+          "yellow",
+          "orange",
+          "red"
+        ]
+      }
+    },
+    "required": [
+      "common",
+      "error",
+      "editor",
+      "events",
+      "messages"
+    ]
+}
