@@ -5,7 +5,7 @@
     "not_available": "Meteoalarm pole saadaval"
   },
   "error": {
-    "missing_entity": "Vajalik on Meteoalarmi olem!"
+    "missing_entity": "Vajalik on Meteoalarmi olem!",
     "missing_integration": "Meteoalarmi sidumine puudub!",
     "invalid_integration": "Meteoalarmi sidumine on vale!"    
   },
