@@ -1,156 +1,199 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "type": "object",
-    "properties": {
-      "common": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": ["string", "null"]
-          },
-          "description": {
-            "type": ["string", "null"]
-          },
-          "not_available": {
-            "type": ["string", "null"]
-          }
-        },
-        "required": [
-          "name",
-          "description",
-          "not_available"
-        ]
-      },
-      "error": {
-        "type": "object",
-        "properties": {
-          "missing_entity": {
-            "type": ["string", "null"]
-          },
-          "missing_integration": {
-            "type": ["string", "null"]
-          },
-          "invalid_integration": {
-            "type": ["string", "null"]
-          }
-        },
-        "required": [
-          "missing_entity",
-          "missing_integration",
-          "invalid_integration"
-        ]
-      },
-      "editor": {
-        "type": "object",
-        "properties": {
-          "entity": {
-            "type": ["string", "null"]
-          },
-          "integration": {
-            "type": ["string", "null"]
-          },
-          "required": {
-            "type": ["string", "null"]
-          },
-          "automatic": {
-            "type": ["string", "null"]
-          },
-          "recommended": {
-            "type": ["string", "null"]
-          }
-        },
-        "required": [
-          "entity",
-          "integration",
-          "required",
-          "automatic",
-          "recommended"
-        ]
-      },
-      "events": {
-        "type": "object",
-        "properties": {
-          "no_warnings": {
-            "type": ["string", "null"]
-          },
-          "wind": {
-            "type": ["string", "null"]
-          },
-          "snow_ice": {
-            "type": ["string", "null"]
-          },
-          "thunderstorms": {
-            "type": ["string", "null"]
-          },
-          "fog": {
-            "type": ["string", "null"]
-          },
-          "hight_temperature": {
-            "type": ["string", "null"]
-          },
-          "low_temperature": {
-            "type": ["string", "null"]
-          },
-          "coastal_event": {
-            "type": ["string", "null"]
-          },
-          "forest_fire": {
-            "type": ["string", "null"]
-          },
-          "avalanches": {
-            "type": ["string", "null"]
-          },
-          "rain": {
-            "type": ["string", "null"]
-          },
-          "flood": {
-            "type": ["string", "null"]
-          },
-          "rain_flood": {
-            "type": ["string", "null"]
-          }
-        },
-        "required": [
-          "no_warnings",
-          "wind",
-          "snow_ice",
-          "thunderstorms",
-          "fog",
-          "hight_temperature",
-          "low_temperature",
-          "coastal_event",
-          "forest_fire",
-          "avalanches",
-          "rain",
-          "flood",
-          "rain_flood"
-        ]
-      },
-      "messages": {
-        "type": "object",
-        "properties": {
-          "yellow": {
-            "type": ["string", "null"]
-          },
-          "orange": {
-            "type": ["string", "null"]
-          },
-          "red": {
-            "type": ["string", "null"]
-          }
-        },
-        "required": [
-          "yellow",
-          "orange",
-          "red"
-        ]
-      }
-    },
-    "required": [
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "required": [
+	  "$schema",
       "common",
       "error",
       "editor",
       "events",
       "messages"
-    ]
+  ],
+  "properties": {
+   	"$schema": {
+			"$id": "#/properties/%24schema",
+			"type": "string"
+   	},
+      "common": {
+          "$id": "#/properties/common",
+          "type": "object",
+          "required": [
+              "name",
+              "description",
+              "not_available"
+          ],
+          "properties": {
+              "name": {
+                  "$id": "#/properties/common/properties/name",
+                  "type": ["string", "null"]
+              },
+              "description": {
+                  "$id": "#/properties/common/properties/description",
+                  "type": ["string", "null"]
+              },
+              "not_available": {
+                  "$id": "#/properties/common/properties/not_available",
+                  "type": ["string", "null"]
+              }
+          },
+          "additionalProperties": false
+      },
+      "error": {
+          "$id": "#/properties/error",
+          "type": "object",
+          "required": [
+              "missing_entity",
+              "missing_integration",
+              "invalid_integration"
+          ],
+          "properties": {
+              "missing_entity": {
+                  "$id": "#/properties/error/properties/missing_entity",
+                  "type": ["string", "null"]
+              },
+              "missing_integration": {
+                  "$id": "#/properties/error/properties/missing_integration",
+                  "type": ["string", "null"]
+              },
+              "invalid_integration": {
+                  "$id": "#/properties/error/properties/invalid_integration",
+                  "type": ["string", "null"]
+              }
+          },
+          "additionalProperties": false
+      },
+      "editor": {
+          "$id": "#/properties/editor",
+          "type": "object",
+          "required": [
+              "entity",
+              "integration",
+              "required",
+              "automatic",
+              "recommended"
+          ],
+          "properties": {
+              "entity": {
+                  "$id": "#/properties/editor/properties/entity",
+                  "type": ["string", "null"]
+              },
+              "integration": {
+                  "$id": "#/properties/editor/properties/integration",
+                  "type": ["string", "null"]
+              },
+              "required": {
+                  "$id": "#/properties/editor/properties/required",
+                  "type": ["string", "null"]
+              },
+              "automatic": {
+                  "$id": "#/properties/editor/properties/automatic",
+                  "type": ["string", "null"]
+              },
+              "recommended": {
+                  "$id": "#/properties/editor/properties/recommended",
+                  "type": ["string", "null"]
+              }
+          },
+          "additionalProperties": false
+      },
+      "events": {
+          "$id": "#/properties/events",
+          "type": "object",
+          "required": [
+              "no_warnings",
+              "wind",
+              "snow_ice",
+              "thunderstorms",
+              "fog",
+              "hight_temperature",
+              "low_temperature",
+              "coastal_event",
+              "forest_fire",
+              "avalanches",
+              "rain",
+              "flood",
+              "rain_flood"
+          ],
+          "properties": {
+              "no_warnings": {
+                  "$id": "#/properties/events/properties/no_warnings",
+                  "type": ["string", "null"]
+              },
+              "wind": {
+                  "$id": "#/properties/events/properties/wind",
+                  "type": ["string", "null"]
+              },
+              "snow_ice": {
+                  "$id": "#/properties/events/properties/snow_ice",
+                  "type": ["string", "null"]
+              },
+              "thunderstorms": {
+                  "$id": "#/properties/events/properties/thunderstorms",
+                  "type": ["string", "null"]
+              },
+              "fog": {
+                  "$id": "#/properties/events/properties/fog",
+                  "type": ["string", "null"]
+              },
+              "hight_temperature": {
+                  "$id": "#/properties/events/properties/hight_temperature",
+                  "type": ["string", "null"]
+              },
+              "low_temperature": {
+                  "$id": "#/properties/events/properties/low_temperature",
+                  "type": ["string", "null"]
+              },
+              "coastal_event": {
+                  "$id": "#/properties/events/properties/coastal_event",
+                  "type": ["string", "null"]
+              },
+              "forest_fire": {
+                  "$id": "#/properties/events/properties/forest_fire",
+                  "type": ["string", "null"]
+              },
+              "avalanches": {
+                  "$id": "#/properties/events/properties/avalanches",
+                  "type": ["string", "null"]
+              },
+              "rain": {
+                  "$id": "#/properties/events/properties/rain",
+                  "type": ["string", "null"]
+              },
+              "flood": {
+                  "$id": "#/properties/events/properties/flood",
+                  "type": ["string", "null"]
+              },
+              "rain_flood": {
+                  "$id": "#/properties/events/properties/rain_flood",
+                  "type": ["string", "null"]
+              }
+          },
+          "additionalProperties": false
+      },
+      "messages": {
+          "$id": "#/properties/messages",
+          "type": "object",
+          "required": [
+              "yellow",
+              "orange",
+              "red"
+          ],
+          "properties": {
+              "yellow": {
+                  "$id": "#/properties/messages/properties/yellow",
+                  "type": ["string", "null"]
+              },
+              "orange": {
+                  "$id": "#/properties/messages/properties/orange",
+                  "type": ["string", "null"]
+              },
+              "red": {
+                  "$id": "#/properties/messages/properties/red",
+                  "type": ["string", "null"]
+              }
+          },
+          "additionalProperties": false
+      }
+  },
+  "additionalProperties": false
 }
