@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "common": {
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
@@ -15,7 +15,8 @@
     "integration": "Integracja",
     "required": "Wymagane",
     "automatic": "Automatyczne",
-    "recommended": "Zalecane"
+    "recommended": "Zalecane",
+    "override_headline": "Nadpisz nagłówek"
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",

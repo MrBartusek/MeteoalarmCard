@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "common": {
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
@@ -15,7 +15,8 @@
     "integration": null,
     "required": null,
     "automatic": null,
-    "recommended": null
+    "recommended": null,
+    "override_headline": null
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",

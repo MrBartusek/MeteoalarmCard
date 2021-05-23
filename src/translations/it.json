@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
@@ -15,7 +15,8 @@
     "integration": null,
     "required": null,
     "automatic": null,
-    "recommended": null
+    "recommended": null,
+    "override_headline": null
   },
   "events": {
     "no_warnings": "Nessun allarme",

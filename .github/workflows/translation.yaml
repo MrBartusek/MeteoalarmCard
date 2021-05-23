@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Validate JSON
+      - name: Validate JSONs
         uses: docker://orrosenblatt/validate-json-action:latest
         env:
-          INPUT_SCHEMA: src/schema.json
+          INPUT_SCHEMA: src/translations/schema.json
           INPUT_JSONS: "src/translations/en.json,\
             src/translations/de.json,\
             src/translations/es.json,\

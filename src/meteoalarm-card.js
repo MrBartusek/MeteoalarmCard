@@ -52,6 +52,11 @@ class MeteoalarmCard extends LitElement
 		return this.hass.states[this.config.entity];
 	}
 
+	get overrideHeadline()
+	{
+		return this.config.override_headline === true;
+	}
+
 	get integration()
 	{
 		return this.keyToIntegration(this.config.integration)
@@ -143,7 +148,7 @@ class MeteoalarmCard extends LitElement
 				...this.integration.getResult(entity)
 			}
 
-			if(result.headline == undefined)
+			if(result.headline === undefined || this.overrideHeadline)
 			{
 				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 			}

@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card warns you about current weather events.",
@@ -15,7 +15,8 @@
     "integration": "Integration",
     "required": "Required",
     "automatic": "Automatic",
-    "recommended": "Recommended"
+    "recommended": "Recommended",
+    "override_headline": "Override headline"
   },
   "events": {
     "no_warnings": "No warnings",
