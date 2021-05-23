@@ -17,10 +17,11 @@ export class MeteoalarmCardEditor extends LitElement
 	{
 		return {
 			automatic: `${localize('editor.automatic')} (${localize('editor.recommended')})`,
-			meteoalarm: 'Core Meteoalarm',
-			meteofrance: 'Core Météo-France',
-			meteoalarmeu: 'Custom MeteoalarmEU'
-		}
+			meteoalarm: 'Meteoalarm',
+			meteofrance: 'Météo-France',
+			dwd: 'Deutscher Wetterdienst (DWD)',
+			weatheralerts: 'Weather Alerts (weather.gov)'
+		};
 	}
 
 	setConfig(config)
@@ -42,7 +43,7 @@ export class MeteoalarmCardEditor extends LitElement
 	{
 		if (this._config)
 		{
-			return this._config.integration || '';
+			return this._config.integration || 'automatic';
 		}
 
 		return '';
@@ -59,6 +60,16 @@ export class MeteoalarmCardEditor extends LitElement
 		return '';
 	}
 
+	// eslint-disable-next-line
+	get _hide_when_no_warning()
+	{
+		if (this._config)
+		{
+			return this._config.hide_when_no_warning || false;
+		}
+
+		return '';
+	}
 
 	render()
 	{
@@ -88,7 +99,7 @@ export class MeteoalarmCardEditor extends LitElement
           			>
             			${Object.values(this._integrations).map((e) =>
 						{
-							return html`<paper-item>${e}</paper-item>`
+							return html`<paper-item>${e}</paper-item>`;
 						})}
           			</paper-listbox>
         		</paper-dropdown-menu>
@@ -97,7 +108,7 @@ export class MeteoalarmCardEditor extends LitElement
 				${this._integration == 'automatic' || this._integration == 'meteoalarm' ? html`
 					<p class="option">
 						<ha-switch
-							.checked=${this._override_headline !== false}
+							.checked=${this._override_headline === true}
 							.configValue=${'override_headline'}
 							@change=${this._valueChanged}
 						>
@@ -105,6 +116,17 @@ export class MeteoalarmCardEditor extends LitElement
 						${localize('editor.override_headline')}
 					</p>
 				`: ''}
+
+				<!-- Hide when no warning -->
+				<p class="option">
+					<ha-switch
+						.checked=${this._hide_when_no_warning === true}
+						.configValue=${'hide_when_no_warning'}
+						@change=${this._valueChanged}
+					>
+					</ha-switch>
+					${localize('editor.hide_when_no_warning')}
+				</p>
       		</div>
     	`;
 	}
@@ -121,34 +143,34 @@ export class MeteoalarmCardEditor extends LitElement
 		}
 
 		if (this[`_${target.configValue}`] === value) return;
-		if (target.configValue)
-		{
-			this._config = {
-				...this._config,
-				[target.configValue]:
-            target.checked !== undefined ? target.checked : value,
-			};
+		if (!target.configValue) return;
+		if (target.value === '') return;
 
-		}
+		this._config = {
+			...this._config,
+			[target.configValue]:
+			target.checked !== undefined ? target.checked : value,
+		};
+
 		fireEvent(this, 'config-changed', { config: this._config });
 	}
 
 	static get styles()
 	{
 		return css`
-      .card-config paper-dropdown-menu {
-        width: 100%;
-      }
+			.card-config paper-dropdown-menu {
+				width: 100%;
+			}
 
-      .option {
-        display: flex;
-        align-items: center;
-      }
+			.option {
+				display: flex;
+				align-items: center;
+			}
 
-      .option ha-switch {
-        margin-right: 10px;
-      }
-    `;
+			.option ha-switch {
+				margin-right: 10px;
+			}
+		`;
 	}
 }
 
