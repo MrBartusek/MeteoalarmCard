@@ -9,6 +9,13 @@
     "missing_integration": "Specifying integration is required!",
     "invalid_integration": "This integration is not valid!"
   },
+  "editor": {
+    "entity": "Entity",
+    "integration": "Integration",
+    "required": "Required",
+    "automatic": "Automatic",
+    "recommended": "Recommended"
+  },
   "events": {
     "no_warnings": "No warnings",
     "wind": "wind",
