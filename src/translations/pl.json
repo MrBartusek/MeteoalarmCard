@@ -1,14 +1,18 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
-    "not_available": "Meteoalarm nie jest dostępny"
+    "unavailable": {
+      "long": "Integracja nie jest dostępna",
+      "short": "Niedostępny"
+    }
   },
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",
-    "missing_integration": "Podanie integracji jest wymagane!",
-    "invalid_integration": "Nieprawidłowa integracja"
+    "invalid_integration": "Nieprawidłowa integracja!",
+    "automatic_failed": "Bład automatycznego wykrywania integracji!",
+    "entity_invalid": "Ta encja {entity} nie może zostać zinterpretowana przed integracje {integration}!"
   },
   "editor": {
     "entity": "Encja",
@@ -16,7 +20,8 @@
     "required": "Wymagane",
     "automatic": "Automatyczne",
     "recommended": "Zalecane",
-    "override_headline": "Nadpisz nagłówek"
+    "override_headline": "Nadpisz nagłówek",
+    "hide_when_no_warning": "Ukryj kiedy nie ma ostrzeżeń"
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",
@@ -34,8 +39,20 @@
     "rain_flood": "ulewy"
   },
   "messages": {
-    "yellow": "Żółty alert na {0}",
-    "orange": "Pomarańczowy alert na {0}",
-    "red": "Czerwony alert na {0}"
+    "yellow": {
+      "event": "Żółty alert na {event}",
+      "generic": "Żółty alert",
+      "color": "Żółty"
+    },
+    "orange": {
+      "event": "Pomarańczowy alert na {event}",
+      "generic": "Pomarańczowy alert",
+      "color": "Pomarańczowy"
+    },
+    "red": {
+      "event": "Czerwony alert na {event}",
+      "generic": "Czerwony alert",
+      "color": "Czerwony"
+    }
   }
 }

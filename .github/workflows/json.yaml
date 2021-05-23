@@ -1,0 +1,14 @@
+name: Validate Translations
+
+on: [pull_request,]
+
+jobs:
+  json-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Validate JSON
+        uses: docker://orrosenblatt/validate-json-action:latest
+        env:
+          INPUT_SCHEMA: src/schema.json
+          INPUT_JSONS: src/translations/*.json

@@ -1,14 +1,18 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
-    "not_available": "Meteoalarm non è disponibile"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
-    "missing_integration": null,
-    "invalid_integration": null
+    "invalid_integration": null,
+    "automatic_failed": null,
+    "entity_invalid": null
   },
   "editor": {
     "entity": null,
@@ -16,7 +20,8 @@
     "required": null,
     "automatic": null,
     "recommended": null,
-    "override_headline": null
+    "override_headline": null,
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Nessun allarme",
@@ -34,8 +39,20 @@
     "rain_flood": "acquazzoni"
   },
   "messages": {
-    "yellow": "Allarme Giallo {0}",
-    "orange": "Allarme Arancione {0}",
-    "red": "Allarme Rosso {0}"
+    "yellow": {
+      "event": "Allarme Giallo {event}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Allarme Arancione {event}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Allarme Rosso {event}",
+      "generic": null,
+      "color": null
+    }
   }
 }

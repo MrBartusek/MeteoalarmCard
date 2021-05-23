@@ -23,13 +23,6 @@
     "override_headline": "Override headline",
     "hide_when_no_warning": "Hide when there are no warnings"
   },
-  "editor": {
-    "entity": "Entity",
-    "integration": "Integration",
-    "required": "Required",
-    "automatic": "Automatic",
-    "recommended": "Recommended"
-  },
   "events": {
     "no_warnings": "No warnings",
     "wind": "wind",
