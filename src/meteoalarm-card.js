@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
+import './editor'
 import localize from './localize';
 import styles from './styles';
 
@@ -34,6 +35,11 @@ class MeteoalarmCard extends LitElement
 			entity: entity || '',
 			integration: 'automatic'
 		};
+	}
+
+	static getConfigElement()
+	{
+		return document.createElement('meteoalarm-card-editor');
 	}
 
 	get integrations()
