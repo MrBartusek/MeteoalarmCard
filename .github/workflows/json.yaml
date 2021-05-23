@@ -1,6 +1,6 @@
 name: Validate Translations
 
-on: [pull_request,]
+on: [push, pull_request]
 
 jobs:
   json-validation:
