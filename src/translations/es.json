@@ -1,11 +1,21 @@
 {
+  "$schema": "../schema.json",
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
     "not_available": "Meteoalarm no está disponible"
   },
   "error": {
-    "missing_entity": "¡Se requiere especificar la entidad!"
+    "missing_entity": "¡Se requiere especificar la entidad!",
+    "missing_integration": null,
+    "invalid_integration": null
+  },
+  "editor": {
+    "entity": null,
+    "integration": null,
+    "required": null,
+    "automatic": null,
+    "recommended": null
   },
   "events": {
     "no_warnings": "Sin avisos",

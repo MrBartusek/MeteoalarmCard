@@ -53,7 +53,7 @@ export default function localize(string)
 		translated = languages[DEFAULT_LANG][section][key];
 	}
 
-	if (translated === undefined)
+	if (translated == undefined)
 	{
 		translated = languages[DEFAULT_LANG][section][key] || string.toLowerCase();
 	}
