@@ -48,6 +48,17 @@ export class MeteoalarmCardEditor extends LitElement
 		return '';
 	}
 
+	// eslint-disable-next-line
+	get _override_headline()
+	{
+		if (this._config)
+		{
+			return this._config.override_headline || false;
+		}
+
+		return '';
+	}
+
 
 	render()
 	{
@@ -55,6 +66,7 @@ export class MeteoalarmCardEditor extends LitElement
 
 		return html`
       		<div class="card-config">
+			  	<!-- Enity Selector -->
 				<ha-entity-picker
 					label=${`${localize('editor.entity')} (${localize('editor.required')})`}
 					.hass=${this.hass}
@@ -64,6 +76,7 @@ export class MeteoalarmCardEditor extends LitElement
 					allow-custom-entity
 				></ha-entity-picker>
 
+				<!-- Integration Selector -->
 				<paper-dropdown-menu
 					label=${`${localize('editor.integration')} (${localize('editor.required')})`}
 					@value-changed=${this._valueChanged}
@@ -79,6 +92,19 @@ export class MeteoalarmCardEditor extends LitElement
 						})}
           			</paper-listbox>
         		</paper-dropdown-menu>
+
+				<!-- Override headline -->
+				${this._integration == 'automatic' || this._integration == 'meteoalarm' ? html`
+					<p class="option">
+						<ha-switch
+							.checked=${this._override_headline !== false}
+							.configValue=${'override_headline'}
+							@change=${this._valueChanged}
+						>
+						</ha-switch>
+						${localize('editor.override_headline')}
+					</p>
+				`: ''}
       		</div>
     	`;
 	}

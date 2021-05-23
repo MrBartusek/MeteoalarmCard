@@ -40,11 +40,13 @@ After completing installation you can add this card like any other to your dashb
 
 Here is what configuration options mean:
 
-| Name           | Type      | Default      | Description                                                             |
-| -------------- | --------- | ------------ | -----------------------------------------------------------------------          |
-| `type`         | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
-| `entity`       | `string`  | **Required** | An entity_id with weather alerts                                                 |
-| `integration`  | `string`  | **Required** | Name of the integration. `automatic`, `meteoalarm`, `meteofrance` or `meteoalarmeu`. It's recommended to keep this option at automatic |
+| Name                | Type      | Default      | Description                                                                      |
+| ------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
+| `type`              | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
+| `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
+| `integration`       | `string`  | **Required** | Name of the integration. `automatic`, `meteoalarm`, `meteofrance` or `meteoalarmeu`. It's recommended to keep this option at automatic |
+| `override_headline` | `boolean` | `false`      | Core Meteoalarm provides `event` and `headline` attributes which are used for text displayed on the card. This option forces card to always generate own headline.
+
 
 ## Supported languages
 

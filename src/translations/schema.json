@@ -70,7 +70,8 @@
               "integration",
               "required",
               "automatic",
-              "recommended"
+              "recommended",
+              "override_headline"
           ],
           "properties": {
               "entity": {
@@ -92,6 +93,10 @@
               "recommended": {
                   "$id": "#/properties/editor/properties/recommended",
                   "type": ["string", "null"]
+              },
+              "override_headline": {
+                "$id": "#/properties/editor/properties/override_headline",
+                "type": ["string", "null"]
               }
           },
           "additionalProperties": false
