@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json",
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
@@ -8,6 +9,14 @@
     "missing_entity": "Vajalik on Meteoalarmi olem!",
     "missing_integration": "Meteoalarmi sidumine puudub!",
     "invalid_integration": "Meteoalarmi sidumine on vale!"    
+  },
+  "editor": {
+  "entity": "olem",
+  "integration": "sidumine",
+  "required": "nõutav",
+  "automatic": "vaikimisi",
+  "recommended": "soovituslik",
+  "override_headline": "pealdise alistamine"
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
