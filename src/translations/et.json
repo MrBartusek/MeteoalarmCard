@@ -1,11 +1,22 @@
 {
+  "$schema": "./schema.json",
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Ohtlike ilmanähtuste kaart hoiatab ilmaohtude eest.",
     "not_available": "Meteoalarm pole saadaval"
   },
   "error": {
-    "missing_entity": "Vajalik on Meteoalarmi olem!"
+    "missing_entity": "Vajalik on Meteoalarmi olem!",
+    "missing_integration": null,
+    "invalid_integration": null
+  },
+  "editor": {
+    "entity": null,
+    "integration": null,
+    "required": null,
+    "automatic": null,
+    "recommended": null,
+    "override_headline": null
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
