@@ -1,11 +1,22 @@
 {
+  "$schema": "./schema.json",
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
     "not_available": "Meteoalarm no está disponible"
   },
   "error": {
-    "missing_entity": "¡Se requiere especificar la entidad!"
+    "missing_entity": "¡Se requiere especificar la entidad!",
+    "missing_integration": "¡Se requiere especificar la integracion!",
+    "invalid_integration": "¡Esta integración no es válida!"
+  },
+  "editor": {
+    "entity": "Entidad",
+    "integration": "Integración",
+    "required": "Necesario",
+    "automatic": "Automático",
+    "recommended": "Recomendado",
+    "override_headline": "Sobreescribir cabecera"
   },
   "events": {
     "no_warnings": "Sin avisos",
@@ -23,8 +34,8 @@
     "rain_flood": "inundación de lluvia"
   },
   "messages": {
-    "yellow": "Aviso de {0} amarillo",
-    "orange": "Aviso de {0} naranja",
-    "red": "Aviso de {0} rojo"
+    "yellow": "Alerta amarilla por {0}",
+    "orange": "Alerta naranja por {0}",
+    "red": "Alerta roja {0}"
   }
 }

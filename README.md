@@ -2,7 +2,7 @@
 
 [![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs badge](https://img.shields.io/badge/HACS-default-orange.svg)](https://hacs.xyz) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases)
 
-By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/). This simple card shows you the current active meteorological warnings.
+By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) or [Météo-France](https://www.home-assistant.io/integrations/meteo_france/). This simple card shows you the current active meteorological warnings.
 
 ![cover](https://i.imgur.com/jsLOGIv.png)
 
@@ -37,10 +37,23 @@ After completing installation you can add this card like any other to your dashb
 2. Select _Edit Dashboard_
 3. Click _+ New Card_ button
 4. Select `Custom: Meteoalarm Card`
-5. Select meteoalarm entity. If you don't see one make sure you have configured [Meteoalarm integration](https://www.home-assistant.io/integrations/meteoalarm/)
+
+Here is what configuration options mean:
+
+| Name                | Type      | Default      | Description                                                                      |
+| ------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
+| `type`              | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
+| `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
+| `integration`       | `string`  | **Required** | Name of the integration. `automatic`, `meteoalarm`, `meteofrance` or `meteoalarmeu`. It's recommended to keep this option at automatic |
+| `override_headline` | `boolean` | `false`      | Core Meteoalarm provides `event` and `headline` attributes which are used for text displayed on the card. This option forces card to always generate own headline.
+
+Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
+
 ```yaml
 type: 'custom:meteoalarm-card'
 entity: 'binary_sensor.meteoalarm'
+integration: 'automatic'
+override_headline: false
 ```
 
 ## Supported languages
@@ -60,11 +73,13 @@ This card supports translations. Please, help to add more translations and impro
 
 ## Supported integrations
 
-This card supports two most popular integrations.
+This card supports many other integrations.
 
-- [Core Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Home Assistant core integration based on ATOM Feed.
-- [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore [_Read more_](https://github.com/xlcnd/meteoalarmeu/issues/1).
+- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Home Assistant core integration based on ATOM Feed.
+- [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Home Assistant core integration for Météo France alerts.
+- [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore.
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
+
 
 ## Contributing
 

@@ -4,15 +4,16 @@ If you plan to contribute back to this repo, please fork & open a PR.
 
 ## How to add translation
 
-We are currently looking to implement languages of all countries supported by meteoalarm. If you are able to add or improve translations in language you speak don't hastate to make a PR.
+We are currently looking to implement languages of all countries supported by meteoalarm. If you are able to add or improve translations in language you speak don't hastate to make a PR. Some of the keys are replaced with `null` that means specified key is not yet translated.
 
 1. Clone the repository - [How to run locally](#How-to-run-locally). Follow steps 1 and 2.
 2. Copy `src/translations/en.json` file and name it with appropriate language code.
 3. Translate only the keys (second quotation mark)
 4. Import your translation in `src/localize.js` file.
-5. Mention your translation in `README.md` file (list should be sorted alphabetically). 
-6. Open a Pull Request.
-7. Wait for maintainer to review your changes and merge PR.
+5. Mention your translation in `README.md` file (list should be sorted alphabetically).
+6. Add translation file to `.github\workflows\translation.yaml` they are separated by `,\`
+7. Open a Pull Request.
+8. Wait for maintainer to review your changes and merge PR.
 
 **Note:** You can find translation for `events` under _captions_ at [meteoalarm.eu](https://www.meteoalarm.eu)
 

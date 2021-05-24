@@ -1,6 +1,6 @@
 {
   "name": "meteoalarm-card",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Meteoalarm card for Home Assistant Lovelace UI",
   "main": "dist/meteoalarm-card.js",
   "keywords": [
@@ -13,6 +13,7 @@
     "meteoalarmeu"
   ],
   "author": "MrBartusek",
+  "type": "module",
   "license": "MIT",
   "homepage": "https://github.com/MrBartusek/MeteoalarmCard",
   "repository": {

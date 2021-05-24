@@ -1,11 +1,22 @@
 {
+  "$schema": "./schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card warns you about current weather events.",
     "not_available": "Meteoalarm is not available"
   },
   "error": {
-    "missing_entity": "Specifying entity is required!"
+    "missing_entity": "Specifying entity is required!",
+    "missing_integration": "Specifying integration is required!",
+    "invalid_integration": "This integration is not valid!"
+  },
+  "editor": {
+    "entity": "Entity",
+    "integration": "Integration",
+    "required": "Required",
+    "automatic": "Automatic",
+    "recommended": "Recommended",
+    "override_headline": "Override headline"
   },
   "events": {
     "no_warnings": "No warnings",
