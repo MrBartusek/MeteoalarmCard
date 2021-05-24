@@ -8,7 +8,7 @@
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
     "missing_integration": "Meteoalarmi sidumine puudub!",
-    "invalid_integration": "Meteoalarmi sidumine on vale!"    
+    "invalid_integration": "Meteoalarmi sidumine on vigane!"    
   },
   "editor": {
   "entity": "olem",
