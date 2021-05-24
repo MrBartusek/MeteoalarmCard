@@ -1,11 +1,22 @@
 {
+    "$schema": "./schema.json",
     "common": {
         "name": "Meteoalarm-Karte",
         "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
         "not_available": "Meteoalarm ist nicht verfügbar"
     },
     "error": {
-        "missing_entity": "Die angegebene Entität ist nicht vorhanden!"
+        "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
+        "missing_integration": null,
+        "invalid_integration": null
+    },
+      "editor": {
+        "entity": null,
+        "integration": null,
+        "required": null,
+        "automatic": null,
+        "recommended": null,
+        "override_headline": null
     },
     "events": {
         "no_warnings": "Keine Warnungen",

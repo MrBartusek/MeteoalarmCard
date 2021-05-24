@@ -1,11 +1,22 @@
 {
+  "$schema": "./schema.json",
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
     "not_available": "Meteoalarm non è disponibile"
   },
   "error": {
-    "missing_entity": "È necessario specificare un'entità!"
+    "missing_entity": "È necessario specificare un'entità!",
+    "missing_integration": null,
+    "invalid_integration": null
+  },
+  "editor": {
+    "entity": null,
+    "integration": null,
+    "required": null,
+    "automatic": null,
+    "recommended": null,
+    "override_headline": null
   },
   "events": {
     "no_warnings": "Nessun allarme",

@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
+import './editor'
 import localize from './localize';
 import styles from './styles';
 
@@ -36,6 +37,11 @@ class MeteoalarmCard extends LitElement
 		};
 	}
 
+	static getConfigElement()
+	{
+		return document.createElement('meteoalarm-card-editor');
+	}
+
 	get integrations()
 	{
 		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration];
@@ -44,6 +50,11 @@ class MeteoalarmCard extends LitElement
 	get entity()
 	{
 		return this.hass.states[this.config.entity];
+	}
+
+	get overrideHeadline()
+	{
+		return this.config.override_headline === true;
 	}
 
 	get integration()
@@ -137,7 +148,7 @@ class MeteoalarmCard extends LitElement
 				...this.integration.getResult(entity)
 			}
 
-			if(result.headline == undefined)
+			if(result.headline === undefined || this.overrideHeadline)
 			{
 				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 			}

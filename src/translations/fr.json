@@ -1,12 +1,22 @@
-
 {
+  "$schema": "./schema.json",
   "common": {
     "name": "Carte Meteoalarm",
     "description": "Carte Meteoalarm vous alerte des conditions météorologique courante.",
     "not_available": "Meteoalarm n'est pas disponible"
   },
   "error": {
-    "missing_entity": "L'entité est requise!"
+    "missing_entity": "L'entité est requise!",
+    "missing_integration": null,
+    "invalid_integration": null
+  },
+  "editor": {
+    "entity": null,
+    "integration": null,
+    "required": null,
+    "automatic": null,
+    "recommended": null,
+    "override_headline": null
   },
   "events": {
     "no_warnings": "Aucune alerte",
