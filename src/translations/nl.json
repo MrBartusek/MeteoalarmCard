@@ -7,16 +7,16 @@
   },
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",
-    "missing_integration": null,
-    "invalid_integration": null
+    "missing_integration": "Het specificeren van de integratie is vereist!",
+    "invalid_integration": "Deze integratie is niet geldig!"
   },
   "editor": {
-    "entity": null,
-    "integration": null,
-    "required": null,
-    "automatic": null,
-    "recommended": null,
-    "override_headline": null
+    "entity": "Entiteit",
+    "integration": "Integratie",
+    "required": "Verplicht",
+    "automatic": "Automatisch",
+    "recommended": "Aanbevolen",
+    "override_headline": "Koptekst overschrijven"
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",
