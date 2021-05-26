@@ -7,7 +7,7 @@
   },
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",
-    "missing_integration": "Het specificeren van de entiteit is vereist!",
+    "missing_integration": "Het specificeren van de integratie is vereist!",
     "invalid_integration": "Deze integratie is niet geldig!"
   },
   "editor": {
