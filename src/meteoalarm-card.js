@@ -231,18 +231,16 @@ class MeteoalarmCard extends LitElement
 			`;
 	}
 
-	renderError()
+	renderError(error)
 	{
-		return html`
-			<ha-card>
-				<div class="container" style="background-color: #db4437; color: #fff">
-					<div class="content"> 
-						<ha-icon class="main-icon" icon="mdi:alert-circle-outline"></ha-icon>
-						<div class="status"> Error (see console) </div>
-					</div>
-				</div>
-			</ha-card>
-		`;
+		const errorCard = document.createElement('hui-error-card');
+		errorCard.setConfig({
+			type: 'error',
+			error,
+			origConfig: this.config,
+		});
+
+		return html`${errorCard}`
 	}
 
 	render()
@@ -269,10 +267,10 @@ class MeteoalarmCard extends LitElement
 				</ha-card>
 			`;
 		}
-		catch(e)
+		catch(error)
 		{
-			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', e)
-			return this.renderError()
+			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', error)
+			return this.renderError(error)
 		}
 	}
 }
