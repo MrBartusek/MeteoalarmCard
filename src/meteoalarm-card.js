@@ -3,6 +3,8 @@ import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import './editor'
 import localize from './localize';
 import styles from './styles';
+import ResizeObserver from 'resize-observer-polyfill'
+import { debounce } from './debounce'
 
 import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
 import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
@@ -117,6 +119,49 @@ class MeteoalarmCard extends LitElement
 		);
 	}
 
+	firstUpdated()
+	{
+		this.measureCard();
+		this.attachObserver();
+	}
+
+	async attachObserver()
+	{
+		if (!this._resizeObserver)
+		{
+			this.resizeObserver = new ResizeObserver(
+				debounce(() => this.measureCard(), 250, false)
+			);
+		}
+		const card = this.shadowRoot.querySelector('ha-card');
+		if (!card) return;
+		this.resizeObserver.observe(card);
+	}
+
+	measureCard()
+	{
+		if (!this.isConnected) return;
+		const card = this.shadowRoot.querySelector('ha-card');
+		if (!card) return;
+
+		if (card.offsetWidth < 375)
+		{
+			this.setAttribute('narrow', '');
+		}
+		else
+		{
+			this.removeAttribute('narrow');
+		}
+		if (card.offsetWidth < 200)
+		{
+			this.setAttribute('verynarrow', '');
+		}
+		else
+		{
+			this.removeAttribute('verynarrow');
+		}
+	}
+
 	keyToIntegration(key, entity = this.entity)
 	{
 		if(key == 'automatic')
@@ -150,7 +195,7 @@ class MeteoalarmCard extends LitElement
 		{
 			result = {
 				...result,
-				...this.integration.getResult(entity)
+				...this.integration.getResult(entity),
 			}
 
 			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
@@ -160,17 +205,26 @@ class MeteoalarmCard extends LitElement
 
 			if(result.headline === undefined || this.overrideHeadline)
 			{
+				// If headline is not issued, generate default one
 				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 			}
+			result.headlineNarrow = this.generateHeadline(result.awarenessType, result.awarenessLevel, true)
 
 		}
 		return result
 	}
 
-	generateHeadline(awarenessType, awarenessLevel)
+	generateHeadline(awarenessType, awarenessLevel, narrow = false)
 	{
-		// If headline is not issued, generate default one
-		return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
+		if(narrow)
+		{
+			const awareness = localize(awarenessType.translationKey);
+			return awareness.charAt(0).toUpperCase() + awareness.slice(1)
+		}
+		else
+		{
+			return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
+		}
 	}
 
 	getBackgroundColor()
@@ -205,13 +259,16 @@ class MeteoalarmCard extends LitElement
 
 	renderStatus()
 	{
-		const { isWarningActive: isWarningActive, headline } = this.getAttributes(this.entity);
+		const { isWarningActive: isWarningActive, headline, headlineNarrow } = this.getAttributes(this.entity);
 
 		if(isWarningActive)
 		{
 			return html`
 				<div class="status"> 
 					${headline}
+				</div> 
+				<div class="status-narrow"> 
+					${headlineNarrow}
 				</div> 
 			`
 		}
