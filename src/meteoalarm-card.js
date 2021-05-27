@@ -138,7 +138,7 @@ class MeteoalarmCard extends LitElement
 	{
 		let result = {
 			isAvailable: this.isEntityAvailable(entity),
-			isWarningActive: this.integration.isWarningActive(entity)
+			isWarningActive: this.isEntityAvailable(entity) ? this.integration.isWarningActive(entity) : false,
 		};
 
 		if(result.isWarningActive)
