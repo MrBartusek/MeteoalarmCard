@@ -121,7 +121,12 @@ class MeteoalarmCard extends LitElement
 	{
 		if(key == 'automatic')
 		{
-			return this.integrations.find((i) => i.supports(entity))
+			const result = this.integrations.find((i) => i.supports(entity))
+			if(result == undefined)
+			{
+				throw Error(localize('error.automatic_failed'))
+			}
+			return result;
 		}
 		else
 		{
@@ -146,6 +151,11 @@ class MeteoalarmCard extends LitElement
 			result = {
 				...result,
 				...this.integration.getResult(entity)
+			}
+
+			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
+			{
+				throw Error(localize('error.entity_not_supported'))
 			}
 
 			if(result.headline === undefined || this.overrideHeadline)

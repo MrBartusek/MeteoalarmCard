@@ -8,7 +8,9 @@
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",
     "missing_integration": "Podanie integracji jest wymagane!",
-    "invalid_integration": "Nieprawidłowa integracja"
+    "invalid_integration": "Nieprawidłowa integracja!",
+    "automatic_failed": "Bład automatycznego wykrywania integracji!",
+    "entity_not_supported": "Ta integracja nie wspiera podanej encji!"
   },
   "editor": {
     "entity": "Encja",

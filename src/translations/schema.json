@@ -44,7 +44,9 @@
           "required": [
               "missing_entity",
               "missing_integration",
-              "invalid_integration"
+              "invalid_integration",
+              "automatic_failed",
+              "entity_not_supported"
           ],
           "properties": {
               "missing_entity": {
@@ -57,6 +59,14 @@
               },
               "invalid_integration": {
                   "$id": "#/properties/error/properties/invalid_integration",
+                  "type": ["string", "null"]
+              },
+              "automatic_failed": {
+                  "$id": "#/properties/error/properties/automatic_failed",
+                  "type": ["string", "null"]
+              },
+              "entity_not_supported": {
+                  "$id": "#/properties/error/properties/entity_not_supported",
                   "type": ["string", "null"]
               }
           },

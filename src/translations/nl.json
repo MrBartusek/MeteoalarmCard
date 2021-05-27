@@ -8,7 +8,9 @@
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",
     "missing_integration": "Het specificeren van de integratie is vereist!",
-    "invalid_integration": "Deze integratie is niet geldig!"
+    "invalid_integration": "Deze integratie is niet geldig!",
+    "automatic_failed": null,
+    "entity_not_supported": null
   },
   "editor": {
     "entity": "Entiteit",
