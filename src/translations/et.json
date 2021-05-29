@@ -22,7 +22,7 @@
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
     "wind": "tugev tuul",
-    "snow_ice": "Lumi või jää",
+    "snow_ice": "lumi või jää",
     "thunderstorms": "äike",
     "fog": "udu",
     "hight_temperature": "kuumalaine",
