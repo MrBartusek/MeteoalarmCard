@@ -136,19 +136,19 @@ export class MeteoalarmCardEditor extends LitElement
 	static get styles()
 	{
 		return css`
-      .card-config paper-dropdown-menu {
-        width: 100%;
-      }
+			.card-config paper-dropdown-menu {
+				width: 100%;
+			}
 
-      .option {
-        display: flex;
-        align-items: center;
-      }
+			.option {
+				display: flex;
+				align-items: center;
+			}
 
-      .option ha-switch {
-        margin-right: 10px;
-      }
-    `;
+			.option ha-switch {
+				margin-right: 10px;
+			}
+		`;
 	}
 }
 
