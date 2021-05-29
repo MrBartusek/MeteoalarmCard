@@ -64,11 +64,11 @@ This card supports translations. Please, help to add more translations and impro
 - English (Default language)
 - Deutsch (German)
 - Eesti (Estonian)
+- Español (Spanish)
 - Français (French)
 - Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
-- Español (Spanish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Supported integrations
