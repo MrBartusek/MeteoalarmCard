@@ -40,7 +40,7 @@ export default css`
     flex: 0;
   }
 
-  .status, .status-narrow
+  .status, .status-narrow, .status-both
   {
     flex: 1;
     display: flex;
@@ -61,20 +61,12 @@ export default css`
   {
     display: none;
   }
-
+  
   :host([narrow]) .status-narrow {
     display: flex;
   }
 
-  :host([narrow]) .status {
-    display: none;
-  }
-
-  :host([verynarrow]) .status-narrow {
-    display: none;
-  }
-
-  :host([verynarrow]) .status {
+  :host([verynarrow]) .status, :host([verynarrow]) .status-narrow, , :host([verynarrow]) .status-both {
     display: none;
   }
 `;

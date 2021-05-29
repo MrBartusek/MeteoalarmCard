@@ -152,7 +152,7 @@ class MeteoalarmCard extends LitElement
 		{
 			this.removeAttribute('narrow');
 		}
-		if (card.offsetWidth < 200)
+		if (card.offsetWidth < 220)
 		{
 			this.setAttribute('verynarrow', '');
 		}
@@ -229,13 +229,13 @@ class MeteoalarmCard extends LitElement
 
 	getBackgroundColor()
 	{
-		const { isWarningActive: isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
+		const { isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
 		return isWarningActive ? awarenessLevel.color : 'inherit'
 	}
 
 	getFontColor()
 	{
-		const { isWarningActive: isWarningActive } = this.getAttributes(this.entity);
+		const { isWarningActive } = this.getAttributes(this.entity);
 		return isWarningActive ? '#fff' : '--primary-text-color'
 	}
 
@@ -248,7 +248,7 @@ class MeteoalarmCard extends LitElement
 		}
 		else
 		{
-			const { isWarningActive: isWarningActive, awarenessType } = this.getAttributes(this.entity);
+			const { isWarningActive, awarenessType } = this.getAttributes(this.entity);
 
 			iconName = isWarningActive ? awarenessType.icon : 'shield-outline'
 		}
@@ -259,7 +259,7 @@ class MeteoalarmCard extends LitElement
 
 	renderStatus()
 	{
-		const { isWarningActive: isWarningActive, headline, headlineNarrow } = this.getAttributes(this.entity);
+		const { isWarningActive, headline, headlineNarrow } = this.getAttributes(this.entity);
 
 		if(isWarningActive)
 		{
@@ -275,7 +275,7 @@ class MeteoalarmCard extends LitElement
 		else
 		{
 			return html`
-				<div class="status"> 
+				<div class="status-both"> 
 					${localize('events.no_warnings')}
 				</div> 
 			`
@@ -289,7 +289,7 @@ class MeteoalarmCard extends LitElement
 				<div class="container">
 					<div class="content"> 
 						${this.renderIcon()}
-						<div class="status"> 
+						<div class="status-both"> 
 							${localize('common.not_available')}
 						</div>
 					</div> 

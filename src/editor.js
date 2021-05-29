@@ -42,7 +42,7 @@ export class MeteoalarmCardEditor extends LitElement
 	{
 		if (this._config)
 		{
-			return this._config.integration || '';
+			return this._config.integration || 'automatic';
 		}
 
 		return '';
