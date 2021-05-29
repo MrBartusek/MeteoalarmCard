@@ -7,7 +7,6 @@
   },
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
-    "missing_integration": null,
     "invalid_integration": null,
     "automatic_failed": null,
     "entity_not_supported": null

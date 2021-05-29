@@ -43,7 +43,6 @@
           "type": "object",
           "required": [
               "missing_entity",
-              "missing_integration",
               "invalid_integration",
               "automatic_failed",
               "entity_not_supported"
@@ -51,10 +50,6 @@
           "properties": {
               "missing_entity": {
                   "$id": "#/properties/error/properties/missing_entity",
-                  "type": ["string", "null"]
-              },
-              "missing_integration": {
-                  "$id": "#/properties/error/properties/missing_integration",
                   "type": ["string", "null"]
               },
               "invalid_integration": {

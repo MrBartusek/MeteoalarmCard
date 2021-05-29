@@ -34,8 +34,7 @@ class MeteoalarmCard extends LitElement
 		);
 
 		return {
-			entity: entity || '',
-			integration: 'automatic'
+			entity: entity || ''
 		};
 	}
 
@@ -61,7 +60,7 @@ class MeteoalarmCard extends LitElement
 
 	get integration()
 	{
-		return this.keyToIntegration(this.config.integration)
+		return this.keyToIntegration(this.config.integration || 'automatic')
 	}
 
 	setConfig(config)
@@ -70,11 +69,7 @@ class MeteoalarmCard extends LitElement
 		{
 			throw new Error(localize('error.missing_entity'));
 		}
-		if(!config.integration)
-		{
-			throw new Error(localize('error.missing_integration'));
-		}
-		if(config.integration != 'automatic' && this.keyToIntegration(config.integration, config.entity) == undefined)
+		if(config.integration != 'automatic' && config.integration != undefined && this.keyToIntegration(config.integration, config.entity) == undefined)
 		{
 			throw new Error(localize('error.invalid_integration'));
 		}

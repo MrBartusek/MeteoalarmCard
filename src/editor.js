@@ -121,15 +121,15 @@ export class MeteoalarmCardEditor extends LitElement
 		}
 
 		if (this[`_${target.configValue}`] === value) return;
-		if (target.configValue)
-		{
-			this._config = {
-				...this._config,
-				[target.configValue]:
-            target.checked !== undefined ? target.checked : value,
-			};
+		if (!target.configValue) return;
+		if (target.value === '') return;
 
-		}
+		this._config = {
+			...this._config,
+			[target.configValue]:
+			target.checked !== undefined ? target.checked : value,
+		};
+
 		fireEvent(this, 'config-changed', { config: this._config });
 	}
 

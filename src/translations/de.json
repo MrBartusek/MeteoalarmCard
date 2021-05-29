@@ -7,7 +7,6 @@
     },
     "error": {
         "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
-        "missing_integration": null,
         "invalid_integration": null,
         "automatic_failed": null,
         "entity_not_supported": null
