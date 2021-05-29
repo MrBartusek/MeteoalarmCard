@@ -29,9 +29,8 @@ class MeteoalarmCard extends LitElement
 
 	static getStubConfig(hass, entities)
 	{
-		const [entity] = entities.filter(
-			(eid) => eid.includes('meteoalarm')
-		);
+		// Find fist entity that is supported by any integration
+		const entity = entities.find((eid) => this.integrations.some((integration) => integration.supports(hass.states[eid])))
 
 		return {
 			entity: entity || ''
@@ -43,7 +42,7 @@ class MeteoalarmCard extends LitElement
 		return document.createElement('meteoalarm-card-editor');
 	}
 
-	get integrations()
+	static get integrations()
 	{
 		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration];
 	}
@@ -161,7 +160,7 @@ class MeteoalarmCard extends LitElement
 	{
 		if(key == 'automatic')
 		{
-			const result = this.integrations.find((i) => i.supports(entity))
+			const result = MeteoalarmCard.integrations.find((i) => i.supports(entity))
 			if(result == undefined)
 			{
 				throw Error(localize('error.automatic_failed'))
@@ -170,7 +169,7 @@ class MeteoalarmCard extends LitElement
 		}
 		else
 		{
-			return this.integrations.find((i) => i.name == key)
+			return MeteoalarmCard.find((i) => i.name == key)
 		}
 	}
 
