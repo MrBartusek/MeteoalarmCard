@@ -18,4 +18,5 @@ jobs:
             src/translations/fr.json,\
             src/translations/it.json,\
             src/translations/nl.json,\
-            src/translations/pl.json"
+            src/translations/pl.json,\
+            src/translations/sk.json"
