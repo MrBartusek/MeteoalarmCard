@@ -8,8 +8,8 @@
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
     "invalid_integration": "¡Esta integración no es válida!",
-    "automatic_failed": null,
-    "entity_not_supported": null
+    "automatic_failed": "¡No se pudo detectar automáticamente la integración!",
+    "entity_not_supported": "¡Esta integración no es compatible con la entidad proporcionada!"
   },
   "editor": {
     "entity": "Entidad",
