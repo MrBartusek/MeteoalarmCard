@@ -1,0 +1,39 @@
+{
+  "$schema": "./schema.json",
+  "common": {
+    "name": "Meteoalarm Karta",
+    "description": "Karta Meteoalarm vás upozorní na aktuálne počasie.",
+    "not_available": "Meteoalarm nieje k dispozícii."
+  },
+  "error": {
+    "missing_entity": "Zadanie entity je povinné!",
+    "missing_integration": "Zadanie integrácie je povinné!",
+    "invalid_integration": "Táto integrácia nie je platná!"
+  },
+  "editor": {
+    "entity": "Entita",
+    "integration": "Integrácia",
+    "required": "Povinné",
+    "automatic": "Automatické",
+    "recommended": "Odporúčané",
+    "override_headline": "Prepísať nadpis"
+  },
+  "events": {
+    "no_warnings": "Žiadne varovania",
+    "wind": "vietor",
+    "snow_ice": "sneh/ľad",
+    "thunderstorms": "búrky",
+    "fog": "hmla",
+    "hight_temperature": "extrémne vysoká teplota",
+    "low_temperature": "extrémne nízka teplota",
+    "coastal_event": "pobrežná udalosť",
+    "forest_fire": "lesný požiar",
+    "avalanches": "lavíny",
+    "rain": "dážď",
+    "flood": "povodeň",
+    "rain_flood": "dažďová povodeň"
+  },
+  "messages": {
+    "yellow": "Žlté varovanie - {0}",
+    "orange": "Ornažové varovanie - {0}",
+    "red": "Červené varovanie - {0}"
