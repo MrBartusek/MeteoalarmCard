@@ -44,7 +44,7 @@ Here is what configuration options mean:
 | ------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
 | `type`              | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
 | `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
-| `integration`       | `string`  | **Required** | Name of the integration. `automatic`, `meteoalarm`, `meteofrance` or `meteoalarmeu`. It's recommended to keep this option at automatic |
+| `integration`       | `string`  | `automatic`  | Name of the integration. Available options: <ul><li>`automatic`</li><li>`meteoalarm`</li><li>`meteofrance`</li><li>`meteoalarmeu` |
 | `override_headline` | `boolean` | `false`      | Core Meteoalarm provides `event` and `headline` attributes which are used for text displayed on the card. This option forces card to always generate own headline.
 
 Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
@@ -64,11 +64,11 @@ This card supports translations. Please, help to add more translations and impro
 - English (Default language)
 - Deutsch (German)
 - Eesti (Estonian)
+- Español (Spanish)
 - Français (French)
 - Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
-- Español (Spanish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Supported integrations

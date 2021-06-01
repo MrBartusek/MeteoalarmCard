@@ -40,7 +40,7 @@ export class MeteoFranceIntegration
 
 	static supports(entity)
 	{
-		return entity.attributes.attribution === 'Data provided by Météo-France';
+		return entity.attributes.attribution == 'Data provided by Météo-France' && entity.attributes[EVENT_WIND] != undefined;
 	}
 
 	static isWarningActive(entity)

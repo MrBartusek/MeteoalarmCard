@@ -30,17 +30,17 @@ export default css`
   {
     display: flex;
     padding: 32px 28px;
+    justify-content: center;
   }
 
-  .main-icon 
+  .main-icon
   {
     --mdc-icon-size: 50px;
     height: 50px;
     flex: 0;
-    margin-right: 18px;
   }
 
-  .status
+  .status, .status-narrow, .status-both
   {
     flex: 1;
     display: flex;
@@ -48,11 +48,25 @@ export default css`
     font-size: 22px;
     line-height: normal;
     margin: auto;
+    margin-left: 18px;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+  }
+
+  .status-narrow
+  {
+    display: none;
+  }
+  
+  :host([narrow]) .status-narrow {
+    display: flex;
+  }
+
+  :host([verynarrow]) .status, :host([verynarrow]) .status-narrow, , :host([verynarrow]) .status-both {
+    display: none;
   }
 `;

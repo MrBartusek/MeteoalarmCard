@@ -2,26 +2,27 @@
   "$schema": "./schema.json",
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
-    "description": "Ohtlike ilmanähtuste kaart hoiatab ilmaohtude eest.",
+    "description": "Äärmuslike ilmaolude hoiatus.",
     "not_available": "Meteoalarm pole saadaval"
   },
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
-    "missing_integration": null,
-    "invalid_integration": null
+    "invalid_integration": "Meteoalarmi sidumine on vale!",
+    "automatic_failed": null,
+    "entity_not_supported": null   
   },
   "editor": {
-    "entity": null,
-    "integration": null,
-    "required": null,
-    "automatic": null,
-    "recommended": null,
-    "override_headline": null
+    "entity": "Olem",
+    "integration": "Sidumine",
+    "required": "Nõutav",
+    "automatic": "Vaikimisi",
+    "recommended": "Soovituslik",
+    "override_headline": "Pealdise alistamine"
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
     "wind": "tugev tuul",
-    "snow_ice": "lumi/jää",
+    "snow_ice": "lumi või jää",
     "thunderstorms": "äike",
     "fog": "udu",
     "hight_temperature": "kuumalaine",

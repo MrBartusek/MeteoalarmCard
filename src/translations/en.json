@@ -7,8 +7,9 @@
   },
   "error": {
     "missing_entity": "Specifying entity is required!",
-    "missing_integration": "Specifying integration is required!",
-    "invalid_integration": "This integration is not valid!"
+    "invalid_integration": "This integration is not valid!",
+    "automatic_failed": "Failed to automatically detect integration!",
+    "entity_not_supported": "This integration doesn't support provided entity!"
   },
   "editor": {
     "entity": "Entity",

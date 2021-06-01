@@ -3,6 +3,8 @@ import { hasConfigOrEntityChanged, fireEvent } from 'custom-card-helpers';
 import './editor'
 import localize from './localize';
 import styles from './styles';
+import ResizeObserver from 'resize-observer-polyfill'
+import { debounce } from './debounce'
 
 import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
 import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
@@ -27,13 +29,11 @@ class MeteoalarmCard extends LitElement
 
 	static getStubConfig(hass, entities)
 	{
-		const [entity] = entities.filter(
-			(eid) => eid.includes('meteoalarm')
-		);
+		// Find fist entity that is supported by any integration
+		const entity = entities.find((eid) => this.integrations.some((integration) => integration.supports(hass.states[eid])))
 
 		return {
-			entity: entity || '',
-			integration: 'automatic'
+			entity: entity || ''
 		};
 	}
 
@@ -42,7 +42,7 @@ class MeteoalarmCard extends LitElement
 		return document.createElement('meteoalarm-card-editor');
 	}
 
-	get integrations()
+	static get integrations()
 	{
 		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration];
 	}
@@ -59,7 +59,7 @@ class MeteoalarmCard extends LitElement
 
 	get integration()
 	{
-		return this.keyToIntegration(this.config.integration)
+		return this.keyToIntegration(this.config.integration || 'automatic')
 	}
 
 	setConfig(config)
@@ -68,11 +68,7 @@ class MeteoalarmCard extends LitElement
 		{
 			throw new Error(localize('error.missing_entity'));
 		}
-		if(!config.integration)
-		{
-			throw new Error(localize('error.missing_integration'));
-		}
-		if(config.integration != 'automatic' && this.keyToIntegration(config.integration, config.entity) == undefined)
+		if(config.integration != 'automatic' && config.integration != undefined && this.keyToIntegration(config.integration, config.entity) == undefined)
 		{
 			throw new Error(localize('error.invalid_integration'));
 		}
@@ -117,15 +113,63 @@ class MeteoalarmCard extends LitElement
 		);
 	}
 
+	firstUpdated()
+	{
+		this.measureCard();
+		this.attachObserver();
+	}
+
+	async attachObserver()
+	{
+		if (!this._resizeObserver)
+		{
+			this.resizeObserver = new ResizeObserver(
+				debounce(() => this.measureCard(), 250, false)
+			);
+		}
+		const card = this.shadowRoot.querySelector('ha-card');
+		if (!card) return;
+		this.resizeObserver.observe(card);
+	}
+
+	measureCard()
+	{
+		if (!this.isConnected) return;
+		const card = this.shadowRoot.querySelector('ha-card');
+		if (!card) return;
+
+		if (card.offsetWidth < 375)
+		{
+			this.setAttribute('narrow', '');
+		}
+		else
+		{
+			this.removeAttribute('narrow');
+		}
+		if (card.offsetWidth < 220)
+		{
+			this.setAttribute('verynarrow', '');
+		}
+		else
+		{
+			this.removeAttribute('verynarrow');
+		}
+	}
+
 	keyToIntegration(key, entity = this.entity)
 	{
 		if(key == 'automatic')
 		{
-			return this.integrations.find((i) => i.supports(entity))
+			const result = MeteoalarmCard.integrations.find((i) => i.supports(entity))
+			if(result == undefined)
+			{
+				throw Error(localize('error.automatic_failed'))
+			}
+			return result;
 		}
 		else
 		{
-			return this.integrations.find((i) => i.name == key)
+			return MeteoalarmCard.find((i) => i.name == key)
 		}
 	}
 
@@ -138,40 +182,54 @@ class MeteoalarmCard extends LitElement
 	{
 		let result = {
 			isAvailable: this.isEntityAvailable(entity),
-			isWarningActive: this.integration.isWarningActive(entity)
+			isWarningActive: this.isEntityAvailable(entity) ? this.integration.isWarningActive(entity) : false,
 		};
 
 		if(result.isWarningActive)
 		{
 			result = {
 				...result,
-				...this.integration.getResult(entity)
+				...this.integration.getResult(entity),
+			}
+
+			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
+			{
+				throw Error(localize('error.entity_not_supported'))
 			}
 
 			if(result.headline === undefined || this.overrideHeadline)
 			{
+				// If headline is not issued, generate default one
 				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel)
 			}
+			result.headlineNarrow = this.generateHeadline(result.awarenessType, result.awarenessLevel, true)
 
 		}
 		return result
 	}
 
-	generateHeadline(awarenessType, awarenessLevel)
+	generateHeadline(awarenessType, awarenessLevel, narrow = false)
 	{
-		// If headline is not issued, generate default one
-		return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
+		if(narrow)
+		{
+			const awareness = localize(awarenessType.translationKey);
+			return awareness.charAt(0).toUpperCase() + awareness.slice(1)
+		}
+		else
+		{
+			return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey))
+		}
 	}
 
 	getBackgroundColor()
 	{
-		const { isWarningActive: isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
+		const { isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
 		return isWarningActive ? awarenessLevel.color : 'inherit'
 	}
 
 	getFontColor()
 	{
-		const { isWarningActive: isWarningActive } = this.getAttributes(this.entity);
+		const { isWarningActive } = this.getAttributes(this.entity);
 		return isWarningActive ? '#fff' : '--primary-text-color'
 	}
 
@@ -184,7 +242,7 @@ class MeteoalarmCard extends LitElement
 		}
 		else
 		{
-			const { isWarningActive: isWarningActive, awarenessType } = this.getAttributes(this.entity);
+			const { isWarningActive, awarenessType } = this.getAttributes(this.entity);
 
 			iconName = isWarningActive ? awarenessType.icon : 'shield-outline'
 		}
@@ -195,7 +253,7 @@ class MeteoalarmCard extends LitElement
 
 	renderStatus()
 	{
-		const { isWarningActive: isWarningActive, headline } = this.getAttributes(this.entity);
+		const { isWarningActive, headline, headlineNarrow } = this.getAttributes(this.entity);
 
 		if(isWarningActive)
 		{
@@ -203,12 +261,15 @@ class MeteoalarmCard extends LitElement
 				<div class="status"> 
 					${headline}
 				</div> 
+				<div class="status-narrow"> 
+					${headlineNarrow}
+				</div> 
 			`
 		}
 		else
 		{
 			return html`
-				<div class="status"> 
+				<div class="status-both"> 
 					${localize('events.no_warnings')}
 				</div> 
 			`
@@ -222,7 +283,7 @@ class MeteoalarmCard extends LitElement
 				<div class="container">
 					<div class="content"> 
 						${this.renderIcon()}
-						<div class="status"> 
+						<div class="status-both"> 
 							${localize('common.not_available')}
 						</div>
 					</div> 
@@ -231,18 +292,16 @@ class MeteoalarmCard extends LitElement
 			`;
 	}
 
-	renderError()
+	renderError(error)
 	{
-		return html`
-			<ha-card>
-				<div class="container" style="background-color: #db4437; color: #fff">
-					<div class="content"> 
-						<ha-icon class="main-icon" icon="mdi:alert-circle-outline"></ha-icon>
-						<div class="status"> Error (see console) </div>
-					</div>
-				</div>
-			</ha-card>
-		`;
+		const errorCard = document.createElement('hui-error-card');
+		errorCard.setConfig({
+			type: 'error',
+			error,
+			origConfig: this.config,
+		});
+
+		return html`${errorCard}`
 	}
 
 	render()
@@ -269,10 +328,10 @@ class MeteoalarmCard extends LitElement
 				</ha-card>
 			`;
 		}
-		catch(e)
+		catch(error)
 		{
-			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', e)
-			return this.renderError()
+			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', error)
+			return this.renderError(error)
 		}
 	}
 }

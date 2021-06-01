@@ -42,7 +42,7 @@ export class MeteoalarmCardEditor extends LitElement
 	{
 		if (this._config)
 		{
-			return this._config.integration || '';
+			return this._config.integration || 'automatic';
 		}
 
 		return '';
@@ -121,34 +121,34 @@ export class MeteoalarmCardEditor extends LitElement
 		}
 
 		if (this[`_${target.configValue}`] === value) return;
-		if (target.configValue)
-		{
-			this._config = {
-				...this._config,
-				[target.configValue]:
-            target.checked !== undefined ? target.checked : value,
-			};
+		if (!target.configValue) return;
+		if (target.value === '') return;
 
-		}
+		this._config = {
+			...this._config,
+			[target.configValue]:
+			target.checked !== undefined ? target.checked : value,
+		};
+
 		fireEvent(this, 'config-changed', { config: this._config });
 	}
 
 	static get styles()
 	{
 		return css`
-      .card-config paper-dropdown-menu {
-        width: 100%;
-      }
+			.card-config paper-dropdown-menu {
+				width: 100%;
+			}
 
-      .option {
-        display: flex;
-        align-items: center;
-      }
+			.option {
+				display: flex;
+				align-items: center;
+			}
 
-      .option ha-switch {
-        margin-right: 10px;
-      }
-    `;
+			.option ha-switch {
+				margin-right: 10px;
+			}
+		`;
 	}
 }
 
