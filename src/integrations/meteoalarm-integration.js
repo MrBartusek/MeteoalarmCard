@@ -26,6 +26,8 @@ export class MeteoAlarmIntegration
 			awareness_level: awarenessLevel,
 		} = entity.attributes;
 
+		if(awarenessType == undefined || awarenessType == undefined) return;
+
 		return {
 			headline: event || headline,
 			awarenessLevel: LEVELS[Number(awarenessLevel.split(';')[0]) - 2],
