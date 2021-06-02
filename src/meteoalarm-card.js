@@ -169,7 +169,7 @@ class MeteoalarmCard extends LitElement
 		}
 		else
 		{
-			return MeteoalarmCard.find((i) => i.name == key)
+			return MeteoalarmCard.integrations.find((i) => i.name == key)
 		}
 	}
 
