@@ -77,7 +77,7 @@ This card supports many other integrations.
 
 - [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Home Assistant core integration based on ATOM Feed.
 - [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Home Assistant core integration for Météo France alerts.
-- [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore.
+- **[Deprecated]** ~~[xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore.~~
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
 

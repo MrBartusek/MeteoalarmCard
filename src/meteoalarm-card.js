@@ -276,10 +276,22 @@ class MeteoalarmCard extends LitElement
 		}
 	}
 
+	renderWarning()
+	{
+		if(this.integration.name != 'meteoalarmeu') return;
+		return html`
+			<hui-warning>
+				<ha-icon icon="mdi:alert-outline"></ha-icon>
+				xlcnd/meteoalarmeu is now deprecated - <a href="https://github.com/MrBartusek/MeteoalarmCard/issues/38">Read More</a>
+			</hui-warning>
+		`;
+	}
+
 	renderNotAvailable()
 	{
 		return html`
-			  <ha-card>
+			<ha-card>
+				${this.renderWarning()}
 				<div class="container">
 					<div class="content"> 
 						${this.renderIcon()}
@@ -288,8 +300,8 @@ class MeteoalarmCard extends LitElement
 						</div>
 					</div> 
 				</div>
-			  </ha-card>
-			`;
+			</ha-card>
+		`;
 	}
 
 	renderError(error)
@@ -315,6 +327,7 @@ class MeteoalarmCard extends LitElement
 
 			return html`
 				<ha-card>
+					${this.renderWarning()}
 					<div 
 						class="container"
 						style="background-color: ${this.getBackgroundColor()}; color: ${this.getFontColor()};"

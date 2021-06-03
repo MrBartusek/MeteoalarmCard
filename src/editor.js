@@ -19,7 +19,7 @@ export class MeteoalarmCardEditor extends LitElement
 			automatic: `${localize('editor.automatic')} (${localize('editor.recommended')})`,
 			meteoalarm: 'Core Meteoalarm',
 			meteofrance: 'Core Météo-France',
-			meteoalarmeu: 'Custom MeteoalarmEU'
+			meteoalarmeu: 'Custom MeteoalarmEU (Deprecated)'
 		}
 	}
 

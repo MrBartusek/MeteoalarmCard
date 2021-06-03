@@ -18,6 +18,11 @@ export default css`
     overflow: hidden;
   }
 
+  a
+  {
+    color: var(--secondary-text-color);
+  }
+
   .container 
   {
     background: var(--card-background-color);
