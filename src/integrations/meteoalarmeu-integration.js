@@ -1,4 +1,4 @@
-import { EVENTS, LEVELS } from '../data';
+import Data from '../data';
 
 export class MeteoAlarmeuIntegration
 {
@@ -25,8 +25,8 @@ export class MeteoAlarmeuIntegration
 		} = entity.attributes;
 
 		return {
-			awarenessLevel: LEVELS.find(e => e.name == awarenessLevel),
-			awarenessType: EVENTS.find(e => e.name == awarenessType)
+			awarenessLevel: Data.levels.find(e => e.name == awarenessLevel),
+			awarenessType: Data.events.find(e => e.name == awarenessType)
 		}
 	}
 }

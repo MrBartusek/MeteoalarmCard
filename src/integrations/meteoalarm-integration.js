@@ -1,4 +1,4 @@
-import { EVENTS, LEVELS } from '../data';
+import Data from '../data';
 
 export class MeteoAlarmIntegration
 {
@@ -17,6 +17,25 @@ export class MeteoAlarmIntegration
 		return (entity.attributes.status || entity.attributes.state || entity.state) != 'off';
 	}
 
+	static get eventTypes()
+	{
+		// This list is ordered by id in meteoalarm
+		return [
+			Data.getEventByName('Wind'),
+			Data.getEventByName('Snow/Ice'),
+			Data.getEventByName('Thunderstorms'),
+			Data.getEventByName('Fog'),
+			Data.getEventByName('Extreme high temperature'),
+			Data.getEventByName('Extreme low temperature'),
+			Data.getEventByName('Coastal Event'),
+			Data.getEventByName('Forestfire'),
+			Data.getEventByName('Avalanches'),
+			Data.getEventByName('Rain'),
+			Data.getEventByName('Flood'),
+			Data.getEventByName('Rain-Flood')
+		]
+	}
+
 	static getResult(entity)
 	{
 		const {
@@ -30,8 +49,8 @@ export class MeteoAlarmIntegration
 
 		return {
 			headline: event || headline,
-			awarenessLevel: LEVELS[Number(awarenessLevel.split(';')[0]) - 2],
-			awarenessType: EVENTS[Number(awarenessType.split(';')[0]) - 1]
+			awarenessLevel: Data.levels[Number(awarenessLevel.split(';')[0]) - 2],
+			awarenessType: this.eventTypes[Number(awarenessType.split(';')[0]) - 1]
 		}
 	}
 }

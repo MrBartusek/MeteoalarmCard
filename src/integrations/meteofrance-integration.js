@@ -1,4 +1,4 @@
-import { EVENTS, LEVELS } from '../data';
+import Data from '../data';
 
 const STATE_GREEN  = 'Vert';
 const STATE_YELLOW = 'Jaune';
@@ -21,20 +21,20 @@ export class MeteoFranceIntegration
 	static getStatesLevels()
 	{
 		return {
-			[STATE_YELLOW]: LEVELS[0],
-			[STATE_ORANGE]: LEVELS[1],
-			[STATE_RED]:    LEVELS[2],
+			[STATE_YELLOW]: Data.getLevelByID(1),
+			[STATE_ORANGE]: Data.getLevelByID(2),
+			[STATE_RED]:    Data.getLevelByID(3),
 		}
 	}
 
 	static getEventsTypes()
 	{
 		return {
-			[EVENT_WIND]:          EVENTS[0],
-			[EVENT_SNOW_ICE]:      EVENTS[1],
-			[EVENT_THUNDERSTORMS]: EVENTS[2],
-			[EVENT_FLOOD]:         EVENTS[10],
-			[EVENT_RAIN_FLOOD]:    EVENTS[11],
+			[EVENT_WIND]:          Data.getEventByName('Wind'),
+			[EVENT_SNOW_ICE]:      Data.getEventByName('Snow/Ice'),
+			[EVENT_THUNDERSTORMS]: Data.getEventByName('Thunderstorms'),
+			[EVENT_FLOOD]:         Data.getEventByName('Flood'),
+			[EVENT_RAIN_FLOOD]:    Data.getEventByName('Rain-Flood')
 		}
 	}
 
@@ -50,30 +50,21 @@ export class MeteoFranceIntegration
 
 	static getResult(entity)
 	{
-		const statesLevels = this.getStatesLevels();
-		const eventsTypes = this.getEventsTypes();
+		const level = entity.state
+		let events = []
 
-		let eventsState = {
-			[EVENT_WIND]:          entity.attributes[EVENT_WIND],
-			[EVENT_SNOW_ICE]:      entity.attributes[EVENT_SNOW_ICE],
-			[EVENT_THUNDERSTORMS]: entity.attributes[EVENT_THUNDERSTORMS],
-			[EVENT_FLOOD]:         entity.attributes[EVENT_FLOOD],
-			[EVENT_RAIN_FLOOD]:    entity.attributes[EVENT_RAIN_FLOOD],
-		};
-
-		let currentEvent = '';
-
-		Object.keys(eventsState).forEach(key =>
+		for(const [eventName, event] of Object.entries(this.getEventsTypes()))
 		{
-			if(eventsState[key] !== STATE_GREEN)
+			const eventLevel = entity.attributes[eventName]
+			if(eventLevel == level)
 			{
-				currentEvent = key;
+				events.push(event)
 			}
-		})
+		}
 
 		return {
-			awarenessLevel: statesLevels[entity.state],
-			awarenessType: eventsTypes[currentEvent]
+			awarenessLevel: this.getStatesLevels()[level],
+			awarenessType: Data.filterEvents(events)
 		}
 	}
 }
