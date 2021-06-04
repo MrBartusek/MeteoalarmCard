@@ -61,12 +61,16 @@ export default css`
   {
     display: none;
   }
+
+  :host([narrow]) .status {
+    display: none;
+  }
   
   :host([narrow]) .status-narrow {
     display: flex;
   }
 
-  :host([verynarrow]) .status, :host([verynarrow]) .status-narrow, , :host([verynarrow]) .status-both {
+  :host([verynarrow]) .status, :host([verynarrow]) .status-narrow, :host([verynarrow]) .status-both {
     display: none;
   }
 `;
