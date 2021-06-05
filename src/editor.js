@@ -17,8 +17,9 @@ export class MeteoalarmCardEditor extends LitElement
 	{
 		return {
 			automatic: `${localize('editor.automatic')} (${localize('editor.recommended')})`,
-			meteoalarm: 'Core Meteoalarm',
-			meteofrance: 'Core Météo-France',
+			meteoalarm: 'Meteoalarm',
+			meteofrance: 'Météo-France',
+			dwd: 'Deutscher Wetterdienst (DWD)',
 			meteoalarmeu: 'Custom MeteoalarmEU'
 		}
 	}

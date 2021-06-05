@@ -64,7 +64,7 @@ export class MeteoFranceIntegration
 
 		return {
 			awarenessLevel: this.getStatesLevels()[level],
-			awarenessType: Data.filterEvents(events)
+			awarenessType: Data.filterEvents(events)[0]
 		}
 	}
 }
