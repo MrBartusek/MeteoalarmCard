@@ -101,7 +101,7 @@ export class DWDIntegration
 				if(id in this.eventTypes)
 				{
 					events.push(this.eventTypes[id])
-					headline.push(headline)
+					headlines.push(headline)
 				}
 				else if(id == 98 || id == 99)
 				{
@@ -114,11 +114,10 @@ export class DWDIntegration
 			}
 		}
 
-		const index = Data.filterEvents(events);
-
+		const index = Data.filterEvents(events)[1];
 		return {
 			headline: headlines[index],
-			awarenessLevel: Data.getLevelByID[this.convertAwarenessLevel(entity.state)],
+			awarenessLevel: Data.getLevelByID(this.convertAwarenessLevel(entity.state)),
 			awarenessType: events[index]
 		}
 	}
