@@ -4,12 +4,12 @@ export class MeteoAlarmeuIntegration
 {
 	static get name()
 	{
-		return 'meteoalarmeu'
+		return 'meteoalarmeu';
 	}
 
 	static supports(entity)
 	{
-		return entity.attributes.attribution == 'Information provided by meteoalarm.eu'
+		return entity.attributes.attribution == 'Information provided by meteoalarm.eu';
 	}
 
 	static isWarningActive(entity)
@@ -27,6 +27,6 @@ export class MeteoAlarmeuIntegration
 		return {
 			awarenessLevel: Data.levels.find(e => e.name == awarenessLevel),
 			awarenessType: Data.events.find(e => e.name == awarenessType)
-		}
+		};
 	}
 }

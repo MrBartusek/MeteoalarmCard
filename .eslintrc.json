@@ -16,6 +16,8 @@
     "eol-last": ["error", "always"],
     "curly": ["error", "multi-line", "consistent"],
     "indent": ["error", "tab", { "SwitchCase": 1, "ignoredNodes": ["TemplateLiteral *"] }],
-    "camelcase": ["error", { "ignoreDestructuring": true}]
+    "camelcase": ["error", { "ignoreDestructuring": true}],
+    "semi": ["error", "always"],
+    "no-multiple-empty-lines": ["error", { "max": 1}]
   }
 }

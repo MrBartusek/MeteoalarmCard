@@ -15,7 +15,7 @@ export class MeteoFranceIntegration
 {
 	static get name()
 	{
-		return 'meteofrance'
+		return 'meteofrance';
 	}
 
 	static getStatesLevels()
@@ -24,7 +24,7 @@ export class MeteoFranceIntegration
 			[STATE_YELLOW]: Data.getLevelByID(1),
 			[STATE_ORANGE]: Data.getLevelByID(2),
 			[STATE_RED]:    Data.getLevelByID(3),
-		}
+		};
 	}
 
 	static getEventsTypes()
@@ -35,7 +35,7 @@ export class MeteoFranceIntegration
 			[EVENT_THUNDERSTORMS]: Data.getEventByName('Thunderstorms'),
 			[EVENT_FLOOD]:         Data.getEventByName('Flood'),
 			[EVENT_RAIN_FLOOD]:    Data.getEventByName('Rain-Flood')
-		}
+		};
 	}
 
 	static supports(entity)
@@ -50,21 +50,21 @@ export class MeteoFranceIntegration
 
 	static getResult(entity)
 	{
-		const level = entity.state
-		let events = []
+		const level = entity.state;
+		let events = [];
 
 		for(const [eventName, event] of Object.entries(this.getEventsTypes()))
 		{
-			const eventLevel = entity.attributes[eventName]
+			const eventLevel = entity.attributes[eventName];
 			if(eventLevel == level)
 			{
-				events.push(event)
+				events.push(event);
 			}
 		}
 
 		return {
 			awarenessLevel: this.getStatesLevels()[level],
 			awarenessType: Data.filterEvents(events)[0]
-		}
+		};
 	}
 }

@@ -21,7 +21,7 @@ export class MeteoalarmCardEditor extends LitElement
 			meteofrance: 'Météo-France',
 			dwd: 'Deutscher Wetterdienst (DWD)',
 			meteoalarmeu: 'Custom MeteoalarmEU'
-		}
+		};
 	}
 
 	setConfig(config)
@@ -60,7 +60,6 @@ export class MeteoalarmCardEditor extends LitElement
 		return '';
 	}
 
-
 	render()
 	{
 		if (!this.hass) return html``;
@@ -89,7 +88,7 @@ export class MeteoalarmCardEditor extends LitElement
           			>
             			${Object.values(this._integrations).map((e) =>
 						{
-							return html`<paper-item>${e}</paper-item>`
+							return html`<paper-item>${e}</paper-item>`;
 						})}
           			</paper-listbox>
         		</paper-dropdown-menu>

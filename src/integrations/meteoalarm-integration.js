@@ -4,12 +4,12 @@ export class MeteoAlarmIntegration
 {
 	static get name()
 	{
-		return 'meteoalarm'
+		return 'meteoalarm';
 	}
 
 	static supports(entity)
 	{
-		return entity.attributes.attribution == 'Information provided by MeteoAlarm'
+		return entity.attributes.attribution == 'Information provided by MeteoAlarm';
 	}
 
 	static isWarningActive(entity)
@@ -33,7 +33,7 @@ export class MeteoAlarmIntegration
 			Data.getEventByName('Rain'),
 			Data.getEventByName('Flood'),
 			Data.getEventByName('Rain-Flood')
-		]
+		];
 	}
 
 	static getResult(entity)
@@ -51,6 +51,6 @@ export class MeteoAlarmIntegration
 			headline: event || headline,
 			awarenessLevel: Data.levels[Number(awarenessLevel.split(';')[0]) - 2],
 			awarenessType: this.eventTypes[Number(awarenessType.split(';')[0]) - 1]
-		}
+		};
 	}
 }

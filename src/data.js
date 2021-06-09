@@ -38,7 +38,7 @@ export default class Data
 			new Event('Extreme low temperature', 'snowflake', 'events.low_temperature'),
 			new Event('Wind', 'windsock', 'events.wind'),
 			new Event('Fog', 'weather-fog', 'events.fog')
-		]
+		];
 	}
 
 	static get levels()
@@ -47,7 +47,7 @@ export default class Data
 			new Level('Yellow', '#ff9800', 'messages.yellow'),
 			new Level('Orange', '#EE5A24', 'messages.orange'),
 			new Level('Red', '#db4437', 'messages.red')
-		]
+		];
 	}
 
 	static getEventByName(name)
@@ -63,7 +63,7 @@ export default class Data
 		for (let i = 0; i < events.length; i++)
 		{
 			const event = events[i];
-			const id = this.events.findIndex((x) => x.name == event.name)
+			const id = this.events.findIndex((x) => x.name == event.name);
 			if(topID > id)
 			{
 				topID = id;

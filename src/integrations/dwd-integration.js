@@ -4,12 +4,12 @@ export class DWDIntegration
 {
 	static get name()
 	{
-		return 'dwd'
+		return 'dwd';
 	}
 
 	static supports(entity)
 	{
-		return entity.attributes.attribution == 'Data provided by DWD'
+		return entity.attributes.attribution == 'Data provided by DWD';
 	}
 
 	static isWarningActive(entity)
@@ -82,7 +82,7 @@ export class DWDIntegration
 			16: Data.getEventByName('Coastal Event'),
 			57: Data.getEventByName('Coastal Event'),
 			58: Data.getEventByName('Coastal Event')
-		}
+		};
 	}
 
 	static getResult(entity)
@@ -100,16 +100,16 @@ export class DWDIntegration
 			{
 				if(id in this.eventTypes)
 				{
-					events.push(this.eventTypes[id])
-					headlines.push(headline)
+					events.push(this.eventTypes[id]);
+					headlines.push(headline);
 				}
 				else if(id == 98 || id == 99)
 				{
-					throw new Error('An test warning was issued! ID: ' + id)
+					throw new Error('An test warning was issued! ID: ' + id);
 				}
 				else
 				{
-					throw new Error('Unknown event ID: ' + id)
+					throw new Error('Unknown event ID: ' + id);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ export class DWDIntegration
 			headline: headlines[index],
 			awarenessLevel: Data.getLevelByID(this.convertAwarenessLevel(entity.state)),
 			awarenessType: events[index]
-		}
+		};
 	}
 
 	// Convert DWD scale 1-4 to meteoalarm scale 1-3
