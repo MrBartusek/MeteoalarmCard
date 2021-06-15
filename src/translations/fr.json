@@ -7,17 +7,17 @@
   },
   "error": {
     "missing_entity": "L'entité est requise!",
-    "invalid_integration": null,
-    "automatic_failed": null,
-    "entity_not_supported": null
+    "invalid_integration": "Cette intégration n'est pas valide!",
+    "automatic_failed": "La detection automatique de l'intégration à échoué!",
+    "entity_not_supported": "Cette intégration ne supporte pas l'entité fournie!"
   },
   "editor": {
-    "entity": null,
-    "integration": null,
-    "required": null,
-    "automatic": null,
-    "recommended": null,
-    "override_headline": null
+    "entity": "Entité",
+    "integration": "Intégration",
+    "required": "Requis",
+    "automatic": "Automatique",
+    "recommended": "Recommandé",
+    "override_headline": "Remplacer le titre"
   },
   "events": {
     "no_warnings": "Aucune alerte",
@@ -25,7 +25,7 @@
     "snow_ice": "neige/verglas",
     "thunderstorms": "orages",
     "fog": "brouillard",
-    "hight_temperature": "température extrêmement élevée",
+    "hight_temperature": "canicule",
     "low_temperature": "température extrêmement basse",
     "coastal_event": "événement côtier",
     "forest_fire": "feu de forêt",
