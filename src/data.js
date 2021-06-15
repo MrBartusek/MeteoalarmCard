@@ -34,7 +34,7 @@ export default class Data
 			new Event('Thunderstorms', 'weather-lightning', 'events.thunderstorms'),
 			new Event('Rain', 'weather-pouring', 'events.rain'),
 			new Event('Snow/Ice', 'weather-snowy-heavy', 'events.snow_ice'),
-			new Event('Extreme high temperature', 'thermometer-chevron-up', 'events."hight_temperature'),
+			new Event('Extreme high temperature', 'thermometer', 'events.hight_temperature'),
 			new Event('Extreme low temperature', 'snowflake', 'events.low_temperature'),
 			new Event('Wind', 'windsock', 'events.wind'),
 			new Event('Fog', 'weather-fog', 'events.fog')
