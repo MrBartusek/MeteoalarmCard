@@ -8,14 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Validate JSONs
-        uses: docker://orrosenblatt/validate-json-action:latest
+        uses: nhalstead/validate-json-action@0.1.3
         env:
           INPUT_SCHEMA: src/translations/schema.json
-          INPUT_JSONS: "src/translations/en.json,\
-            src/translations/de.json,\
-            src/translations/es.json,\
-            src/translations/et.json,\
-            src/translations/fr.json,\
-            src/translations/it.json,\
-            src/translations/nl.json,\
-            src/translations/pl.json"
+          INPUT_JSONS: "src/translations/*.json
