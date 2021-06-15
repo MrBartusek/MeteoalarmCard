@@ -1,5 +1,5 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",

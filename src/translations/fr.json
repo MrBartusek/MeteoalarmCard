@@ -1,5 +1,5 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Carte Meteoalarm",
     "description": "Carte Meteoalarm vous alerte des conditions météorologique courante.",

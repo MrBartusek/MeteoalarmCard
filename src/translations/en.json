@@ -1,5 +1,5 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "./schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card warns you about current weather events.",
