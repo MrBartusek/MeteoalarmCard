@@ -20,7 +20,7 @@ export class MeteoalarmCardEditor extends LitElement
 			meteoalarm: 'Meteoalarm',
 			meteofrance: 'Météo-France',
 			dwd: 'Deutscher Wetterdienst (DWD)',
-			meteoalarmeu: 'Custom MeteoalarmEU'
+			meteoalarmeu: 'Custom MeteoalarmEU (Deprecated)'
 		};
 	}
 

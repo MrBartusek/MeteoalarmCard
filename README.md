@@ -78,7 +78,7 @@ This card supports many other integrations.
 - [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Core integration based on ATOM Feed.
 - [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Core integration for Météo France alerts.
 - [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) - Core integration for DWD Germany alerts.
-- [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore.
+- **[Deprecated]** ~~[xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore.~~
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
 
