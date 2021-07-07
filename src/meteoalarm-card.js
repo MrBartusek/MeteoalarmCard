@@ -277,7 +277,7 @@ class MeteoalarmCard extends LitElement
 		}
 	}
 
-	renderWarning()
+	renderMeteoalarmeuWarning()
 	{
 		if(this.integration.name != 'meteoalarmeu') return;
 		return html`
@@ -288,11 +288,23 @@ class MeteoalarmCard extends LitElement
 		`;
 	}
 
+	renderNotAvailableWarning()
+	{
+		if(this.integration.name != 'meteoalarm') return;
+		return html`
+			<hui-warning>
+				<ha-icon icon="mdi:alert-outline"></ha-icon>
+				this may be caused by HA changes - <a href="https://github.com/MrBartusek/MeteoalarmCard/issues/43">Read More</a>
+			</hui-warning>
+		`;
+	}
+
 	renderNotAvailable()
 	{
 		return html`
 			<ha-card>
-				${this.renderWarning()}
+				${this.renderMeteoalarmeuWarning()}
+				${this.renderNotAvailableWarning()}
 				<div class="container">
 					<div class="content"> 
 						${this.renderIcon()}
@@ -328,7 +340,7 @@ class MeteoalarmCard extends LitElement
 
 			return html`
 				<ha-card>
-					${this.renderWarning()}
+					${this.renderMeteoalarmeuWarning()}
 					<div 
 						class="container"
 						style="background-color: ${this.getBackgroundColor()}; color: ${this.getFontColor()};"
