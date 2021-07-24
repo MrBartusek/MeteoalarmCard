@@ -21,9 +21,12 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
-If applicable, add screenshots of your integration in HA developer tools and error from browser console.
+If applicable, add:
+- screenshots of your integration in HA developer tools
+- screenshots of rendered card
+- screenshots from your browser developer console
 
 **System (please complete the following information):**
- - Card version: e.g. 1.1.0 (latest is not valid)
- - Integration type: Core / xlcnd
+ - Card version: e.g. 1.1.0 ("latest" is not valid)
+ - Integration type: Core / xlcnd / DWD / Meteo-France
  - Installation type: HACS / Manual
