@@ -1,0 +1,42 @@
+{
+  "$schema": "./schema/schema.json",
+  "common": {
+    "name": "Karta Metoealarm",
+    "description": "Karta Meteoalarm vás varuje na aktuální počasí.",
+    "not_available": "Meteoalarm není k dispozici"
+  },
+  "error": {
+    "missing_entity": "Specifikace entity je povinné!",
+    "invalid_integration": "Nesprávná integrace!",
+    "automatic_failed": "Chyba automatické detekce integrace!",
+    "entity_not_supported": "Tato integrace nepodporuje nastavenou entitu!"
+  },
+  "editor": {
+    "entity": "Entita",
+    "integration": "Integrace",
+    "required": "Požadované",
+    "automatic": "Automatický",
+    "recommended": "Doporučené",
+    "override_headline": "Přepsat záhlaví"
+  },
+  "events": {
+    "no_warnings": "Žádná výstraha",
+    "wind": "Silný vítr",
+    "snow_ice": "Sníh / Námraza",
+    "thunderstorms": "Silné bouřky",
+    "fog": "Mlhy",
+    "hight_temperature": "Vysoké teploty",
+    "low_temperature": "Silné mrazy",
+    "coastal_event": "Jevy pobřežní zóny",
+    "forest_fire": "Lesní požár",
+    "avalanches": "Laviny",
+    "rain": "Déšť",
+    "flood": "Povodně",
+    "rain_flood": "Přívalové děště"
+  },
+  "messages": {
+    "yellow": "Žluté výstraha na {0}",
+    "orange": "Oranžová výstraha na {0}",
+    "red": "Červená výstraha na {0}"
+  }
+}
