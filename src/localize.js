@@ -1,7 +1,7 @@
 // Borrowed from:
 // https://github.com/custom-cards/boilerplate-card/blob/master/src/localize/localize.ts
 
-import * as de from './translations/cs.json';
+import * as cs from './translations/cs.json';
 import * as de from './translations/de.json';
 import * as en from './translations/en.json';
 import * as fr from './translations/fr.json';
