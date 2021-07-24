@@ -62,6 +62,7 @@ This card supports translations. Please, help to add more translations and impro
 
 <!-- Languages are sorted alphabetically -->
 - English (Default language)
+- Czech (Česky)
 - Deutsch (German)
 - Eesti (Estonian)
 - Español (Spanish)
