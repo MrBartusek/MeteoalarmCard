@@ -35,8 +35,20 @@
     "rain_flood": "paduvihm"
   },
   "messages": {
-    "yellow": "Kollane hoiatus {0}",
-    "orange": "Oranž hoiatus {0}",
-    "red": "Punane hoiatus {0}"
+    "yellow": {
+      "event": "Kollane hoiatus {0}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Oranž hoiatus {0}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Punane hoiatus {0}",
+      "generic": null,
+      "color": null
+    }
   }
 }

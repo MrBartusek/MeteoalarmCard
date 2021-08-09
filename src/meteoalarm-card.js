@@ -192,6 +192,7 @@ class MeteoalarmCard extends LitElement
 				...this.integration.getResult(entity),
 			};
 
+			// Handle entity parsing errors
 			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
 			{
 				throw Error(
@@ -201,9 +202,9 @@ class MeteoalarmCard extends LitElement
 				);
 			}
 
+			// Generate Headlines
 			if(result.headline === undefined || this.overrideHeadline)
 			{
-				// If headline is not issued, generate default one
 				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel);
 			}
 			result.headlineNarrow = this.generateHeadline(result.awarenessType, result.awarenessLevel, true);
@@ -214,14 +215,28 @@ class MeteoalarmCard extends LitElement
 
 	generateHeadline(awarenessType, awarenessLevel, narrow = false)
 	{
-		if(narrow)
+		if(awarenessType.name == 'Unknown Event')
 		{
-			const awareness = localize(awarenessType.translationKey);
-			return awareness.charAt(0).toUpperCase() + awareness.slice(1);
+			if(narrow)
+			{
+				return localize(awarenessLevel.translationKey).color;
+			}
+			else
+			{
+				return localize(awarenessLevel.translationKey).generic;
+			}
 		}
 		else
 		{
-			return localize(awarenessLevel.translationKey).replace('{0}', localize(awarenessType.translationKey));
+			if(narrow)
+			{
+				const awareness = localize(awarenessType.translationKey);
+				return awareness.charAt(0).toUpperCase() + awareness.slice(1);
+			}
+			else
+			{
+				return localize(awarenessLevel.translationKey).event.replace('{0}', localize(awarenessType.translationKey));
+			}
 		}
 	}
 

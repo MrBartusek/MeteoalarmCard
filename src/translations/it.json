@@ -35,8 +35,20 @@
     "rain_flood": "acquazzoni"
   },
   "messages": {
-    "yellow": "Allarme Giallo {0}",
-    "orange": "Allarme Arancione {0}",
-    "red": "Allarme Rosso {0}"
+    "yellow": {
+      "event": "Allarme Giallo {0}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Allarme Arancione {0}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Allarme Rosso {0}",
+      "generic": null,
+      "color": null
+    }
   }
 }

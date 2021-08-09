@@ -35,8 +35,20 @@
     "rain_flood": "ulewy"
   },
   "messages": {
-    "yellow": "Żółty alert na {0}",
-    "orange": "Pomarańczowy alert na {0}",
-    "red": "Czerwony alert na {0}"
+    "yellow": {
+      "event": "Żółty alert na {0}",
+      "generic": "Żółty alert",
+      "color": "Żółty"
+    },
+    "orange": {
+      "event": "Pomarańczowy alert na {0}",
+      "generic": "Pomarańczowy alert",
+      "color": "Pomarańczowy"
+    },
+    "red": {
+      "event": "Czerwony alert na {0}",
+      "generic": "Czerwony alert",
+      "color": "Czerwony"
+    }
   }
 }

@@ -41,16 +41,28 @@ export class MeteoAlarmIntegration
 		const {
 			event,
 			headline,
+			severity,
 			awareness_type: awarenessType,
 			awareness_level: awarenessLevel,
 		} = entity.attributes;
 
-		if(awarenessType == undefined || awarenessLevel == undefined) return;
+		let type = null;
+		let level = null;
+
+		if(awarenessType != undefined)
+		{
+			type = this.eventTypes[Number(awarenessType.split(';')[0]) - 1];
+		}
+
+		if(awarenessLevel != undefined)
+		{
+			level = Data.levels[Number(awarenessLevel.split(';')[0]) - 2];
+		}
 
 		return {
 			headline: event || headline,
-			awarenessLevel: Data.levels[Number(awarenessLevel.split(';')[0]) - 2],
-			awarenessType: this.eventTypes[Number(awarenessType.split(';')[0]) - 1]
+			awarenessLevel: level || Data.getLevelBySeverity(severity),
+			awarenessType: type || Data.getEventByName('Unknown Event')
 		};
 	}
 }

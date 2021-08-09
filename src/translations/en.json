@@ -35,8 +35,20 @@
     "rain_flood": "rain flood"
   },
   "messages": {
-    "yellow": "Yellow {0} warning",
-    "orange": "Orange {0} warning",
-    "red": "Red {0} warning"
+    "yellow": {
+      "event": "Yellow {0} warning",
+      "generic": "Yellow warning",
+      "color": "Yellow"
+    },
+    "orange": {
+      "event": "Orange {0} warning",
+      "generic": "Orange warning",
+      "color": "Orange"
+    },
+    "red": {
+      "event": "Red {0} warning",
+      "generic": "Red warning",
+      "color": "Red"
+    }
   }
 }

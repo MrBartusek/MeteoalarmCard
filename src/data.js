@@ -10,9 +10,10 @@ class Event
 
 class Level
 {
-	constructor(name, color, translationKey)
+	constructor(name, severities, color, translationKey)
 	{
 		this.name = name;
+		this.severities = severities;
 		this.color = color;
 		this.translationKey = translationKey;
 	}
@@ -37,22 +38,29 @@ export default class Data
 			new Event('Extreme high temperature', 'thermometer', 'events.hight_temperature'),
 			new Event('Extreme low temperature', 'snowflake', 'events.low_temperature'),
 			new Event('Wind', 'windsock', 'events.wind'),
-			new Event('Fog', 'weather-fog', 'events.fog')
+			new Event('Fog', 'weather-fog', 'events.fog'),
+
+			new Event('Unknown Event', 'alert-circle-outline', null),
 		];
 	}
 
 	static get levels()
 	{
 		return [
-			new Level('Yellow', '#ff9800', 'messages.yellow'),
-			new Level('Orange', '#EE5A24', 'messages.orange'),
-			new Level('Red', '#db4437', 'messages.red')
+			new Level('Yellow', [ 'Moderate' ], '#ff9800', 'messages.yellow'),
+			new Level('Orange', [ 'Severe', 'Minor' ], '#EE5A24', 'messages.orange'),
+			new Level('Red', [ 'High', 'Extreme'], '#db4437', 'messages.red')
 		];
 	}
 
 	static getEventByName(name)
 	{
 		return this.events.find((e) => e.name === name);
+	}
+
+	static getLevelBySeverity(severity)
+	{
+		return this.levels.find((e) => e.severities.includes(severity));
 	}
 
 	// Find event with the highest id

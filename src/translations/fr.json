@@ -35,8 +35,20 @@
     "rain_flood": "pluie/inondation"
   },
   "messages": {
-    "yellow": "Alerte jaune {0}",
-    "orange": "Alerte orange {0}",
-    "red": "Alerte rouge {0}"
+    "yellow": {
+      "event": "Alerte jaune {0}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Alerte orange {0}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Alerte rouge {0}",
+      "generic": null,
+      "color": null
+    }
   }
 }

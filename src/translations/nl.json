@@ -35,8 +35,20 @@
     "rain_flood": "wateroverlast"
   },
   "messages": {
-    "yellow": "Waarschuwing geel {0}",
-    "orange": "Waarschuwing oranje {0}",
-    "red": "Waarschuwing rood {0}"
+    "yellow": {
+      "event": "Waarschuwing geel {0}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Waarschuwing oranje {0}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Waarschuwing rood {0}",
+      "generic": null,
+      "color": null
+    }
   }
 }

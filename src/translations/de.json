@@ -11,7 +11,7 @@
         "automatic_failed": null,
         "entity_invalid": null
     },
-      "editor": {
+    "editor": {
         "entity": null,
         "integration": null,
         "required": null,
@@ -35,8 +35,20 @@
         "rain_flood": "Regenüberflutung"
     },
     "messages": {
-        "yellow": "{0} der Warnstufe Gelb",
-        "orange": "{0} der Warnstufe Orange",
-        "red": "{0} der Warnstufe Rot"
+        "yellow": {
+          "event": "{0} der Warnstufe Gelb",
+          "generic": null,
+          "color": null
+        },
+        "orange": {
+          "event": "{0} der Warnstufe Orange",
+          "generic": null,
+          "color": null
+        },
+        "red": {
+          "event": "{0} der Warnstufe Rot",
+          "generic": null,
+          "color": null
+        }
     }
 }
