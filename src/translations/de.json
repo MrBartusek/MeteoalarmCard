@@ -9,7 +9,7 @@
         "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
         "invalid_integration": null,
         "automatic_failed": null,
-        "entity_not_supported": null
+        "entity_invalid": null
     },
       "editor": {
         "entity": null,

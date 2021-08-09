@@ -72,7 +72,7 @@ export default class Data
 			}
 		}
 
-		return [ topElement, topIndex];
+		return [topElement, topIndex];
 	}
 
 	static getLevelByID(id)

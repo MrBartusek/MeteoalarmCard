@@ -9,7 +9,7 @@
     "missing_entity": "Podanie encji jest wymagane!",
     "invalid_integration": "Nieprawidłowa integracja!",
     "automatic_failed": "Bład automatycznego wykrywania integracji!",
-    "entity_not_supported": "Ta integracja nie wspiera podanej encji!"
+    "entity_invalid": "Ta encja {entity} nie może zostać zinterpretowana przed integracje {integration}"
   },
   "editor": {
     "entity": "Encja",

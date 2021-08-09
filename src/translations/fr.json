@@ -9,7 +9,7 @@
     "missing_entity": "L'entité est requise!",
     "invalid_integration": "Cette intégration n'est pas valide!",
     "automatic_failed": "La detection automatique de l'intégration à échoué!",
-    "entity_not_supported": "Cette intégration ne supporte pas l'entité fournie!"
+    "entity_invalid": null
   },
   "editor": {
     "entity": "Entité",

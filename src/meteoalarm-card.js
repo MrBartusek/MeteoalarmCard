@@ -194,7 +194,11 @@ class MeteoalarmCard extends LitElement
 
 			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
 			{
-				throw Error(localize('error.entity_not_supported'));
+				throw Error(
+					localize('error.entity_invalid')
+						.replace('{entity}', `(${entity.entity_id})`)
+						.replace('{integration}', `(${this.integration.name})`)
+				);
 			}
 
 			if(result.headline === undefined || this.overrideHeadline)

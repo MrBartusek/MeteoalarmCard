@@ -9,7 +9,7 @@
     "missing_entity": "Het specificeren van de entiteit is vereist!",
     "invalid_integration": "Deze integratie is niet geldig!",
     "automatic_failed": null,
-    "entity_not_supported": null
+    "entity_invalid": null
   },
   "editor": {
     "entity": "Entiteit",

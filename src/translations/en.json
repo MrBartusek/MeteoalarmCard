@@ -9,7 +9,7 @@
     "missing_entity": "Specifying entity is required!",
     "invalid_integration": "This integration is not valid!",
     "automatic_failed": "Failed to automatically detect integration!",
-    "entity_not_supported": "This integration doesn't support provided entity!"
+    "entity_invalid": "This entity {entity} cannot be parsed by selected integration {integration}"
   },
   "editor": {
     "entity": "Entity",

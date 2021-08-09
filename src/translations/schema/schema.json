@@ -45,7 +45,7 @@
               "missing_entity",
               "invalid_integration",
               "automatic_failed",
-              "entity_not_supported"
+              "entity_invalid"
           ],
           "properties": {
               "missing_entity": {
@@ -60,8 +60,8 @@
                   "$id": "#/properties/error/properties/automatic_failed",
                   "type": ["string", "null"]
               },
-              "entity_not_supported": {
-                  "$id": "#/properties/error/properties/entity_not_supported",
+              "entity_invalid": {
+                  "$id": "#/properties/error/properties/entity_invalid",
                   "type": ["string", "null"]
               }
           },
