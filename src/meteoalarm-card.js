@@ -8,7 +8,6 @@ import { debounce } from './debounce';
 
 import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
 import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
-import { MeteoAlarmeuIntegration } from './integrations/meteoalarmeu-integration';
 import { DWDIntegration } from './integrations/dwd-integration';
 
 class MeteoalarmCard extends LitElement
@@ -45,7 +44,7 @@ class MeteoalarmCard extends LitElement
 
 	static get integrations()
 	{
-		return [MeteoAlarmIntegration, MeteoAlarmeuIntegration, MeteoFranceIntegration, DWDIntegration];
+		return [MeteoAlarmIntegration, MeteoFranceIntegration, DWDIntegration];
 	}
 
 	get entity()
@@ -277,34 +276,10 @@ class MeteoalarmCard extends LitElement
 		}
 	}
 
-	renderMeteoalarmeuWarning()
-	{
-		if(this.integration.name != 'meteoalarmeu') return;
-		return html`
-			<hui-warning>
-				<ha-icon icon="mdi:alert-outline"></ha-icon>
-				xlcnd/meteoalarmeu is now deprecated - <a href="https://github.com/MrBartusek/MeteoalarmCard/issues/38">Read More</a>
-			</hui-warning>
-		`;
-	}
-
-	renderNotAvailableWarning()
-	{
-		if(this.integration.name != 'meteoalarm') return;
-		return html`
-			<hui-warning>
-				<ha-icon icon="mdi:alert-outline"></ha-icon>
-				this may be caused by HA changes - <a href="https://github.com/MrBartusek/MeteoalarmCard/issues/43">Read More</a>
-			</hui-warning>
-		`;
-	}
-
 	renderNotAvailable()
 	{
 		return html`
 			<ha-card>
-				${this.renderMeteoalarmeuWarning()}
-				${this.renderNotAvailableWarning()}
 				<div class="container">
 					<div class="content"> 
 						${this.renderIcon()}
@@ -340,7 +315,6 @@ class MeteoalarmCard extends LitElement
 
 			return html`
 				<ha-card>
-					${this.renderMeteoalarmeuWarning()}
 					<div 
 						class="container"
 						style="background-color: ${this.getBackgroundColor()}; color: ${this.getFontColor()};"
