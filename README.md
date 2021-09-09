@@ -85,4 +85,4 @@ This card supports many other integrations.
 
 Want to contribute to the project?
 
-First of all, thanks! Check [contributing guideline](./CONTRIBUTING.md) for more information.
+First of all, thanks! Check [contributing guidelines](./CONTRIBUTING.md) for more information.
