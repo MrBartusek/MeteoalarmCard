@@ -56,7 +56,10 @@ export class MeteoAlarmIntegration
 
 		if(awarenessLevel != undefined)
 		{
-			level = Data.levels[Number(awarenessLevel.split(';')[0]) - 2];
+			let levelNumber = Number(awarenessLevel.split(';')[0]);
+			// Fallback for #49
+			if(levelNumber == 1) levelNumber = 2;
+			level = Data.levels[levelNumber - 2];
 		}
 
 		return {
