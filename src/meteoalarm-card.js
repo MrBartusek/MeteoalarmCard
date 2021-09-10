@@ -195,6 +195,8 @@ class MeteoalarmCard extends LitElement
 			// Handle entity parsing errors
 			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
 			{
+				console.log('awarenessLevel', result.awarenessLevel);
+				console.log('awarenessType', result.awarenessType);
 				throw Error(
 					localize('error.entity_invalid')
 						.replace('{entity}', `(${entity.entity_id})`)
