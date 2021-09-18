@@ -10,6 +10,14 @@ import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
 import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
 import { DWDIntegration } from './integrations/dwd-integration';
 
+import { version } from '../package.json';
+
+console.info(
+  `%c METEOALARM-CARD %c ${version} `,
+  'color: white; background: #1c1c1c; font-weight: 700;',
+  'color: white; background: #db4437; font-weight: 700;'
+);
+
 class MeteoalarmCard extends LitElement
 {
 
