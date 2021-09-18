@@ -45,7 +45,7 @@ export default css`
     flex: 0;
   }
 
-  .status, .status-narrow, .status-both
+  .headline
   {
     flex: 1;
     display: flex;
@@ -56,26 +56,6 @@ export default css`
     margin-left: 18px;
     text-align: center;
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-  }
-
-  .status-narrow
-  {
-    display: none;
-  }
-
-  :host([narrow]) .status {
-    display: none;
-  }
-  
-  :host([narrow]) .status-narrow {
-    display: flex;
-  }
-
-  :host([verynarrow]) .status, :host([verynarrow]) .status-narrow, :host([verynarrow]) .status-both {
-    display: none;
+    white-space: nowrap
   }
 `;

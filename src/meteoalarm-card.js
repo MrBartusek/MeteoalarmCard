@@ -137,22 +137,25 @@ class MeteoalarmCard extends LitElement
 		if (!this.isConnected) return;
 		const card = this.shadowRoot.querySelector('ha-card');
 		if (!card) return;
+		const regular = card.querySelector('.headline-regular');
+		const narrow = card.querySelector('.headline-narrow');
 
-		if (card.offsetWidth < 375)
+		// Normal Size
+		narrow.style.display = 'none';
+		regular.style.display = 'block';
+
+		// Narrow Headline Size
+		if(regular.scrollWidth > regular.clientWidth)
 		{
-			this.setAttribute('narrow', '');
+			narrow.style.display = 'block';
+			regular.style.display = 'none';
 		}
-		else
+
+		// Only Icon Size
+		if(narrow.scrollWidth > narrow.clientWidth)
 		{
-			this.removeAttribute('narrow');
-		}
-		if (card.offsetWidth < 220)
-		{
-			this.setAttribute('verynarrow', '');
-		}
-		else
-		{
-			this.removeAttribute('verynarrow');
+			narrow.style.display = 'none';
+			regular.style.display = 'none';
 		}
 	}
 
@@ -274,25 +277,24 @@ class MeteoalarmCard extends LitElement
 
 	renderStatus()
 	{
-		const { isWarningActive, headline, headlineNarrow } = this.getAttributes(this.entity);
+		const {
+			isWarningActive,
+			headline,
+			headlineNarrow,
+		} = this.getAttributes(this.entity);
 
 		if(isWarningActive)
 		{
 			return html`
-				<div class="status"> 
-					${headline}
-				</div> 
-				<div class="status-narrow"> 
-					${headlineNarrow}
-				</div> 
+				<div class="headline headline-regular"> ${headline}</div> 
+				<div class="headline headline-narrow"> ${headlineNarrow}</div> 
 			`;
 		}
 		else
 		{
 			return html`
-				<div class="status-both"> 
-					${localize('events.no_warnings')}
-				</div> 
+				<div class="headline headline-regular">${localize('events.no_warnings')}</div>
+				<div class="headline headline-narrow">${localize('events.no_warnings')}</div>
 			`;
 		}
 	}
