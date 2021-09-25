@@ -58,4 +58,9 @@ export default css`
     overflow: hidden;
     white-space: nowrap
   }
+
+  .headline-narrow
+  {
+    display: none;
+  }
 `;

@@ -150,12 +150,12 @@ class MeteoalarmCard extends LitElement
 
 		// Normal Size
 		narrow.style.display = 'none';
-		regular.style.display = 'block';
+		regular.style.display = 'flex';
 
 		// Narrow Headline Size
 		if(regular.scrollWidth > regular.clientWidth)
 		{
-			narrow.style.display = 'block';
+			narrow.style.display = 'flex';
 			regular.style.display = 'none';
 		}
 
