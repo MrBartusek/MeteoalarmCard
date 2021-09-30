@@ -7,17 +7,17 @@
     },
     "error": {
         "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
-        "invalid_integration": null,
-        "automatic_failed": null,
-        "entity_invalid": null
+        "invalid_integration": "Diese Integration ist nicht gültig!",
+        "automatic_failed": "Integration konnte nicht automatisch erkannt werden!",
+        "entity_invalid": "Diese Entität {entity} kann von der ausgewählten Integration {integration} nicht geparst werden"
     },
     "editor": {
-        "entity": null,
-        "integration": null,
-        "required": null,
-        "automatic": null,
-        "recommended": null,
-        "override_headline": null
+        "entity": "Entität",
+        "integration": "Integration",
+        "required": "Erforderlich",
+        "automatic": "Automatisch",
+        "recommended": "Empfohlen",
+        "override_headline": "Überschrift überschreiben"
     },
     "events": {
         "no_warnings": "Keine Warnungen",
