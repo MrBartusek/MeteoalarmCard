@@ -248,7 +248,7 @@ class MeteoalarmCard extends LitElement
 			}
 			else
 			{
-				return localize(awarenessLevel.translationKey).event.replace('{0}', localize(awarenessType.translationKey));
+				return localize(awarenessLevel.translationKey).event.replace('{event}', localize(awarenessType.translationKey));
 			}
 		}
 	}

@@ -36,17 +36,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Żółty alert na {0}",
+      "event": "Żółty alert na {event}",
       "generic": "Żółty alert",
       "color": "Żółty"
     },
     "orange": {
-      "event": "Pomarańczowy alert na {0}",
+      "event": "Pomarańczowy alert na {event}",
       "generic": "Pomarańczowy alert",
       "color": "Pomarańczowy"
     },
     "red": {
-      "event": "Czerwony alert na {0}",
+      "event": "Czerwony alert na {event}",
       "generic": "Czerwony alert",
       "color": "Czerwony"
     }

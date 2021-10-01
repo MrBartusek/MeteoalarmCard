@@ -36,17 +36,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Waarschuwing geel {0}",
+      "event": "Waarschuwing geel {event}",
       "generic": null,
       "color": null
     },
     "orange": {
-      "event": "Waarschuwing oranje {0}",
+      "event": "Waarschuwing oranje {event}",
       "generic": null,
       "color": null
     },
     "red": {
-      "event": "Waarschuwing rood {0}",
+      "event": "Waarschuwing rood {event}",
       "generic": null,
       "color": null
     }

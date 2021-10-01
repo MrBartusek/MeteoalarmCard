@@ -36,17 +36,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Kollane hoiatus {0}",
+      "event": "Kollane hoiatus {event}",
       "generic": null,
       "color": null
     },
     "orange": {
-      "event": "Oranž hoiatus {0}",
+      "event": "Oranž hoiatus {event}",
       "generic": null,
       "color": null
     },
     "red": {
-      "event": "Punane hoiatus {0}",
+      "event": "Punane hoiatus {event}",
       "generic": null,
       "color": null
     }

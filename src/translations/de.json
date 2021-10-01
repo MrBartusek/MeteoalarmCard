@@ -36,17 +36,17 @@
     },
     "messages": {
         "yellow": {
-          "event": "{0} der Warnstufe Gelb",
+          "event": "{event} der Warnstufe Gelb",
           "generic": null,
           "color": null
         },
         "orange": {
-          "event": "{0} der Warnstufe Orange",
+          "event": "{event} der Warnstufe Orange",
           "generic": null,
           "color": null
         },
         "red": {
-          "event": "{0} der Warnstufe Rot",
+          "event": "{event} der Warnstufe Rot",
           "generic": null,
           "color": null
         }

@@ -36,17 +36,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Yellow {0} warning",
+      "event": "Yellow {event} warning",
       "generic": "Yellow warning",
       "color": "Yellow"
     },
     "orange": {
-      "event": "Orange {0} warning",
+      "event": "Orange {event} warning",
       "generic": "Orange warning",
       "color": "Orange"
     },
     "red": {
-      "event": "Red {0} warning",
+      "event": "Red {event} warning",
       "generic": "Red warning",
       "color": "Red"
     }

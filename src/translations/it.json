@@ -36,17 +36,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Allarme Giallo {0}",
+      "event": "Allarme Giallo {event}",
       "generic": null,
       "color": null
     },
     "orange": {
-      "event": "Allarme Arancione {0}",
+      "event": "Allarme Arancione {event}",
       "generic": null,
       "color": null
     },
     "red": {
-      "event": "Allarme Rosso {0}",
+      "event": "Allarme Rosso {event}",
       "generic": null,
       "color": null
     }
