@@ -9,7 +9,7 @@
         "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
         "invalid_integration": "Diese Integration ist nicht gültig!",
         "automatic_failed": "Integration konnte nicht automatisch erkannt werden!",
-        "entity_invalid": "Diese Entität {entity} kann von der ausgewählten Integration {integration} nicht geparst werden"
+        "entity_invalid": "Diese Entität {entity} kann von der ausgewählten Integration {integration} nicht geparst werden!"
     },
     "editor": {
         "entity": "Entität",
