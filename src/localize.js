@@ -19,7 +19,8 @@ var languages = {
 	et,
 	fr,
 	it,
-	es
+	es,
+	sv
 };
 
 const DEFAULT_LANG = 'en';
