@@ -1,0 +1,54 @@
+{
+  "$schema": "./schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Card",
+    "description": "Meteoalarm card varnar dig om aktuella väderhändelser.",
+    "not_available": "Meteoalarm är inte tillgänglig"
+  },
+  "error": {
+    "missing_entity": "Det är nödvändigt att ange en enhet!",
+    "invalid_integration": "Denna integration är inte giltig!",
+    "automatic_failed": "Misslyckades att automatiskt upptäcka integrationen!",
+    "entity_invalid": "Denna enhet {entity} kan inte tolkas av den valda integrationen {integration}!"
+  },
+  "editor": {
+    "entity": "Enhet",
+    "integration": "Integration",
+    "required": "Krävs",
+    "automatic": "Automatisk",
+    "recommended": "Rekommenderas",
+    "override_headline": "Överrida titel"
+  },
+  "events": {
+    "no_warnings": "Inga varningar",
+    "wind": "vind",
+    "snow_ice": "snö/is",
+    "thunderstorms": "åska",
+    "fog": "dimma",
+    "hight_temperature": "extremt hög temperatur",
+    "low_temperature": "extremt låg temperatur",
+    "coastal_event": "kusthändelse",
+    "forest_fire": "skogsbrand",
+    "avalanches": "laviner",
+    "rain": "regn",
+    "flood": "höga flöden",
+    "rain_flood": "störtfloder"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Gul varning för {event}",
+      "generic": "Gul varning",
+      "color": "Gul"
+    },
+    "orange": {
+      "event": "Orange varning för {event}",
+      "generic": "Orange varning",
+      "color": "Orange"
+    },
+    "red": {
+      "event": "Röd varning för {event}",
+      "generic": "Röd varning",
+      "color": "Röd"
+    }
+  }
+}
