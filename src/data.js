@@ -48,7 +48,7 @@ export default class Data
 		return [
 			new Level('Yellow', '#ff9800', 'messages.yellow'),
 			new Level('Orange', '#EE5A24', 'messages.orange'),
-			new Level('Red', '#db4437', 'messages.red')
+			new Level('Red', [ 'High', 'Extreme'], '#db4437', 'messages.red')
 		];
 	}
 
