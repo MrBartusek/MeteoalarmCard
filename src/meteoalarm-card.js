@@ -6,9 +6,9 @@ import styles from './styles';
 import ResizeObserver from 'resize-observer-polyfill';
 import { debounce } from './debounce';
 
-import { MeteoAlarmIntegration } from './integrations/meteoalarm-integration';
-import { MeteoFranceIntegration } from './integrations/meteofrance-integration';
-import { DWDIntegration } from './integrations/dwd-integration';
+import { MeteoAlarmIntegration } from './integrations/meteoalarm';
+import { MeteoFranceIntegration } from './integrations/meteofrance';
+import { DWDIntegration } from './integrations/dwd';
 
 import { version } from '../package.json';
 
