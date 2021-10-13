@@ -36,6 +36,24 @@ export class MeteoAlarmIntegration
 		];
 	}
 
+	static getLevelBySeverity(severity)
+	{
+		// Generate level from severity when it's not provided
+		// https://github.com/MrBartusek/MeteoalarmCard/issues/48
+		if(['Moderate'].includes(severity))
+		{
+			return Data.getLevelByID(1);
+		}
+		else if(['Severe'].includes(severity))
+		{
+			return Data.getLevelByID(2);
+		}
+		else if(['High', 'Extreme'].includes(severity))
+		{
+			return Data.getLevelByID(3);
+		}
+	}
+
 	static getResult(entity)
 	{
 		const {
@@ -57,7 +75,7 @@ export class MeteoAlarmIntegration
 		if(awarenessLevel != undefined)
 		{
 			let levelNumber = Number(awarenessLevel.split(';')[0]);
-			// Fallback for #49
+			// Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
 			if(levelNumber == 1) levelNumber = 2;
 			level = Data.levels[levelNumber - 2];
 		}
