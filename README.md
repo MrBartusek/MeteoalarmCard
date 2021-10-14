@@ -61,7 +61,7 @@ override_headline: false
 This card supports translations. Please, help to add more translations and improve existing ones. Here's a list of supported languages:
 
 <!-- Languages are sorted alphabetically -->
-- English (Default language)
+- English
 - Deutsch (German)
 - Eesti (Estonian)
 - Español (Spanish)
