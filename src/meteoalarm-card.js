@@ -11,6 +11,7 @@ import { MeteoFranceIntegration } from './integrations/meteofrance';
 import { DWDIntegration } from './integrations/dwd';
 
 import { version } from '../package.json';
+import Data from './data';
 
 console.info(
   `%c METEOALARM-CARD %c ${version} `,
@@ -200,14 +201,14 @@ class MeteoalarmCard extends LitElement
 		{
 			result = {
 				...result,
-				...this.integration.getResult(entity),
+				...this.filterResults(this.integration.getResult(entity)),
 			};
 
 			// Handle entity parsing errors
-			if(result.awarenessLevel == undefined || result.awarenessType == undefined)
+			if(result.level == undefined || result.event == undefined)
 			{
-				console.log('awarenessLevel', result.awarenessLevel);
-				console.log('awarenessType', result.awarenessType);
+				console.log('level', result.level);
+				console.log('event', result.event);
 				throw Error(
 					localize('error.entity_invalid')
 						.replace('{entity}', `(${entity.entity_id})`)
@@ -218,45 +219,61 @@ class MeteoalarmCard extends LitElement
 			// Generate Headlines
 			if(result.headline === undefined || this.overrideHeadline)
 			{
-				result.headline = this.generateHeadline(result.awarenessType, result.awarenessLevel);
+				result.headline = this.generateHeadline(result.event, result.level);
 			}
-			result.headlineNarrow = this.generateHeadline(result.awarenessType, result.awarenessLevel, true);
+			result.headlineNarrow = this.generateHeadline(result.event, result.level, true);
 
 		}
 		return result;
 	}
 
-	generateHeadline(awarenessType, awarenessLevel, narrow = false)
+	filterResults(results)
 	{
-		if(awarenessType.name == 'Unknown Event')
+		if(!Array.isArray(results)) results = [ results ];
+		let topResult = results[0];
+		for(const result of results)
+		{
+			const isHigherLevel = Data.levels.findIndex(x => x.name == result.level.name) > Data.levels.findIndex(x => x.name == topResult.level.name);
+			const isHigherEvent = Data.events.findIndex(x => x.name == result.event.name) < Data.events.findIndex(x => x.name == topResult.event.name);
+			if(isHigherEvent || isHigherLevel)
+			{
+				topResult = result;
+			}
+		}
+		return topResult;
+	}
+
+	generateHeadline(event, level, narrow = false)
+	{
+		if(event.name == 'Unknown Event')
 		{
 			if(narrow)
 			{
-				return localize(awarenessLevel.translationKey).color;
+				return localize(level.translationKey).color;
 			}
 			else
 			{
-				return localize(awarenessLevel.translationKey).generic;
+				return localize(level.translationKey).generic;
 			}
 		}
 		else
 		{
 			if(narrow)
 			{
-				const awareness = localize(awarenessType.translationKey);
+				const awareness = localize(event.translationKey);
 				return awareness.charAt(0).toUpperCase() + awareness.slice(1);
 			}
 			else
 			{
-				return localize(awarenessLevel.translationKey).event.replace('{event}', localize(awarenessType.translationKey));
+				return localize(level.translationKey).event.replace('{event}', localize(event.translationKey));
 			}
 		}
 	}
 
 	getBackgroundColor()
 	{
-		const { isWarningActive, awarenessLevel } = this.getAttributes(this.entity);
-		return isWarningActive ? awarenessLevel.color : 'inherit';
+		const { isWarningActive, level } = this.getAttributes(this.entity);
+		return isWarningActive ? level.color : 'inherit';
 	}
 
 	getFontColor()
@@ -274,9 +291,9 @@ class MeteoalarmCard extends LitElement
 		}
 		else
 		{
-			const { isWarningActive, awarenessType } = this.getAttributes(this.entity);
+			const { isWarningActive, event } = this.getAttributes(this.entity);
 
-			iconName = isWarningActive ? awarenessType.icon : 'shield-outline';
+			iconName = isWarningActive ? event.icon : 'shield-outline';
 		}
 		return html`
 			<ha-icon class="main-icon" icon="mdi:${iconName}"></ha-icon>

@@ -82,8 +82,8 @@ export class MeteoAlarmIntegration
 
 		return {
 			headline: event || headline,
-			awarenessLevel: level || this.getLevelBySeverity(severity),
-			awarenessType: type || Data.getEventByName('Unknown Event')
+			level: level || this.getLevelBySeverity(severity),
+			event: type || Data.getEventByName('Unknown Event')
 		};
 	}
 }

@@ -13,8 +13,8 @@ Each integrations class must include **all** of following:
 | `getResult(entity)`           | Return [result](#result)                                                        |
 
 ### Result
-| Name               | Required | Description                                                                     |
-| ------------------ | -------- | ------------------------------------------------------------------------------- |
-| `awarenessLevel`   | Yes      | `Level` from `data.js` file                                                     |
-| `awarenessType`    | Yes      | `Event` from `data.js` file                                                     |
-| `headline`         | No       | Name of the alert, if provided by integration                                   |
+| Name       | Required | Description                                       |
+| ---------- | -------- | ------------------------------------------------- |
+| `level`    | Yes      | `Level` from `data.js` file                       |
+| `event`    | Yes      | `Event` from `data.js` file                       |
+| `headline` | No       | Headline of the alert, if provided by integration |

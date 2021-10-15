@@ -52,21 +52,24 @@ export class MeteoFranceIntegration
 
 	static getResult(entity)
 	{
-		const level = entity.state;
-		let events = [];
+		let result = [];
 
 		for(const [eventName, event] of Object.entries(this.getEventsTypes()))
 		{
 			const eventLevel = entity.attributes[eventName];
-			if(eventLevel == level)
+			if(!eventLevel)
 			{
-				events.push(event);
+				console.warn(`Meteo-France event not found: ${eventName} (${event.name})`);
+				continue;
 			}
+			if(eventLevel == STATE_GREEN) continue;
+			result.push({
+				level: this.getStatesLevels()[eventLevel],
+				event: event
+			});
 		}
+		console.log(result);
 
-		return {
-			awarenessLevel: this.getStatesLevels()[level],
-			awarenessType: Data.filterEvents(events)[0]
-		};
+		return result;
 	}
 }

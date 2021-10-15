@@ -57,26 +57,6 @@ export default class Data
 		return this.events.find((e) => e.name === name);
 	}
 
-	// Find event with the highest id
-	// Usefull for integrations that provides more than one warning
-	static filterEvents(events)
-	{
-		let topElement = undefined, topID = Infinity, topIndex = 0;
-		for (let i = 0; i < events.length; i++)
-		{
-			const event = events[i];
-			const id = this.events.findIndex((x) => x.name == event.name);
-			if(topID > id)
-			{
-				topID = id;
-				topElement = event;
-				topIndex = i;
-			}
-		}
-
-		return [topElement, topIndex];
-	}
-
 	static getLevelByID(id)
 	{
 		return this.levels[id - 1];

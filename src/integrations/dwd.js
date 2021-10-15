@@ -89,7 +89,7 @@ export class DWDIntegration
 	{
 		const { warning_count: warningCount } = entity.attributes;
 
-		let events = [], headlines = [];
+		let result = [];
 
 		for (let i = 1; i < warningCount + 1; i++)
 		{
@@ -100,8 +100,11 @@ export class DWDIntegration
 			{
 				if(id in this.eventTypes)
 				{
-					events.push(this.eventTypes[id]);
-					headlines.push(headline);
+					result.push({
+						headline:  headline,
+						level: Data.getLevelByID(this.convertAwarenessLevel(level)),
+						event: this.eventTypes[id]
+					});
 				}
 				else if(id == 98 || id == 99)
 				{
@@ -114,12 +117,7 @@ export class DWDIntegration
 			}
 		}
 
-		const index = Data.filterEvents(events)[1];
-		return {
-			headline: headlines[index],
-			awarenessLevel: Data.getLevelByID(this.convertAwarenessLevel(entity.state)),
-			awarenessType: events[index]
-		};
+		return result;
 	}
 
 	// Convert DWD scale 1-4 to meteoalarm scale 1-3
