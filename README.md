@@ -44,7 +44,7 @@ Here is what configuration options mean:
 | ------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
 | `type`              | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
 | `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
-| `integration`       | `string`  | `automatic`  | Name of the integration. Available options: <ul><li>`automatic`</li><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li></ul> |
+| `integration`       | `string`  | `automatic`  | Name of the integration. Available options: <ul><li>`automatic`</li><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
 | `override_headline` | `boolean` | `false`      | Override headline proved by integration (if present) by generated one |
 
 Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
@@ -76,9 +76,10 @@ This card supports translations. Please, help to add more translations and impro
 
 This card supports many other integrations.
 
-- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Core integration based on ATOM Feed.
+- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Core integration for Europe alerts.
 - [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Core integration for Météo France alerts.
 - [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) - Core integration for DWD Germany alerts.
+- [weatheralerts](https://github.com/custom-components/weatheralerts) Custom integration for weather.gov USA alerts.
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
 

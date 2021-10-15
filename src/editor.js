@@ -19,7 +19,8 @@ export class MeteoalarmCardEditor extends LitElement
 			automatic: `${localize('editor.automatic')} (${localize('editor.recommended')})`,
 			meteoalarm: 'Meteoalarm',
 			meteofrance: 'Météo-France',
-			dwd: 'Deutscher Wetterdienst (DWD)'
+			dwd: 'Deutscher Wetterdienst (DWD)',
+			weatheralerts: 'Weather Alerts (weather.gov)'
 		};
 	}
 

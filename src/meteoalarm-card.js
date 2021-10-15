@@ -9,6 +9,7 @@ import { debounce } from './debounce';
 import { MeteoAlarmIntegration } from './integrations/meteoalarm';
 import { MeteoFranceIntegration } from './integrations/meteofrance';
 import { DWDIntegration } from './integrations/dwd';
+import { WeatherAlertsIntegration } from './integrations/weatheralerts';
 
 import { version } from '../package.json';
 import Data from './data';
@@ -53,7 +54,7 @@ class MeteoalarmCard extends LitElement
 
 	static get integrations()
 	{
-		return [MeteoAlarmIntegration, MeteoFranceIntegration, DWDIntegration];
+		return [MeteoAlarmIntegration, MeteoFranceIntegration, DWDIntegration, WeatherAlertsIntegration];
 	}
 
 	get entity()
