@@ -59,7 +59,7 @@ export default css`
     white-space: nowrap
   }
 
-  .headline-narrow
+  .headline-narrow, .headline-verynarrow
   {
     display: none;
   }

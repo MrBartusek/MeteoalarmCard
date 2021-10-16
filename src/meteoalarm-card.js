@@ -149,23 +149,35 @@ class MeteoalarmCard extends LitElement
 		if (!card) return;
 		const regular = card.querySelector('.headline-regular');
 		const narrow = card.querySelector('.headline-narrow');
+		const veryNarrow = card.querySelector('.headline-verynarrow');
 
 		// Normal Size
-		narrow.style.display = 'none';
 		regular.style.display = 'flex';
+		narrow.style.display = 'none';
+		veryNarrow.style.display = 'none';
 
-		// Narrow Headline Size
+		// Narrow Size
 		if(regular.scrollWidth > regular.clientWidth)
 		{
-			narrow.style.display = 'flex';
 			regular.style.display = 'none';
+			narrow.style.display = 'flex';
+			veryNarrow.style.display = 'none';
+		}
+
+		// Very Narrow Size
+		if(narrow.scrollWidth > narrow.clientWidth)
+		{
+			regular.style.display = 'none';
+			narrow.style.display = 'none';
+			veryNarrow.style.display = 'flex';
 		}
 
 		// Only Icon Size
-		if(narrow.scrollWidth > narrow.clientWidth)
+		if(veryNarrow.scrollWidth > veryNarrow.clientWidth)
 		{
-			narrow.style.display = 'none';
 			regular.style.display = 'none';
+			narrow.style.display = 'none';
+			veryNarrow.style.display = 'none';
 		}
 	}
 
@@ -222,7 +234,8 @@ class MeteoalarmCard extends LitElement
 			{
 				result.headline = this.generateHeadline(result.event, result.level);
 			}
-			result.headlineNarrow = this.generateHeadline(result.event, result.level, true);
+			result.headlineNarrow = this.generateHeadline(result.event, result.level);
+			result.headlineVeryNarrow = this.generateHeadline(result.event, result.level, true);
 
 		}
 		return result;
@@ -307,6 +320,7 @@ class MeteoalarmCard extends LitElement
 			isWarningActive,
 			headline,
 			headlineNarrow,
+			headlineVeryNarrow,
 		} = this.getAttributes(this.entity);
 
 		if(isWarningActive)
@@ -314,6 +328,7 @@ class MeteoalarmCard extends LitElement
 			return html`
 				<div class="headline headline-regular"> ${headline}</div> 
 				<div class="headline headline-narrow"> ${headlineNarrow}</div> 
+				<div class="headline headline-verynarrow"> ${headlineVeryNarrow}</div> 
 			`;
 		}
 		else
@@ -321,6 +336,7 @@ class MeteoalarmCard extends LitElement
 			return html`
 				<div class="headline headline-regular">${localize('events.no_warnings')}</div>
 				<div class="headline headline-narrow">${localize('events.no_warnings')}</div>
+				<div class="headline headline-verynarrow">${localize('events.no_warnings')}</div> 
 			`;
 		}
 	}
