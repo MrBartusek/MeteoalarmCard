@@ -67,6 +67,11 @@ class MeteoalarmCard extends LitElement
 		return this.config.override_headline === true;
 	}
 
+	get hideWhenNoWarning()
+	{
+		return this.config.hide_when_no_warning === true;
+	}
+
 	get integration()
 	{
 		return this.keyToIntegration(this.config.integration || 'automatic');
@@ -376,6 +381,10 @@ class MeteoalarmCard extends LitElement
 			if(!this.entity || !this.getAttributes(this.entity).isAvailable)
 			{
 				return this.renderNotAvailable();
+			}
+			else if(!this.getAttributes(this.entity).isWarningActive && this.hideWhenNoWarning)
+			{
+				return html``;
 			}
 
 			return html`
