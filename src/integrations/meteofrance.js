@@ -11,6 +11,7 @@ const EVENT_THUNDERSTORMS            = 'Orages';
 const EVENT_FLOOD                    = 'Inondation';
 const EVENT_RAIN_FLOOD               = 'Pluie-inondation';
 const EVENT_EXTREME_HIGH_TEMPERATURE = 'Canicule';
+const EVENT_EXTREME_LOW_TEMPERATURE  = 'Grand-froid';
 
 export class MeteoFranceIntegration
 {
@@ -37,6 +38,7 @@ export class MeteoFranceIntegration
 			[EVENT_FLOOD]:         			  Data.getEventByName('Flood'),
 			[EVENT_RAIN_FLOOD]:    			  Data.getEventByName('Rain-Flood'),
 			[EVENT_EXTREME_HIGH_TEMPERATURE]: Data.getEventByName('Extreme high temperature'),
+			[EVENT_EXTREME_LOW_TEMPERATURE]:  Data.getEventByName('Extreme low temperature'),
 		};
 	}
 
