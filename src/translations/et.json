@@ -4,15 +4,15 @@
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "Olem pole saadaval",
+      "short": "Pole saadaval"
     }
   },
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
     "invalid_integration": "Meteoalarmi sidumine on vale!",
-    "automatic_failed": null,
-    "entity_invalid": null   
+    "automatic_failed": "Automaatne sidumine ebaõnnestus",
+    "entity_invalid": "Olemit {entity} ei saa valitud sidumisega {integration} kasutada!"   
   },
   "editor": {
     "entity": "Olem",
@@ -21,7 +21,7 @@
     "automatic": "Vaikimisi",
     "recommended": "Soovituslik",
     "override_headline": "Pealdise alistamine",
-    "hide_when_no_warning": null
+    "hide_when_no_warning": "Hoiatuste puudumisel peida kaart"
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
@@ -41,18 +41,18 @@
   "messages": {
     "yellow": {
       "event": "Kollane hoiatus {event}",
-      "generic": null,
-      "color": null
+      "generic": "Kollane hoiatus",
+      "color": "Kollane"
     },
     "orange": {
       "event": "Oranž hoiatus {event}",
-      "generic": null,
-      "color": null
+      "generic": "Oranž hoiatus",
+      "color": "Oranž"
     },
     "red": {
       "event": "Punane hoiatus {event}",
-      "generic": null,
-      "color": null
+      "generic": "Punane hoiatus",
+      "color": "Punane"
     }
   }
 }
