@@ -3,7 +3,10 @@
   "common": {
     "name": "Carte Meteoalarm",
     "description": "Carte Meteoalarm vous alerte des conditions météorologique courante.",
-    "not_available": "Meteoalarm n'est pas disponible"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "L'entité est requise!",

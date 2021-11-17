@@ -3,7 +3,10 @@
   "common": {
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
-    "not_available": "Meteoalarm nie jest dostępny"
+    "unavailable": {
+      "long": "Integracja nie jest dostępna",
+      "short": "Niedostępny"
+    }
   },
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",

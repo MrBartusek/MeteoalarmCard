@@ -20,7 +20,7 @@
             "required": [
                 "name",
                 "description",
-                "not_available"
+                "unavailable"
             ],
             "properties": {
                 "name": {
@@ -28,15 +28,30 @@
                     "type": ["string", "null"]
                 },
                 "description": {
-                    "$id": "#/properties/common/properties/description",
+                    "$id": "#/properties/common/description",
                     "type": ["string", "null"]
                 },
-                "not_available": {
-                    "$id": "#/properties/common/properties/not_available",
-                    "type": ["string", "null"]
-                }
-            },
-            "additionalProperties": false
+                "unavailable": {
+                    "$id": "#/properties/common/properties/description/unavailable",
+                    "type": "object",
+                    "required": [
+                        "long",
+                        "short"
+                    ],
+                    "properties": {
+                        "long": {
+                            "$id": "#/properties/common/properties/description/unavailable/properties/long",
+                            "type": ["string", "null"]
+                        },
+                        "short": {
+                            "$id": "#/properties/common/properties/description/unavailable/properties/long",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "additionalProperties": false
+            }
         },
         "error": {
             "$id": "#/properties/error",

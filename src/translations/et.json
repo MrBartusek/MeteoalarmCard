@@ -3,7 +3,10 @@
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
-    "not_available": "Meteoalarm pole saadaval"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
