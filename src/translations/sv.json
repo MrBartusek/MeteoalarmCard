@@ -20,7 +20,8 @@
     "required": "Krävs",
     "automatic": "Automatisk",
     "recommended": "Rekommenderas",
-    "override_headline": "Överrida titel"
+    "override_headline": "Överrida titel",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Inga varningar",

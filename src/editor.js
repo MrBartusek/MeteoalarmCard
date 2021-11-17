@@ -60,6 +60,17 @@ export class MeteoalarmCardEditor extends LitElement
 		return '';
 	}
 
+	// eslint-disable-next-line
+	get _hide_when_no_warning()
+	{
+		if (this._config)
+		{
+			return this._config.hide_when_no_warning || false;
+		}
+
+		return '';
+	}
+
 	render()
 	{
 		if (!this.hass) return html``;
@@ -105,6 +116,17 @@ export class MeteoalarmCardEditor extends LitElement
 						${localize('editor.override_headline')}
 					</p>
 				`: ''}
+
+				<!-- Hide when no warning -->
+				<p class="option">
+					<ha-switch
+						.checked=${this._hide_when_no_warning === true}
+						.configValue=${'hide_when_no_warning'}
+						@change=${this._valueChanged}
+					>
+					</ha-switch>
+					${localize('editor.hide_when_no_warning')}
+				</p>
       		</div>
     	`;
 	}

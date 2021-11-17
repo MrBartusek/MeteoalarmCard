@@ -20,7 +20,8 @@
         "required": "Erforderlich",
         "automatic": "Automatisch",
         "recommended": "Empfohlen",
-        "override_headline": "Überschrift überschreiben"
+        "override_headline": "Überschrift überschreiben",
+        "hide_when_no_warning": null
     },
     "events": {
         "no_warnings": "Keine Warnungen",
