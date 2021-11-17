@@ -3,7 +3,10 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card warns you about current weather events.",
-    "not_available": "Meteoalarm is not available"
+    "unavailable": {
+      "long": "Integration is unavailable",
+      "short": "Unavailable"
+    }
   },
   "error": {
     "missing_entity": "Specifying entity is required!",

@@ -3,13 +3,16 @@
   "common": {
     "name": "Carte Meteoalarm",
     "description": "Carte Meteoalarm vous alerte des conditions météorologique courante.",
-    "not_available": "Meteoalarm n'est pas disponible"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "L'entité est requise!",
     "invalid_integration": "Cette intégration n'est pas valide!",
     "automatic_failed": "La detection automatique de l'intégration à échoué!",
-    "entity_invalid": null
+    "entity_invalid": "L'entité {entity} ne peux être analysée par l'intégration {integration} selectionné!"
   },
   "editor": {
     "entity": "Entité",
@@ -37,18 +40,18 @@
   "messages": {
     "yellow": {
       "event": "Alerte jaune {event}",
-      "generic": null,
-      "color": null
+      "generic": "Alerte jaune",
+      "color": "Jaune"
     },
     "orange": {
       "event": "Alerte orange {event}",
-      "generic": null,
-      "color": null
+      "generic": "Alerte Orange",
+      "color": "Orange"
     },
     "red": {
       "event": "Alerte rouge {event}",
-      "generic": null,
-      "color": null
+      "generic": "Alerte rouge",
+      "color": "Rouge"
     }
   }
 }

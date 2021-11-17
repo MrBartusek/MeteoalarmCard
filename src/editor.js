@@ -108,7 +108,7 @@ export class MeteoalarmCardEditor extends LitElement
 				${this._integration == 'automatic' || this._integration == 'meteoalarm' ? html`
 					<p class="option">
 						<ha-switch
-							.checked=${this._override_headline !== false}
+							.checked=${this._override_headline === true}
 							.configValue=${'override_headline'}
 							@change=${this._valueChanged}
 						>

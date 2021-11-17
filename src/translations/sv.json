@@ -3,7 +3,10 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card varnar dig om aktuella väderhändelser.",
-    "not_available": "Meteoalarm är inte tillgänglig"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "Det är nödvändigt att ange en enhet!",

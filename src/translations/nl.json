@@ -3,7 +3,10 @@
   "common": {
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
-    "not_available": "Meteoalarm is niet beschikbaar"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",

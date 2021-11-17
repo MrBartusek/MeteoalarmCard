@@ -3,7 +3,10 @@
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
-    "not_available": "Meteoalarm no está disponible"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",

@@ -3,7 +3,10 @@
     "common": {
         "name": "Meteoalarm-Karte",
         "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
-        "not_available": "Meteoalarm ist nicht verfügbar"
+        "unavailable": {
+          "long": null,
+          "short": null
+        }
     },
     "error": {
         "missing_entity": "Die angegebene Entität ist nicht vorhanden!",

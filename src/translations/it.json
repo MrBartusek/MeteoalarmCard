@@ -3,7 +3,10 @@
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
-    "not_available": "Meteoalarm non è disponibile"
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
   },
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
