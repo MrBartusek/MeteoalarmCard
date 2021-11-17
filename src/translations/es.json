@@ -20,7 +20,8 @@
     "required": "Necesario",
     "automatic": "Automático",
     "recommended": "Recomendado",
-    "override_headline": "Sobreescribir cabecera"
+    "override_headline": "Sobreescribir cabecera",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Sin avisos",

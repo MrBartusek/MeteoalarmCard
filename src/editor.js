@@ -120,7 +120,7 @@ export class MeteoalarmCardEditor extends LitElement
 				<!-- Hide when no warning -->
 				<p class="option">
 					<ha-switch
-						.checked=${this._hideWhenNoWarning === true}
+						.checked=${this._hide_when_no_warning === true}
 						.configValue=${'hide_when_no_warning'}
 						@change=${this._valueChanged}
 					>

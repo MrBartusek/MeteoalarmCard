@@ -20,7 +20,8 @@
     "required": "Nõutav",
     "automatic": "Vaikimisi",
     "recommended": "Soovituslik",
-    "override_headline": "Pealdise alistamine"
+    "override_headline": "Pealdise alistamine",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",

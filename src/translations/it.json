@@ -20,7 +20,8 @@
     "required": null,
     "automatic": null,
     "recommended": null,
-    "override_headline": null
+    "override_headline": null,
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Nessun allarme",

@@ -20,7 +20,8 @@
     "required": "Verplicht",
     "automatic": "Automatisch",
     "recommended": "Aanbevolen",
-    "override_headline": "Koptekst overschrijven"
+    "override_headline": "Koptekst overschrijven",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",

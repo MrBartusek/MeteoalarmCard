@@ -20,7 +20,8 @@
     "required": "Requis",
     "automatic": "Automatique",
     "recommended": "Recommandé",
-    "override_headline": "Remplacer le titre"
+    "override_headline": "Remplacer le titre",
+    "hide_when_no_warning": null
   },
   "events": {
     "no_warnings": "Aucune alerte",

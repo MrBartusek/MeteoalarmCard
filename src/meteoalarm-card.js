@@ -384,7 +384,24 @@ class MeteoalarmCard extends LitElement
 			}
 			else if(!this.getAttributes(this.entity).isWarningActive && this.hideWhenNoWarning)
 			{
-				return html``;
+				// This is a VERY sketchy and hacky way of removing default card margin
+				// The original problem comes from:
+				// https://github.com/MrBartusek/MeteoalarmCard/issues/54#issuecomment-955714948
+
+				// This code adds a stylesheet that disabled displaying of card when meteoalarm-card
+				// element is not empty
+				// The element is empty by default because shadow root doesn't count as an element
+				// It also adds <div> element that makes the meteoalarm-card element not empty because
+				// when card is re-render it's removed and the added css doesn't work anymore
+				return html`<img src onerror='
+					const parent = this.getRootNode().host.getRootNode().host.shadowRoot;
+					const style = document.createElement("style");
+					style.type = "text/css"
+					style.innerText = "meteoalarm-card:not(:empty) {display: none;}"
+					parent.append(style);
+					console.log(style.parentNode)
+					parent.querySelector("meteoalarm-card").append(document.createElement("div"))
+				'>`;
 			}
 
 			return html`

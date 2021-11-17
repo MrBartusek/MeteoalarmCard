@@ -91,7 +91,8 @@
                 "required",
                 "automatic",
                 "recommended",
-                "override_headline"
+                "override_headline",
+                "hide_when_no_warning"
             ],
             "properties": {
                 "entity": {
@@ -117,6 +118,10 @@
                 "override_headline": {
                   "$id": "#/properties/editor/properties/override_headline",
                   "type": ["string", "null"]
+                },
+                "hide_when_no_warning": {
+                    "$id": "#/properties/editor/properties/hide_when_no_warning",
+                    "type": ["string", "null"]
                 }
             },
             "additionalProperties": false

@@ -20,7 +20,8 @@
     "required": "Wymagane",
     "automatic": "Automatyczne",
     "recommended": "Zalecane",
-    "override_headline": "Nadpisz nagłówek"
+    "override_headline": "Nadpisz nagłówek",
+    "hide_when_no_warning": "Ukryj kiedy nie ma ostrzeżeń"
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",
