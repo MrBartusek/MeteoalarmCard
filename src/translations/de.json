@@ -4,15 +4,15 @@
         "name": "Meteoalarm-Karte",
         "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
         "unavailable": {
-          "long": null,
-          "short": null
+          "long": "Integration nicht verfügbar",
+          "short": "Nicht verfügbar"
         }
     },
     "error": {
         "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
         "invalid_integration": "Diese Integration ist nicht gültig!",
         "automatic_failed": "Integration konnte nicht automatisch erkannt werden!",
-        "entity_invalid": "Diese Entität {entity} kann von der ausgewählten Integration {integration} nicht geparst werden!"
+        "entity_invalid": "Die Entität {entity} kann von der ausgewählten Integration {integration} nicht gelesen werden!"
     },
     "editor": {
         "entity": "Entität",
@@ -20,8 +20,8 @@
         "required": "Erforderlich",
         "automatic": "Automatisch",
         "recommended": "Empfohlen",
-        "override_headline": "Überschrift überschreiben",
-        "hide_when_no_warning": null
+        "override_headline": "Überschrift ändern",
+        "hide_when_no_warning": "Ausblenden wenn es keine Warnung gibt"
     },
     "events": {
         "no_warnings": "Keine Warnungen",
@@ -29,30 +29,30 @@
         "snow_ice": "Schnee/Eis",
         "thunderstorms": "Gewitter",
         "fog": "Nebel",
-        "hight_temperature": "Extrem hohe Temperaturen",
-        "low_temperature": "Extrem niedrige Temperaturen",
+        "hight_temperature": "Extrem hohe Temperatur",
+        "low_temperature": "Extrem niedrige Temperatur",
         "coastal_event": "Küstenereignis",
         "forest_fire": "Waldbrand",
         "avalanches": "Lawinen",
         "rain": "Regen",
-        "flood": "Überflutung",
-        "rain_flood": "Regenüberflutung"
+        "flood": "Hochwasser",
+        "rain_flood": "Starkregenhochwasser"
     },
     "messages": {
         "yellow": {
-          "event": "{event} der Warnstufe Gelb",
-          "generic": null,
-          "color": null
+          "event": "Gelbe Warnung: {event}",
+          "generic": "Gelbe Warnung",
+          "color": "Gelb"
         },
         "orange": {
-          "event": "{event} der Warnstufe Orange",
-          "generic": null,
-          "color": null
+          "event": "Orange Warnung: {event}",
+          "generic": "Orange Warnung",
+          "color": "Orange"
         },
         "red": {
-          "event": "{event} der Warnstufe Rot",
-          "generic": null,
-          "color": null
+          "event": "Rote Warnung: {event}",
+          "generic": "Rote Warnung",
+          "color": "Rot"
         }
     }
 }
