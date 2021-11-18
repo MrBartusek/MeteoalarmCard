@@ -46,6 +46,7 @@ Here is what configuration options mean:
 | `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
 | `integration`       | `string`  | `automatic`  | Name of the integration. Available options: <ul><li>`automatic`</li><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
 | `override_headline` | `boolean` | `false`      | Override headline proved by integration (if present) by generated one |
+| `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 
 Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
 
