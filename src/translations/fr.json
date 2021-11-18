@@ -2,17 +2,17 @@
   "$schema": "./schema/schema.json",
   "common": {
     "name": "Carte Meteoalarm",
-    "description": "Carte Meteoalarm vous alerte des conditions météorologique courante.",
+    "description": "La carte Meteoalarm vous avertit des phénomènes météorologiques en cours.",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "L'intégration est indisponible",
+      "short": "Indisponible"
     }
   },
   "error": {
-    "missing_entity": "L'entité est requise!",
-    "invalid_integration": "Cette intégration n'est pas valide!",
-    "automatic_failed": "La detection automatique de l'intégration à échoué!",
-    "entity_invalid": "L'entité {entity} ne peux être analysée par l'intégration {integration} selectionné!"
+    "missing_entity": "L'entité est requise !",
+    "invalid_integration": "Cette intégration n'est pas valide !",
+    "automatic_failed": "La détection automatique de l'intégration a échoué !",
+    "entity_invalid": "Cette entité {entity} ne peut être analysée par l'intégration sélectionnée {integration} !"
   },
   "editor": {
     "entity": "Entité",
@@ -21,7 +21,7 @@
     "automatic": "Automatique",
     "recommended": "Recommandé",
     "override_headline": "Remplacer le titre",
-    "hide_when_no_warning": null
+    "hide_when_no_warning": "Cacher en l'absence d'alerte"
   },
   "events": {
     "no_warnings": "Aucune alerte",
@@ -30,13 +30,13 @@
     "thunderstorms": "orages",
     "fog": "brouillard",
     "hight_temperature": "canicule",
-    "low_temperature": "température extrêmement basse",
+    "low_temperature": "grand froid",
     "coastal_event": "événement côtier",
     "forest_fire": "feu de forêt",
     "avalanches": "avalanches",
     "rain": "pluie",
     "flood": "inondation",
-    "rain_flood": "pluie/inondation"
+    "rain_flood": "pluie-inondation"
   },
   "messages": {
     "yellow": {
@@ -46,7 +46,7 @@
     },
     "orange": {
       "event": "Alerte orange {event}",
-      "generic": "Alerte Orange",
+      "generic": "Alerte orange",
       "color": "Orange"
     },
     "red": {
