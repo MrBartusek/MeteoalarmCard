@@ -63,7 +63,7 @@ This card supports translations. Please, help to add more translations and impro
 
 <!-- Languages are sorted alphabetically -->
 - English
-- Hrvatski (Crotian)
+- Hrvatski (Croatian)
 - Deutsch (German)
 - Eesti (Estonian)
 - Español (Spanish)
