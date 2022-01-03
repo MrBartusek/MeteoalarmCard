@@ -4,24 +4,24 @@
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card upozorava na trenutne vremenske prilike.",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "Integracija nedostupna",
+      "short": "Nedostupno"
     }
   },
   "error": {
     "missing_entity": "Potrebno je navesti entitet!",
-    "invalid_integration": null,
-    "automatic_failed": null,
-    "entity_invalid": null
+    "invalid_integration": "Integracija nije ispravna!",
+    "automatic_failed": "Autodetekcija integracije nije uspjela!",
+    "entity_invalid": "Entitet {entity} nije moguće učitati u izabranu integraciju {integration}!"
   },
   "editor": {
-    "entity": null,
-    "integration": null,
-    "required": null,
-    "automatic": null,
-    "recommended": null,
-    "override_headline": null,
-    "hide_when_no_warning": null
+    "entity": "Entitet",
+    "integration": "Integracija",
+    "required": "Obavezno",
+    "automatic": "Automatski",
+    "recommended": "Preporučeno",
+    "override_headline": "Nadjačaj naslov",
+    "hide_when_no_warning": "Sakri kada nema upozorenja"
   },
   "events": {
     "no_warnings": "Nema upozorenja",
