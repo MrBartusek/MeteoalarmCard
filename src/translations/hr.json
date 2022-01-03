@@ -1,0 +1,58 @@
+{
+  "$schema": "./schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Card",
+    "description": "Meteoalarm card upozorava na trenutne vremenske prilike.",
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
+  },
+  "error": {
+    "missing_entity": "Potrebno je navesti entitet!",
+    "invalid_integration": null,
+    "automatic_failed": null,
+    "entity_invalid": null
+  },
+  "editor": {
+    "entity": null,
+    "integration": null,
+    "required": null,
+    "automatic": null,
+    "recommended": null,
+    "override_headline": null,
+    "hide_when_no_warning": null
+  },
+  "events": {
+    "no_warnings": "Nema upozorenja",
+    "wind": "vjetar",
+    "snow_ice": "snijeg/poledicu",
+    "thunderstorms": "grmljavinsku oluju",
+    "fog": "maglu",
+    "hight_temperature": "vrućinu",
+    "low_temperature": "hladnoću",
+    "coastal_event": "obalni događaj",
+    "forest_fire": "šumski požar",
+    "avalanches": "lavinu",
+    "rain": "kišu",
+    "flood": "poplavu",
+    "rain_flood": "bujičnu poplavu"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Žuto upozorenje za {event}",
+      "generic": "Žuto upozorenje",
+      "color": "Žuto"
+    },
+    "orange": {
+      "event": "Narančasto upozorenje za {event}",
+      "generic": "Narančasto upozorenje",
+      "color": "Narančasto"
+    },
+    "red": {
+      "event": "Crveno upozorenje za {event}",
+      "generic": "Crveno upozorenje",
+      "color": "Crveno"
+    }
+  }
+}
