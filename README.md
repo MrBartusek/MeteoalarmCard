@@ -63,11 +63,11 @@ This card supports translations. Please, help to add more translations and impro
 
 <!-- Languages are sorted alphabetically -->
 - English
-- Hrvatski (Croatian)
 - Deutsch (German)
 - Eesti (Estonian)
 - Español (Spanish)
 - Français (French)
+- Hrvatski (Croatian)
 - Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
