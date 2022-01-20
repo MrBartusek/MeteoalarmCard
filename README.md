@@ -1,8 +1,8 @@
 # Meteoalarm Card
 
-[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs badge](https://img.shields.io/badge/HACS-default-orange.svg)](https://hacs.xyz) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases)
+[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-default-41BDF5.svg)](https://github.com/hacs/integration) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![LGTM alerts](https://img.shields.io/lgtm/alerts/g/MrBartusek/MeteoalarmCard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrBartusek/MeteoalarmCard/alerts/) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
 
-By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) or [Météo-France](https://www.home-assistant.io/integrations/meteo_france/). This simple card shows you the current active meteorological warnings.
+By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/), [DWD](https://www.home-assistant.io/integrations/dwd_weather_warnings/) or [Météo-France](https://www.home-assistant.io/integrations/meteo_france/). This simple card shows you the current active meteorological warnings.
 
 ![cover](https://i.imgur.com/jsLOGIv.png)
 
@@ -44,8 +44,9 @@ Here is what configuration options mean:
 | ------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
 | `type`              | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
 | `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
-| `integration`       | `string`  | **Required** | Name of the integration. `automatic`, `meteoalarm`, `meteofrance` or `meteoalarmeu`. It's recommended to keep this option at automatic |
-| `override_headline` | `boolean` | `false`      | Core Meteoalarm provides `event` and `headline` attributes which are used for text displayed on the card. This option forces card to always generate own headline.
+| `integration`       | `string`  | `automatic`  | Name of the integration. Available options: <ul><li>`automatic`</li><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
+| `override_headline` | `boolean` | `false`      | Override headline proved by integration (if present) by generated one |
+| `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 
 Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
 
@@ -60,24 +61,27 @@ override_headline: false
 
 This card supports translations. Please, help to add more translations and improve existing ones. Here's a list of supported languages:
 
-<!-- Languages are sorted alphabetically -->
-- English (Default language)
+<!-- Languages except English are sorted alphabetically -->
+- English
 - Deutsch (German)
 - Eesti (Estonian)
+- Español (Spanish)
 - Français (French)
+- Hrvatski (Croatian)
 - Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
-- Español (Spanish)
+- Svenska (Swedish)
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Supported integrations
 
 This card supports many other integrations.
 
-- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Home Assistant core integration based on ATOM Feed.
-- [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Home Assistant core integration for Météo France alerts.
-- [xlcnd/meteoalarmeu](https://github.com/xlcnd/meteoalarmeu) - RRS Feed alternative for countries that does not use ATOM anymore.
+- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Core integration for Europe alerts.
+- [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Core integration for Météo France alerts.
+- [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) - Core integration for DWD Germany alerts.
+- [weatheralerts](https://github.com/custom-components/weatheralerts) Custom integration for weather.gov USA alerts.
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
 
@@ -85,4 +89,4 @@ This card supports many other integrations.
 
 Want to contribute to the project?
 
-First of all, thanks! Check [contributing guideline](./CONTRIBUTING.md) for more information.
+First of all, thanks! Check [contributing guidelines](./CONTRIBUTING.md) for more information.
