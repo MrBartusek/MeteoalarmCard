@@ -1,4 +1,4 @@
-{
+v{
   "$schema": "./schema/schema.json",
   "common": {
     "name": "Meteoalarm Kaart",
