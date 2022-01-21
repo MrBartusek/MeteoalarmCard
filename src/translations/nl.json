@@ -40,17 +40,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Waarschuwing geel {event}",
+      "event": "Geen Waarschuwingen {event}",
       "generic": null,
       "color": null
     },
     "orange": {
-      "event": "Waarschuwing oranje {event}",
+      "event": "Code Geel: {event}",
       "generic": null,
       "color": null
     },
     "red": {
-      "event": "Waarschuwing rood {event}",
+      "event": "Code Rood: {event}",
       "generic": null,
       "color": null
     }
