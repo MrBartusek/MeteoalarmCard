@@ -4,15 +4,15 @@
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "Integratie is niet beschikbaar",
+      "short": "Niet beschikbaar"
     }
   },
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",
     "invalid_integration": "Deze integratie is niet geldig!",
-    "automatic_failed": null,
-    "entity_invalid": null
+    "automatic_failed": "Kan integratie niet automatisch detecteren!",
+    "entity_invalid": "Deze entiteit {entity} kan niet worden geparseerd door geselecteerde integratie {integratie}!"
   },
   "editor": {
     "entity": "Entiteit",
@@ -21,7 +21,7 @@
     "automatic": "Automatisch",
     "recommended": "Aanbevolen",
     "override_headline": "Koptekst overschrijven",
-    "hide_when_no_warning": null
+    "hide_when_no_warning": "Verbergen wanneer er geen waarschuwingen zijn"
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",
@@ -41,18 +41,18 @@
   "messages": {
     "yellow": {
       "event": "Geen Waarschuwingen {event}",
-      "generic": null,
-      "color": null
+      "generic": "",
+      "color": ""
     },
     "orange": {
       "event": "Code Geel: {event}",
-      "generic": null,
-      "color": null
+      "generic": "Code Geel:",
+      "color": "Geel"
     },
     "red": {
       "event": "Code Rood: {event}",
-      "generic": null,
-      "color": null
+      "generic": "Code Rood:",
+      "color": "Rood"
     }
   }
 }
