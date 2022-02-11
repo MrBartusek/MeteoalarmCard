@@ -30,12 +30,12 @@
     "thunderstorms": "burze",
     "fog": "mgły",
     "hight_temperature": "upały",
-    "low_temperature": "silne Mrozy",
+    "low_temperature": "silne mrozy",
     "coastal_event": "zjawiska strefy brzegowej",
     "forest_fire": "pożary lasu",
     "avalanches": "lawiny",
     "rain": "deszcz",
-    "flood": "powodzie",
+    "flooding": "powodzie",
     "rain_flood": "ulewy"
   },
   "messages": {

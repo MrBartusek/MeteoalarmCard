@@ -25,13 +25,13 @@ export class MeteoAlarmIntegration
 			Data.getEventByName('Snow/Ice'),
 			Data.getEventByName('Thunderstorms'),
 			Data.getEventByName('Fog'),
-			Data.getEventByName('Extreme high temperature'),
-			Data.getEventByName('Extreme low temperature'),
+			Data.getEventByName('High temperature'),
+			Data.getEventByName('Low temperature'),
 			Data.getEventByName('Coastal Event'),
-			Data.getEventByName('Forestfire'),
+			Data.getEventByName('Forest fire'),
 			Data.getEventByName('Avalanches'),
 			Data.getEventByName('Rain'),
-			Data.getEventByName('Flood'),
+			Data.getEventByName('Flooding'),
 			Data.getEventByName('Rain-Flood')
 		];
 	}

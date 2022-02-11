@@ -29,13 +29,13 @@
     "snow_ice": "sneh/ľad",
     "thunderstorms": "búrky",
     "fog": "hmla",
-    "hight_temperature": "extrémne vysoká teplota",
-    "low_temperature": "extrémne nízka teplota",
+    "hight_temperature": "vysoká teplota",
+    "low_temperature": "nízka teplota",
     "coastal_event": "pobrežná udalosť",
     "forest_fire": "lesný požiar",
     "avalanches": "lavíny",
     "rain": "dážď",
-    "flood": "povodeň",
+    "flooding": null,
     "rain_flood": "dažďová povodeň"
   },
   "messages": {

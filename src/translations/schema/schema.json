@@ -141,7 +141,7 @@
                 "forest_fire",
                 "avalanches",
                 "rain",
-                "flood",
+                "flooding",
                 "rain_flood"
             ],
             "properties": {
@@ -189,8 +189,8 @@
                     "$id": "#/properties/events/properties/rain",
                     "type": ["string", "null"]
                 },
-                "flood": {
-                    "$id": "#/properties/events/properties/flood",
+                "flooding": {
+                    "$id": "#/properties/events/properties/flooding",
                     "type": ["string", "null"]
                 },
                 "rain_flood": {

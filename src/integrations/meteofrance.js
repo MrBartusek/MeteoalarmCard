@@ -10,8 +10,8 @@ const EVENT_SNOW_ICE                 = 'Neige-verglas';
 const EVENT_THUNDERSTORMS            = 'Orages';
 const EVENT_FLOOD                    = 'Inondation';
 const EVENT_RAIN_FLOOD               = 'Pluie-inondation';
-const EVENT_EXTREME_HIGH_TEMPERATURE = 'Canicule';
-const EVENT_EXTREME_LOW_TEMPERATURE  = 'Grand-froid';
+const EVENT_HIGH_TEMPERATURE = 'Canicule';
+const EVENT_LOW_TEMPERATURE  = 'Grand-froid';
 
 export class MeteoFranceIntegration
 {
@@ -35,10 +35,10 @@ export class MeteoFranceIntegration
 			[EVENT_WIND]:          			  Data.getEventByName('Wind'),
 			[EVENT_SNOW_ICE]:      			  Data.getEventByName('Snow/Ice'),
 			[EVENT_THUNDERSTORMS]: 			  Data.getEventByName('Thunderstorms'),
-			[EVENT_FLOOD]:         			  Data.getEventByName('Flood'),
+			[EVENT_FLOOD]:         			  Data.getEventByName('Flooding'),
 			[EVENT_RAIN_FLOOD]:    			  Data.getEventByName('Rain-Flood'),
-			[EVENT_EXTREME_HIGH_TEMPERATURE]: Data.getEventByName('Extreme high temperature'),
-			[EVENT_EXTREME_LOW_TEMPERATURE]:  Data.getEventByName('Extreme low temperature'),
+			[EVENT_HIGH_TEMPERATURE]: Data.getEventByName('High temperature'),
+			[EVENT_LOW_TEMPERATURE]:  Data.getEventByName('Low temperature'),
 		};
 	}
 

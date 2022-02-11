@@ -35,7 +35,7 @@
     "forest_fire": "metsapõleng",
     "avalanches": "laviin",
     "rain": "sademed",
-    "flood": "üleujutus",
+    "flooding": null,
     "rain_flood": "paduvihm"
   },
   "messages": {

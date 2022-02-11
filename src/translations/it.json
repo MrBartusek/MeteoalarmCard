@@ -35,7 +35,7 @@
     "forest_fire": "incendi boschivi",
     "avalanches": "valanghe",
     "rain": "pioggia",
-    "flood": "inondazioni",
+    "flooding": null,
     "rain_flood": "acquazzoni"
   },
   "messages": {
