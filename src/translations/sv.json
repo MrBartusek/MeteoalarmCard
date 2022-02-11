@@ -29,13 +29,13 @@
     "snow_ice": "snö/is",
     "thunderstorms": "åska",
     "fog": "dimma",
-    "hight_temperature": "extremt hög temperatur",
-    "low_temperature": "extremt låg temperatur",
+    "hight_temperature": "hög temperatur",
+    "low_temperature": "låg temperatur",
     "coastal_event": "kusthändelse",
     "forest_fire": "skogsbrand",
     "avalanches": "laviner",
     "rain": "regn",
-    "flood": "höga flöden",
+    "flooding": null,
     "rain_flood": "störtfloder"
   },
   "messages": {

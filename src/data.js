@@ -26,16 +26,16 @@ export default class Data
 		// If for example there is warning for wind AND rain
 		// Rain has higher priority (you can expect wind while raining)
 		return [
-			new Event('Forestfire', 'pine-tree-fire', 'events.forest_fire'),
+			new Event('Forest fire', 'pine-tree-fire', 'events.forest_fire'),
 			new Event('Avalanches', 'image-filter-hdr', 'events.avalanches'),
-			new Event('Flood', 'home-flood', 'events.flood'),
+			new Event('Flooding', 'home-flood', 'events.flooding'),
 			new Event('Rain-Flood', 'home-flood', 'events.rain_flood'),
 			new Event('Coastal Event', 'waves', 'events.coastal_event'),
 			new Event('Thunderstorms', 'weather-lightning', 'events.thunderstorms'),
 			new Event('Rain', 'weather-pouring', 'events.rain'),
 			new Event('Snow/Ice', 'weather-snowy-heavy', 'events.snow_ice'),
-			new Event('Extreme high temperature', 'thermometer', 'events.hight_temperature'),
-			new Event('Extreme low temperature', 'snowflake', 'events.low_temperature'),
+			new Event('High temperature', 'thermometer', 'events.hight_temperature'),
+			new Event('Low temperature', 'snowflake', 'events.low_temperature'),
 			new Event('Wind', 'windsock', 'events.wind'),
 			new Event('Fog', 'weather-fog', 'events.fog'),
 

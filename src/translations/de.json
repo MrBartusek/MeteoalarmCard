@@ -29,13 +29,13 @@
         "snow_ice": "Schnee/Eis",
         "thunderstorms": "Gewitter",
         "fog": "Nebel",
-        "hight_temperature": "Extrem hohe Temperatur",
-        "low_temperature": "Extrem niedrige Temperatur",
+        "hight_temperature": "hohe Temperatur",
+        "low_temperature": "niedrige Temperatur",
         "coastal_event": "Küstenereignis",
         "forest_fire": "Waldbrand",
         "avalanches": "Lawinen",
         "rain": "Regen",
-        "flood": "Hochwasser",
+        "flooding": null,
         "rain_flood": "Starkregenhochwasser"
     },
     "messages": {

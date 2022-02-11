@@ -29,13 +29,13 @@
     "snow_ice": "nieve/hielo",
     "thunderstorms": "tormentas",
     "fog": "niebla",
-    "hight_temperature": "temperatura máxima extrema",
-    "low_temperature": "temperatura mínima extrema",
+    "hight_temperature": null,
+    "low_temperature": null,
     "coastal_event": "fenómeno costero",
     "forest_fire": "incendios",
     "avalanches": "aludes",
     "rain": "lluvia",
-    "flood": "inundación",
+    "flooding": null,
     "rain_flood": "inundación de lluvia"
   },
   "messages": {
