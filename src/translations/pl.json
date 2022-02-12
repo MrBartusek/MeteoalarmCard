@@ -11,8 +11,8 @@
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",
     "invalid_integration": "Nieprawidłowa integracja!",
-    "automatic_failed": "Bład automatycznego wykrywania integracji!",
-    "entity_invalid": "Ta encja {entity} nie może zostać zinterpretowana przed integracje {integration}!"
+    "automatic_failed": "Błąd automatycznego wykrywania integracji!",
+    "entity_invalid": "Ta encja {entity} nie może zostać zinterpretowana przez integrację {integration}!"
   },
   "editor": {
     "entity": "Encja",
