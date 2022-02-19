@@ -9,10 +9,10 @@
     }
   },
   "error": {
-    "missing_entity": "L'entité est requise !",
-    "invalid_integration": "Cette intégration n'est pas valide !",
-    "automatic_failed": "La détection automatique de l'intégration a échoué !",
-    "entity_invalid": "Cette entité {entity} ne peut être analysée par l'intégration sélectionnée {integration} !"
+    "missing_entity": "L'entité est requise !",
+    "invalid_integration": "Cette intégration n'est pas valide !",
+    "automatic_failed": "La détection automatique de l'intégration a échoué !",
+    "entity_invalid": "Cette entité {entity} ne peut être analysée par l'intégration sélectionnée {integration} !"
   },
   "editor": {
     "entity": "Entité",
@@ -35,7 +35,7 @@
     "forest_fire": "feu de forêt",
     "avalanches": "avalanches",
     "rain": "pluie",
-    "flooding": null,
+    "flooding": "inondation",
     "rain_flood": "pluie-inondation"
   },
   "messages": {
