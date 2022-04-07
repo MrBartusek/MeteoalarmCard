@@ -39,6 +39,10 @@ export class WeatherAlertsIntegration
 			'Freeze Watch': Data.getEventByName('Snow/Ice'),
 			'Special Weather Statement': Data.getEventByName('Unknown Event'),
 			'Marine Weather Statement': Data.getEventByName('Unknown Event'),
+			'Rip Current Statement': Data.getEventByName('Coastal Event'),
+			'Fire Weather Watch': Data.getEventByName('Forest fire'),
+			
+			
 		};
 	}
 
