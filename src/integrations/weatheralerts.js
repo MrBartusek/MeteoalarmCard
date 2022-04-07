@@ -41,8 +41,6 @@ export class WeatherAlertsIntegration
 			'Marine Weather Statement': Data.getEventByName('Unknown Event'),
 			'Rip Current Statement': Data.getEventByName('Coastal Event'),
 			'Fire Weather Watch': Data.getEventByName('Forest fire'),
-			
-			
 		};
 	}
 
