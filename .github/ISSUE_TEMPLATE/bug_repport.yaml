@@ -29,10 +29,17 @@ body:
       - screenshots from your browser developer console
   validations:
     required: false
+- type: markdown
+  value: "## Environment"
+- type: markdown
+  attributes:
+    value: |
+      Please provide information about current configuration that you are using.
 - type: input
   attributes:
     label: Card version
-    description: Current card version that you are using e.g. 1.1.0 ("latest" is not valid)
+    description: Current card version that you are using e.g. 1.1.0 ("latest" is not valid)\
+    placeholder: v1.1.0
   validations:
     required: true
 - type: dropdown
@@ -53,5 +60,27 @@ body:
       - Home Assistant Community Store (HACS)
       - Manual
       - Other
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Card Configuration
+    description: |
+      Please provide your Meteoalarm Card configuration in Dashboard
+    value: |
+      ```yaml
+      [PASTE CONFIGURATION HERE]
+      ```
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Integration Configuration
+    description: |
+      Please provide your integration configuration from `configuration.yaml`
+    value: |
+      ```yaml
+      [PASTE CONFIGURATION HERE]
+      ```
   validations:
     required: true
