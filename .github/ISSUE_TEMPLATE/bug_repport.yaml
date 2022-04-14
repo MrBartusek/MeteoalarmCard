@@ -31,9 +31,7 @@ body:
     required: false
 - type: markdown
   value: "## Environment"
-- type: markdown
-  attributes:
-    value: |
+  value: |
       Please provide information about current configuration that you are using.
 - type: input
   attributes:
