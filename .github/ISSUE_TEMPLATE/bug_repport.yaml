@@ -30,11 +30,8 @@ body:
   validations:
     required: false
 - type: markdown
-  attributes:
-    value: "## Environment"
-- type: markdown
-  attributes:
-    value: |
+  value: "## Environment"
+  value: |
       Please provide information about current configuration that you are using.
 - type: input
   attributes:
