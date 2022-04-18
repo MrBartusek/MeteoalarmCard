@@ -1,39 +1,49 @@
-/*  eslint-env node */
-import commonjs from '@rollup/plugin-commonjs';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import json from '@rollup/plugin-json';
-import babel from '@rollup/plugin-babel';
-import image from '@rollup/plugin-image';
+import typescript from 'rollup-plugin-typescript2';
+import commonjs from 'rollup-plugin-commonjs';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
+import json from '@rollup/plugin-json';
+import ignore from './rollup-plugins/ignore';
+import { ignoreTextfieldFiles } from './elements/ignore/textfield';
+import { ignoreSelectFiles } from './elements/ignore/select';
+import { ignoreSwitchFiles } from './elements/ignore/switch';
 
-const IS_DEV = process.env.ROLLUP_WATCH;
+const dev = process.env.ROLLUP_WATCH;
 
-const serverOptions = {
-	contentBase: ['./dist'],
-	host: 'localhost',
-	port: 5000,
-	allowCrossOrigin: true,
-	headers: {
-		'Access-Control-Allow-Origin': '*',
-	},
+const serveopts = {
+  contentBase: ['./dist'],
+  host: '0.0.0.0',
+  port: 5000,
+  allowCrossOrigin: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+  },
 };
 
-export default {
-	input: 'src/meteoalarm-card.js',
-	output: {
-		dir: 'dist',
-		format: 'es',
-	},
-	plugins: [
-		nodeResolve(),
-		commonjs(),
-		json(),
-		babel({
-			exclude: 'node_modules/**',
-		}),
-		image(),
-		IS_DEV && serve(serverOptions),
-		!IS_DEV && terser(),
-	],
-};
+const plugins = [
+  nodeResolve({}),
+  commonjs(),
+  typescript(),
+  json(),
+  babel({
+    exclude: 'node_modules/**',
+  }),
+  dev && serve(serveopts),
+  !dev && terser(),
+  ignore({
+    files: [...ignoreTextfieldFiles, ...ignoreSelectFiles, ...ignoreSwitchFiles].map((file) => require.resolve(file)),
+  }),
+];
+
+export default [
+  {
+    input: 'src/meteoalarm-card.ts',
+    output: {
+      dir: 'dist',
+      format: 'es',
+    },
+    plugins: [...plugins],
+  },
+];
