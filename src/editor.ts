@@ -21,51 +21,51 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
   private _initialized = false;
 
   static elementDefinitions = {
-    ...textfieldDefinition,
-    ...selectDefinition,
-    ...switchDefinition,
-    ...formfieldDefinition,
+  	...textfieldDefinition,
+  	...selectDefinition,
+  	...switchDefinition,
+  	...formfieldDefinition
   };
 
   public setConfig(config: MeteoalarmCardConfig): void {
-    this._config = config;
+  	this._config = config;
 
-    this.loadCardHelpers();
+  	this.loadCardHelpers();
   }
 
   protected shouldUpdate(): boolean {
-    if (!this._initialized) {
-      this._initialize();
-    }
+  	if (!this._initialized) {
+  		this._initialize();
+  	}
 
-    return true;
+  	return true;
   }
 
   get _name(): string {
-    return this._config?.name || '';
+  	return this._config?.name || '';
   }
 
   get _entity(): string {
-    return this._config?.entity || '';
+  	return this._config?.entity || '';
   }
 
   get _show_warning(): boolean {
-    return this._config?.show_warning || false;
+  	return this._config?.show_warning || false;
   }
 
   get _show_error(): boolean {
-    return this._config?.show_error || false;
+  	return this._config?.show_error || false;
   }
 
   protected render(): TemplateResult | void {
-    if (!this.hass || !this._helpers) {
-      return html``;
-    }
+  	if (!this.hass || !this._helpers) {
+  		return html``;
+  	}
 
-    // You can restrict on domain type
-    const entities = Object.keys(this.hass.states);
+  	// You can restrict on domain type
+  	const entities = Object.keys(this.hass.states);
 
-    return html`
+  	return html`
       <mwc-select
         naturalMenuWidth
         fixedMenuPosition
@@ -103,37 +103,38 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
   }
 
   private _initialize(): void {
-    if (this.hass === undefined) return;
-    if (this._config === undefined) return;
-    if (this._helpers === undefined) return;
-    this._initialized = true;
+  	if (this.hass === undefined) return;
+  	if (this._config === undefined) return;
+  	if (this._helpers === undefined) return;
+  	this._initialized = true;
   }
 
   private async loadCardHelpers(): Promise<void> {
-    this._helpers = await (window as any).loadCardHelpers();
+  	this._helpers = await (window as any).loadCardHelpers();
   }
 
   private _valueChanged(ev): void {
-    if (!this._config || !this.hass) {
-      return;
-    }
-    const target = ev.target;
-    if (this[`_${target.configValue}`] === target.value) {
-      return;
-    }
-    if (target.configValue) {
-      if (target.value === '') {
-        const tmpConfig = { ...this._config };
-        delete tmpConfig[target.configValue];
-        this._config = tmpConfig;
-      } else {
-        this._config = {
-          ...this._config,
-          [target.configValue]: target.checked !== undefined ? target.checked : target.value,
-        };
-      }
-    }
-    fireEvent(this, 'config-changed', { config: this._config });
+  	if (!this._config || !this.hass) {
+  		return;
+  	}
+  	const target = ev.target;
+  	if (this[`_${target.configValue}`] === target.value) {
+  		return;
+  	}
+  	if (target.configValue) {
+  		if (target.value === '') {
+  			const tmpConfig = { ...this._config };
+  			delete tmpConfig[target.configValue];
+  			this._config = tmpConfig;
+  		}
+  		else {
+  			this._config = {
+  				...this._config,
+  				[target.configValue]: target.checked !== undefined ? target.checked : target.value
+  			};
+  		}
+  	}
+  	fireEvent(this, 'config-changed', { config: this._config });
   }
 
   static styles: CSSResultGroup = css`
