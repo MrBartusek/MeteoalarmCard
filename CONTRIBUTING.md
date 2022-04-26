@@ -50,7 +50,7 @@ is going to recompile any changes that you make and after that you can see them 
        git checkout -b update-polish-translation
    ```
 1. Commit your changes and push it to your fork of the repository.
-1. Make sure your changes are working locally. Run `npm run build` to check if project builds and code style.
+1. Make sure your changes are working locally. Run `npm run build` to check code style.
 1. Create a Pull Request (PR). Make sure to describe the changes that you made and use the `Fixes: #number` keyword if
 you were working on a issue.
 
@@ -65,7 +65,7 @@ We are currently looking to implement more languages to MeteoalarmCard. If you a
 messages.
 1. Open a Pull.
 
-**If you want to create a new translation
+**If you want to create a new translation:**
 1. Follow the [setup guide](#setup-local-environment) and [contributing guide](#how-to-contribute)
 1. Copy `src/localize/languages/en.json` file and name it with appropriate language code.
 1. Translate only the keys (second quotation mark).
