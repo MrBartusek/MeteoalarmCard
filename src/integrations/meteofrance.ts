@@ -3,6 +3,7 @@ import {
 	MeteoalarmAlert,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
@@ -48,8 +49,9 @@ export default class MeteoFrance implements MeteoalarmIntegration {
 		return {
 			key: 'meteofrance',
 			name: 'Météo-France',
-			multipleAlerts: true,
-			returnHeadline: false
+			returnHeadline: false,
+			type: MeteoalarmIntegrationEntityType.SingleEntity,
+			entitiesCount: 1
 		};
 	}
 

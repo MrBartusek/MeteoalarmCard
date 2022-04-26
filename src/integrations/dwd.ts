@@ -3,6 +3,7 @@ import {
 	MeteoalarmAlert,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
@@ -19,8 +20,12 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		return {
 			key: 'dwd',
 			name: 'Deutscher Wetterdienst (DWD)',
-			multipleAlerts: true,
-			returnHeadline: true
+			returnHeadline: true,
+			type: MeteoalarmIntegrationEntityType.MultipleNotRequired,
+			entitiesCount: {
+				min: 1,
+				max: 2
+			}
 		};
 	}
 

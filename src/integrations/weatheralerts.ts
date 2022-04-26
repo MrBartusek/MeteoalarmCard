@@ -3,6 +3,7 @@ import {
 	MeteoalarmAlert,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
@@ -25,8 +26,9 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		return {
 			key: 'weatheralerts',
 			name: 'Weatheralerts',
-			multipleAlerts: true,
-			returnHeadline: true
+			returnHeadline: true,
+			type: MeteoalarmIntegrationEntityType.SingleEntity,
+			entitiesCount: 1
 		};
 	}
 
