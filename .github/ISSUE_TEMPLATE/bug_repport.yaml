@@ -1,0 +1,87 @@
+name: Bug report
+description: Create a report to help us improve
+labels: [bug]
+body:
+- type: textarea
+  attributes:
+    label: Describe the bug
+    description: A concise description of what you're experiencing.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    description: Steps to reproduce the behavior.
+    placeholder: |
+      1. Go to '...'
+      2. Click on '....'
+      3. Scroll down to '....'
+      4. See error
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Screenshots
+    description: |
+      If applicable, add:
+      - screenshots of your integration in HA developer tools
+      - screenshots of rendered card
+      - screenshots from your browser developer console
+  validations:
+    required: false
+- type: markdown
+  attributes:
+    value: "## Environment"
+- type: markdown
+  attributes:
+    value: |
+      Please provide information about current configuration that you are using.
+- type: input
+  attributes:
+    label: Card version
+    description: Current card version that you are using e.g. 1.1.0 ("latest" is not valid)\
+    placeholder: v1.1.0
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: Integration type
+    options:
+      - Meteoalarm
+      - Deutscher Wetterdienst (DWD)
+      - Météo-France
+      - weatheralerts (weather.gov)
+      - Other
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: Installation type
+    options:
+      - Home Assistant Community Store (HACS)
+      - Manual
+      - Other
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Card Configuration
+    description: |
+      Please provide your Meteoalarm Card configuration in Dashboard
+    value: |
+      ```yaml
+      [PASTE CONFIGURATION HERE]
+      ```
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Integration Configuration
+    description: |
+      Please provide your integration configuration from `configuration.yaml`
+    value: |
+      ```yaml
+      [PASTE CONFIGURATION HERE]
+      ```
+  validations:
+    required: true
