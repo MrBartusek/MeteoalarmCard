@@ -3,7 +3,7 @@ import { LitElement, html, TemplateResult, css, CSSResultGroup } from 'lit';
 import { HomeAssistant, fireEvent, LovelaceCardEditor } from 'custom-card-helpers';
 
 import { ScopedRegistryHost } from '@lit-labs/scoped-registry-mixin';
-import { BoilerplateCardConfig } from './types';
+import { MeteoalarmCardConfig } from './types';
 import { customElement, property, state } from 'lit/decorators';
 import { formfieldDefinition } from '../elements/formfield';
 import { selectDefinition } from '../elements/select';
@@ -14,7 +14,7 @@ import { textfieldDefinition } from '../elements/textfield';
 export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implements LovelaceCardEditor {
   @property({ attribute: false }) public hass?: HomeAssistant;
 
-  @state() private _config?: BoilerplateCardConfig;
+  @state() private _config?: MeteoalarmCardConfig;
 
   @state() private _helpers?: any;
 
@@ -27,7 +27,7 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
     ...formfieldDefinition,
   };
 
-  public setConfig(config: BoilerplateCardConfig): void {
+  public setConfig(config: MeteoalarmCardConfig): void {
     this._config = config;
 
     this.loadCardHelpers();

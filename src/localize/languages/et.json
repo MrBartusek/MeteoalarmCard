@@ -1,0 +1,58 @@
+{
+  "$schema": "./schema/schema.json",
+  "common": {
+    "name": "Ohtlike ilmanähtuste kaart",
+    "description": "Äärmuslike ilmaolude hoiatus.",
+    "unavailable": {
+      "long": "Olem pole saadaval",
+      "short": "Pole saadaval"
+    }
+  },
+  "error": {
+    "missing_entity": "Vajalik on Meteoalarmi olem!",
+    "invalid_integration": "Meteoalarmi sidumine on vale!",
+    "automatic_failed": "Automaatne sidumine ebaõnnestus",
+    "entity_invalid": null
+  },
+  "editor": {
+    "entity": "Olem",
+    "integration": "Sidumine",
+    "required": "Nõutav",
+    "automatic": "Vaikimisi",
+    "recommended": "Soovituslik",
+    "override_headline": "Pealdise alistamine",
+    "hide_when_no_warning": "Hoiatuste puudumisel peida kaart"
+  },
+  "events": {
+    "no_warnings": "Hoiatusi hetkel pole",
+    "wind": "tugev tuul",
+    "snow_ice": "lumi või jää",
+    "thunderstorms": "äike",
+    "fog": "udu",
+    "hight_temperature": "kuumalaine",
+    "low_temperature": "külmalaine",
+    "coastal_event": "rannikumeri",
+    "forest_fire": "metsapõleng",
+    "avalanches": "laviin",
+    "rain": "sademed",
+    "flooding": null,
+    "rain_flood": "paduvihm"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Kollane hoiatus {event}",
+      "generic": "Kollane hoiatus",
+      "color": "Kollane"
+    },
+    "orange": {
+      "event": "Oranž hoiatus {event}",
+      "generic": "Oranž hoiatus",
+      "color": "Oranž"
+    },
+    "red": {
+      "event": "Punane hoiatus {event}",
+      "generic": "Punane hoiatus",
+      "color": "Punane"
+    }
+  }
+}

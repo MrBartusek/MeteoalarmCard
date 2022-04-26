@@ -162,7 +162,6 @@ class ActionHandler extends HTMLElement implements ActionHandler {
   }
 }
 
-// TODO You need to replace all instances of "action-handler-meteoalarm" with "action-handler-<your card name>"
 customElements.define('action-handler-meteoalarm', ActionHandler);
 
 const getActionHandler = (): ActionHandler => {
