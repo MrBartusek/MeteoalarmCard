@@ -28,7 +28,12 @@ export function localize(string: string): string {
 		console.warn(`MeteoalarmCard: Recived invalid translation key: ${string}`);
 	}
 	string = string.toLocaleLowerCase();
-	const lang = (localStorage.getItem('selectedLanguage') || navigator.language.split('-')[0]  || 'en').replace(/['"]+/g, '').replace('-', '_');
+
+	let storedLang = localStorage.getItem('selectedLanguage');
+	if(storedLang === 'null') {
+		storedLang = null;
+	}
+	const lang = (storedLang || navigator.language.split('-')[0]  || 'en').replace(/['"]+/g, '').replace('-', '_');
 
 	let translated: string | undefined = undefined;
 

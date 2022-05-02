@@ -8,7 +8,8 @@ import {
 	handleAction,
 	LovelaceCardEditor,
 	LovelaceCardConfig,
-	debounce
+	debounce,
+	EntityConfig
 } from 'custom-card-helpers';
 
 import {
@@ -26,6 +27,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
 import INTEGRATIONS from './integrations/integrations';
+import { processConfigEntities } from './process-config-entities';
 
 /* eslint no-console: 0 */
 console.info(
@@ -47,12 +49,10 @@ console.info(
 export class MeteoalarmCard extends LitElement {
 	@property({ attribute: false }) public hass!: HomeAssistant;
 	@state() private config!: MeteoalarmCardConfig;
-	private integrations: MeteoalarmIntegration[];
 	private resizeObserver!: ResizeObserver;
 
-	constructor() {
-		super();
-		this.integrations = INTEGRATIONS.map(i => new i());
+	static get integrations(): MeteoalarmIntegration[] {
+		return INTEGRATIONS.map(i => new i());
 	}
 
 	public static async getConfigElement(): Promise<LovelaceCardEditor> {
@@ -62,9 +62,8 @@ export class MeteoalarmCard extends LitElement {
 
 	public static getStubConfig(hass: HomeAssistant, entities: string[]): Record<string, unknown> {
 		// Find fist entity that is supported by any integration
-		const integrations = INTEGRATIONS.map(i => new i());
 		for(const entity of entities) {
-			for(const integration of integrations) {
+			for(const integration of MeteoalarmCard.integrations) {
 				if(integration.supports(hass.states[entity])) {
 					return {
 						entity: entity,
@@ -83,10 +82,10 @@ export class MeteoalarmCard extends LitElement {
 		if (!config) {
 			throw new Error(localize('common.invalid_configuration'));
 		}
-		else if (config.entity === undefined) {
+		else if (config.entities == undefined || (Array.isArray(config.entities) && config.entities.length == 0)) {
 			throw new Error(localize('error.missing_entity'));
 		}
-		else if (!config.integration === undefined) {
+		else if (!config.integration == undefined) {
 			throw new Error(localize('error.missing_entity'));
 		}
 
@@ -159,17 +158,23 @@ export class MeteoalarmCard extends LitElement {
 		}
 	}
 
-	private get entity(): HassEntity {
-		return this.hass.states[this.config.entity!];
+	private get entities(): HassEntity[] {
+		const entities: EntityConfig[] = processConfigEntities(this.config.entities!);
+		return entities.map(e => this.hass.states[e.entity]);
 	}
 
 	private get integration(): MeteoalarmIntegration {
-		const integration = this.integrations.find(i => i.metadata.key === this.config.integration);
+		const integration = MeteoalarmCard.integrations.find(i => i.metadata.key === this.config.integration);
 		if(integration === undefined) {
 			throw new Error(localize('error.invalid_integration'));
 		}
-		if(!integration.supports(this.entity)) {
-			throw new Error(localize('error.entity_invalid'));
+		if(!this.entities.every(e => integration.supports(e))) {
+			if(this.entities.length == 1) {
+				throw new Error(localize('error.entity_invalid.single'));
+			}
+			else {
+				throw new Error(localize('error.entity_invalid.multiple'));
+			}
 		}
 		return integration!;
 	}
@@ -177,12 +182,11 @@ export class MeteoalarmCard extends LitElement {
 	// This function graters all of the attributes needed for rendering of the card
 	// from the selected integration, sometimes doing additional processing and checks
 	private getEvents(): MeteoalarmAlertParsed[] {
-		// Entity is unavailable
-		const entityAvaiable = ((
-			this.entity.attributes.status ||
-			this.entity.attributes.state ||
-			this.entity.state ) !== 'unavailable');
-		if(!entityAvaiable) {
+		// Filter unavailable entities
+		const entities = this.entities.filter(e => {
+			return e.attributes.status || e.attributes.state || e.state !== 'unavailable';
+		});
+		if(entities.length === 0) {
 			return [{
 				icon: 'cloud-question',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
@@ -193,9 +197,40 @@ export class MeteoalarmCard extends LitElement {
 			}];
 		}
 
-		// No Alerts
-		const active = this.integration.alertActive(this.entity);
-		if(!active) {
+		const result: MeteoalarmAlertParsed[] = [];
+		for(const entity of entities) {
+			const active = this.integration.alertActive(entity);
+			if(!active) continue;
+
+			const alerts = this.integration.getAlerts(entity);
+			if(alerts.length == 0) {
+				throw new Error('Integration is active but did not return any events');
+			}
+
+			for(const alert of alerts) {
+				if(alert.event === undefined || alert.level === undefined) {
+					throw new Error(`Integration did not return full alert - event: ${alert.event} level: ${alert.level}`);
+				}
+				const event = MeteoalarmData.getEvent(alert.event);
+				const level = MeteoalarmData.getLevel(alert.level);
+
+				const headlines = this.generateHeadlines(event, level);
+				// If there is provided headline, and user wants it, push it to headlines
+				if(!this.config.override_headline && alert.headline) {
+					headlines.unshift(alert.headline);
+				}
+
+				result.push({
+					icon: event.icon,
+					color: level.color,
+					headlines: headlines
+				});
+			}
+		}
+
+		// If there are no results that mean above loop didn't trigger event parsing
+		// even once since every sensor was inactive.
+		if(result.length == 0) {
 			return [{
 				icon: 'shield-outline',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
@@ -203,32 +238,6 @@ export class MeteoalarmCard extends LitElement {
 					localize('events.no_warnings')
 				]
 			}];
-		}
-
-		// Actually get alerts
-		const alerts = this.integration.getAlerts(this.entity);
-		if(alerts.length == 0) {
-			throw new Error('Integration is active but did not return any events');
-		}
-		const result: MeteoalarmAlertParsed[] = [];
-		for(const alert of alerts) {
-			if(alert.event === undefined || alert.level === undefined) {
-				throw new Error(`Integration did not return full alert - event: ${alert.event} level: ${alert.level}`);
-			}
-			const event = MeteoalarmData.getEvent(alert.event);
-			const level = MeteoalarmData.getLevel(alert.level);
-
-			const headlines = this.generateHeadlines(event, level);
-			// If there is provided headline, and user wants it, push it to headlines
-			if(!this.config.override_headline && alert.headline) {
-				headlines.unshift(alert.headline);
-			}
-
-			result.push({
-				icon: event.icon,
-				color: level.color,
-				headlines: headlines
-			});
 		}
 		return result;
 	}
@@ -253,7 +262,6 @@ export class MeteoalarmCard extends LitElement {
 	protected render(): TemplateResult | void {
 		try {
 			const events = this.getEvents();
-			console.log(events[0]);
 			return html`
 				<ha-card
 					@action=${this.handleAction}
@@ -329,8 +337,12 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private handleAction(ev: ActionHandlerEvent): void {
+		const config = {
+			...this.config,
+			entity: this.entities[0].entity_id
+		};
 		if (this.hass && this.config && ev.detail.action) {
-			handleAction(this, this.hass, this.config, ev.detail.action);
+			handleAction(this, this.hass, config, ev.detail.action);
 		}
 	}
 }

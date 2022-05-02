@@ -40,20 +40,31 @@ After completing installation you can add this card like any other to your dashb
 
 Here is what configuration options mean:
 
-| Name                | Type      | Default      | Description                                                                      |
-| ------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
-| `type`              | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
-| `entity`            | `string`  | **Required** | An entity_id with weather alerts                                                 |
-| `integration`       | `string`  | `automatic`  | Name of the integration. Available options: <ul><li>`automatic`</li><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
-| `override_headline` | `boolean` | `false`      | Override headline proved by integration (if present) by generated one |
+| Name                   | Type      | Default      | Description                                                                      |
+| ---------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
+| `type`                 | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
+| `integration`          | `string`  | **Required** | Name of the integration. Available options: <ul><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
+| `entities`             | `string`  | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                     |
+| `override_headline`    | `boolean` | `false`      | Override headline proved by integration by generated one. *This won't work with some integrations.* |
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 
 Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
 
 ```yaml
 type: 'custom:meteoalarm-card'
-entity: 'binary_sensor.meteoalarm'
-integration: 'automatic'
+integration: 'meteoalarm'
+entities: 'binary_sensor.meteoalarm'
+override_headline: false
+```
+
+Example configuration for [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/):
+
+```yaml
+type: 'custom:meteoalarm-card'
+integration: 'dwd'
+entities:
+  - entity: 'sensor.dwd_weather_warnings_current_warning_level'
+  - entity: 'sensor.dwd_weather_warnings_advance_warning_level'
 override_headline: false
 ```
 

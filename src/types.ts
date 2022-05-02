@@ -1,4 +1,4 @@
-import { ActionConfig, LovelaceCard, LovelaceCardConfig, LovelaceCardEditor } from 'custom-card-helpers';
+import { ActionConfig, EntityConfig, LovelaceCard, LovelaceCardConfig, LovelaceCardEditor } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
 
 declare global {
@@ -10,7 +10,7 @@ declare global {
 
 export interface MeteoalarmCardConfig extends LovelaceCardConfig {
   type: string;
-  entity?: string;
+  entities?: string | string[] | EntityConfig[];
   integration?: string;
   override_headline?: boolean;
   hide_when_no_warning?: boolean;
@@ -38,10 +38,10 @@ export enum MeteoalarmIntegrationEntityType {
   // Alerts in this integrations all all in attributes of single entity
   SingleEntity = 0,
   // Alerts in this integration are split across multiple entities
-  //  and all needs to provided for it to function properly
+  // and all are needed for it to function properly
   MultipleAllRequired = 1,
   // Alerts in this integration are split across multiple entities
-  // and all ARE NOT NEED TO BE provided for it to function properly
+  // and all are NOT needed for it to function properly
   MultipleNotRequired = 2,
 }
 
