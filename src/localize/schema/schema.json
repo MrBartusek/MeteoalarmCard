@@ -20,6 +20,7 @@
             "required": [
                 "name",
                 "description",
+                "warning",
                 "unavailable"
             ],
             "properties": {
@@ -29,6 +30,10 @@
                 },
                 "description": {
                     "$id": "#/properties/common/description",
+                    "type": ["string", "null"]
+                },
+                "warning": {
+                    "$id": "#/properties/common/warning",
                     "type": ["string", "null"]
                 },
                 "unavailable": {
@@ -49,9 +54,9 @@
                         }
                     },
                     "additionalProperties": false
-                },
-                "additionalProperties": false
-            }
+                }
+            },
+            "additionalProperties": false
         },
         "error": {
             "$id": "#/properties/error",
@@ -76,8 +81,23 @@
                     "type": ["string", "null"]
                 },
                 "entity_invalid": {
-                    "$id": "#/properties/error/properties/entity_invalid",
-                    "type": ["string", "null"]
+                    "$id": "#/properties/common/properties/entity_invalid",
+                    "type": "object",
+                    "required": [
+                        "single",
+                        "multiple"
+                    ],
+                    "properties": { 
+                        "single": {
+                            "$id": "#/properties/error/properties/entity_invalid/single",
+                            "type": ["string", "null"]
+                        },
+                        "multiple": {
+                            "$id": "#/properties/error/properties/entity_invalid/multiple",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "additionalProperties": false
@@ -89,10 +109,11 @@
                 "entity",
                 "integration",
                 "required",
-                "automatic",
                 "recommended",
                 "override_headline",
-                "hide_when_no_warning"
+                "hide_when_no_warning",
+                "description",
+                "error"
             ],
             "properties": {
                 "entity": {
@@ -107,10 +128,6 @@
                     "$id": "#/properties/editor/properties/required",
                     "type": ["string", "null"]
                 },
-                "automatic": {
-                    "$id": "#/properties/editor/properties/automatic",
-                    "type": ["string", "null"]
-                },
                 "recommended": {
                     "$id": "#/properties/editor/properties/recommended",
                     "type": ["string", "null"]
@@ -122,6 +139,64 @@
                 "hide_when_no_warning": {
                     "$id": "#/properties/editor/properties/hide_when_no_warning",
                     "type": ["string", "null"]
+                },
+                "description": {
+                    "$id": "#/properties/editor/properties/description",
+                    "type": "object",
+                    "required": [
+                        "start",
+                        "current_expected",
+                        "multiple_list",
+                        "multiple_event",
+                        "end"
+                    ],
+                    "properties": { 
+                        "start": {
+                            "$id": "#/properties/editor/properties/description/start",
+                            "type": ["string", "null"]
+                        },
+                        "current_expected": {
+                            "$id": "#/properties/editor/properties/description/current_expected",
+                            "type": ["string", "null"]
+                        },
+                        "multiple_list": {
+                            "$id": "#/properties/editor/properties/description/multiple_list",
+                            "type": ["string", "null"]
+                        },
+                        "multiple_event": {
+                            "$id": "#/properties/editor/properties/description/multiple_event",
+                            "type": ["string", "null"]
+                        },
+                        "end": {
+                            "$id": "#/properties/editor/properties/description/end",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "error": {
+                    "$id": "#/properties/editor/properties/error",
+                    "type": "object",
+                    "required": [
+                        "expected_entity",
+                        "too_many_entities",
+                        "duplicate"
+                    ],
+                    "properties": { 
+                        "expected_entity": {
+                            "$id": "#/properties/editor/properties/error/expected_entity",
+                            "type": ["string", "null"]
+                        },
+                        "too_many_entities": {
+                            "$id": "#/properties/editor/properties/error/too_many_entities",
+                            "type": ["string", "null"]
+                        },
+                        "duplicate": {
+                            "$id": "#/properties/editor/properties/duplicate/",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "additionalProperties": false

@@ -173,7 +173,10 @@ export class MeteoalarmCard extends LitElement {
 				throw new Error(localize('error.entity_invalid.single'));
 			}
 			else {
-				throw new Error(localize('error.entity_invalid.multiple'));
+				throw new Error(
+					localize('error.entity_invalid.multiple')
+						.replace('{entity}', this.entities.filter(e => !integration.supports(e)).map(x => x.entity_id).join(', '))
+				);
 			}
 		}
 		return integration!;

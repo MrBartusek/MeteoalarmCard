@@ -63,6 +63,30 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 
   	const integration = MeteoalarmCard.integrations.find(i => i.metadata.key === this._integration);
   	return html`
+	<!-- Warnings-->
+	${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected && (this._configEntities?.length || 0) == 1? html`
+		<ha-alert 
+		alert-type="warning"
+		title=${localize('common.warning')}
+		> ${localize('editor.error.expected_entity')} </ha-alert>
+	` : ''}
+	${(this._configEntities?.length || 0) > (integration?.metadata.entitiesCount || 0) ? html`
+		<ha-alert 
+		alert-type="warning"
+		title=${localize('common.warning')}
+		> ${localize('editor.error.too_many_entities')
+			.replace('{expected}', String(integration?.metadata.entitiesCount || 0))
+			.replace('{got}', String(this._configEntities?.length || 0))
+		}
+		</ha-alert>
+	` : ''}
+	${Array.from(new Set(this._configEntities?.map(x => x.entity))).length != this._configEntities?.length ? html`
+		<ha-alert 
+		alert-type="warning"
+		title=${localize('common.warning')}
+		> ${localize('editor.error.duplicate')} </ha-alert>
+	` : ''}
+
 	  <!-- Integration select -->
 	  <mwc-select
 		naturalMenuWidth
@@ -88,15 +112,27 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		  .configValue=${'entities'}
 		  .value=${(this._configEntities?.length || 0) > 0 ? this._configEntities![0].entity : ''} 
 		  @value-changed=${this._valueChanged}
-	    ></ha-entity-picker>
+		></ha-entity-picker>
 	  ` : html`
-	    <hui-entity-editor
-		  .label=${`${localize('editor.entity')} (${localize('editor.required')})`}
-          .hass=${this.hass}
-          .entities=${this._configEntities}
+		<h3>${localize('editor.entity')} (${localize('editor.required')})</h3>
+		<p>
+			${localize('editor.description.start')}
+			${' '}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected ? html`
+				${localize('editor.description.current_expected')}</p>
+			` : ''}
+			${' '}
+			${localize('editor.description.end')}
+		</p>
+
+		<hui-entity-editor
+		  .label=${' '}
+		  .hass=${this.hass}
+		  .entities=${this._configEntities}
 		  @entities-changed=${this._entitiesChanged}
-        ></hui-entity-editor>
+		></hui-entity-editor>
 	  `}
+	  <!-- Switches section -->
 	  <div class="side-by-side">
 		<!-- Override headline -->
 		${integration?.metadata.returnHeadline ? html`
@@ -149,6 +185,8 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 
   	registry.define('ha-entity-picker', window.customElements.get('ha-entity-picker'));
   	registry.define('hui-entity-editor', window.customElements.get('hui-entity-editor'));
+  	console.log(window.customElements.get('ha-alert'));
+  	registry.define('ha-alert', window.customElements.get('ha-alert'));
   }
 
   private _valueChanged(ev): void {
@@ -201,7 +239,8 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 	mwc-select,
 	mwc-textfield,
 	ha-entity-picker,
-	hui-entity-editor {
+	hui-entity-editor,
+	ha-alert {
 	  margin-bottom: 16px;
 	  display: block;
 	}
@@ -219,6 +258,9 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 	.side-by-side > * {
 		flex: 1 1 0%;
 		padding-right: 8px;
+	}
+	p {
+		max-width: 600px;
 	}
   `;
 }

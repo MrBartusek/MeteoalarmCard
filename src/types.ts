@@ -30,19 +30,16 @@ export interface MeteoalarmIntegrationMetadata {
   key: string,
   name: string,
   type: MeteoalarmIntegrationEntityType,
-  entitiesCount: { min: number, max: number} | number
+  entitiesCount:  number
   returnHeadline: boolean,
 }
 
 export enum MeteoalarmIntegrationEntityType {
   // Alerts in this integrations all all in attributes of single entity
   SingleEntity = 0,
-  // Alerts in this integration are split across multiple entities
-  // and all are needed for it to function properly
-  MultipleAllRequired = 1,
-  // Alerts in this integration are split across multiple entities
-  // and all are NOT needed for it to function properly
-  MultipleNotRequired = 2,
+  // Alerts in this integration are split across two entities
+  // one contains current warnings and another future warnings
+  CurrentExpected = 1
 }
 
 // Event returned by the integration

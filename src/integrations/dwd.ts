@@ -21,11 +21,8 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			key: 'dwd',
 			name: 'Deutscher Wetterdienst (DWD)',
 			returnHeadline: true,
-			type: MeteoalarmIntegrationEntityType.MultipleNotRequired,
-			entitiesCount: {
-				min: 1,
-				max: 2
-			}
+			type: MeteoalarmIntegrationEntityType.CurrentExpected,
+			entitiesCount: 2
 		};
 	}
 
