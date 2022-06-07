@@ -185,7 +185,6 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 
   	registry.define('ha-entity-picker', window.customElements.get('ha-entity-picker'));
   	registry.define('hui-entity-editor', window.customElements.get('hui-entity-editor'));
-  	console.log(window.customElements.get('ha-alert'));
   	registry.define('ha-alert', window.customElements.get('ha-alert'));
   }
 

@@ -34,7 +34,6 @@ export function processConfigEntities(entities: Array<EntityConfig | string> | s
 			else {
 				throw new Error(`Invalid entity specified at position ${index}.`);
 			}
-			console.log(config);
 			return config;
 		}
 	);
