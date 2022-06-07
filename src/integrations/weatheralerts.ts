@@ -43,28 +43,24 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 	private get eventTypes(): { [key: string]: MeteoalarmEventType } {
 		return {
 			'Severe Thunderstorm Warning': MeteoalarmEventType.Thunderstorms,
-			'Severe Weather Statement': MeteoalarmEventType.Thunderstorms,
-			'High Wind Warning': MeteoalarmEventType.Wind,
+			'Flash Flood Warning': MeteoalarmEventType.RainFlood,
 			'Flood Warning': MeteoalarmEventType.Flooding,
+			'Excessive Heat Warning': MeteoalarmEventType.HighTemperature,
 			'Severe Thunderstorm Watch': MeteoalarmEventType.Thunderstorms,
 			'Gale Warning': MeteoalarmEventType.Wind,
-			'Freeze Warning': MeteoalarmEventType.SnowIce,
-			'Red Flag Warning': MeteoalarmEventType.ForestFire,
+			'Heat Advisory': MeteoalarmEventType.HighTemperature,
 			'Flood Advisory': MeteoalarmEventType.Flooding,
-			'Heavy Freezing Spray Warning': MeteoalarmEventType.SnowIce,
+			'Coastal Flood Advisory': MeteoalarmEventType.Flooding,
+			'Dense Fog Advisory': MeteoalarmEventType.Fog,
 			'Small Craft Advisory': MeteoalarmEventType.Wind,
-			'Lake Wind Advisory': MeteoalarmEventType.Wind,
-			'Wind Advisory': MeteoalarmEventType.Wind,
-			'Frost Advisory': MeteoalarmEventType.SnowIce,
-			'Low Water Advisory': MeteoalarmEventType.CoastalEvent,
-			'Gale Watch': MeteoalarmEventType.Wind,
-			'Freeze Watch': MeteoalarmEventType.SnowIce,
-			'Special Weather Statement': MeteoalarmEventType.Unknown,
-			'Marine Weather Statement': MeteoalarmEventType.Unknown,
 			'Rip Current Statement': MeteoalarmEventType.CoastalEvent,
-			'Fire Weather Watch': MeteoalarmEventType.ForestFire,
-			'Winter Weather Advisory': MeteoalarmEventType.SnowIce,
-			'Winter Storm Warning': MeteoalarmEventType.SnowIce
+			'Beach Hazards Statement': MeteoalarmEventType.CoastalEvent,
+			'Flood Watch': MeteoalarmEventType.Flooding,
+			'Excessive Heat Watch': MeteoalarmEventType.HighTemperature,
+			'Special Weather Statement': MeteoalarmEventType.Unknown,
+			'Marine Weather Statement': MeteoalarmEventType.SeaEvent,
+			'Air Quality Alert': MeteoalarmEventType.AirQuality,
+			'Hydrologic Outlook': MeteoalarmEventType.Unknown
 		};
 	}
 
@@ -91,7 +87,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 
 	// Generate level from severity when it's not provided
 	private getLevelBySeverity(severity: string): MeteoalarmLevelType {
-		if(['Moderate'].includes(severity)) {
+		if(['Moderate', 'Unknown'].includes(severity)) {
 			return MeteoalarmLevelType.Yellow;
 		}
 		else if(['Severe'].includes(severity)) {

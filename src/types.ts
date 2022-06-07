@@ -56,21 +56,23 @@ export interface MeteoalarmAlertParsed {
   headlines: string[],
 }
 
-// This list is ordered how dangerous events are
 export enum MeteoalarmEventType {
   Unknown = 0,
   ForestFire = 1,
   Avalanches = 2,
-  Flooding = 3,
-  RainFlood = 4,
-  CoastalEvent = 5,
-  Thunderstorms = 6,
-  Rain = 7,
-  SnowIce = 8,
-  HighTemperature = 9,
-  LowTemperature = 10,
-  Wind = 11,
-  Fog = 12
+  Tornado = 3,
+  Flooding = 4,
+  RainFlood = 5,
+  CoastalEvent = 6,
+  SeaEvent = 7,
+  Thunderstorms = 8,
+  Rain = 9,
+  SnowIce = 10,
+  HighTemperature = 11,
+  LowTemperature = 12,
+  Wind = 13,
+  Fog = 14,
+  AirQuality = 15,
 }
 
 export enum MeteoalarmLevelType {

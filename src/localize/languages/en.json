@@ -51,7 +51,9 @@
     "avalanches": "avalanches",
     "rain": "rain",
     "flooding": "flooding",
-    "rain_flood": "rain flood"
+    "rain_flood": "rain flood",
+    "air_quality": "air quality",
+    "tornado": "tornado"
   },
   "messages": {
     "yellow": {

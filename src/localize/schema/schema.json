@@ -217,7 +217,9 @@
                 "avalanches",
                 "rain",
                 "flooding",
-                "rain_flood"
+                "rain_flood",
+                "tornado",
+                "air_quality"
             ],
             "properties": {
                 "no_warnings": {
@@ -270,6 +272,14 @@
                 },
                 "rain_flood": {
                     "$id": "#/properties/events/properties/rain_flood",
+                    "type": ["string", "null"]
+                },
+                "tornado": {
+                    "$id": "#/properties/events/properties/tornado",
+                    "type": ["string", "null"]
+                },
+                "air_quality": {
+                    "$id": "#/properties/events/properties/air_quality",
                     "type": ["string", "null"]
                 }
             },

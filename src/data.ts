@@ -34,10 +34,13 @@ export class MeteoalarmData {
 	static get events(): MeteoalarmEventInfo[] {
 		// This list is ordered how dangerous events are
 		return [
-			new MeteoalarmEventInfo(MeteoalarmEventType.ForestFire,      'Forest Fire',       'pine-tree-fire'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.ForestFire,      'Forest Fire',      'pine-tree-fire'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Avalanches,      'Avalanches',       'image-filter-hdr'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Tornado,         'Tornado',          'weather-tornado'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Flooding,        'Flooding',         'home-flood'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.RainFlood,       'Rain-Flood',       'home-flood'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Costal Event',     'waves'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.SeaEvent,        'Sea Event',        'ferry'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Costal Event',     'waves'), //TODO: Update to tsunami #78
 			new MeteoalarmEventInfo(MeteoalarmEventType.Thunderstorms,   'Thunderstorms',    'weather-lightning'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Rain,            'Rain',             'weather-pouring'),
@@ -46,6 +49,7 @@ export class MeteoalarmData {
 			new MeteoalarmEventInfo(MeteoalarmEventType.LowTemperature,  'Low Temperature',  'snowflake'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Wind,            'Wind',             'windsock'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Fog,             'Fog',              'weather-fog'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.AirQuality,      'Air Quality',      'air-filter'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline')
 		];
 	}
