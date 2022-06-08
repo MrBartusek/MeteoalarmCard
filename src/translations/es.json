@@ -4,15 +4,15 @@
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "La integración no está disponible",
+      "short": "No disponible"
     }
   },
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
     "invalid_integration": "¡Esta integración no es válida!",
     "automatic_failed": "¡No se pudo detectar automáticamente la integración!",
-    "entity_invalid": null
+    "entity_invalid": "¡Esta entidad {entity} no puede ser analizada por la integración {integration} seleccionada!"
   },
   "editor": {
     "entity": "Entidad",
@@ -21,7 +21,7 @@
     "automatic": "Automático",
     "recommended": "Recomendado",
     "override_headline": "Sobreescribir cabecera",
-    "hide_when_no_warning": null
+    "hide_when_no_warning": "Ocultar cuando no hay avisos"
   },
   "events": {
     "no_warnings": "Sin avisos",
@@ -29,30 +29,30 @@
     "snow_ice": "nieve/hielo",
     "thunderstorms": "tormentas",
     "fog": "niebla",
-    "hight_temperature": null,
-    "low_temperature": null,
+    "hight_temperature": "temperatura máxima",
+    "low_temperature": "temperatura mínima",
     "coastal_event": "fenómeno costero",
     "forest_fire": "incendios",
     "avalanches": "aludes",
     "rain": "lluvia",
-    "flooding": null,
+    "flooding": "inundación",
     "rain_flood": "inundación de lluvia"
   },
   "messages": {
     "yellow": {
       "event": "Alerta amarilla por {event}",
-      "generic": null,
-      "color": null
+      "generic": "Alerta amarilla",
+      "color": "Amarillo"
     },
     "orange": {
       "event": "Alerta naranja por {event}",
-      "generic": null,
-      "color": null
+      "generic": "Alerta naranja",
+      "color": "Naranja"
     },
     "red": {
       "event": "Alerta roja {event}",
-      "generic": null,
-      "color": null
+      "generic": "Alerta roja",
+      "color": "Rojo"
     }
   }
 }
