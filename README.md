@@ -43,9 +43,10 @@ Here is what configuration options mean:
 | Name                   | Type      | Default      | Description                                                                      |
 | ---------------------- | --------- | ------------ | -------------------------------------------------------------------------------- |
 | `type`                 | `string`  | **Required** | `custom:meteoalarm-card`                                                         |
-| `integration`          | `string`  | **Required** | Name of the integration. Available options: <ul><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
+| `integration`          | `string`  | **Required** | Name of the integration. Available options are: <ul><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
 | `entities`             | `string`  | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                     |
-| `override_headline`    | `boolean` | `false`      | Override headline proved by integration by generated one. *This won't work with some integrations.* |
+| `override_headline`    | `boolean` | `false`      | Override headline proved by integration by generated one.                        |
+| `hide_caption`         | `boolean` | `false`      | *DWD only* Hide top-right caption when showing advance alerts.
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 
 Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):

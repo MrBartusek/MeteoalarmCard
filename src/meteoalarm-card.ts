@@ -220,8 +220,11 @@ export class MeteoalarmCard extends LitElement {
 				if(!this.integration.metadata.returnHeadline && alert.headline) {
 					throw new Error('[Invalid response from integration] metadata.returnHeadline is false but headline was returned');
 				}
-				if((this.integration.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected) == !!alert.kind) {
-					throw new Error('[Invalid response from integration] CurrentExpected type is only allowed and obligated to return alert.kind');
+				if((this.integration.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind == undefined) {
+					throw new Error('[Invalid response from integration] CurrentExpected type is required to provide alert.kind');
+				}
+				if((this.integration.metadata.type != MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind != undefined) {
+					throw new Error('[Invalid response from integration] only CurrentExpected type can return alert.kind');
 				}
 
 				const event = MeteoalarmData.getEvent(alert.event);
