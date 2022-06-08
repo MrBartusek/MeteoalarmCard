@@ -56,6 +56,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
   	return this._config?.hide_when_no_warning || false;
   }
 
+  get _hide_caption(): boolean {
+  	return this._config?.hide_caption || false;
+  }
+
   protected render(): TemplateResult | void {
   	if (!this.hass) {
   		return html``;
@@ -70,7 +74,7 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		title=${localize('common.warning')}
 		> ${localize('editor.error.expected_entity')} </ha-alert>
 	` : ''}
-	${(this._configEntities?.length || 0) > (integration?.metadata.entitiesCount || 0) ? html`
+	${integration && ((this._configEntities?.length || 0) > (integration?.metadata.entitiesCount || 0)) ? html`
 		<ha-alert 
 		alert-type="warning"
 		title=${localize('common.warning')}
@@ -140,6 +144,16 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		  <mwc-switch
 			  .checked=${this._override_headline !== false}
 			  .configValue=${'override_headline'}
+			  @change=${this._valueChanged}
+		  ></mwc-switch>
+		  </mwc-formfield>
+		`: ''}
+		
+		${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected? html`
+		  <mwc-formfield .label=${localize('editor.hide_caption')}>
+		  <mwc-switch
+			  .checked=${this._hide_caption !== false}
+			  .configValue=${'hide_caption'}
 			  @change=${this._valueChanged}
 		  ></mwc-switch>
 		  </mwc-formfield>
@@ -252,7 +266,7 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 	}
 	.side-by-side {
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 	}
 	.side-by-side > * {
 		flex: 1 1 0%;

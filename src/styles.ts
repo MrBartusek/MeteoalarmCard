@@ -34,7 +34,7 @@ export default css`
   .content
   {
     display: flex;
-    padding: 32px 28px;
+    padding: 36px 28px;
     justify-content: center;
   }
 
@@ -57,6 +57,25 @@ export default css`
     text-align: center;
     overflow: hidden;
     white-space: nowrap
+  }
+
+  .caption {
+    top: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin: 10px 12px;
+    font-size: 13px;
+    line-height: normal;
+  }
+
+  .caption-icon
+  {
+    --mdc-icon-size: 19px;
+    height: 19px;
+    flex: 0;
+    margin-left: 5px;
   }
 
   .headline-narrow, .headline-verynarrow

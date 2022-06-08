@@ -1,6 +1,7 @@
 import { HassEntity } from 'home-assistant-js-websocket';
 import {
 	MeteoalarmAlert,
+	MeteoalarmAlertKind,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
@@ -106,6 +107,23 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 
 		const result: MeteoalarmAlert[] = [];
 
+		let kind: MeteoalarmAlertKind | null = null;
+		if(entity.entity_id.split('_').includes('current')) {
+			kind = MeteoalarmAlertKind.Current;
+		}
+		else if(entity.entity_id.split('_').includes('advance')) {
+			kind = MeteoalarmAlertKind.Expected;
+		}
+		else if(entity.attributes.friendly_name?.split(' ').includes('Current')) {
+			kind = MeteoalarmAlertKind.Current;
+		}
+		else if(entity.attributes.friendly_name?.split(' ').includes('Advance')) {
+			kind = MeteoalarmAlertKind.Expected;
+		}
+		else {
+			throw Error('Failed to determine DWD alert kid');
+		}
+
 		for (let i = 1; i < warningCount + 1; i++) {
 			const level = entity.attributes[`warning_${i}_level`];
 			const id = entity.attributes[`warning_${i}_type`];
@@ -115,7 +133,8 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 					result.push({
 						headline:  headline,
 						level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
-						event: this.eventTypes[id]
+						event: this.eventTypes[id],
+						kind: kind
 					});
 				}
 				else if(id == 98 || id == 99) {
@@ -131,7 +150,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	// Convert DWD scale 1-4 to meteoalarm scale 1-3
-	private convertAwarenessLevel(level) {
+	private convertAwarenessLevel(level: number) {
 		return level == 3 ? 2 : level;
 	}
 }

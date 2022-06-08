@@ -14,6 +14,8 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
   integration?: string;
   override_headline?: boolean;
   hide_when_no_warning?: boolean;
+  hide_caption?: boolean;
+
   tap_action?: ActionConfig;
   hold_action?: ActionConfig;
   double_tap_action?: ActionConfig;
@@ -42,11 +44,19 @@ export enum MeteoalarmIntegrationEntityType {
   CurrentExpected = 1
 }
 
+export enum MeteoalarmAlertKind {
+  // Is the alert currently active or will be active in the future
+  // This is mostly used with type MeteoalarmIntegrationEntityType.CurrentExpected
+  Current = 0,
+  Expected = 1
+}
+
 // Event returned by the integration
 export interface MeteoalarmAlert {
   event: MeteoalarmEventType,
   level: MeteoalarmLevelType,
   headline?: string,
+  kind?: MeteoalarmAlertKind
 }
 
 // Event transformed from MeteoalarmEvent used for rendering card
@@ -54,6 +64,8 @@ export interface MeteoalarmAlertParsed {
   icon: string,
   color: string,
   headlines: string[],
+  captionIcon?: string
+  caption?: string
 }
 
 export enum MeteoalarmEventType {

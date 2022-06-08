@@ -17,7 +17,9 @@ import {
 	MeteoalarmAlertParsed,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
-	MeteoalarmLevelType
+	MeteoalarmLevelType,
+	MeteoalarmAlertKind,
+	MeteoalarmIntegrationEntityType
 } from './types';
 import { actionHandler } from './action-handler-directive';
 import { version as CARD_VERSION } from '../package.json';
@@ -211,9 +213,17 @@ export class MeteoalarmCard extends LitElement {
 			}
 
 			for(const alert of alerts) {
+				// Verify that integration response match standards
 				if(alert.event === undefined || alert.level === undefined) {
-					throw new Error(`Integration did not return full alert - event: ${alert.event} level: ${alert.level}`);
+					throw new Error(`[Invalid response from integration] Received partial event: event: ${alert.event} level: ${alert.level}`);
 				}
+				if(!this.integration.metadata.returnHeadline && alert.headline) {
+					throw new Error('[Invalid response from integration] metadata.returnHeadline is false but headline was returned');
+				}
+				if((this.integration.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected) == !!alert.kind) {
+					throw new Error('[Invalid response from integration] CurrentExpected type is only allowed and obligated to return alert.kind');
+				}
+
 				const event = MeteoalarmData.getEvent(alert.event);
 				const level = MeteoalarmData.getLevel(alert.level);
 
@@ -223,16 +233,27 @@ export class MeteoalarmCard extends LitElement {
 					headlines.unshift(alert.headline);
 				}
 
+				let caption: string | undefined = undefined;
+				let captionIcon: string | undefined = undefined;
+				if(!this.config.hide_caption) {
+					if(alert.kind == MeteoalarmAlertKind.Expected) {
+						caption = localize('common.expected');
+						captionIcon = 'clock-outline';
+					}
+				}
+
 				result.push({
 					icon: event.icon,
 					color: level.color,
-					headlines: headlines
+					headlines: headlines,
+					caption: caption,
+					captionIcon: captionIcon
 				});
 			}
 		}
 
-		// If there are no results that mean above loop didn't trigger event parsing
-		// even once since every sensor was inactive.
+		// If there are no results that mean above loop didn't trigger
+		// event parsing even once since every sensor was inactive.
 		if(result.length == 0) {
 			return [{
 				icon: 'shield-outline',
@@ -276,9 +297,14 @@ export class MeteoalarmCard extends LitElement {
 				>
 					<div class="container" style="background-color: ${events[0].color};">
 							<div class="content">
-								${this.renderIcon(events[0].icon)}
+								${this.renderMainIcon(events[0].icon)}
 								${this.renderHeadlines(events[0].headlines)}
 							</div>
+							${events[0].caption && events[0].captionIcon ? html`
+								<div class="caption">
+									${this.renderCaption(events[0].captionIcon, events[0].caption)}
+								</div>
+							` : ''}
 					</div>
 				</ha-card>
 			`;
@@ -289,7 +315,7 @@ export class MeteoalarmCard extends LitElement {
 		}
 	}
 
-	private renderIcon(icon: string): TemplateResult {
+	private renderMainIcon(icon: string): TemplateResult {
 		return html`<ha-icon class="main-icon" icon="mdi:${icon}"></ha-icon>`;
 	}
 
@@ -325,6 +351,13 @@ export class MeteoalarmCard extends LitElement {
 			<div class="headline headline-regular">${regular}</div>
 			<div class="headline headline-narrow">${narrow}</div>
 			<div class="headline headline-verynarrow">${verynarrow}</div>
+		`;
+	}
+
+	private renderCaption(icon: string, caption: string): TemplateResult {
+		return html`
+			<span class="caption-text">${caption}</span>
+			<ha-icon class="caption-icon" icon="mdi:${icon}"></ha-icon>
 		`;
 	}
 

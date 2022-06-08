@@ -21,6 +21,7 @@
                 "name",
                 "description",
                 "warning",
+                "expected",
                 "unavailable"
             ],
             "properties": {
@@ -34,6 +35,10 @@
                 },
                 "warning": {
                     "$id": "#/properties/common/warning",
+                    "type": ["string", "null"]
+                },
+                "expected": {
+                    "$id": "#/properties/common/expected",
                     "type": ["string", "null"]
                 },
                 "unavailable": {
@@ -112,6 +117,7 @@
                 "recommended",
                 "override_headline",
                 "hide_when_no_warning",
+                "hide_caption",
                 "description",
                 "error"
             ],
@@ -138,6 +144,10 @@
                 },
                 "hide_when_no_warning": {
                     "$id": "#/properties/editor/properties/hide_when_no_warning",
+                    "type": ["string", "null"]
+                },
+                "hide_caption": {
+                    "$id": "#/properties/editor/properties/hide_caption",
                     "type": ["string", "null"]
                 },
                 "description": {
