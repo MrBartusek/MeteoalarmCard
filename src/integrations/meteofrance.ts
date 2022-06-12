@@ -28,7 +28,7 @@ const EVENT_COASTAL          = 'Vagues-submersion';
 
 const EVENT_TYPES = {
 	[EVENT_WIND]:             MeteoalarmEventType.Wind,
-	[EVENT_RAIN_FLOOD]:       MeteoalarmEventType.RainFlood,
+	[EVENT_RAIN_FLOOD]:       MeteoalarmEventType.Flooding,
 	[EVENT_THUNDERSTORMS]:    MeteoalarmEventType.Thunderstorms,
 	[EVENT_FLOOD]:            MeteoalarmEventType.Flooding,
 	[EVENT_SNOW_ICE]:         MeteoalarmEventType.SnowIce,

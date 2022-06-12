@@ -58,7 +58,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			MeteoalarmEventType.Avalanches,
 			MeteoalarmEventType.Rain,
 			MeteoalarmEventType.Flooding,
-			MeteoalarmEventType.RainFlood
+			MeteoalarmEventType.Flooding
 		];
 	}
 

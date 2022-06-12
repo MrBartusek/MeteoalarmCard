@@ -88,7 +88,7 @@ export default css`
   }
 
   .swiper-pagination-bullet {
-    background-color: #737373;
+    background-color: #dfdfdf;
   }
   .swiper-pagination-bullet-active {
     background-color: #ffffff;

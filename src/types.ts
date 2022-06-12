@@ -69,23 +69,27 @@ export interface MeteoalarmAlertParsed {
   caption?: string
 }
 
+// Match order in data.ts
 export enum MeteoalarmEventType {
-  Unknown = 0,
-  ForestFire = 1,
-  Avalanches = 2,
-  Tornado = 3,
-  Flooding = 4,
-  RainFlood = 5,
-  CoastalEvent = 6,
-  SeaEvent = 7,
-  Thunderstorms = 8,
-  Rain = 9,
-  SnowIce = 10,
-  HighTemperature = 11,
-  LowTemperature = 12,
-  Wind = 13,
-  Fog = 14,
-  AirQuality = 15,
+  Nuclear,
+  Hurricane,
+  Tornado,
+  CoastalEvent,
+  ForestFire,
+  Avalanches,
+  Earthquake,
+  Volcano,
+  Flooding,
+  SeaEvent,
+  Thunderstorms,
+  Rain,
+  SnowIce,
+  HighTemperature,
+  LowTemperature,
+  Wind,
+  Fog,
+  AirQuality,
+  Unknown,
 }
 
 export enum MeteoalarmLevelType {

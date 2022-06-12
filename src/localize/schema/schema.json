@@ -216,6 +216,8 @@
             "type": "object",
             "required": [
                 "no_warnings",
+                "nuclear",
+                "hurricane",
                 "wind",
                 "snow_ice",
                 "thunderstorms",
@@ -223,17 +225,26 @@
                 "high_temperature",
                 "low_temperature",
                 "coastal_event",
+                "sea_event",
                 "forest_fire",
                 "avalanches",
+                "earthquake",
                 "rain",
                 "flooding",
-                "rain_flood",
                 "tornado",
                 "air_quality"
             ],
             "properties": {
                 "no_warnings": {
                     "$id": "#/properties/events/properties/no_warnings",
+                    "type": ["string", "null"]
+                },
+                "nuclear": {
+                    "$id": "#/properties/events/properties/nuclear",
+                    "type": ["string", "null"]
+                },
+                "hurricane": {
+                    "$id": "#/properties/events/properties/hurricane",
                     "type": ["string", "null"]
                 },
                 "wind": {
@@ -264,6 +275,10 @@
                     "$id": "#/properties/events/properties/coastal_event",
                     "type": ["string", "null"]
                 },
+                "sea_event": {
+                    "$id": "#/properties/events/properties/sea_event",
+                    "type": ["string", "null"]
+                },
                 "forest_fire": {
                     "$id": "#/properties/events/properties/forest_fire",
                     "type": ["string", "null"]
@@ -272,16 +287,20 @@
                     "$id": "#/properties/events/properties/avalanches",
                     "type": ["string", "null"]
                 },
+                "volcano": {
+                    "$id": "#/properties/events/properties/volcano",
+                    "type": ["string", "null"]
+                },
+                "earthquake": {
+                    "$id": "#/properties/events/properties/earthquake",
+                    "type": ["string", "null"]
+                },
                 "rain": {
                     "$id": "#/properties/events/properties/rain",
                     "type": ["string", "null"]
                 },
                 "flooding": {
                     "$id": "#/properties/events/properties/flooding",
-                    "type": ["string", "null"]
-                },
-                "rain_flood": {
-                    "$id": "#/properties/events/properties/rain_flood",
                     "type": ["string", "null"]
                 },
                 "tornado": {

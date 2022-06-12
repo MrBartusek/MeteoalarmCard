@@ -53,9 +53,12 @@
     "avalanches": "avalanches",
     "rain": "rain",
     "flooding": "flooding",
-    "rain_flood": "rain flood",
     "air_quality": "air quality",
-    "tornado": "tornado"
+    "sea_event": "sea event",
+    "tornado": "tornado",
+    "nuclear": "nuclear event",
+    "hurricane": "hurricane",
+    "earthquake": "earthquake"
   },
   "messages": {
     "yellow": {
