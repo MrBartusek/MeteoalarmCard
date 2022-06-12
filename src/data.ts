@@ -32,7 +32,6 @@ export class MeteoalarmLevelInfo {
 
 export class MeteoalarmData {
 	static get events(): MeteoalarmEventInfo[] {
-		// This list is ordered how dangerous events are
 		return [
 			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Nuclear,         'Nuclear Event',    'radioactive'),

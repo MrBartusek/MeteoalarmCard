@@ -15,6 +15,7 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
   override_headline?: boolean;
   hide_when_no_warning?: boolean;
   hide_caption?: boolean;
+  disable_swiper?: boolean;
 
   tap_action?: ActionConfig;
   hold_action?: ActionConfig;
@@ -34,6 +35,7 @@ export interface MeteoalarmIntegrationMetadata {
   type: MeteoalarmIntegrationEntityType,
   entitiesCount:  number
   returnHeadline: boolean,
+  returnMultipleAlerts: boolean,
 }
 
 export enum MeteoalarmIntegrationEntityType {
@@ -56,7 +58,8 @@ export interface MeteoalarmAlert {
   event: MeteoalarmEventType,
   level: MeteoalarmLevelType,
   headline?: string,
-  kind?: MeteoalarmAlertKind
+  kind?: MeteoalarmAlertKind,
+  _entity?: HassEntity
 }
 
 // Event transformed from MeteoalarmEvent used for rendering card
@@ -69,8 +72,9 @@ export interface MeteoalarmAlertParsed {
   caption?: string
 }
 
-// Match order in data.ts
+// This list is ordered how dangerous events are
 export enum MeteoalarmEventType {
+  Unknown,
   Nuclear,
   Hurricane,
   Tornado,
@@ -89,7 +93,6 @@ export enum MeteoalarmEventType {
   Wind,
   Fog,
   AirQuality,
-  Unknown,
 }
 
 export enum MeteoalarmLevelType {

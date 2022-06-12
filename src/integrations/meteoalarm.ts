@@ -30,8 +30,9 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		return {
 			key: 'meteoalarm',
 			name: 'Meteoalarm',
-			returnHeadline: true,
 			type: MeteoalarmIntegrationEntityType.SingleEntity,
+			returnHeadline: true,
+			returnMultipleAlerts: false,
 			entitiesCount: 1
 		};
 	}

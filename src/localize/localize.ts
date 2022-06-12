@@ -25,6 +25,7 @@ const languages: any = {
 };
 export function localize(string: string): string {
 	if(string.toLocaleLowerCase() != string) {
+		// eslint-disable-next-line no-console
 		console.warn(`MeteoalarmCard: Recived invalid translation key: ${string}`);
 	}
 	string = string.toLocaleLowerCase();
@@ -42,6 +43,7 @@ export function localize(string: string): string {
 		translated = string.split('.').reduce((o, i) => o[i], languages[lang]);
 	}
 	catch (e) {
+		// eslint-disable-next-line no-console
 		console.warn(`MeteoalarmCard: Translation for "${string}" is not specified in "${lang}" language.`);
 	}
 	// Try using english
@@ -50,6 +52,7 @@ export function localize(string: string): string {
 			translated = string.split('.').reduce((o, i) => o[i], languages['en']);
 		}
 		catch (e) {
+			// eslint-disable-next-line no-console
 			console.warn(`MeteoalarmCard: Translation for "${string}" is not specified in fallback english language.`);
 		}
 	}

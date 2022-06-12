@@ -27,6 +27,7 @@
     "override_headline": "Override headline provided by integration",
     "hide_when_no_warning": "Hide when there are no warnings",
     "hide_caption": "Hide caption",
+    "disable_swiper": "Disable alerts swiper",
     "description": {
       "start": "Selected integration creates multiple entities.",
       "current_expected": "First one with the current events and the second one with future ones.",
@@ -42,6 +43,10 @@
   },
   "events": {
     "no_warnings": "No warnings",
+    "nuclear": "nuclear event",
+    "tornado": "tornado",
+    "hurricane": "hurricane",
+    "earthquake": "earthquake",
     "wind": "wind",
     "snow_ice": "snow/ice",
     "thunderstorms": "thunderstorms",
@@ -49,16 +54,12 @@
     "high_temperature": "high temperature",
     "low_temperature": "low temperature",
     "coastal_event": "coastal event",
+    "sea_event": "sea event",
     "forest_fire": "forest fire",
     "avalanches": "avalanches",
     "rain": "rain",
     "flooding": "flooding",
-    "air_quality": "air quality",
-    "sea_event": "sea event",
-    "tornado": "tornado",
-    "nuclear": "nuclear event",
-    "hurricane": "hurricane",
-    "earthquake": "earthquake"
+    "air_quality": "air quality"
   },
   "messages": {
     "yellow": {

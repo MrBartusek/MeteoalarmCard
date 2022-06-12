@@ -118,6 +118,7 @@
                 "override_headline",
                 "hide_when_no_warning",
                 "hide_caption",
+                "disable_swiper",
                 "description",
                 "error"
             ],
@@ -148,6 +149,10 @@
                 },
                 "hide_caption": {
                     "$id": "#/properties/editor/properties/hide_caption",
+                    "type": ["string", "null"]
+                },
+                "disable_swiper": {
+                    "$id": "#/properties/editor/properties/disable_swiper",
                     "type": ["string", "null"]
                 },
                 "description": {

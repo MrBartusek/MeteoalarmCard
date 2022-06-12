@@ -49,8 +49,9 @@ export default class MeteoFrance implements MeteoalarmIntegration {
 		return {
 			key: 'meteofrance',
 			name: 'Météo-France',
-			returnHeadline: false,
 			type: MeteoalarmIntegrationEntityType.SingleEntity,
+			returnHeadline: false,
+			returnMultipleAlerts: true,
 			entitiesCount: 1
 		};
 	}

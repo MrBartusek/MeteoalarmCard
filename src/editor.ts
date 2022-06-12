@@ -60,6 +60,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
   	return this._config?.hide_caption || false;
   }
 
+  get _disable_swiper(): boolean {
+  	return this._config?.disable_swiper || false;
+  }
+
   protected render(): TemplateResult | void {
   	if (!this.hass) {
   		return html``;
@@ -137,7 +141,18 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		></hui-entity-editor>
 	  `}
 	  <!-- Switches section -->
-	  <div class="side-by-side">
+	  <div class="options">
+		<!-- Disable slider -->
+		${integration?.metadata.returnMultipleAlerts? html`
+		  <mwc-formfield .label=${localize('editor.disable_swiper')}>
+		  <mwc-switch
+			  .checked=${this._disable_swiper !== false}
+			  .configValue=${'disable_swiper'}
+			  @change=${this._valueChanged}
+		  ></mwc-switch>
+		  </mwc-formfield>
+		`: ''}
+
 		<!-- Override headline -->
 		${integration?.metadata.returnHeadline ? html`
 		  <mwc-formfield .label=${localize('editor.override_headline')}>
@@ -148,7 +163,8 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		  ></mwc-switch>
 		  </mwc-formfield>
 		`: ''}
-		
+
+		<!-- Hide caption -->
 		${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected? html`
 		  <mwc-formfield .label=${localize('editor.hide_caption')}>
 		  <mwc-switch
@@ -264,13 +280,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 	  --mdc-theme-secondary: var(--switch-checked-color);
 	  --mdc-theme-surface: #999999;
 	}
-	.side-by-side {
-		display: flex;
-		align-items: center;
-	}
-	.side-by-side > * {
-		flex: 1 1 0%;
-		padding-right: 8px;
+	.options {
+		display: grid;
+    	grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
 	}
 	p {
 		max-width: 600px;

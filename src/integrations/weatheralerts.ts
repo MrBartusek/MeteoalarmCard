@@ -26,8 +26,9 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		return {
 			key: 'weatheralerts',
 			name: 'Weatheralerts',
-			returnHeadline: true,
 			type: MeteoalarmIntegrationEntityType.SingleEntity,
+			returnHeadline: true,
+			returnMultipleAlerts: true,
 			entitiesCount: 1
 		};
 	}

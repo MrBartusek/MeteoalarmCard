@@ -20,7 +20,8 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmLevelType,
 	MeteoalarmAlertKind,
-	MeteoalarmIntegrationEntityType
+	MeteoalarmIntegrationEntityType,
+	MeteoalarmAlert
 } from './types';
 import { actionHandler } from './action-handler-directive';
 import { version as CARD_VERSION } from '../package.json';
@@ -33,7 +34,7 @@ import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data
 import INTEGRATIONS from './integrations/integrations';
 import { processConfigEntities } from './process-config-entities';
 
-/* eslint no-console: 0 */
+// eslint-disable-next-line no-console
 console.info(
 	`%c MeteoalarmCard %c ${CARD_VERSION} `,
 	'color: white; font-weight: bold; background: #1c1c1c',
@@ -146,7 +147,6 @@ export class MeteoalarmCard extends LitElement {
 	private updateCurrentEntity(): void {
 		const slide = this.swiper.slides[this.swiper.realIndex];
 		this.currentEntity = slide.getAttribute('entity_id') as string;
-		console.log(this.currentEntity);
 	}
 
 	private attachObserver() {
@@ -244,58 +244,90 @@ export class MeteoalarmCard extends LitElement {
 			}];
 		}
 
-		const result: MeteoalarmAlertParsed[] = [];
+		let alerts: MeteoalarmAlert[] = [];
 		for(const entity of this.entities) {
 			const active = this.integration.alertActive(entity);
 			if(!active) continue;
 
-			const alerts = this.integration.getAlerts(entity);
-			if(alerts.length == 0) {
+			const entityAlerts = this.integration.getAlerts(entity);
+			if(entityAlerts.length == 0) {
 				throw new Error('Integration is active but did not return any events');
 			}
-
-			for(const alert of alerts) {
-				// Verify that integration response match standards
-				if(alert.event === undefined || alert.level === undefined) {
-					throw new Error(`[Invalid response from integration] Received partial event: event: ${alert.event} level: ${alert.level}`);
-				}
-				if(!this.integration.metadata.returnHeadline && alert.headline) {
-					throw new Error('[Invalid response from integration] metadata.returnHeadline is false but headline was returned');
-				}
-				if((this.integration.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind == undefined) {
-					throw new Error('[Invalid response from integration] CurrentExpected type is required to provide alert.kind');
-				}
-				if((this.integration.metadata.type != MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind != undefined) {
-					throw new Error('[Invalid response from integration] only CurrentExpected type can return alert.kind');
-				}
-
-				const event = MeteoalarmData.getEvent(alert.event);
-				const level = MeteoalarmData.getLevel(alert.level);
-
-				const headlines = this.generateHeadlines(event, level);
-				// If there is provided headline, and user wants it, push it to headlines
-				if(!this.config.override_headline && alert.headline) {
-					headlines.unshift(alert.headline);
-				}
-
-				let caption: string | undefined = undefined;
-				let captionIcon: string | undefined = undefined;
-				if(!this.config.hide_caption) {
-					if(alert.kind == MeteoalarmAlertKind.Expected) {
-						caption = localize('common.expected');
-						captionIcon = 'clock-outline';
-					}
-				}
-
-				result.push({
-					entity: entity,
-					icon: event.icon,
-					color: level.color,
-					headlines: headlines,
-					caption: caption,
-					captionIcon: captionIcon
-				});
+			for(const alert of entityAlerts) {
+				alerts.push({...alert, _entity: entity});
 			}
+		}
+
+		// Sort by how dangerous events are
+		alerts = alerts.sort((a, b) => {
+			if(a.event < b.event) return -1;
+			else if(a.event > b.event) return 1;
+			return 0;
+		});
+
+		// Sort by level
+		alerts = alerts.sort((a, b) => {
+			return b.level - a.level;
+		});
+
+		// Push expected events to back of the list
+		alerts = alerts.sort((a, b) => {
+			if(a.kind === undefined) return 0;
+			if(a.kind == MeteoalarmAlertKind.Expected && b.kind == MeteoalarmAlertKind.Current) return -1;
+			else if(a.kind == MeteoalarmAlertKind.Current && b.kind == MeteoalarmAlertKind.Expected) return 1;
+			return 0;
+		});
+
+		// Limit to 1 event if swiper is disabled
+		if(this.config.disable_swiper) {
+			alerts = alerts.splice(0, 1);
+		}
+
+		const result: MeteoalarmAlertParsed[] = [];
+		for(const alert of alerts) {
+			// Verify that integration response match standards
+			if(alert.event === undefined || alert.level === undefined) {
+				throw new Error(`[Invalid response from integration] Received partial event: event: ${alert.event} level: ${alert.level}`);
+			}
+			if(!this.integration.metadata.returnHeadline && alert.headline) {
+				throw new Error('[Invalid response from integration] metadata.returnHeadline is false but headline was returned');
+			}
+			if((this.integration.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind == undefined) {
+				throw new Error('[Invalid response from integration] CurrentExpected type is required to provide alert.kind');
+			}
+			if((this.integration.metadata.type != MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind != undefined) {
+				throw new Error('[Invalid response from integration] only CurrentExpected type can return alert.kind');
+			}
+			if(!this.integration.metadata.returnMultipleAlerts && alerts.length > 1) {
+				throw new Error('[Invalid response from integration] returnMultipleAlerts is false but more than one alert was returned');
+			}
+
+			const event = MeteoalarmData.getEvent(alert.event);
+			const level = MeteoalarmData.getLevel(alert.level);
+
+			const headlines = this.generateHeadlines(event, level);
+			// If there is provided headline, and user wants it, push it to headlines
+			if(!this.config.override_headline && alert.headline) {
+				headlines.unshift(alert.headline);
+			}
+
+			let caption: string | undefined = undefined;
+			let captionIcon: string | undefined = undefined;
+			if(!this.config.hide_caption) {
+				if(alert.kind == MeteoalarmAlertKind.Expected) {
+					caption = localize('common.expected');
+					captionIcon = 'clock-outline';
+				}
+			}
+
+			result.push({
+				entity: alert._entity!,
+				icon: event.icon,
+				color: level.color,
+				headlines: headlines,
+				caption: caption,
+				captionIcon: captionIcon
+			});
 		}
 
 		// If there are no results that mean above loop didn't trigger
@@ -370,6 +402,7 @@ export class MeteoalarmCard extends LitElement {
 			`;
 		}
 		catch(error) {
+			// eslint-disable-next-line no-console
 			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', error);
 			return this.showError(error as string);
 		}
