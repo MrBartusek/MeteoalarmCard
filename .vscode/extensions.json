@@ -1,8 +1,7 @@
 {
   "recommendations": [
-    "github.vscode-pull-request-github",
     "dbaeumer.vscode-eslint",
-    "bierner.lit-html",
-    "runem.lit-plugin"
+    "runem.lit-plugin",
+    "bashmish.es6-string-css"
   ]
 }

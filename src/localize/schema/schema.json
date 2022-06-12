@@ -22,6 +22,7 @@
                 "description",
                 "warning",
                 "expected",
+                "version",
                 "unavailable"
             ],
             "properties": {
@@ -220,7 +221,7 @@
                 "snow_ice",
                 "thunderstorms",
                 "fog",
-                "hight_temperature",
+                "high_temperature",
                 "low_temperature",
                 "coastal_event",
                 "forest_fire",
@@ -252,8 +253,8 @@
                     "$id": "#/properties/events/properties/fog",
                     "type": ["string", "null"]
                 },
-                "hight_temperature": {
-                    "$id": "#/properties/events/properties/hight_temperature",
+                "high_temperature": {
+                    "$id": "#/properties/events/properties/high_temperature",
                     "type": ["string", "null"]
                 },
                 "low_temperature": {

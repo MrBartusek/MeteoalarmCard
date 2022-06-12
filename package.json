@@ -43,7 +43,8 @@
     "custom-card-helpers": "^1.7.2",
     "home-assistant-js-websocket": "^5.11.1",
     "lit": "^2.0.0",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "swiper": "^8.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

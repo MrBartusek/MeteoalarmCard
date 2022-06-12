@@ -11,6 +11,7 @@ import {
 	debounce,
 	EntityConfig
 } from 'custom-card-helpers';
+import Swiper, { Pagination } from 'swiper';
 
 import {
 	MeteoalarmCardConfig,
@@ -25,6 +26,7 @@ import { actionHandler } from './action-handler-directive';
 import { version as CARD_VERSION } from '../package.json';
 import { localize } from './localize/localize';
 import styles from './styles';
+import swiperStyles from './external/swiperStyles';
 import ResizeObserver from 'resize-observer-polyfill';
 import { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
@@ -33,7 +35,7 @@ import { processConfigEntities } from './process-config-entities';
 
 /* eslint no-console: 0 */
 console.info(
-	`%c  MeteoalarmCard \n%c  ${localize('common.version')} ${CARD_VERSION}    `,
+	`%c MeteoalarmCard %c ${CARD_VERSION} `,
 	'color: white; font-weight: bold; background: #1c1c1c',
 	'color: white; font-weight: bold; background: #db4437'
 );
@@ -49,9 +51,18 @@ console.info(
 
 @customElement('meteoalarm-card')
 export class MeteoalarmCard extends LitElement {
+
 	@property({ attribute: false }) public hass!: HomeAssistant;
+
 	@state() private config!: MeteoalarmCardConfig;
+
 	private resizeObserver!: ResizeObserver;
+
+	private swiper!: Swiper;
+
+	// Entity of which alert is displayed on currently selected slide
+	// Used to display correct entity on click
+	private currentEntity?: string;
 
 	static get integrations(): MeteoalarmIntegration[] {
 		return INTEGRATIONS.map(i => new i());
@@ -98,7 +109,10 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	static get styles(): CSSResultGroup {
-		return styles;
+		return [
+			swiperStyles,
+			styles
+		];
 	}
 
 	public getCardSize(): number {
@@ -112,6 +126,27 @@ export class MeteoalarmCard extends LitElement {
 	public firstUpdated(): void {
 		this.measureCard();
 		this.attachObserver();
+		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper')!;
+		this.swiper = new Swiper(swiper, {
+			modules: [Pagination],
+			pagination: {
+				el: swiper.getElementsByClassName('swiper-pagination')[0] as HTMLElement
+			},
+			observer: true
+		});
+		this.swiper.on('transitionEnd', () => {
+			this.updateCurrentEntity();
+		});
+		this.swiper.on('observerUpdate', () => {
+			this.updateCurrentEntity();
+		});
+	}
+
+	// Updates the currentEntity variable
+	private updateCurrentEntity(): void {
+		const slide = this.swiper.slides[this.swiper.realIndex];
+		this.currentEntity = slide.getAttribute('entity_id') as string;
+		console.log(this.currentEntity);
 	}
 
 	private attachObserver() {
@@ -129,34 +164,40 @@ export class MeteoalarmCard extends LitElement {
 		if (!this.isConnected) return;
 		const card = this.shadowRoot!.querySelector('ha-card');
 		if (!card) return;
-		const regular = card.querySelector('.headline-regular') as HTMLElement;
-		const narrow = card.querySelector('.headline-narrow') as HTMLElement;
-		const veryNarrow = card.querySelector('.headline-verynarrow') as HTMLElement;
 
-		// Normal Size
-		regular.style.display = 'flex';
-		narrow.style.display = 'none';
-		veryNarrow.style.display = 'none';
+		// Scale headlines of each swiper card
+		const swiper = card.querySelector('.swiper-wrapper');
+		const slides = swiper?.getElementsByClassName('swiper-slide') as HTMLCollectionOf<HTMLElement>;
+		for(const slide of slides) {
+			const regular = slide.querySelector('.headline-regular') as HTMLElement;
+			const narrow = slide.querySelector('.headline-narrow') as HTMLElement;
+			const veryNarrow = slide.querySelector('.headline-verynarrow') as HTMLElement;
 
-		// Narrow Size
-		if(regular.scrollWidth > regular.clientWidth) {
-			regular.style.display = 'none';
-			narrow.style.display = 'flex';
-			veryNarrow.style.display = 'none';
-		}
-
-		// Very Narrow Size
-		if(narrow.scrollWidth > narrow.clientWidth) {
-			regular.style.display = 'none';
-			narrow.style.display = 'none';
-			veryNarrow.style.display = 'flex';
-		}
-
-		// Only Icon Size
-		if(veryNarrow.scrollWidth > veryNarrow.clientWidth) {
-			regular.style.display = 'none';
+			// Normal Size
+			regular.style.display = 'flex';
 			narrow.style.display = 'none';
 			veryNarrow.style.display = 'none';
+
+			// Narrow Size
+			if(regular.scrollWidth > regular.clientWidth) {
+				regular.style.display = 'none';
+				narrow.style.display = 'flex';
+				veryNarrow.style.display = 'none';
+			}
+
+			// Very Narrow Size
+			if(narrow.scrollWidth > narrow.clientWidth) {
+				regular.style.display = 'none';
+				narrow.style.display = 'none';
+				veryNarrow.style.display = 'flex';
+			}
+
+			// Only Icon Size
+			if(veryNarrow.scrollWidth > veryNarrow.clientWidth) {
+				regular.style.display = 'none';
+				narrow.style.display = 'none';
+				veryNarrow.style.display = 'none';
+			}
 		}
 	}
 
@@ -187,12 +228,13 @@ export class MeteoalarmCard extends LitElement {
 	// This function graters all of the attributes needed for rendering of the card
 	// from the selected integration, sometimes doing additional processing and checks
 	private getEvents(): MeteoalarmAlertParsed[] {
-		// Filter unavailable entities
-		const entities = this.entities.filter(e => {
-			return e.attributes.status || e.attributes.state || e.state !== 'unavailable';
+		// If any entity is unavailable show unavailable card
+		const unavailableEntity = this.entities.find(e => {
+			return (e.attributes.status || e.attributes.state || e.state) === 'unavailable';
 		});
-		if(entities.length === 0) {
+		if(unavailableEntity) {
 			return [{
+				entity: unavailableEntity,
 				icon: 'cloud-question',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
 				headlines: [
@@ -203,7 +245,7 @@ export class MeteoalarmCard extends LitElement {
 		}
 
 		const result: MeteoalarmAlertParsed[] = [];
-		for(const entity of entities) {
+		for(const entity of this.entities) {
 			const active = this.integration.alertActive(entity);
 			if(!active) continue;
 
@@ -246,6 +288,7 @@ export class MeteoalarmCard extends LitElement {
 				}
 
 				result.push({
+					entity: entity,
 					icon: event.icon,
 					color: level.color,
 					headlines: headlines,
@@ -259,6 +302,7 @@ export class MeteoalarmCard extends LitElement {
 		// event parsing even once since every sensor was inactive.
 		if(result.length == 0) {
 			return [{
+				entity: this.entities[0],
 				icon: 'shield-outline',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
 				headlines: [
@@ -298,16 +342,29 @@ export class MeteoalarmCard extends LitElement {
 					})}
 					tabindex="0"
 				>
-					<div class="container" style="background-color: ${events[0].color};">
-							<div class="content">
-								${this.renderMainIcon(events[0].icon)}
-								${this.renderHeadlines(events[0].headlines)}
+					<div class="container">
+						<div class="swiper" id="swiper">
+							<div class="swiper-wrapper">
+								${events.map((event => html`
+									<div
+										class="swiper-slide"
+										style="background-color: ${event.color};"
+										entity_id=${event.entity.entity_id}
+									>
+										<div class="content">
+											${this.renderMainIcon(event.icon)}
+											${this.renderHeadlines(event.headlines)}
+										</div>
+										${event.caption && event.captionIcon ? html`
+											<div class="caption">
+												${this.renderCaption(event.captionIcon, event.caption)}
+											</div>
+										` : ''}
+									</div>
+								`))}
 							</div>
-							${events[0].caption && events[0].captionIcon ? html`
-								<div class="caption">
-									${this.renderCaption(events[0].captionIcon, events[0].caption)}
-								</div>
-							` : ''}
+							<div class="swiper-pagination"></div>
+						</div>
 					</div>
 				</ha-card>
 			`;
@@ -378,7 +435,7 @@ export class MeteoalarmCard extends LitElement {
 	private handleAction(ev: ActionHandlerEvent): void {
 		const config = {
 			...this.config,
-			entity: this.entities[0].entity_id
+			entity: this.currentEntity
 		};
 		if (this.hass && this.config && ev.detail.action) {
 			handleAction(this, this.hass, config, ev.detail.action);

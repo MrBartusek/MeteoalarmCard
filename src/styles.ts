@@ -82,4 +82,15 @@ export default css`
   {
     display: none;
   }
+
+  .swiper {
+    --swiper-pagination-bullet-size: 5px;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #737373;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #ffffff;
+  }
 `;

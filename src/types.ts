@@ -61,6 +61,7 @@ export interface MeteoalarmAlert {
 
 // Event transformed from MeteoalarmEvent used for rendering card
 export interface MeteoalarmAlertParsed {
+  entity: HassEntity,
   icon: string,
   color: string,
   headlines: string[],
