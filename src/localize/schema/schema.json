@@ -22,7 +22,6 @@
                 "description",
                 "warning",
                 "expected",
-                "version",
                 "unavailable"
             ],
             "properties": {
