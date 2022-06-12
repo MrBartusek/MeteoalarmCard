@@ -161,7 +161,7 @@
                     "required": [
                         "start",
                         "current_expected",
-                        "multiple_list",
+                        "slots",
                         "multiple_event",
                         "end"
                     ],
@@ -174,8 +174,8 @@
                             "$id": "#/properties/editor/properties/description/current_expected",
                             "type": ["string", "null"]
                         },
-                        "multiple_list": {
-                            "$id": "#/properties/editor/properties/description/multiple_list",
+                        "slots": {
+                            "$id": "#/properties/editor/properties/description/slots",
                             "type": ["string", "null"]
                         },
                         "multiple_event": {

@@ -43,7 +43,10 @@ export enum MeteoalarmIntegrationEntityType {
   SingleEntity = 0,
   // Alerts in this integration are split across two entities
   // one contains current warnings and another future warnings
-  CurrentExpected = 1
+  CurrentExpected = 1,
+  // Alerts in this integration are split across multiple (probably unlimited amount) of entities
+  // each one contains one warning
+  Slots = 2
 }
 
 export enum MeteoalarmAlertKind {

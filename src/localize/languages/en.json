@@ -31,7 +31,7 @@
     "description": {
       "start": "Selected integration creates multiple entities.",
       "current_expected": "First one with the current events and the second one with future ones.",
-      "multiple_list": "The exact amount of them created is determined by it's configuration.",
+      "slots": "The exact amount of them created is determined by it's configuration.",
       "multiple_event": "Each event has a separate entity.",
       "end": "You should add all of them to make sure you don't miss any alerts."
     },

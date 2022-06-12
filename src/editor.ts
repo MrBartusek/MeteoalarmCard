@@ -78,7 +78,11 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		title=${localize('common.warning')}
 		> ${localize('editor.error.expected_entity')} </ha-alert>
 	` : ''}
-	${integration && ((this._configEntities?.length || 0) > (integration?.metadata.entitiesCount || 0)) ? html`
+	${(
+		integration &&
+		integration?.metadata.entitiesCount > 0 && (
+		(this._configEntities?.length || 0) > (integration?.metadata.entitiesCount || 0)
+		 )) ? html`
 		<ha-alert 
 		alert-type="warning"
 		title=${localize('common.warning')}
@@ -128,6 +132,9 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 			${' '}
 			${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected ? html`
 				${localize('editor.description.current_expected')}</p>
+			` : ''}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.Slots ? html`
+				${localize('editor.description.slots')}</p>
 			` : ''}
 			${' '}
 			${localize('editor.description.end')}

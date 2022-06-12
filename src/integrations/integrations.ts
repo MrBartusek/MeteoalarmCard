@@ -1,12 +1,14 @@
 import Meteoalarm from './meteoalarm';
 import MeteoFrance from './meteofrance';
-import DWDIntegration from './dwd';
+import DWD from './dwd';
 import Weatheralerts from './weatheralerts';
+import NINA from './nina';
 
 const INTEGRATIONS = [
 	Meteoalarm,
 	MeteoFrance,
-	DWDIntegration,
+	DWD,
+	NINA,
 	Weatheralerts
 ];
 

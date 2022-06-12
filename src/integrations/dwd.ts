@@ -16,7 +16,7 @@ type DWDEntity = HassEntity & {
 	}
 }
 
-export default class Meteoalarm implements MeteoalarmIntegration {
+export default class DWD implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
 		return {
 			key: 'dwd',
