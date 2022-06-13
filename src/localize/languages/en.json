@@ -11,7 +11,7 @@
     }
   },
   "error": {
-    "missing_entity": "Specifying entity is required!",
+    "missing_entity": "Specifying entities is required!",
     "invalid_integration": "This integration is not valid!",
     "automatic_failed": "Failed to automatically detect integration!",
     "entity_invalid": {
