@@ -273,8 +273,8 @@ export class MeteoalarmCard extends LitElement {
 		// Push expected events to back of the list
 		alerts = alerts.sort((a, b) => {
 			if(a.kind === undefined) return 0;
-			if(a.kind == MeteoalarmAlertKind.Expected && b.kind == MeteoalarmAlertKind.Current) return -1;
-			else if(a.kind == MeteoalarmAlertKind.Current && b.kind == MeteoalarmAlertKind.Expected) return 1;
+			if(a.kind == MeteoalarmAlertKind.Current && b.kind == MeteoalarmAlertKind.Expected) return -1;
+			else if(a.kind == MeteoalarmAlertKind.Expected && b.kind == MeteoalarmAlertKind.Current) return 1;
 			return 0;
 		});
 
