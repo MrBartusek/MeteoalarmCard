@@ -29,11 +29,11 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	public supports(entity: DWDEntity): boolean {
-		return entity.attributes.attribution == 'Data provided by DWD';
+		return entity.attributes.attribution == 'Data provided by DWD' && this.getEntityKind(entity) !== undefined;
 	}
 
 	public alertActive(entity: DWDEntity): boolean {
-		return entity.attributes.warning_count > 0 && this.getEntityKind(entity) !== undefined;
+		return entity.attributes.warning_count > 0;
 	}
 
 	private get eventTypes(): { [key: number]: MeteoalarmEventType } {
