@@ -28,7 +28,7 @@ const languages: any = {
 export function localize(string: string): string {
 	if(string.toLocaleLowerCase() != string) {
 		// eslint-disable-next-line no-console
-		console.warn(`MeteoalarmCard: Recived invalid translation key: ${string}`);
+		console.warn(`MeteoalarmCard: Received invalid translation key: ${string}`);
 	}
 	string = string.toLocaleLowerCase();
 
