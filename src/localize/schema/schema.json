@@ -157,7 +157,7 @@
                         "start",
                         "current_expected",
                         "slots",
-                        "multiple_event",
+                        "separate_events",
                         "warning_watch_statement",
                         "end"
                     ],
@@ -174,8 +174,8 @@
                             "$id": "#/properties/editor/properties/description/slots",
                             "type": ["string", "null"]
                         },
-                        "multiple_event": {
-                            "$id": "#/properties/editor/properties/description/multiple_event",
+                        "separate_events": {
+                            "$id": "#/properties/editor/properties/description/separate_events",
                             "type": ["string", "null"]
                         },
                         "warning_watch_statement": {

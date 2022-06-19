@@ -52,6 +52,9 @@ export enum MeteoalarmIntegrationEntityType {
   // Watch entity contains orange warnings
   // Statement entity contains yellow warnings
   WarningWatchStatement = 3,
+  // Alerts in this integration are split across multiple entities, count is strictly specified
+  // Each warning is dedicated for one entity kind
+  SeparateEvents = 4
 }
 
 export enum MeteoalarmAlertKind {
