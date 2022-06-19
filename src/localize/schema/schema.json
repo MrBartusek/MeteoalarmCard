@@ -69,7 +69,6 @@
             "required": [
                 "missing_entity",
                 "invalid_integration",
-                "automatic_failed",
                 "entity_invalid"
             ],
             "properties": {
@@ -79,10 +78,6 @@
                 },
                 "invalid_integration": {
                     "$id": "#/properties/error/properties/invalid_integration",
-                    "type": ["string", "null"]
-                },
-                "automatic_failed": {
-                    "$id": "#/properties/error/properties/automatic_failed",
                     "type": ["string", "null"]
                 },
                 "entity_invalid": {
@@ -163,6 +158,7 @@
                         "current_expected",
                         "slots",
                         "multiple_event",
+                        "warning_watch_statement",
                         "end"
                     ],
                     "properties": { 
@@ -180,6 +176,10 @@
                         },
                         "multiple_event": {
                             "$id": "#/properties/editor/properties/description/multiple_event",
+                            "type": ["string", "null"]
+                        },
+                        "warning_watch_statement": {
+                            "$id": "#/properties/editor/properties/description/warning_watch_statement",
                             "type": ["string", "null"]
                         },
                         "end": {

@@ -136,6 +136,9 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 			${integration?.metadata.type == MeteoalarmIntegrationEntityType.Slots ? html`
 				${localize('editor.description.slots')}</p>
 			` : ''}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.WarningWatchStatement ? html`
+				${localize('editor.description.warning_watch_statement')}</p>
+			` : ''}
 			${' '}
 			${localize('editor.description.end')}
 		</p>

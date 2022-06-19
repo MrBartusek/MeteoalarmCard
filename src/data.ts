@@ -37,7 +37,7 @@ export class MeteoalarmData {
 			new MeteoalarmEventInfo(MeteoalarmEventType.Nuclear,         'Nuclear Event',    'radioactive'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Hurricane,       'Hurricane',        'weather-hurricane'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Tornado,         'Tornado',          'weather-tornado'),
-			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Coastal Event',     'waves'), //TODO: Update to tsunami #78
+			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Coastal Event',    'waves'), //TODO: Update to tsunami #78
 			new MeteoalarmEventInfo(MeteoalarmEventType.ForestFire,      'Forest Fire',      'pine-tree-fire'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Avalanches,      'Avalanches',       'image-filter-hdr'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Earthquake,      'Earthquake',       'image-broken-variant'),
@@ -49,6 +49,7 @@ export class MeteoalarmData {
 			new MeteoalarmEventInfo(MeteoalarmEventType.SnowIce,         'Snow/Ice',         'weather-snowy-heavy'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.HighTemperature, 'High Temperature', 'thermometer'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.LowTemperature,  'Low Temperature',  'snowflake'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Dust,            'Dust',             'weather-windy'), // https://github.com/Templarian/MaterialDesign/issues/6658
 			new MeteoalarmEventInfo(MeteoalarmEventType.Wind,            'Wind',             'weather-windy'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Fog,             'Fog',              'weather-fog'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.AirQuality,      'Air Quality',      'air-filter')

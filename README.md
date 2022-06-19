@@ -43,7 +43,7 @@ Here is what configuration options mean:
 | Name                   | Type      | Default      | Description                                                                          |
 | ---------------------- | --------- | ------------ | ------------------------------------------------------------------------------------ |
 | `type`                 | `string`  | **Required** | `custom:meteoalarm-card`                                                             |
-| `integration`          | `string`  | **Required** | Name of the integration. Available options are: <ul><li>`meteoalarm`</li><li>`meteofrance`</li><li>`dwd`</li><li>`weatheralerts`</li></ul> |
+| `integration`          | `string`  | **Required** | Name of the integration. Available options are listed under [Supported integrations](#supported-integrations) |
 | `entities`             | `string`  | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                         |
 | `override_headline`    | `boolean` | `false`      | *[Only some integrations]* Override headline proved by integration by generated one. |
 | `disable_swiper`       | `boolean` | `false`      | *[Only some integrations]* Disable slider when displaying multiple alerts, you may not see some important alerts. |
@@ -93,10 +93,11 @@ This card supports translations. Please, help to add more translations and impro
 
 This card supports many other integrations.
 
-- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) - Core integration for Europe alerts.
-- [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) - Core integration for Météo France alerts.
-- [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) - Core integration for DWD Germany alerts.
-- [weatheralerts](https://github.com/custom-components/weatheralerts) Custom integration for weather.gov USA alerts.
+- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) (`meteoalarm`) - Core integration for alerts in Europe from [MeteoAlarm](https://www.meteoalarm.org) (EUMETNET).
+- [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) (`meteofrance`) - Core integration for alerts in France from [Météo-France](https://meteofrance.com).
+- [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) (`dwd`) - Core integration for alerts in Germany from [Dutscher Wetterdienst](https://www.dwd.de/).
+- [Environnement Canada](https://www.home-assistant.io/integrations/environment_canada/) (`env_canada`) - Core integration for alerts in Canada from [Environment and Climate Change Canada](https://weather.gc.ca/).
+- [weatheralerts](https://github.com/custom-components/weatheralerts) (`weatheralerts`) - Custom integration for alerts in USA from [National Weather Service (NWS)](https://www.weather.gov).
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
 

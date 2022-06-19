@@ -13,7 +13,6 @@
   "error": {
     "missing_entity": "Specifying entities is required!",
     "invalid_integration": "This integration is not valid!",
-    "automatic_failed": "Failed to automatically detect integration!",
     "entity_invalid": {
       "single": "Selected integration doesn't match selected entity.",
       "multiple": "Selected integration doesn't match selected entities: {entity}."
@@ -32,7 +31,8 @@
       "start": "Selected integration creates multiple entities.",
       "current_expected": "First one with the current events and the second one with future ones.",
       "slots": "The exact amount of them created is determined by it's configuration.",
-      "multiple_event": "Each event has a separate entity.",
+      "multiple_event": "Each event kind has a separate entity.",
+      "warning_watch_statement": "There are 3 entities: warnings, watches and statements.",
       "end": "You should add all of them to make sure you don't miss any alerts."
     },
     "error": {

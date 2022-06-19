@@ -46,7 +46,12 @@ export enum MeteoalarmIntegrationEntityType {
   CurrentExpected = 1,
   // Alerts in this integration are split across multiple (probably unlimited amount) of entities
   // each one contains one warning
-  Slots = 2
+  Slots = 2,
+  // Alerts in this integration are split across exactly 3 entities
+  // Warnings entity contains red warnings
+  // Watch entity contains orange warnings
+  // Statement entity contains yellow warnings
+  WarningWatchStatement = 3,
 }
 
 export enum MeteoalarmAlertKind {
@@ -96,6 +101,7 @@ export enum MeteoalarmEventType {
   Wind,
   Fog,
   AirQuality,
+  Dust,
 }
 
 export enum MeteoalarmLevelType {
