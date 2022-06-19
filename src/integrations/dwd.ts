@@ -33,7 +33,7 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	public alertActive(entity: DWDEntity): boolean {
-		return entity.attributes.warning_count > 0;
+		return entity.attributes.warning_count > 0 && this.getEntityKind(entity) !== undefined;
 	}
 
 	private get eventTypes(): { [key: number]: MeteoalarmEventType } {
@@ -107,23 +107,7 @@ export default class DWD implements MeteoalarmIntegration {
 		const { warning_count: warningCount } = entity.attributes;
 
 		const result: MeteoalarmAlert[] = [];
-
-		let kind: MeteoalarmAlertKind | null = null;
-		if(entity.entity_id.split('_').includes('current')) {
-			kind = MeteoalarmAlertKind.Current;
-		}
-		else if(entity.entity_id.split('_').includes('advance')) {
-			kind = MeteoalarmAlertKind.Expected;
-		}
-		else if(entity.attributes.friendly_name?.split(' ').includes('Current')) {
-			kind = MeteoalarmAlertKind.Current;
-		}
-		else if(entity.attributes.friendly_name?.split(' ').includes('Advance')) {
-			kind = MeteoalarmAlertKind.Expected;
-		}
-		else {
-			throw Error('Failed to determine DWD alert kid');
-		}
+		const kind = this.getEntityKind(entity)!;
 
 		for (let i = 1; i < warningCount + 1; i++) {
 			const level = entity.attributes[`warning_${i}_level`];
@@ -153,5 +137,21 @@ export default class DWD implements MeteoalarmIntegration {
 	// Convert DWD scale 1-4 to meteoalarm scale 1-3
 	private convertAwarenessLevel(level: number) {
 		return level == 3 ? 2 : level;
+	}
+
+	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
+		if(entity.entity_id.split('_').includes('current')) {
+			return MeteoalarmAlertKind.Current;
+		}
+		else if(entity.entity_id.split('_').includes('advance')) {
+			return MeteoalarmAlertKind.Expected;
+		}
+		else if(entity.attributes.friendly_name?.split(' ').includes('Current')) {
+			return MeteoalarmAlertKind.Current;
+		}
+		else if(entity.attributes.friendly_name?.split(' ').includes('Advance')) {
+			return MeteoalarmAlertKind.Expected;
+		}
+		return undefined;
 	}
 }
