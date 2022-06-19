@@ -86,7 +86,8 @@ This card supports translations. Please, help to add more translations and impro
 - Polski (Polish)
 - Slovenský (Slovak)
 - Svenska (Swedish)
-- [_Your language?_](./CONTRIBUTING.md#how-to-add-translations)
+- Čeština (Czech)
+- [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Supported integrations
 
