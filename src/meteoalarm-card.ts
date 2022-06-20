@@ -99,8 +99,8 @@ export class MeteoalarmCard extends LitElement {
 		else if (config.entities == undefined || (Array.isArray(config.entities) && config.entities.length == 0)) {
 			throw new Error(localize('error.missing_entity'));
 		}
-		else if (!config.integration == undefined) {
-			throw new Error(localize('error.missing_entity'));
+		else if (config.integration == undefined) {
+			throw new Error(localize('error.invalid_integration'));
 		}
 
 		this.config = {
