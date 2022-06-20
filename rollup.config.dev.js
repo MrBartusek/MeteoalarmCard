@@ -10,30 +10,31 @@ import { ignoreSelectFiles } from './elements/ignore/select';
 import { ignoreSwitchFiles } from './elements/ignore/switch';
 
 export default {
-  input: ['src/meteoalarm-card.ts'],
-  output: {
-    dir: './dist',
-    format: 'es',
-  },
-  plugins: [
-    resolve(),
-    typescript(),
-    json(),
-    babel({
-      exclude: 'node_modules/**',
-    }),
-    terser(),
-    serve({
-      contentBase: './dist',
-      host: '0.0.0.0',
-      port: 5000,
-      allowCrossOrigin: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    }),
-    ignore({
-      files: [...ignoreTextfieldFiles, ...ignoreSelectFiles, ...ignoreSwitchFiles].map((file) => require.resolve(file)),
-    }),
-  ],
+	input: ['src/meteoalarm-card.ts'],
+	output: {
+		dir: './dist',
+		format: 'es',
+		inlineDynamicImports: true
+	},
+	plugins: [
+		resolve(),
+		typescript(),
+		json(),
+		babel({
+			exclude: 'node_modules/**'
+		}),
+		terser(),
+		serve({
+			contentBase: './dist',
+			host: '0.0.0.0',
+			port: 5000,
+			allowCrossOrigin: true,
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			}
+		}),
+		ignore({
+			files: [...ignoreTextfieldFiles, ...ignoreSelectFiles, ...ignoreSwitchFiles].map((file) => require.resolve(file))
+		})
+	]
 };

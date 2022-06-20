@@ -13,37 +13,38 @@ import { ignoreSwitchFiles } from './elements/ignore/switch';
 const dev = process.env.ROLLUP_WATCH;
 
 const serveopts = {
-  contentBase: ['./dist'],
-  host: '0.0.0.0',
-  port: 5000,
-  allowCrossOrigin: true,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
+	contentBase: ['./dist'],
+	host: '0.0.0.0',
+	port: 5000,
+	allowCrossOrigin: true,
+	headers: {
+		'Access-Control-Allow-Origin': '*'
+	}
 };
 
 const plugins = [
-  nodeResolve({}),
-  commonjs(),
-  typescript(),
-  json(),
-  babel({
-    exclude: 'node_modules/**',
-  }),
-  dev && serve(serveopts),
-  !dev && terser(),
-  ignore({
-    files: [...ignoreTextfieldFiles, ...ignoreSelectFiles, ...ignoreSwitchFiles].map((file) => require.resolve(file)),
-  }),
+	nodeResolve({}),
+	commonjs(),
+	typescript(),
+	json(),
+	babel({
+		exclude: 'node_modules/**'
+	}),
+	dev && serve(serveopts),
+	!dev && terser(),
+	ignore({
+		files: [...ignoreTextfieldFiles, ...ignoreSelectFiles, ...ignoreSwitchFiles].map((file) => require.resolve(file))
+	})
 ];
 
 export default [
-  {
-    input: 'src/meteoalarm-card.ts',
-    output: {
-      dir: 'dist',
-      format: 'es',
-    },
-    plugins: [...plugins],
-  },
+	{
+		input: 'src/meteoalarm-card.ts',
+		output: {
+			dir: 'dist',
+			format: 'es',
+			inlineDynamicImports: true
+		},
+		plugins: [...plugins]
+	}
 ];
