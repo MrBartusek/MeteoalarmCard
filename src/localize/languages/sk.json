@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Karta Meteoalarm vás upozorní na aktuálne udalosti počasia.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": "Integrácia nie je k dispozícii",
       "short": "Nedostupné"
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "Je potrebné zadať entitu!",
     "invalid_integration": "Táto integrácia nie je platná!",
-    "automatic_failed": "Automatická detekcia integrácie zlyhala!",
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Entity",
     "integration": "Integrácia",
     "required": "Požadovaný",
-    "automatic": "Automaticky",
     "recommended": "Odporúčané",
     "override_headline": "Prepísať nadpis",
-    "hide_when_no_warning": "Skryť, keď nie sú žiadne upozornenia"
+    "hide_when_no_warning": "Skryť, keď nie sú žiadne upozornenia",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Žiadne upozornenia",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "vietor",
+    "earthquake": null,
     "snow_ice": "sneh/ľad",
-    "thunderstorms": "búrky",
     "fog": "hmla",
-    "hight_temperature": "vysoká teplota",
+    "high_temperature": null,
     "low_temperature": "nízka teplota",
     "coastal_event": "pobrežná udalosť",
+    "sea_event": null,
     "forest_fire": "lesný požiar",
     "avalanches": "lavíny",
+    "thunderstorms": "búrky",
     "rain": "dážď",
     "flooding": null,
-    "rain_flood": "dažďová povodeň"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

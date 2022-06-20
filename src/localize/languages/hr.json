@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card upozorava na trenutne vremenske prilike.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": "Integracija nedostupna",
       "short": "Nedostupno"
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "Potrebno je navesti entitet!",
     "invalid_integration": "Integracija nije ispravna!",
-    "automatic_failed": "Autodetekcija integracije nije uspjela!",
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Entitet",
     "integration": "Integracija",
     "required": "Obavezno",
-    "automatic": "Automatski",
     "recommended": "Preporučeno",
     "override_headline": "Nadjačaj naslov",
-    "hide_when_no_warning": "Sakri kada nema upozorenja"
+    "hide_when_no_warning": "Sakri kada nema upozorenja",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Nema upozorenja",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "vjetar",
+    "earthquake": null,
     "snow_ice": "snijeg/poledicu",
-    "thunderstorms": "grmljavinsku oluju",
     "fog": "maglu",
-    "hight_temperature": "vrućinu",
+    "high_temperature": null,
     "low_temperature": "hladnoću",
     "coastal_event": "obalni događaj",
+    "sea_event": null,
     "forest_fire": "šumski požar",
     "avalanches": "lavinu",
+    "thunderstorms": "grmljavinsku oluju",
     "rain": "kišu",
     "flooding": null,
-    "rain_flood": "bujičnu poplavu"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

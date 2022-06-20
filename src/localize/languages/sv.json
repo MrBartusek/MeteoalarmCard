@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card varnar dig om aktuella väderhändelser.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": null,
       "short": null
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "Det är nödvändigt att ange en enhet!",
     "invalid_integration": "Denna integration är inte giltig!",
-    "automatic_failed": "Misslyckades att automatiskt upptäcka integrationen!",
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Enhet",
     "integration": "Integration",
     "required": "Krävs",
-    "automatic": "Automatisk",
     "recommended": "Rekommenderas",
     "override_headline": "Överrida titel",
-    "hide_when_no_warning": null
+    "hide_when_no_warning": null,
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Inga varningar",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "vind",
+    "earthquake": null,
     "snow_ice": "snö/is",
-    "thunderstorms": "åska",
     "fog": "dimma",
-    "hight_temperature": "hög temperatur",
+    "high_temperature": null,
     "low_temperature": "låg temperatur",
     "coastal_event": "kusthändelse",
+    "sea_event": null,
     "forest_fire": "skogsbrand",
     "avalanches": "laviner",
+    "thunderstorms": "åska",
     "rain": "regn",
     "flooding": null,
-    "rain_flood": "störtfloder"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

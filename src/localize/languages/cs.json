@@ -1,42 +1,65 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm karta zobrazuje aktuální meteorologické výstrahy v okolí.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
-        "long": "Meteoalarm není dostupný",
-        "short": "Není k dispozici"
-      }
+      "long": "Meteoalarm není dostupný",
+      "short": "Není k dispozici"
+    }
   },
   "error": {
     "missing_entity": "Entita je povinná!",
     "invalid_integration": "Integrace není validní!",
-    "automatic_failed": "Automatická detekce integrace selhala!",
-    "entity_invalid": "Entita {entity} nemůže být zpracována integrací {integration}!"
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Entita",
     "integration": "Integrace",
     "required": "Povinné",
-    "automatic": "Automatické",
     "recommended": "Doporučeno",
     "override_headline": "Přepsat nadpis",
-    "hide_when_no_warning": "Skrýt, pokud nejsou žádná varování"
+    "hide_when_no_warning": "Skrýt, pokud nejsou žádná varování",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Žádné varování",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "vítr",
+    "earthquake": null,
     "snow_ice": "sníh/led",
-    "thunderstorms": "bouřky",
     "fog": "mlha",
-    "hight_temperature": "extrémně vysoké teploty",
+    "high_temperature": null,
     "low_temperature": "extrémně nízké teploty",
     "coastal_event": "pobřežní událost",
+    "sea_event": null,
     "forest_fire": "lesní požáry",
     "avalanches": "laviny",
+    "thunderstorms": "bouřky",
     "rain": "déšť",
     "flooding": "povodeň",
-    "rain_flood": "povodeň z dešťě"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

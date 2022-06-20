@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": "La integración no está disponible",
       "short": "No disponible"
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
     "invalid_integration": "¡Esta integración no es válida!",
-    "automatic_failed": "¡No se pudo detectar automáticamente la integración!",
-    "entity_invalid": "¡Esta entidad {entity} no puede ser analizada por la integración {integration} seleccionada!"
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Entidad",
     "integration": "Integración",
     "required": "Necesario",
-    "automatic": "Automático",
     "recommended": "Recomendado",
     "override_headline": "Sobreescribir cabecera",
-    "hide_when_no_warning": "Ocultar cuando no hay avisos"
+    "hide_when_no_warning": "Ocultar cuando no hay avisos",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Sin avisos",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "viento",
+    "earthquake": null,
     "snow_ice": "nieve/hielo",
-    "thunderstorms": "tormentas",
     "fog": "niebla",
-    "hight_temperature": "temperatura máxima",
+    "high_temperature": null,
     "low_temperature": "temperatura mínima",
     "coastal_event": "fenómeno costero",
+    "sea_event": null,
     "forest_fire": "incendios",
     "avalanches": "aludes",
+    "thunderstorms": "tormentas",
     "rain": "lluvia",
     "flooding": "inundación",
-    "rain_flood": "inundación de lluvia"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

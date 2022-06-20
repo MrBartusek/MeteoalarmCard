@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": null,
       "short": null
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
     "invalid_integration": null,
-    "automatic_failed": null,
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": null,
     "integration": null,
     "required": null,
-    "automatic": null,
     "recommended": null,
     "override_headline": null,
-    "hide_when_no_warning": null
+    "hide_when_no_warning": null,
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Nessun allarme",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "vento",
+    "earthquake": null,
     "snow_ice": "neve/ghiaccio",
-    "thunderstorms": "temporali",
     "fog": "nebbia",
-    "hight_temperature": "alte temperature",
+    "high_temperature": null,
     "low_temperature": "basse temperature",
     "coastal_event": "eventi costieri",
+    "sea_event": null,
     "forest_fire": "incendi boschivi",
     "avalanches": "valanghe",
+    "thunderstorms": "temporali",
     "rain": "pioggia",
     "flooding": null,
-    "rain_flood": "acquazzoni"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

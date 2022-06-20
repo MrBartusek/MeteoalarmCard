@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": "Integracja nie jest dostępna",
       "short": "Niedostępny"
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",
     "invalid_integration": "Nieprawidłowa integracja!",
-    "automatic_failed": "Błąd automatycznego wykrywania integracji!",
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Encja",
     "integration": "Integracja",
     "required": "Wymagane",
-    "automatic": "Automatyczne",
     "recommended": "Zalecane",
     "override_headline": "Nadpisz nagłówek",
-    "hide_when_no_warning": "Ukryj kiedy nie ma ostrzeżeń"
+    "hide_when_no_warning": "Ukryj kiedy nie ma ostrzeżeń",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "wiatr",
+    "earthquake": null,
     "snow_ice": "śnieg/oblodzenie",
-    "thunderstorms": "burze",
     "fog": "mgły",
-    "hight_temperature": "upały",
+    "high_temperature": null,
     "low_temperature": "silne mrozy",
     "coastal_event": "zjawiska strefy brzegowej",
+    "sea_event": null,
     "forest_fire": "pożary lasu",
     "avalanches": "lawiny",
+    "thunderstorms": "burze",
     "rain": "deszcz",
     "flooding": "powodzie",
-    "rain_flood": "ulewy"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

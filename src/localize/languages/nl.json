@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": null,
       "short": null
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",
     "invalid_integration": "Deze integratie is niet geldig!",
-    "automatic_failed": null,
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Entiteit",
     "integration": "Integratie",
     "required": "Verplicht",
-    "automatic": "Automatisch",
     "recommended": "Aanbevolen",
     "override_headline": "Koptekst overschrijven",
-    "hide_when_no_warning": null
+    "hide_when_no_warning": null,
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "wind",
+    "earthquake": null,
     "snow_ice": "sneeuw/ijzel/bevriezing",
-    "thunderstorms": "onweer",
     "fog": "mist",
-    "hight_temperature": "hitte",
+    "high_temperature": null,
     "low_temperature": "koude",
     "coastal_event": "kustbedreiging",
+    "sea_event": null,
     "forest_fire": "bos- en heidebranden",
     "avalanches": "lawines",
+    "thunderstorms": "onweer",
     "rain": "regen",
     "flooding": null,
-    "rain_flood": "wateroverlast"
+    "air_quality": null
   },
   "messages": {
     "yellow": {

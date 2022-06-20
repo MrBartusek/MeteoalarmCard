@@ -1,8 +1,10 @@
 {
-  "$schema": "./schema/schema.json",
+  "$schema": "../schema/schema.json",
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
+    "warning": null,
+    "expected": null,
     "unavailable": {
       "long": "Olem pole saadaval",
       "short": "Pole saadaval"
@@ -11,32 +13,53 @@
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
     "invalid_integration": "Meteoalarmi sidumine on vale!",
-    "automatic_failed": "Automaatne sidumine ebaõnnestus",
-    "entity_invalid": null
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
   },
   "editor": {
     "entity": "Olem",
     "integration": "Sidumine",
     "required": "Nõutav",
-    "automatic": "Vaikimisi",
     "recommended": "Soovituslik",
     "override_headline": "Pealdise alistamine",
-    "hide_when_no_warning": "Hoiatuste puudumisel peida kaart"
+    "hide_when_no_warning": "Hoiatuste puudumisel peida kaart",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
     "wind": "tugev tuul",
+    "earthquake": null,
     "snow_ice": "lumi või jää",
-    "thunderstorms": "äike",
     "fog": "udu",
-    "hight_temperature": "kuumalaine",
+    "high_temperature": null,
     "low_temperature": "külmalaine",
     "coastal_event": "rannikumeri",
+    "sea_event": null,
     "forest_fire": "metsapõleng",
     "avalanches": "laviin",
+    "thunderstorms": "äike",
     "rain": "sademed",
     "flooding": null,
-    "rain_flood": "paduvihm"
+    "air_quality": null
   },
   "messages": {
     "yellow": {
