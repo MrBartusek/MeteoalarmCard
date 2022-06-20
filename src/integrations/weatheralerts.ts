@@ -44,7 +44,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 	private get eventTypes(): { [key: string]: MeteoalarmEventType } {
 		return {
 			'Tornado Warning': MeteoalarmEventType.Tornado,
-			'Tsunami Warning': MeteoalarmEventType.CoastalEvent,
+			'Tsunami Warning': MeteoalarmEventType.Tsunami,
 			'Extreme Wind Warning': MeteoalarmEventType.Wind,
 			'Severe Thunderstorm Warning': MeteoalarmEventType.Thunderstorms,
 			'Flash Flood Warning': MeteoalarmEventType.Flooding,
@@ -71,8 +71,8 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'High Wind Warning': MeteoalarmEventType.Wind,
 			'Tropical Storm Warning': MeteoalarmEventType.Thunderstorms,
 			'Storm Warning': MeteoalarmEventType.Thunderstorms,
-			'Tsunami Advisory': MeteoalarmEventType.CoastalEvent,
-			'Tsunami Watch': MeteoalarmEventType.CoastalEvent,
+			'Tsunami Advisory': MeteoalarmEventType.Tsunami,
+			'Tsunami Watch': MeteoalarmEventType.Tsunami,
 			'Avalanche Warning': MeteoalarmEventType.Avalanches,
 			'Earthquake Warning': MeteoalarmEventType.Earthquake,
 			'Volcano Warning': MeteoalarmEventType.Volcano,

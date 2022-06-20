@@ -105,6 +105,7 @@ export enum MeteoalarmEventType {
   Fog,
   AirQuality,
   Dust,
+  Tsunami
 }
 
 export enum MeteoalarmLevelType {

@@ -48,6 +48,7 @@
     "hurricane": "hurricane",
     "wind": "wind",
     "earthquake": "earthquake",
+    "volcano": "volcano",
     "snow_ice": "snow/ice",
     "fog": "fog",
     "high_temperature": "high temperature",
@@ -59,7 +60,8 @@
     "thunderstorms": "thunderstorms",
     "rain": "rain",
     "flooding": "flooding",
-    "air_quality": "air quality"
+    "air_quality": "air quality",
+    "dust": "dust"
   },
   "messages": {
     "yellow": {

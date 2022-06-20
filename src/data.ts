@@ -38,10 +38,11 @@ export class MeteoalarmData {
 			new MeteoalarmEventInfo(MeteoalarmEventType.Hurricane,       'Hurricane',        'weather-hurricane'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Tornado,         'Tornado',          'weather-tornado'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Coastal Event',    'waves'), //TODO: Update to tsunami #78
+			new MeteoalarmEventInfo(MeteoalarmEventType.Tsunami,         'Tsunami',          'waves'), //TODO: Update to tsunami #78
 			new MeteoalarmEventInfo(MeteoalarmEventType.ForestFire,      'Forest Fire',      'pine-tree-fire'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Avalanches,      'Avalanches',       'image-filter-hdr'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Earthquake,      'Earthquake',       'image-broken-variant'),
-			new MeteoalarmEventInfo(MeteoalarmEventType.Volcano,         'Volcanic Activity', 'volcano-outline'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Volcano,         'Volcanic Activity','volcano-outline'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Flooding,        'Flooding',         'home-flood'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.SeaEvent,        'Sea Event',        'ferry'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Thunderstorms,   'Thunderstorms',    'weather-lightning'),

@@ -234,10 +234,12 @@
                 "forest_fire",
                 "avalanches",
                 "earthquake",
+                "volcano",
                 "rain",
                 "flooding",
                 "tornado",
-                "air_quality"
+                "air_quality",
+                "dust"
             ],
             "properties": {
                 "no_warnings": {
@@ -292,12 +294,12 @@
                     "$id": "#/properties/events/properties/avalanches",
                     "type": ["string", "null"]
                 },
-                "volcano": {
-                    "$id": "#/properties/events/properties/volcano",
-                    "type": ["string", "null"]
-                },
                 "earthquake": {
                     "$id": "#/properties/events/properties/earthquake",
+                    "type": ["string", "null"]
+                },
+                "volcano": {
+                    "$id": "#/properties/events/properties/volcano",
                     "type": ["string", "null"]
                 },
                 "rain": {
@@ -314,6 +316,14 @@
                 },
                 "air_quality": {
                     "$id": "#/properties/events/properties/air_quality",
+                    "type": ["string", "null"]
+                },
+                "dust": {
+                    "$id": "#/properties/events/properties/air_quality",
+                    "type": ["string", "null"]
+                },
+                "tsunami": {
+                    "$id": "#/properties/events/properties/tsunami",
                     "type": ["string", "null"]
                 }
             },

@@ -67,7 +67,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			'Storm surge': MeteoalarmEventType.Thunderstorms,
 			'Tornado': MeteoalarmEventType.Tornado,
 			'Tropical storm': MeteoalarmEventType.Hurricane,
-			'Tsunami': MeteoalarmEventType.CoastalEvent,
+			'Tsunami': MeteoalarmEventType.Tsunami,
 			'Weather': MeteoalarmEventType.Unknown,
 			'Wind': MeteoalarmEventType.Wind,
 			'Winter storm': MeteoalarmEventType.SnowIce,
