@@ -32,13 +32,36 @@ export class MeteoalarmLevelInfo {
 
 export class MeteoalarmData {
 	static get events(): MeteoalarmEventInfo[] {
+		// Use tsunami icon only in 2022.06 and up
+		let supportsTsunami = false;
+		try {
+			const rawVersion = (window as any).frontendVersion as string;
+			if(!rawVersion) {
+				supportsTsunami = false;
+				/* eslint-disable-next-line no-console */
+				console.error('MeteoalarmCard: Failed to check HA version! Please report this issue to https://bit.ly/3hK1hL4.');
+			}
+			else {
+				const year = rawVersion.substring(0,4);
+				const version = rawVersion.substring(4,6);
+				supportsTsunami = Number(year) >= 2022 && Number(version) >= 6;
+				/* eslint-disable-next-line no-console */
+				console.log(`MeteoalarmCard: Detected HA version: ${year}.${version} Using tsunami icon: ${supportsTsunami}`);
+			}
+		}
+		catch {
+			/* eslint-disable-next-line no-console */
+			console.error('MeteoalarmCard: Failed to check HA version! Please report this issue to https://bit.ly/3hK1hL4.');
+		}
+		const tsunami = supportsTsunami ? 'tsunami' : 'waves';
+
 		return [
 			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Nuclear,         'Nuclear Event',    'radioactive'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Hurricane,       'Hurricane',        'weather-hurricane'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Tornado,         'Tornado',          'weather-tornado'),
-			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Coastal Event',    'waves'), //TODO: Update to tsunami #78
-			new MeteoalarmEventInfo(MeteoalarmEventType.Tsunami,         'Tsunami',          'waves'), //TODO: Update to tsunami #78
+			new MeteoalarmEventInfo(MeteoalarmEventType.CoastalEvent,    'Coastal Event',     tsunami),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Tsunami,         'Tsunami',           tsunami),
 			new MeteoalarmEventInfo(MeteoalarmEventType.ForestFire,      'Forest Fire',      'pine-tree-fire'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Avalanches,      'Avalanches',       'image-filter-hdr'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Earthquake,      'Earthquake',       'image-broken-variant'),
