@@ -11,6 +11,9 @@ export function processEditorEntities(entities: Array<any> | string | undefined)
 	if(!Array.isArray(entities)) {
 		entities = [ entities ];
 	}
+	if(entities.length > 0 && entities.every(e => e == null)) {
+		return [];
+	}
 	return entities.map((entityConf: any) => {
 		if (typeof entityConf === 'string') {
 			return { entity: entityConf };

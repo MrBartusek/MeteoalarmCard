@@ -7,13 +7,16 @@ export function processConfigEntities(entities: Array<EntityConfig | string> | s
 	if (!Array.isArray(entities)) {
 		entities = [ entities ];
 	}
+	if(entities.length > 0 && entities.every(e => e == null)) {
+		return [];
+	}
 
 	return entities.map(
 		(entityConf, index): any=> {
 			if (
 				typeof entityConf === 'object' &&
-        !Array.isArray(entityConf) &&
-        entityConf.type
+        		!Array.isArray(entityConf) &&
+        		entityConf.type
 			) {
 				return entityConf;
 			}

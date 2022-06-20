@@ -96,7 +96,10 @@ export class MeteoalarmCard extends LitElement {
 		if (!config) {
 			throw new Error(localize('common.invalid_configuration'));
 		}
-		else if (config.entities == undefined || (Array.isArray(config.entities) && config.entities.length == 0)) {
+		else if (
+			config.entities == undefined ||
+			(Array.isArray(config.entities) && config.entities.length == 0) ||
+			(Array.isArray(config.entities) && config.entities.every(e => e == null))) {
 			throw new Error(localize('error.missing_entity'));
 		}
 		else if (config.integration == undefined) {
