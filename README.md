@@ -97,6 +97,7 @@ This card supports many other integrations.
 - [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) (`meteofrance`) - Core integration for alerts in France from [Météo-France](https://meteofrance.com).
 - [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) (`dwd`) - Core integration for alerts in Germany from [Dutscher Wetterdienst](https://www.dwd.de/).
 - [Environnement Canada](https://www.home-assistant.io/integrations/environment_canada/) (`env_canada`) - Core integration for alerts in Canada from [Environment and Climate Change Canada](https://weather.gc.ca/).
+- [Burze.dzis.net](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net) (`burze_dzis_net`) - Custom integration for alerts in Poland from [burze.dzis.net](https://burze.dzis.net).
 - [weatheralerts](https://github.com/custom-components/weatheralerts) (`weatheralerts`) - Custom integration for alerts in USA from [National Weather Service (NWS)](https://www.weather.gov).
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 

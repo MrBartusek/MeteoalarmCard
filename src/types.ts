@@ -26,7 +26,7 @@ export interface MeteoalarmIntegration {
   metadata: MeteoalarmIntegrationMetadata,
   supports(entity: HassEntity): boolean,
   alertActive(entity: HassEntity): boolean,
-  getAlerts(entity: HassEntity): MeteoalarmAlert[],
+  getAlerts(entity: HassEntity): MeteoalarmAlert[] | MeteoalarmAlert,
 }
 
 export interface MeteoalarmIntegrationMetadata {

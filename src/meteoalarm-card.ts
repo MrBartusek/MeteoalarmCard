@@ -249,7 +249,10 @@ export class MeteoalarmCard extends LitElement {
 			const active = this.integration.alertActive(entity);
 			if(!active) continue;
 
-			const entityAlerts = this.integration.getAlerts(entity);
+			let entityAlerts = this.integration.getAlerts(entity);
+			if(!Array.isArray(entityAlerts)) {
+				entityAlerts = [ entityAlerts ];
+			}
 			if(entityAlerts.length == 0) {
 				throw new Error('Integration is active but did not return any events');
 			}
