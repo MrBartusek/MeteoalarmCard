@@ -48,18 +48,21 @@
     "hurricane": null,
     "wind": "tugev tuul",
     "earthquake": null,
+    "volcano": null,
     "snow_ice": "lumi või jää",
     "fog": "udu",
     "high_temperature": null,
     "low_temperature": "külmalaine",
     "coastal_event": "rannikumeri",
+    "tsunami": null,
     "sea_event": null,
     "forest_fire": "metsapõleng",
     "avalanches": "laviin",
     "thunderstorms": "äike",
     "rain": "sademed",
     "flooding": null,
-    "air_quality": null
+    "air_quality": null,
+    "dust": null
   },
   "messages": {
     "yellow": {

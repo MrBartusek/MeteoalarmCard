@@ -48,18 +48,21 @@
     "hurricane": null,
     "wind": "vietor",
     "earthquake": null,
+    "volcano": null,
     "snow_ice": "sneh/ľad",
     "fog": "hmla",
     "high_temperature": null,
     "low_temperature": "nízka teplota",
     "coastal_event": "pobrežná udalosť",
+    "tsunami": null,
     "sea_event": null,
     "forest_fire": "lesný požiar",
     "avalanches": "lavíny",
     "thunderstorms": "búrky",
     "rain": "dážď",
     "flooding": null,
-    "air_quality": null
+    "air_quality": null,
+    "dust": null
   },
   "messages": {
     "yellow": {

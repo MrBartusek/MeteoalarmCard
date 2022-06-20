@@ -48,18 +48,21 @@
     "hurricane": null,
     "wind": "Wind",
     "earthquake": null,
+    "volcano": null,
     "snow_ice": "Schnee/Eis",
     "fog": "Nebel",
     "high_temperature": null,
     "low_temperature": "niedrige Temperatur",
     "coastal_event": "Küstenereignis",
+    "tsunami": null,
     "sea_event": null,
     "forest_fire": "Waldbrand",
     "avalanches": "Lawinen",
     "thunderstorms": "Gewitter",
     "rain": "Regen",
     "flooding": null,
-    "air_quality": null
+    "air_quality": null,
+    "dust": null
   },
   "messages": {
     "yellow": {

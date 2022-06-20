@@ -48,18 +48,21 @@
     "hurricane": null,
     "wind": "wind",
     "earthquake": null,
+    "volcano": null,
     "snow_ice": "sneeuw/ijzel/bevriezing",
     "fog": "mist",
     "high_temperature": null,
     "low_temperature": "koude",
     "coastal_event": "kustbedreiging",
+    "tsunami": null,
     "sea_event": null,
     "forest_fire": "bos- en heidebranden",
     "avalanches": "lawines",
     "thunderstorms": "onweer",
     "rain": "regen",
     "flooding": null,
-    "air_quality": null
+    "air_quality": null,
+    "dust": null
   },
   "messages": {
     "yellow": {

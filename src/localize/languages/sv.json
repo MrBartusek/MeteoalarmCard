@@ -48,18 +48,21 @@
     "hurricane": null,
     "wind": "vind",
     "earthquake": null,
+    "volcano": null,
     "snow_ice": "snö/is",
     "fog": "dimma",
     "high_temperature": null,
     "low_temperature": "låg temperatur",
     "coastal_event": "kusthändelse",
+    "tsunami": null,
     "sea_event": null,
     "forest_fire": "skogsbrand",
     "avalanches": "laviner",
     "thunderstorms": "åska",
     "rain": "regn",
     "flooding": null,
-    "air_quality": null
+    "air_quality": null,
+    "dust": null
   },
   "messages": {
     "yellow": {

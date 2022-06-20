@@ -48,18 +48,21 @@
     "hurricane": null,
     "wind": "vjetar",
     "earthquake": null,
+    "volcano": null,
     "snow_ice": "snijeg/poledicu",
     "fog": "maglu",
     "high_temperature": null,
     "low_temperature": "hladnoću",
     "coastal_event": "obalni događaj",
+    "tsunami": null,
     "sea_event": null,
     "forest_fire": "šumski požar",
     "avalanches": "lavinu",
     "thunderstorms": "grmljavinsku oluju",
     "rain": "kišu",
     "flooding": null,
-    "air_quality": null
+    "air_quality": null,
+    "dust": null
   },
   "messages": {
     "yellow": {
