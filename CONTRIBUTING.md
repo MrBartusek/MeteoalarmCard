@@ -58,6 +58,11 @@ you were working on a issue.
 
 We are currently looking to implement more languages to MeteoalarmCard. If you are able to add or improve translations in language you speak don't hastate to make a PR.
 
+**Notes about current translation keys**
+- `editor.disable_swiper` - If there is not a good translation for *swiper* you can keep this word untranslated.
+- `editor.description` - These keys are used to generate helpful description for users selecting entities. Please make sure they sound correctly in all combinations. The formula is `start + any middle key + end`
+- `editor.description.warning_watch_statement` - If there is not a good translation for words (*warning, watch, statement*) you can keep these words untranslated.
+
 **If you want to improve existing translation:**
 1. Follow the [setup guide](#setup-local-environment) and [contributing guide](#how-to-contribute)
 1. Modify the language file in the `src/localize/languages` directory
