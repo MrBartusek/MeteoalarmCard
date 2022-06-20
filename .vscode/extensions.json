@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "runem.lit-plugin",
+    "bashmish.es6-string-css"
+  ]
+}

@@ -1,0 +1,418 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "required": [
+        "$schema",
+        "common",
+        "error",
+        "editor",
+        "events",
+        "messages"
+    ],
+    "properties": {
+         "$schema": {
+              "$id": "#/properties/%24schema",
+              "type": "string"
+         },
+        "common": {
+            "$id": "#/properties/common",
+            "type": "object",
+            "required": [
+                "name",
+                "description",
+                "warning",
+                "expected",
+                "unavailable"
+            ],
+            "properties": {
+                "name": {
+                    "$id": "#/properties/common/properties/name",
+                    "type": ["string", "null"]
+                },
+                "description": {
+                    "$id": "#/properties/common/description",
+                    "type": ["string", "null"]
+                },
+                "warning": {
+                    "$id": "#/properties/common/warning",
+                    "type": ["string", "null"]
+                },
+                "expected": {
+                    "$id": "#/properties/common/expected",
+                    "type": ["string", "null"]
+                },
+                "unavailable": {
+                    "$id": "#/properties/common/properties/description/unavailable",
+                    "type": "object",
+                    "required": [
+                        "long",
+                        "short"
+                    ],
+                    "properties": {
+                        "long": {
+                            "$id": "#/properties/common/properties/description/unavailable/properties/long",
+                            "type": ["string", "null"]
+                        },
+                        "short": {
+                            "$id": "#/properties/common/properties/description/unavailable/properties/long",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "error": {
+            "$id": "#/properties/error",
+            "type": "object",
+            "required": [
+                "missing_entity",
+                "invalid_integration",
+                "entity_invalid"
+            ],
+            "properties": {
+                "missing_entity": {
+                    "$id": "#/properties/error/properties/missing_entity",
+                    "type": ["string", "null"]
+                },
+                "invalid_integration": {
+                    "$id": "#/properties/error/properties/invalid_integration",
+                    "type": ["string", "null"]
+                },
+                "entity_invalid": {
+                    "$id": "#/properties/common/properties/entity_invalid",
+                    "type": "object",
+                    "required": [
+                        "single",
+                        "multiple"
+                    ],
+                    "properties": { 
+                        "single": {
+                            "$id": "#/properties/error/properties/entity_invalid/single",
+                            "type": ["string", "null"]
+                        },
+                        "multiple": {
+                            "$id": "#/properties/error/properties/entity_invalid/multiple",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "editor": {
+            "$id": "#/properties/editor",
+            "type": "object",
+            "required": [
+                "entity",
+                "integration",
+                "required",
+                "recommended",
+                "override_headline",
+                "hide_when_no_warning",
+                "hide_caption",
+                "disable_swiper",
+                "description",
+                "error"
+            ],
+            "properties": {
+                "entity": {
+                    "$id": "#/properties/editor/properties/entity",
+                    "type": ["string", "null"]
+                },
+                "integration": {
+                    "$id": "#/properties/editor/properties/integration",
+                    "type": ["string", "null"]
+                },
+                "required": {
+                    "$id": "#/properties/editor/properties/required",
+                    "type": ["string", "null"]
+                },
+                "recommended": {
+                    "$id": "#/properties/editor/properties/recommended",
+                    "type": ["string", "null"]
+                },
+                "override_headline": {
+                  "$id": "#/properties/editor/properties/override_headline",
+                  "type": ["string", "null"]
+                },
+                "hide_when_no_warning": {
+                    "$id": "#/properties/editor/properties/hide_when_no_warning",
+                    "type": ["string", "null"]
+                },
+                "hide_caption": {
+                    "$id": "#/properties/editor/properties/hide_caption",
+                    "type": ["string", "null"]
+                },
+                "disable_swiper": {
+                    "$id": "#/properties/editor/properties/disable_swiper",
+                    "type": ["string", "null"]
+                },
+                "description": {
+                    "$id": "#/properties/editor/properties/description",
+                    "type": "object",
+                    "required": [
+                        "start",
+                        "current_expected",
+                        "slots",
+                        "separate_events",
+                        "warning_watch_statement",
+                        "end"
+                    ],
+                    "properties": { 
+                        "start": {
+                            "$id": "#/properties/editor/properties/description/start",
+                            "type": ["string", "null"]
+                        },
+                        "current_expected": {
+                            "$id": "#/properties/editor/properties/description/current_expected",
+                            "type": ["string", "null"]
+                        },
+                        "slots": {
+                            "$id": "#/properties/editor/properties/description/slots",
+                            "type": ["string", "null"]
+                        },
+                        "separate_events": {
+                            "$id": "#/properties/editor/properties/description/separate_events",
+                            "type": ["string", "null"]
+                        },
+                        "warning_watch_statement": {
+                            "$id": "#/properties/editor/properties/description/warning_watch_statement",
+                            "type": ["string", "null"]
+                        },
+                        "end": {
+                            "$id": "#/properties/editor/properties/description/end",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "error": {
+                    "$id": "#/properties/editor/properties/error",
+                    "type": "object",
+                    "required": [
+                        "expected_entity",
+                        "too_many_entities",
+                        "duplicate"
+                    ],
+                    "properties": { 
+                        "expected_entity": {
+                            "$id": "#/properties/editor/properties/error/expected_entity",
+                            "type": ["string", "null"]
+                        },
+                        "too_many_entities": {
+                            "$id": "#/properties/editor/properties/error/too_many_entities",
+                            "type": ["string", "null"]
+                        },
+                        "duplicate": {
+                            "$id": "#/properties/editor/properties/duplicate/",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "events": {
+            "$id": "#/properties/events",
+            "type": "object",
+            "required": [
+                "no_warnings",
+                "nuclear",
+                "hurricane",
+                "wind",
+                "snow_ice",
+                "thunderstorms",
+                "fog",
+                "high_temperature",
+                "low_temperature",
+                "coastal_event",
+                "sea_event",
+                "forest_fire",
+                "avalanches",
+                "earthquake",
+                "volcano",
+                "rain",
+                "flooding",
+                "tornado",
+                "air_quality",
+                "dust"
+            ],
+            "properties": {
+                "no_warnings": {
+                    "$id": "#/properties/events/properties/no_warnings",
+                    "type": ["string", "null"]
+                },
+                "nuclear": {
+                    "$id": "#/properties/events/properties/nuclear",
+                    "type": ["string", "null"]
+                },
+                "hurricane": {
+                    "$id": "#/properties/events/properties/hurricane",
+                    "type": ["string", "null"]
+                },
+                "wind": {
+                    "$id": "#/properties/events/properties/wind",
+                    "type": ["string", "null"]
+                },
+                "snow_ice": {
+                    "$id": "#/properties/events/properties/snow_ice",
+                    "type": ["string", "null"]
+                },
+                "thunderstorms": {
+                    "$id": "#/properties/events/properties/thunderstorms",
+                    "type": ["string", "null"]
+                },
+                "fog": {
+                    "$id": "#/properties/events/properties/fog",
+                    "type": ["string", "null"]
+                },
+                "high_temperature": {
+                    "$id": "#/properties/events/properties/high_temperature",
+                    "type": ["string", "null"]
+                },
+                "low_temperature": {
+                    "$id": "#/properties/events/properties/low_temperature",
+                    "type": ["string", "null"]
+                },
+                "coastal_event": {
+                    "$id": "#/properties/events/properties/coastal_event",
+                    "type": ["string", "null"]
+                },
+                "sea_event": {
+                    "$id": "#/properties/events/properties/sea_event",
+                    "type": ["string", "null"]
+                },
+                "forest_fire": {
+                    "$id": "#/properties/events/properties/forest_fire",
+                    "type": ["string", "null"]
+                },
+                "avalanches": {
+                    "$id": "#/properties/events/properties/avalanches",
+                    "type": ["string", "null"]
+                },
+                "earthquake": {
+                    "$id": "#/properties/events/properties/earthquake",
+                    "type": ["string", "null"]
+                },
+                "volcano": {
+                    "$id": "#/properties/events/properties/volcano",
+                    "type": ["string", "null"]
+                },
+                "rain": {
+                    "$id": "#/properties/events/properties/rain",
+                    "type": ["string", "null"]
+                },
+                "flooding": {
+                    "$id": "#/properties/events/properties/flooding",
+                    "type": ["string", "null"]
+                },
+                "tornado": {
+                    "$id": "#/properties/events/properties/tornado",
+                    "type": ["string", "null"]
+                },
+                "air_quality": {
+                    "$id": "#/properties/events/properties/air_quality",
+                    "type": ["string", "null"]
+                },
+                "dust": {
+                    "$id": "#/properties/events/properties/air_quality",
+                    "type": ["string", "null"]
+                },
+                "tsunami": {
+                    "$id": "#/properties/events/properties/tsunami",
+                    "type": ["string", "null"]
+                }
+            },
+            "additionalProperties": false
+        },
+        "messages": {
+            "$id": "#/properties/messages",
+            "type": "object",
+            "required": [
+                "yellow",
+                "orange",
+                "red"
+            ],
+            "properties": {
+                "yellow": {
+                    "$id": "#/properties/messages/properties/yellow",
+                    "type": "object",
+                    "required": [
+                      "event",
+                      "generic",
+                      "color"
+                  ],
+                  "properties": {
+                      "event": {
+                          "$id": "#/properties/error/properties/messages/event",
+                          "type": ["string", "null"]
+                      },
+                      "generic": {
+                          "$id": "#/properties/error/properties/messages/generic",
+                          "type": ["string", "null"]
+                      },
+                      "color": {
+                          "$id": "#/properties/error/properties/messages/color",
+                          "type": ["string", "null"]
+                      },
+                      "additionalProperties": false
+                    }
+                },
+                "orange": {
+                    "$id": "#/properties/messages/properties/orange",
+                    "type": "object",
+                    "required": [
+                      "event",
+                      "generic",
+                      "color"
+                  ],
+                  "properties": {
+                      "event": {
+                          "$id": "#/properties/error/properties/messages/event",
+                          "type": ["string", "null"]
+                      },
+                      "generic": {
+                          "$id": "#/properties/error/properties/messages/generic",
+                          "type": ["string", "null"]
+                      },
+                      "color": {
+                          "$id": "#/properties/error/properties/messages/color",
+                          "type": ["string", "null"]
+                      },
+                      "additionalProperties": false
+                    }
+                },
+                "red": {
+                    "$id": "#/properties/messages/properties/red",
+                    "type": "object",
+                    "required": [
+                      "event",
+                      "generic",
+                      "color"
+                  ],
+                  "properties": {
+                      "event": {
+                          "$id": "#/properties/error/properties/messages/event",
+                          "type": ["string", "null"]
+                      },
+                      "generic": {
+                          "$id": "#/properties/error/properties/messages/generic",
+                          "type": ["string", "null"]
+                      },
+                      "color": {
+                          "$id": "#/properties/error/properties/messages/color",
+                          "type": ["string", "null"]
+                      },
+                      "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

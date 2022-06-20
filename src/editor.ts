@@ -1,0 +1,305 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { LitElement, html, TemplateResult, css, CSSResultGroup } from 'lit';
+import { HomeAssistant, fireEvent, LovelaceCardEditor, EntityConfig } from 'custom-card-helpers';
+
+import { ScopedRegistryHost } from '@lit-labs/scoped-registry-mixin';
+import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType } from './types';
+import { customElement, property, state } from 'lit/decorators';
+import { formfieldDefinition } from '../elements/formfield';
+import { selectDefinition } from '../elements/select';
+import { switchDefinition } from '../elements/switch';
+import { textfieldDefinition } from '../elements/textfield';
+import { MeteoalarmCard } from './meteoalarm-card';
+import { localize } from './localize/localize';
+import { processEditorEntities } from './process-editor-entities';
+
+@customElement('meteoalarm-card-editor')
+export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implements LovelaceCardEditor {
+  @property({ attribute: false }) public hass?: HomeAssistant;
+  @state() private _config?: MeteoalarmCardConfig;
+  @state() private _helpers?: any;
+  private _initialized = false;
+  @state() private _configEntities?: EntityConfig[];
+
+  static elementDefinitions = {
+  	...textfieldDefinition,
+  	...selectDefinition,
+  	...switchDefinition,
+  	...formfieldDefinition
+  };
+
+  public setConfig(config: MeteoalarmCardConfig): void {
+  	this._config = config;
+  	this._configEntities = processEditorEntities(config.entities!);
+  }
+
+  protected firstUpdated(): void {
+  	this.loadLovelaceElements();
+  }
+
+  protected shouldUpdate(): boolean {
+  	if (!this._initialized) {
+  		this._initialize();
+  	}
+  	return true;
+  }
+
+  get _integration(): string {
+  	return this._config?.integration || '';
+  }
+
+  get _override_headline(): boolean {
+  	return this._config?.override_headline || false;
+  }
+
+  get _hide_when_no_warning(): boolean {
+  	return this._config?.hide_when_no_warning || false;
+  }
+
+  get _hide_caption(): boolean {
+  	return this._config?.hide_caption || false;
+  }
+
+  get _disable_swiper(): boolean {
+  	return this._config?.disable_swiper || false;
+  }
+
+  protected render(): TemplateResult | void {
+  	if (!this.hass) {
+  		return html``;
+  	}
+
+  	const integration = MeteoalarmCard.integrations.find(i => i.metadata.key === this._integration);
+  	return html`
+	<!-- Warnings-->
+	${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected && (this._configEntities?.length || 0) == 1? html`
+		<ha-alert 
+		alert-type="warning"
+		title=${localize('common.warning')}
+		> ${localize('editor.error.expected_entity')} </ha-alert>
+	` : ''}
+	${(
+		integration &&
+		integration?.metadata.entitiesCount > 0 && (
+		(this._configEntities?.length || 0) > (integration?.metadata.entitiesCount || 0)
+		 )) ? html`
+		<ha-alert 
+		alert-type="warning"
+		title=${localize('common.warning')}
+		> ${localize('editor.error.too_many_entities')
+			.replace('{expected}', String(integration?.metadata.entitiesCount || 0))
+			.replace('{got}', String(this._configEntities?.length || 0))
+		}
+		</ha-alert>
+	` : ''}
+	${Array.from(new Set(this._configEntities?.map(x => x.entity))).length != this._configEntities?.length ? html`
+		<ha-alert 
+		alert-type="warning"
+		title=${localize('common.warning')}
+		> ${localize('editor.error.duplicate')} </ha-alert>
+	` : ''}
+
+	  <!-- Integration select -->
+	  <mwc-select
+		naturalMenuWidth
+		fixedMenuPosition
+		label=${`${localize('editor.integration')} (${localize('editor.required')})`}
+		.configValue=${'integration'}
+		.value=${this._integration}
+		@selected=${this._valueChanged}
+		@closed=${(ev) => ev.stopPropagation()}
+	  >
+		${MeteoalarmCard.integrations.map((integration) => {
+		  return html`<mwc-list-item .value=${integration.metadata.key}>${integration.metadata.name}</mwc-list-item>`;
+		})}
+	  </mwc-select>
+
+	  <!-- Entity selector -->
+	  ${integration?.metadata.type == MeteoalarmIntegrationEntityType.SingleEntity ? html`
+	  	<ha-entity-picker
+		  label=${`${localize('editor.entity')} (${localize('editor.required')})`}
+	  	  allow-custom-entity
+		  hideClearIcon
+  		  .hass=${this.hass}
+		  .configValue=${'entities'}
+		  .value=${(this._configEntities?.length || 0) > 0 ? this._configEntities![0].entity : ''} 
+		  @value-changed=${this._valueChanged}
+		></ha-entity-picker>
+	  ` : html`
+		<h3>${localize('editor.entity')} (${localize('editor.required')})</h3>
+		<p>
+			${localize('editor.description.start')}
+			${' '}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected ? html`
+				${localize('editor.description.current_expected')}</p>
+			` : ''}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.Slots ? html`
+				${localize('editor.description.slots')}</p>
+			` : ''}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.WarningWatchStatement ? html`
+				${localize('editor.description.warning_watch_statement')}</p>
+			` : ''}
+			${integration?.metadata.type == MeteoalarmIntegrationEntityType.SeparateEvents ? html`
+				${localize('editor.description.separate_events')}</p>
+			` : ''}
+			${' '}
+			${localize('editor.description.end')}
+		</p>
+
+		<hui-entity-editor
+		  .label=${' '}
+		  .hass=${this.hass}
+		  .entities=${this._configEntities}
+		  @entities-changed=${this._entitiesChanged}
+		></hui-entity-editor>
+	  `}
+	  <!-- Switches section -->
+	  <div class="options">
+		<!-- Disable slider -->
+		${integration?.metadata.returnMultipleAlerts? html`
+		  <mwc-formfield .label=${localize('editor.disable_swiper')}>
+		  <mwc-switch
+			  .checked=${this._disable_swiper !== false}
+			  .configValue=${'disable_swiper'}
+			  @change=${this._valueChanged}
+		  ></mwc-switch>
+		  </mwc-formfield>
+		`: ''}
+
+		<!-- Override headline -->
+		${integration?.metadata.returnHeadline ? html`
+		  <mwc-formfield .label=${localize('editor.override_headline')}>
+		  <mwc-switch
+			  .checked=${this._override_headline !== false}
+			  .configValue=${'override_headline'}
+			  @change=${this._valueChanged}
+		  ></mwc-switch>
+		  </mwc-formfield>
+		`: ''}
+
+		<!-- Hide caption -->
+		${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected? html`
+		  <mwc-formfield .label=${localize('editor.hide_caption')}>
+		  <mwc-switch
+			  .checked=${this._hide_caption !== false}
+			  .configValue=${'hide_caption'}
+			  @change=${this._valueChanged}
+		  ></mwc-switch>
+		  </mwc-formfield>
+		`: ''}
+
+		<!-- Hide when no warning -->
+		<mwc-formfield .label=${localize('editor.hide_when_no_warning')}>
+		<mwc-switch
+			.checked=${this._hide_when_no_warning !== false}
+			.configValue=${'hide_when_no_warning'}
+			@change=${this._valueChanged}
+		></mwc-switch>
+		</mwc-formfield>
+	  </div>
+	`;
+  }
+
+  private _initialize(): void {
+  	if (this.hass === undefined) return;
+  	if (this._config === undefined) return;
+  	if (this._helpers === undefined) return;
+  	this._initialized = true;
+  }
+
+  private async loadLovelaceElements(): Promise<void> {
+  	// This function load card helpers and pre-loads all pre-made
+  	// custom elements from Lovelace like ha-entity-picker
+  	// Read more on why and code explanation:
+  	// Pre-loading elements:
+  	// https://github.com/thomasloven/hass-config/wiki/PreLoading-Lovelace-Elements
+  	// Pre-loading elements in ScopedRegistryHost:
+  	// https://gist.github.com/thomasloven/5f965bd26e5f69876890886c09dd9ba8
+
+  	const registry = (this.shadowRoot as any)?.customElements;
+  	if (!registry) return;
+  	if (registry.get('ha-entity-picker')) return;
+
+  	this._helpers = await (window as any).loadCardHelpers();
+  	const entitiesCard = await this._helpers.createCardElement({ type: 'entities', entities: [] });
+  	await entitiesCard.constructor.getConfigElement();
+  	const glanceCard = await this._helpers.createCardElement({ type: 'glance', entities: [] });
+  	await glanceCard.constructor.getConfigElement();
+
+  	registry.define('ha-entity-picker', window.customElements.get('ha-entity-picker'));
+  	registry.define('hui-entity-editor', window.customElements.get('hui-entity-editor'));
+  	registry.define('ha-alert', window.customElements.get('ha-alert'));
+  }
+
+  private _valueChanged(ev): void {
+  	if (!this._config || !this.hass) {
+  		return;
+  	}
+  	const target = ev.target;
+  	if (this[`_${target.configValue}`] === target.value) {
+  		return;
+  	}
+  	if (target.configValue) {
+  		if (target.value === '') {
+  			const tmpConfig = { ...this._config };
+  			delete tmpConfig[target.configValue];
+  			this._config = tmpConfig;
+  		}
+  		else {
+  			// Set value to config
+  			this._config = {
+  				...this._config,
+  				[target.configValue]: target.checked !== undefined ? target.checked : target.value
+  			};
+
+  			// Convert entity format
+  			this._config = {
+  				...this._config,
+  				entities: processEditorEntities(this._config.entities)
+  			};
+
+  			const integration = MeteoalarmCard.integrations.find(i => i.metadata.key === this._integration);
+  			if(integration?.metadata.type == MeteoalarmIntegrationEntityType.SingleEntity) {
+  				const entities = this._config.entities as  EntityConfig[];
+  				this._config.entities = [entities[0]];
+  			}
+  		}
+  	}
+  	fireEvent(this, 'config-changed', { config: this._config });
+  }
+
+  private _entitiesChanged(ev: CustomEvent): void {
+  	// Change in entities from multiple entities selector
+  	let config = this._config!;
+  	config = { ...config, entities: ev.detail.entities! };
+
+  	this._configEntities = processEditorEntities(this._config!.entities!);
+  	fireEvent(this, 'config-changed', { config });
+  }
+
+  static styles: CSSResultGroup = css`
+	mwc-select,
+	mwc-textfield,
+	ha-entity-picker,
+	hui-entity-editor,
+	ha-alert {
+	  margin-bottom: 16px;
+	  display: block;
+	}
+	mwc-formfield {
+	  padding-bottom: 8px;
+	}
+	mwc-switch {
+	  --mdc-theme-secondary: var(--switch-checked-color);
+	  --mdc-theme-surface: #999999;
+	}
+	.options {
+		display: grid;
+    	grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
+	p {
+		max-width: 600px;
+	}
+  `;
+}

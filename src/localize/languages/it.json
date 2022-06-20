@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Scheda Meteoalarm",
+    "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
+    "warning": null,
+    "expected": null,
+    "unavailable": {
+      "long": null,
+      "short": null
+    }
+  },
+  "error": {
+    "missing_entity": "È necessario specificare un'entità!",
+    "invalid_integration": null,
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
+  },
+  "editor": {
+    "entity": null,
+    "integration": null,
+    "required": null,
+    "recommended": null,
+    "override_headline": null,
+    "hide_when_no_warning": null,
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
+  },
+  "events": {
+    "no_warnings": "Nessun allarme",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
+    "wind": "vento",
+    "earthquake": null,
+    "volcano": null,
+    "snow_ice": "neve/ghiaccio",
+    "fog": "nebbia",
+    "high_temperature": null,
+    "low_temperature": "basse temperature",
+    "coastal_event": "eventi costieri",
+    "tsunami": null,
+    "sea_event": null,
+    "forest_fire": "incendi boschivi",
+    "avalanches": "valanghe",
+    "thunderstorms": "temporali",
+    "rain": "pioggia",
+    "flooding": null,
+    "air_quality": null,
+    "dust": null
+  },
+  "messages": {
+    "yellow": {
+      "event": "Allarme Giallo {event}",
+      "generic": null,
+      "color": null
+    },
+    "orange": {
+      "event": "Allarme Arancione {event}",
+      "generic": null,
+      "color": null
+    },
+    "red": {
+      "event": "Allarme Rosso {event}",
+      "generic": null,
+      "color": null
+    }
+  }
+}

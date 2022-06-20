@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm-Karte",
+    "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
+    "warning": null,
+    "expected": null,
+    "unavailable": {
+      "long": "Integration nicht verfügbar",
+      "short": "Nicht verfügbar"
+    }
+  },
+  "error": {
+    "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
+    "invalid_integration": "Diese Integration ist nicht gültig!",
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
+  },
+  "editor": {
+    "entity": "Entität",
+    "integration": "Integration",
+    "required": "Erforderlich",
+    "recommended": "Empfohlen",
+    "override_headline": "Überschrift ändern",
+    "hide_when_no_warning": "Ausblenden wenn es keine Warnung gibt",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
+  },
+  "events": {
+    "no_warnings": "Keine Warnungen",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
+    "wind": "Wind",
+    "earthquake": null,
+    "volcano": null,
+    "snow_ice": "Schnee/Eis",
+    "fog": "Nebel",
+    "high_temperature": null,
+    "low_temperature": "niedrige Temperatur",
+    "coastal_event": "Küstenereignis",
+    "tsunami": null,
+    "sea_event": null,
+    "forest_fire": "Waldbrand",
+    "avalanches": "Lawinen",
+    "thunderstorms": "Gewitter",
+    "rain": "Regen",
+    "flooding": null,
+    "air_quality": null,
+    "dust": null
+  },
+  "messages": {
+    "yellow": {
+      "event": "Gelbe Warnung: {event}",
+      "generic": "Gelbe Warnung",
+      "color": "Gelb"
+    },
+    "orange": {
+      "event": "Orange Warnung: {event}",
+      "generic": "Orange Warnung",
+      "color": "Orange"
+    },
+    "red": {
+      "event": "Rote Warnung: {event}",
+      "generic": "Rote Warnung",
+      "color": "Rot"
+    }
+  }
+}

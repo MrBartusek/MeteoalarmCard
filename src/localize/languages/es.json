@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Tarjeta Meteoalarm",
+    "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
+    "warning": null,
+    "expected": null,
+    "unavailable": {
+      "long": "La integración no está disponible",
+      "short": "No disponible"
+    }
+  },
+  "error": {
+    "missing_entity": "¡Se requiere especificar la entidad!",
+    "invalid_integration": "¡Esta integración no es válida!",
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
+  },
+  "editor": {
+    "entity": "Entidad",
+    "integration": "Integración",
+    "required": "Necesario",
+    "recommended": "Recomendado",
+    "override_headline": "Sobreescribir cabecera",
+    "hide_when_no_warning": "Ocultar cuando no hay avisos",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
+  },
+  "events": {
+    "no_warnings": "Sin avisos",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
+    "wind": "viento",
+    "earthquake": null,
+    "volcano": null,
+    "snow_ice": "nieve/hielo",
+    "fog": "niebla",
+    "high_temperature": null,
+    "low_temperature": "temperatura mínima",
+    "coastal_event": "fenómeno costero",
+    "tsunami": null,
+    "sea_event": null,
+    "forest_fire": "incendios",
+    "avalanches": "aludes",
+    "thunderstorms": "tormentas",
+    "rain": "lluvia",
+    "flooding": "inundación",
+    "air_quality": null,
+    "dust": null
+  },
+  "messages": {
+    "yellow": {
+      "event": "Alerta amarilla por {event}",
+      "generic": "Alerta amarilla",
+      "color": "Amarillo"
+    },
+    "orange": {
+      "event": "Alerta naranja por {event}",
+      "generic": "Alerta naranja",
+      "color": "Naranja"
+    },
+    "red": {
+      "event": "Alerta roja {event}",
+      "generic": "Alerta roja",
+      "color": "Rojo"
+    }
+  }
+}

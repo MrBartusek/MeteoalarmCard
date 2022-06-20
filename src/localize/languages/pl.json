@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Karta Meteoalarm",
+    "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
+    "warning": "Ostrzeżenie",
+    "expected": "Spodziewane",
+    "unavailable": {
+      "long": "Integracja nie jest dostępna",
+      "short": "Niedostępny"
+    }
+  },
+  "error": {
+    "missing_entity": "Podanie encji jest wymagane!",
+    "invalid_integration": "Nieprawidłowa integracja!",
+    "entity_invalid": {
+      "single": "Wybrana integracja nie opdowiada wybranej encji.",
+      "multiple": "Wybrana integracja nie odpowiada wybranym encjom: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Encja",
+    "integration": "Integracja",
+    "required": "Wymagane",
+    "recommended": "Zalecane",
+    "override_headline": "Nadpisz nagłówek",
+    "hide_when_no_warning": "Ukryj kiedy nie ma ostrzeżeń",
+    "hide_caption": "Ukryj podpis",
+    "disable_swiper": "Wyłacz swiper ostrzeżeń",
+    "description": {
+      "start": "Wybrana integracja tworzy kilka encji.",
+      "current_expected": "Pierwszą z aktualnymi zdarzeniami a drugą z przyszłymi.",
+      "slots": "Dokładna ilość określana jest przez jej konfiguracje.",
+      "separate_events": "Każde ostrzeżenie ma swoją własną encję",
+      "warning_watch_statement": "Tworzone sa 3 encje: warnings, watches i statements.",
+      "end": "Powinieneś dodać wszystkie encje aby mieć pewność że nie przegapisz żadnych ostrzeżeń."
+    },
+    "error": {
+      "expected_entity": "Nie podano encji z przyszłymi zdarzeniami pogodowymi. Pryszłe ostrzeżenia nie bedą pokazywane.",
+      "too_many_entities": "Podano więcej encji niż się spodziewano. Spodziewano: {expected} encji, otrzymano {got} encji.",
+      "duplicate": "Znaleziono duplikaty w liście encji."
+    }
+  },
+  "events": {
+    "no_warnings": "Brak ostrzeżeń",
+    "nuclear": "nuklearne",
+    "tornado": "tornado",
+    "hurricane": "huragan",
+    "wind": "wiatr",
+    "earthquake": "trzęsienie ziemi",
+    "volcano": "aktywność wulkaniczna",
+    "snow_ice": "śnieg/oblodzenie",
+    "fog": "mgły",
+    "high_temperature": "wysoka temperatura",
+    "low_temperature": "silne mrozy",
+    "coastal_event": "zjawiska strefy brzegowej",
+    "tsunami": "tsunami",
+    "sea_event": "wydarzenie na morzu",
+    "forest_fire": "pożary lasu",
+    "avalanches": "lawiny",
+    "thunderstorms": "burze",
+    "rain": "deszcz",
+    "flooding": "powodzie",
+    "air_quality": "jakość powietrza",
+    "dust": "pył"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Żółty alert na {event}",
+      "generic": "Żółty alert",
+      "color": "Żółty"
+    },
+    "orange": {
+      "event": "Pomarańczowy alert na {event}",
+      "generic": "Pomarańczowy alert",
+      "color": "Pomarańczowy"
+    },
+    "red": {
+      "event": "Czerwony alert na {event}",
+      "generic": "Czerwony alert",
+      "color": "Czerwony"
+    }
+  }
+}

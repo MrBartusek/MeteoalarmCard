@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Card",
+    "description": "Meteoalarm card upozorava na trenutne vremenske prilike.",
+    "warning": null,
+    "expected": null,
+    "unavailable": {
+      "long": "Integracija nedostupna",
+      "short": "Nedostupno"
+    }
+  },
+  "error": {
+    "missing_entity": "Potrebno je navesti entitet!",
+    "invalid_integration": "Integracija nije ispravna!",
+    "entity_invalid": {
+      "single": null,
+      "multiple": null
+    }
+  },
+  "editor": {
+    "entity": "Entitet",
+    "integration": "Integracija",
+    "required": "Obavezno",
+    "recommended": "Preporučeno",
+    "override_headline": "Nadjačaj naslov",
+    "hide_when_no_warning": "Sakri kada nema upozorenja",
+    "hide_caption": null,
+    "disable_swiper": null,
+    "description": {
+      "start": null,
+      "current_expected": null,
+      "slots": null,
+      "separate_events": null,
+      "warning_watch_statement": null,
+      "end": null
+    },
+    "error": {
+      "expected_entity": null,
+      "too_many_entities": null,
+      "duplicate": null
+    }
+  },
+  "events": {
+    "no_warnings": "Nema upozorenja",
+    "nuclear": null,
+    "tornado": null,
+    "hurricane": null,
+    "wind": "vjetar",
+    "earthquake": null,
+    "volcano": null,
+    "snow_ice": "snijeg/poledicu",
+    "fog": "maglu",
+    "high_temperature": null,
+    "low_temperature": "hladnoću",
+    "coastal_event": "obalni događaj",
+    "tsunami": null,
+    "sea_event": null,
+    "forest_fire": "šumski požar",
+    "avalanches": "lavinu",
+    "thunderstorms": "grmljavinsku oluju",
+    "rain": "kišu",
+    "flooding": null,
+    "air_quality": null,
+    "dust": null
+  },
+  "messages": {
+    "yellow": {
+      "event": "Žuto upozorenje za {event}",
+      "generic": "Žuto upozorenje",
+      "color": "Žuto"
+    },
+    "orange": {
+      "event": "Narančasto upozorenje za {event}",
+      "generic": "Narančasto upozorenje",
+      "color": "Narančasto"
+    },
+    "red": {
+      "event": "Crveno upozorenje za {event}",
+      "generic": "Crveno upozorenje",
+      "color": "Crveno"
+    }
+  }
+}

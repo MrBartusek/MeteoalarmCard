@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Card",
+    "description": "Meteoalarm card warns you about current weather events.",
+    "warning": "Warning",
+    "expected": "Expected",
+    "unavailable": {
+      "long": "Integration is unavailable",
+      "short": "Unavailable"
+    }
+  },
+  "error": {
+    "missing_entity": "Specifying entities is required!",
+    "invalid_integration": "This integration is not valid!",
+    "entity_invalid": {
+      "single": "Selected integration doesn't match selected entity.",
+      "multiple": "Selected integration doesn't match selected entities: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Entity",
+    "integration": "Integration",
+    "required": "Required",
+    "recommended": "Recommended",
+    "override_headline": "Override headline provided by integration",
+    "hide_when_no_warning": "Hide when there are no warnings",
+    "hide_caption": "Hide caption",
+    "disable_swiper": "Disable alerts swiper",
+    "description": {
+      "start": "Selected integration creates multiple entities.",
+      "current_expected": "First one with the current events and the second one with future ones.",
+      "slots": "The exact amount of them created is determined by it's configuration.",
+      "separate_events": "Each event kind has a separate entity.",
+      "warning_watch_statement": "There are 3 entities: warnings, watches and statements.",
+      "end": "You should add all of them to make sure you don't miss any alerts."
+    },
+    "error": {
+      "expected_entity": "Expected warnings entity haven't been provided. Future event won't be shown.",
+      "too_many_entities": "More entities than expected haven't been provided. Expected {expected} entities, got {got} entities.",
+      "duplicate": "Found duplicates in entities list."
+    }
+  },
+  "events": {
+    "no_warnings": "No warnings",
+    "nuclear": "nuclear event",
+    "tornado": "tornado",
+    "hurricane": "hurricane",
+    "wind": "wind",
+    "earthquake": "earthquake",
+    "volcano": "volcano",
+    "snow_ice": "snow/ice",
+    "fog": "fog",
+    "high_temperature": "high temperature",
+    "low_temperature": "low temperature",
+    "coastal_event": "coastal event",
+    "tsunami": "tsunami",
+    "sea_event": "sea event",
+    "forest_fire": "forest fire",
+    "avalanches": "avalanches",
+    "thunderstorms": "thunderstorms",
+    "rain": "rain",
+    "flooding": "flooding",
+    "air_quality": "air quality",
+    "dust": "dust"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Yellow {event} warning",
+      "generic": "Yellow warning",
+      "color": "Yellow"
+    },
+    "orange": {
+      "event": "Orange {event} warning",
+      "generic": "Orange warning",
+      "color": "Orange"
+    },
+    "red": {
+      "event": "Red {event} warning",
+      "generic": "Red warning",
+      "color": "Red"
+    }
+  }
+}
