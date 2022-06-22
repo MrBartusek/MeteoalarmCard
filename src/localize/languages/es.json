@@ -3,8 +3,8 @@
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
-    "warning": null,
-    "expected": null,
+    "warning": "Aviso",
+    "expected": "Esperado",
     "unavailable": {
       "long": "La integración no está disponible",
       "short": "No disponible"
@@ -14,8 +14,8 @@
     "missing_entity": "¡Se requiere especificar la entidad!",
     "invalid_integration": "¡Esta integración no es válida!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "La integración seleccionada no coincide con la entidad seleccionada.",
+      "multiple": "La integración seleccionada no coincide con las entidades seleccionadas: {entity}."
     }
   },
   "editor": {
@@ -25,44 +25,44 @@
     "recommended": "Recomendado",
     "override_headline": "Sobreescribir cabecera",
     "hide_when_no_warning": "Ocultar cuando no hay avisos",
-    "hide_caption": null,
-    "disable_swiper": null,
+    "hide_caption": "Ocultar título",
+    "disable_swiper": "Deshabilitar el deslizador de alertas",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement": null,
-      "end": null
+      "start": "La integración seleccionada crea múltiples entidades.",
+      "current_expected": "El primero con los eventos actuales y el segundo con los futuros.",
+      "slots": "La cantidad exacta creada está determinada por su configuración.",
+      "separate_events": "Cada tipo de evento tiene una entidad separada.",
+      "warning_watch_statement": "Hay 3 entidades: avisos, alertas y declaraciones.",
+      "end": "Debes agregarlos todos para asegurarte de no perderte ninguna alerta."
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "No se ha proporcionado la entidad de avisos esperada. No se mostrarán futuros eventos.",
+      "too_many_entities": "No se han proporcionado más entidades de las esperadas. Esperaba {expected} entidades, obtuve {obtuve} entidades.",
+      "duplicate": "Encontrados duplicados en la lista de entidades."
     }
   },
   "events": {
     "no_warnings": "Sin avisos",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "evento nuclear",
+    "tornado": "tornado",
+    "hurricane": "huracán",
     "wind": "viento",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "terremoto",
+    "volcano": "volcán",
     "snow_ice": "nieve/hielo",
     "fog": "niebla",
-    "high_temperature": null,
-    "low_temperature": "temperatura mínima",
+    "high_temperature": "alta temperatura",
+    "low_temperature": "baja temperatura",
     "coastal_event": "fenómeno costero",
-    "tsunami": null,
-    "sea_event": null,
-    "forest_fire": "incendios",
+    "tsunami": "tsunami",
+    "sea_event": "evento marino",
+    "forest_fire": "incendio forestal",
     "avalanches": "aludes",
     "thunderstorms": "tormentas",
     "rain": "lluvia",
     "flooding": "inundación",
-    "air_quality": null,
-    "dust": null
+    "air_quality": "calidad del aire",
+    "dust": "polvo"
   },
   "messages": {
     "yellow": {
@@ -76,7 +76,7 @@
       "color": "Naranja"
     },
     "red": {
-      "event": "Alerta roja {event}",
+      "event": "Alerta roja por {event}",
       "generic": "Alerta roja",
       "color": "Rojo"
     }
