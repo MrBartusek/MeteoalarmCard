@@ -9,7 +9,7 @@ import * as es from './languages/es.json';
 import * as sk from './languages/sk.json';
 import * as se from './languages/se.json';
 import * as hr from './languages/hr.json';
-import * as cs from './languages/hr.json';
+import * as cs from './languages/cs.json';
 
 const languages: any = {
 	en: en,

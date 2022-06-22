@@ -3,8 +3,8 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm karta zobrazuje aktuální meteorologické výstrahy v okolí.",
-    "warning": null,
-    "expected": null,
+    "warning": "Varování",
+    "expected": "Očekávané",
     "unavailable": {
       "long": "Meteoalarm není dostupný",
       "short": "Není k dispozici"
@@ -14,8 +14,8 @@
     "missing_entity": "Entita je povinná!",
     "invalid_integration": "Integrace není validní!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "Vybraná integrace se neshoduje s entitou",
+      "multiple": "Vybraná integrace se neshoduje s entitami: {entity}"
     }
   },
   "editor": {
@@ -25,8 +25,8 @@
     "recommended": "Doporučeno",
     "override_headline": "Přepsat nadpis",
     "hide_when_no_warning": "Skrýt, pokud nejsou žádná varování",
-    "hide_caption": null,
-    "disable_swiper": null,
+    "hide_caption": "Skrýt popis",
+    "disable_swiper": "Zakázat swipování",
     "description": {
       "start": null,
       "current_expected": null,
@@ -36,33 +36,33 @@
       "end": null
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "Nenalezena entita. Budoucí události nebudou zobrazeny.",
+      "too_many_entities": "Nalezeno více entit než bylo očekáváno. Očekáváno: {expected} entit, nalezeno {got} entit.",
+      "duplicate": "Nalezeny duplikáty v seznamu entit."
     }
   },
   "events": {
     "no_warnings": "Žádné varování",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "jaderná událost",
+    "tornado": "tornádo",
+    "hurricane": "hurikán",
     "wind": "vítr",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "zemětřesení",
+    "volcano": "sopečná činnost",
     "snow_ice": "sníh/led",
     "fog": "mlha",
-    "high_temperature": null,
+    "high_temperature": "extrémně vysoké teploty",
     "low_temperature": "extrémně nízké teploty",
     "coastal_event": "pobřežní událost",
-    "tsunami": null,
-    "sea_event": null,
+    "tsunami": "tsunami",
+    "sea_event": "mořská událost",
     "forest_fire": "lesní požáry",
     "avalanches": "laviny",
     "thunderstorms": "bouřky",
     "rain": "déšť",
     "flooding": "povodeň",
-    "air_quality": null,
-    "dust": null
+    "air_quality": "kvalita vzduchu",
+    "dust": "pyl"
   },
   "messages": {
     "yellow": {
