@@ -39,7 +39,7 @@ body:
 - type: input
   attributes:
     label: Card version
-    description: Current card version that you are using e.g. 1.1.0 ("latest" is not valid)\
+    description: Current card version that you are using e.g. 1.1.0 ("latest" is not valid)
     placeholder: v1.1.0
   validations:
     required: true
