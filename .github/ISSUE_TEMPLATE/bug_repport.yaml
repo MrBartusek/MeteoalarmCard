@@ -48,9 +48,11 @@ body:
     label: Integration type
     options:
       - Meteoalarm
-      - Deutscher Wetterdienst (DWD)
       - Météo-France
+      - Deutscher Wetterdienst (DWD)
       - weatheralerts (weather.gov)
+      - Environnement Canada
+      - NINA
       - Other
   validations:
     required: true
