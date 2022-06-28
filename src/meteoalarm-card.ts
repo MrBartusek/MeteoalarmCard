@@ -338,7 +338,8 @@ export class MeteoalarmCard extends LitElement {
 
 		// If there are no results that mean above loop didn't trigger
 		// event parsing even once since every sensor was inactive.
-		if(result.length == 0) {
+		// if hide_when_no_warning keep this list empty
+		if(result.length == 0 && !this.config.hide_when_no_warning) {
 			return [{
 				entity: this.entities[0],
 				icon: 'shield-outline',
@@ -371,6 +372,13 @@ export class MeteoalarmCard extends LitElement {
 	protected render(): TemplateResult | void {
 		try {
 			const events = this.getEvents();
+			if(events.length == 0) {
+				// eslint-disable-next-line no-console
+				console.log('MeteoalarmCard: Card is hidden since hide_when_no_warning is enabled and there are no warnings');
+				this.setCardMargin(false);
+				return html``;
+			}
+			this.setCardMargin(true);
 			return html`
 				<ha-card
 					@action=${this.handleAction}
@@ -458,6 +466,12 @@ export class MeteoalarmCard extends LitElement {
 			<span class="caption-text">${caption}</span>
 			<ha-icon class="caption-icon" icon="mdi:${icon}"></ha-icon>
 		`;
+	}
+
+	private setCardMargin(showMargin: boolean): void {
+		const container = this.shadowRoot?.host as HTMLElement;
+		if(!container) return;
+		container.style.margin = showMargin ? '' : '0px';
 	}
 
 	private showError(error: string): TemplateResult {
