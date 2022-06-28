@@ -79,7 +79,7 @@ export interface MeteoalarmAlertParsed {
   icon: string,
   color: string,
   headlines: string[],
-  captionIcon?: string
+  captionIcon?: string,
   caption?: string
 }
 
