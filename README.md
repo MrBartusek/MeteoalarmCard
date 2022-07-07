@@ -1,23 +1,23 @@
 # Meteoalarm Card
 
-[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-default-41BDF5.svg)](https://github.com/hacs/integration) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![LGTM alerts](https://img.shields.io/lgtm/alerts/g/MrBartusek/MeteoalarmCard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrBartusek/MeteoalarmCard/alerts/) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
+[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![LGTM alerts](https://img.shields.io/lgtm/alerts/g/MrBartusek/MeteoalarmCard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrBartusek/MeteoalarmCard/alerts/) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
 
-By default [Home Assistant](https://www.home-assistant.io/) does not provide any card for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/), [DWD](https://www.home-assistant.io/integrations/dwd_weather_warnings/) or [Météo-France](https://www.home-assistant.io/integrations/meteo_france/). This simple card shows you the current active meteorological warnings.
+MeteoalarmCard is a powerful yet simple custom card to show meteorological warnings card for [Home Assistant](https://www.home-assistant.io/). It supports most of the core integrations and custom integrations like [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/), [Météo-France](https://www.home-assistant.io/integrations/meteo_france/), [NINA](https://www.home-assistant.io/integrations/nina/), [DWD](https://www.home-assistant.io/integrations/dwd_weather_warnings/) and [more](#supported-integrations)! When there are any alerts issued, card will change color to let you know about upcoming dangerous conditions.
 
-![cover](https://i.imgur.com/jsLOGIv.png)
+![cover](https://i.imgur.com/esXewN6.png)
 
 ## Installing
 
 ### HACS
 
-We recommend installing meteoalarm card via [Home Assistant Community Store](https://hacs.xyz)
+We recommend installing MeteoalarmCard via [Home Assistant Community Store](https://hacs.xyz)
 
-Just search for `Meteoalarm Card` in `Frontend` tab.
+Just search for `Meteoalarm Card` in `Frontend` tab and hit download.
 
 ### Manual Installation
 
 1. Download `meteoalarm-card.js` file from the [latest release](https://github.com/MrBartusek/MeteoalarmCard/releases/latest).
-2. Put `meteoalarm-card.js` file into your `config/www` folder. You can use _File Editor_ add-on.
+2. Put `meteoalarm-card.js` file into your `config/www` folder. You can use _File Editor_ add-on or any FTP client.
 3. Add reference to `meteoalarm-card.js` in Lovelace. There's two way to do that:
    1. **Using UI:** [Navigate to Lovelace Resources](https://my.home-assistant.io/redirect/lovelace_resources/) → Click Plus button → Set _URL_ as `/local/meteoalarm-card.js` → Set _Resource type_ as `JavaScript Module`.<br>
    **Note:** If you do not see the Resources Tab, you will need to enable _Advanced Mode_ in your [User Profile](https://my.home-assistant.io/redirect/profile/)
@@ -99,7 +99,7 @@ This card supports many other integrations.
 - [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) (`dwd`) - Core integration for alerts in Germany from [Dutscher Wetterdienst](https://www.dwd.de/).
 - [Environnement Canada](https://www.home-assistant.io/integrations/environment_canada/) (`env_canada`) - Core integration for alerts in Canada from [Environment and Climate Change Canada](https://weather.gc.ca/).
 - [NINA](https://www.home-assistant.io/integrations/nina/) (`nina`) - Core integration for alerts in Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe](https://www.bbk.bund.de/).
-- [Burze.dzis.net](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net) (`burze_dzis_net`) - Custom integration for alerts in Poland from [burze.dzis.net](https://burze.dzis.net).
+- [Burze.dzis.net](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net) (`burze_dzis_net`) - Custom integration for alerts in Poland from [Burze.dzis.net](https://burze.dzis.net).
 - [weatheralerts](https://github.com/custom-components/weatheralerts) (`weatheralerts`) - Custom integration for alerts in USA from [National Weather Service (NWS)](https://www.weather.gov).
 - [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
 
