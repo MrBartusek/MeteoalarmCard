@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/schema.json",
   "common": {
-    "name": "Karta Meteoalarm",
+    "name": "Karta Meteoalarmsss",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
     "warning": "Ostrzeżenie",
     "expected": "Spodziewane",
