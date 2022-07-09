@@ -1,2 +1,2 @@
 translation:
-- src/localize/*
+- src/localize/**/*
