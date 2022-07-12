@@ -3,8 +3,8 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Karta Meteoalarm vás upozorní na aktuálne udalosti počasia.",
-    "warning": null,
-    "expected": null,
+    "warning": "Varovanie",
+    "expected": "Očakavanie",
     "unavailable": {
       "long": "Integrácia nie je k dispozícii",
       "short": "Nedostupné"
@@ -14,8 +14,8 @@
     "missing_entity": "Je potrebné zadať entitu!",
     "invalid_integration": "Táto integrácia nie je platná!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "Vybratá integrácia sa nezhoduje s vybratou entitou.",
+      "multiple": "Vybratá integrácia sa nezhoduje s vybratými entitami: {entity}."
     }
   },
   "editor": {
@@ -25,44 +25,44 @@
     "recommended": "Odporúčané",
     "override_headline": "Prepísať nadpis",
     "hide_when_no_warning": "Skryť, keď nie sú žiadne upozornenia",
-    "hide_caption": null,
-    "disable_swiper": null,
+    "hide_caption": "Skryť popis",
+    "disable_swiper": "Zakázať posúvanie upozornení",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement": null,
-      "end": null
+      "start": "Zvolená integrácia vytvára viacero entít.",
+      "current_expected": "Prvý s aktuálnymi udalosťami a druhý s budúcimi",
+      "slots": "Ich presné množstvo je určené jeho konfiguráciou.",
+      "separate_events": "Každý druh udalosti má samostatnú entitu.",
+      "warning_watch_statement": "Existujú 3 entity: varovania, stráženia a vyhlásenia.",
+      "end": "Mali by ste ich pridať všetky, aby ste sa uistili, že vám žiadne upozornenia neuniknú."
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "Nebola poskytnutá entita očakávaných upozornení. Budúca udalosť sa nebude zobrazovať.",
+      "too_many_entities": "Nebolo poskytnutých viac entít, ako sa očakávalo. Očakávaných entít: {expected}, počet entít: {got}.",
+      "duplicate": "V zozname entít sa našli duplikáty."
     }
   },
   "events": {
     "no_warnings": "Žiadne upozornenia",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "jadrová udalosť",
+    "tornado": "tornádo",
+    "hurricane": "hurikán!,
     "wind": "vietor",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "zemetrasenie",
+    "volcano": "sopka",
     "snow_ice": "sneh/ľad",
     "fog": "hmla",
-    "high_temperature": null,
+    "high_temperature": "vysoká teplota",
     "low_temperature": "nízka teplota",
     "coastal_event": "pobrežná udalosť",
-    "tsunami": null,
-    "sea_event": null,
+    "tsunami": "cunami",
+    "sea_event": "námorná udalosť",
     "forest_fire": "lesný požiar",
     "avalanches": "lavíny",
     "thunderstorms": "búrky",
     "rain": "dážď",
-    "flooding": null,
-    "air_quality": null,
-    "dust": null
+    "flooding": "záplavy",
+    "air_quality": "kvalitu ovzdušia",
+    "dust": "peľ"
   },
   "messages": {
     "yellow": {
