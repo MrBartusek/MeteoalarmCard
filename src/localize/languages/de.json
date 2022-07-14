@@ -45,7 +45,7 @@
     "no_warnings": "Keine Warnungen",
     "nuclear": "Nuklear",
     "tornado": "Tornado",
-    "hurricane": "Hurrikan",
+    "hurricane": "Orkan/Hurrikan",
     "wind": "Wind",
     "earthquake": "Erdbeben",
     "volcano": "Vulkanaktivität",
@@ -60,7 +60,7 @@
     "avalanches": "Lawinen",
     "thunderstorms": "Gewitter",
     "rain": "Regen",
-    "flooding": "Flut",
+    "flooding": "Hochwasser/Flut",
     "air_quality": "Luftqualität",
     "dust": "Staub"
   },
