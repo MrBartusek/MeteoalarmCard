@@ -24,19 +24,19 @@
     "required": "Erforderlich",
     "recommended": "Empfohlen",
     "override_headline": "Von der Integration bereitgestellte Überschrift überschreiben",
-    "hide_when_no_warning": "Ausblenden wenn es keine Warnung gibt",
-    "hide_caption": "Zusammenfassung ausblenden",
+    "hide_when_no_warning": "Ausblenden, wenn es keine Warnungen gibt",
+    "hide_caption": "Beschriftung ausblenden",
     "disable_swiper": "Alarm-Swiper deaktiveren",
     "description": {
-      "start": "Ausgewählte Integration erzeugt mehrere Entitäten",
-      "current_expected": "Die erste mit aktuellen Meldungen und die zweite mit zukünftigen Warnungen",
+      "start": "Ausgewählte Integration erzeugt mehrere Entitäten.",
+      "current_expected": "Die erste mit aktuellen, die zweite mit zukünftigen Meldungen.",
       "slots": "Die exakte Anzahl wird durch die Konfiguration bestimmt.",
       "separate_events": "Jeder Ereignistyp erhält eine eigene Entität.",
-      "warning_watch_statement": "Es gibt 3 Entitäten: Warnungen, Beobachtungen und Informationen/Hinweise.",
+      "warning_watch_statement": "Es gibt 3 Entitäten: Warnungen, Beobachtungen und Hinweise/Mitteilungen.",
       "end": "Um keine Warnhinweise zu verpassen, sollten alle ausgewählt werden."
     },
     "error": {
-      "expected_entity": "Erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
+      "expected_entity": "Die erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
       "too_many_entities": "Es wurden mehr Entitäten als erwartet erzeugt. Erwarten wurde(n) {expected}, vorhanden sind {got}.",
       "duplicate": "Doppelte Entitäten in Liste gefunden"
     }
