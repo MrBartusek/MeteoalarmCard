@@ -23,7 +23,7 @@
     "integration": "Integration",
     "required": "Erforderlich",
     "recommended": "Empfohlen",
-    "override_headline": "Überschrift ändern",
+    "override_headline": "Von der Integration bereitgestellte Überschrift überschreiben",
     "hide_when_no_warning": "Ausblenden wenn es keine Warnung gibt",
     "hide_caption": "Zusammenfassung ausblenden",
     "disable_swiper": "Alarm-Swiper deaktiveren",
