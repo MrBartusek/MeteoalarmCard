@@ -3,8 +3,8 @@
   "common": {
     "name": "Meteoalarm-Karte",
     "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
-    "warning": null,
-    "expected": null,
+    "warning": "Warnung",
+    "expected": "Erwartet",
     "unavailable": {
       "long": "Integration nicht verfügbar",
       "short": "Nicht verfügbar"
@@ -14,8 +14,8 @@
     "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
     "invalid_integration": "Diese Integration ist nicht gültig!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "Ausgewählte Integration und Entität passen nicht zusammen.",
+      "multiple": "Ausgewählte Integration passt nicht zu Entitäten: {entity}."
     }
   },
   "editor": {
@@ -23,46 +23,46 @@
     "integration": "Integration",
     "required": "Erforderlich",
     "recommended": "Empfohlen",
-    "override_headline": "Überschrift ändern",
-    "hide_when_no_warning": "Ausblenden wenn es keine Warnung gibt",
-    "hide_caption": null,
-    "disable_swiper": null,
+    "override_headline": "Von der Integration bereitgestellte Überschrift überschreiben",
+    "hide_when_no_warning": "Ausblenden, wenn es keine Warnungen gibt",
+    "hide_caption": "Beschriftung ausblenden",
+    "disable_swiper": "Alarm-Swiper deaktiveren",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement": null,
-      "end": null
+      "start": "Ausgewählte Integration erzeugt mehrere Entitäten.",
+      "current_expected": "Die erste mit aktuellen, die zweite mit zukünftigen Meldungen.",
+      "slots": "Die exakte Anzahl wird durch die Konfiguration bestimmt.",
+      "separate_events": "Jeder Ereignistyp erhält eine eigene Entität.",
+      "warning_watch_statement": "Es gibt 3 Entitäten: Warnungen, Beobachtungen und Hinweise/Mitteilungen.",
+      "end": "Um keine Warnhinweise zu verpassen, sollten alle ausgewählt werden."
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "Die erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
+      "too_many_entities": "Es wurden mehr Entitäten als erwartet erzeugt. Erwarten wurde(n) {expected}, vorhanden sind {got}.",
+      "duplicate": "Doppelte Entitäten in Liste gefunden"
     }
   },
   "events": {
     "no_warnings": "Keine Warnungen",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "Nuklear",
+    "tornado": "Tornado",
+    "hurricane": "Orkan/Hurrikan",
     "wind": "Wind",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "Erdbeben",
+    "volcano": "Vulkanaktivität",
     "snow_ice": "Schnee/Eis",
     "fog": "Nebel",
-    "high_temperature": null,
-    "low_temperature": "niedrige Temperatur",
+    "high_temperature": "Hohe Temperatur",
+    "low_temperature": "Niedrige Temperatur",
     "coastal_event": "Küstenereignis",
-    "tsunami": null,
-    "sea_event": null,
+    "tsunami": "Tsunami",
+    "sea_event": "Meeresereignis",
     "forest_fire": "Waldbrand",
     "avalanches": "Lawinen",
     "thunderstorms": "Gewitter",
     "rain": "Regen",
-    "flooding": null,
-    "air_quality": null,
-    "dust": null
+    "flooding": "Hochwasser/Flut",
+    "air_quality": "Luftqualität",
+    "dust": "Staub"
   },
   "messages": {
     "yellow": {
