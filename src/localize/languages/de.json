@@ -29,11 +29,11 @@
     "disable_swiper": "Alarm-Swiper deaktiveren",
     "description": {
       "start": "Ausgewählte Integration erzeugt mehrere Entitäten",
-      "current_expected": "Die erste mit aktuellen Warnungen, zweite mit zukünftigen Warnungen",
-      "slots": "Die exakte Anzahl wird durch dessen Konfiguration bestimmt",
-      "separate_events": "Jeder Ereignistyp hat eine eigene Entität",
-      "warning_watch_statement": "Es gibt 3 Entitäten: Warnungen, Beobachtungen und Informationen",
-      "end": "Um keine Warnungen zu verpassen, sollten alle ausgewählt werden"
+      "current_expected": "Die erste mit aktuellen Meldungen und die zweite mit zukünftigen Warnungen",
+      "slots": "Die exakte Anzahl wird durch die Konfiguration bestimmt.",
+      "separate_events": "Jeder Ereignistyp erhält eine eigene Entität.",
+      "warning_watch_statement": "Es gibt 3 Entitäten: Warnungen, Beobachtungen und Informationen/Hinweise.",
+      "end": "Um keine Warnhinweise zu verpassen, sollten alle ausgewählt werden."
     },
     "error": {
       "expected_entity": "Erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
