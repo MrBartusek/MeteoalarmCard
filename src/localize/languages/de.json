@@ -14,8 +14,8 @@
     "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
     "invalid_integration": "Diese Integration ist nicht gültig!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "Ausgewählte Integration und Entität passen nicht zusammen.",
+      "multiple": "Ausgewählte Integration passt nicht zu Entitäten: {entity}."
     }
   },
   "editor": {
