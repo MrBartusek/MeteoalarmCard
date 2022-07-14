@@ -36,8 +36,8 @@
       "end": "Um keine Warnungen zu verpassen, sollten alle ausgewählt werden"
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
+      "expected_entity": "Erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
+      "too_many_entities": "Es wurden mehr Entitäten als erwartet erzeugt. Erwarten wurde(n) {expected}, vorhanden sind {got}.",
       "duplicate": "Doppelte Entitäten in Liste gefunden"
     }
   },
