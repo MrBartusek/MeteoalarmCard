@@ -2,9 +2,12 @@
 
 [![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![LGTM alerts](https://img.shields.io/lgtm/alerts/g/MrBartusek/MeteoalarmCard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrBartusek/MeteoalarmCard/alerts/) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
 
-MeteoalarmCard is a powerful yet simple custom card to show severe weather warnings card for [Home Assistant](https://www.home-assistant.io/). It supports most of the core integrations and custom integrations like [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/), [Météo-France](https://www.home-assistant.io/integrations/meteo_france/), [NINA](https://www.home-assistant.io/integrations/nina/), [DWD](https://www.home-assistant.io/integrations/dwd_weather_warnings/) and [more](#supported-integrations)! When there are any alerts issued, card will change color to let you know about upcoming dangerous conditions.
+MeteoalarmCard is a powerful yet simple custom card to show meteorological warnings card for [Home Assistant][ha]. It supports most of the core integrations and custom integrations like [Meteoalarm][meteoalarm], [Météo-France][meteo-france], [NINA][nina], [DWD][dwd] and [more](#supported-integrations)! When there are any alerts issued, card will change color to let you know about upcoming dangerous conditions.
 
 ![cover](https://i.imgur.com/esXewN6.png)
+
+[ha]: https://www.home-assistant.io/
+<!-- Link for integrations are specified in integrations list-->
 
 ## Installing
 
@@ -50,7 +53,7 @@ Here is what configuration options mean:
 | `hide_caption`         | `boolean` | `false`      | *[DWD only]* Hide top-right caption when showing advance alerts.
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 
-Example configuration for [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/):
+Example configuration for [Meteoalarm](meteoalarm):
 
 ```yaml
 type: 'custom:meteoalarm-card'
@@ -59,7 +62,7 @@ entities: 'binary_sensor.meteoalarm'
 override_headline: false
 ```
 
-Example configuration for [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/):
+Example configuration for [Deutscher Wetterdienst (DWD)](dwd):
 
 ```yaml
 type: 'custom:meteoalarm-card'
@@ -94,15 +97,31 @@ This card supports translations. Please, help to add more translations and impro
 
 This card supports many other integrations.
 
-- [Meteoalarm](https://www.home-assistant.io/integrations/meteoalarm/) (`meteoalarm`) - Core integration for alerts in Europe from [MeteoAlarm](https://www.meteoalarm.org) (EUMETNET).
-- [Météo-France](https://www.home-assistant.io/integrations/meteo_france/) (`meteofrance`) - Core integration for alerts in France from [Météo-France](https://meteofrance.com).
-- [Deutscher Wetterdienst (DWD)](https://www.home-assistant.io/integrations/dwd_weather_warnings/) (`dwd`) - Core integration for alerts in Germany from [Dutscher Wetterdienst](https://www.dwd.de/).
-- [Environnement Canada](https://www.home-assistant.io/integrations/environment_canada/) (`env_canada`) - Core integration for alerts in Canada from [Environment and Climate Change Canada](https://weather.gc.ca/).
-- [NINA](https://www.home-assistant.io/integrations/nina/) (`nina`) - Core integration for alerts in Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe](https://www.bbk.bund.de/).
-- [Burze.dzis.net](https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net) (`burze_dzis_net`) - Custom integration for alerts in Poland from [Burze.dzis.net](https://burze.dzis.net).
-- [weatheralerts](https://github.com/custom-components/weatheralerts) (`weatheralerts`) - Custom integration for alerts in USA from [National Weather Service (NWS)](https://www.weather.gov).
-- [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)
+| Integration                         | Key              | Description              |
+| ----------------------------------- | ---------------- | ------------------------ |
+| [Meteoalarm][meteoalarm]            | `meteoalarm`     | Core integration for Europe from [MeteoAlarm][meteoalarm-direct] (EUMETNET). |
+| [Météo-France][meteo-france]        | `meteofrance`    | Core integration for France from [Météo-France][meteo-france-direct]. |
+| [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Core integration for Germany from [Dutscher Wetterdienst][dwd-direct]. |
+| [Environnement Canada][env-canada]  | `env_canada`     | Core integration for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
+| [NINA][nina]                        | `nina`           | Core integration for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct].
+| [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for Poland from [Burze.dzis.net][burze-direct].
+| [weatheralerts][weatheralerts]      | `weatheralerts`  | Custom integration for USA from [National Weather Service (NWS)][weatheralerts-direct]. |
+| [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose) | | [You can request a new integration to be added here!]((https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)) |
 
+[meteoalarm]: https://www.home-assistant.io/integrations/meteoalarm/
+[meteoalarm-direct]: https://www.meteoalarm.org
+[meteo-france]: https://www.home-assistant.io/integrations/meteo_france/
+[meteo-france-direct]: https://meteofrance.com
+[dwd]: https://www.home-assistant.io/integrations/dwd_weather_warnings/
+[dwd-direct]: https://www.dwd.de/
+[env-canada]: https://www.home-assistant.io/integrations/environment_canada/
+[env-canada-direct]: https://weather.gc.ca/
+[nina]: https://www.home-assistant.io/integrations/nina/
+[nina-direct]: https://www.bbk.bund.de/
+[burze]: https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net
+[burze-direct]: https://burze.dzis.net
+[weatheralerts]: https://github.com/custom-components/weatheralerts
+[weatheralerts-direct]: https://www.weather.gov
 
 ## Contributing
 
