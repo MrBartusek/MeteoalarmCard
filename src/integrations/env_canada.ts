@@ -34,10 +34,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 
 	public supports(entity: EnvCanadaEntity): boolean {
 		const isStateNumber = !Number.isNaN(Number(entity.state));
-		return (
-			entity.attributes.attribution == 'Data provided by Environment Canada' &&
-			this.getEntityType(entity) !== undefined &&
-			isStateNumber);
+        const validAttribution = entity.attributes.attribution == 'Data provided by Environment Canada' || entity.attributes.attribution == 'Données fournies par Environnement Canada'
+		return validAttribution && isStateNumber && this.getEntityType(entity) !== undefined;
 	}
 
 	public alertActive(entity: EnvCanadaEntity): boolean {
@@ -70,7 +68,30 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			'Weather': MeteoalarmEventType.Unknown,
 			'Wind': MeteoalarmEventType.Wind,
 			'Winter storm': MeteoalarmEventType.SnowIce,
-			'Special Weather': MeteoalarmEventType.Unknown
+		// From: https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html	
+			'Poussée d’air arctique': MeteoalarmEventType.SnowIce,
+		// Same as English	'Blizzard': MeteoalarmEventType.SnowIce,
+			'Poudrerie': MeteoalarmEventType.SnowIce,
+			'Tempête de poussière': MeteoalarmEventType.Dust,
+			'Froid extrême': MeteoalarmEventType.LowTemperature,
+			'Refroidissement soudain': MeteoalarmEventType.SnowIce,
+			'Brouillard': MeteoalarmEventType.Fog,
+			'Bruine verglaçante': MeteoalarmEventType.SnowIce,
+			'Pluie verglaçante': MeteoalarmEventType.SnowIce,
+			'Gel': MeteoalarmEventType.SnowIce,
+			'Chaleur': MeteoalarmEventType.HighTemperature,
+			'Ouragan': MeteoalarmEventType.Hurricane,
+			'Pluie': MeteoalarmEventType.Rain,
+			'Orage violent': MeteoalarmEventType.Thunderstorms,
+			'Neige': MeteoalarmEventType.SnowIce,
+			'Bourrasques de neige': MeteoalarmEventType.SnowIce,
+			'Onde de tempête': MeteoalarmEventType.Thunderstorms,
+			'Tornade': MeteoalarmEventType.Tornado,
+			'Tempête tropicale': MeteoalarmEventType.Hurricane,
+		// Same as English	'Tsunami': MeteoalarmEventType.Tsunami,
+			'Météorologique': MeteoalarmEventType.Unknown,
+			'Vents': MeteoalarmEventType.Wind,
+			'Tempête hivernale': MeteoalarmEventType.SnowIce,
 		};
 	}
 
