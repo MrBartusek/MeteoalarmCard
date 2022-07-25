@@ -95,16 +95,16 @@ This card supports translations. Please, help to add more translations and impro
 
 ## Supported integrations
 
-This card supports many other integrations.
+Expect Meteoalarm this card supports many other integrations:
 
 | Integration                         | Key              | Description              |
 | ----------------------------------- | ---------------- | ------------------------ |
-| [Meteoalarm][meteoalarm]            | `meteoalarm`     | Core integration for Europe from [MeteoAlarm][meteoalarm-direct] (EUMETNET). |
-| [Météo-France][meteo-france]        | `meteofrance`    | Core integration for France from [Météo-France][meteo-france-direct]. |
-| [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Core integration for Germany from [Dutscher Wetterdienst][dwd-direct]. |
-| [Environnement Canada][env-canada]  | `env_canada`     | Core integration for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
-| [NINA][nina]                        | `nina`           | Core integration for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct].
-| [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for Poland from [Burze.dzis.net][burze-direct].
+| [Meteoalarm][meteoalarm]            | `meteoalarm`     | Warnings for Europe collected by [MeteoAlarm][meteoalarm-direct] (EUMETNET). The website integrates all important severe weather information originating from the official National Public Weather Services across a large number of European countries  |
+| [Météo-France][meteo-france]        | `meteofrance`    | Warnings for France from [Météo-France][meteo-france-direct]. |
+| [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Warnings for Germany from [Dutscher Wetterdienst][dwd-direct]. |
+| [Environnement Canada][env-canada]  | `env_canada`     | Warnings for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
+| [NINA][nina]                        | `nina`           | Warnings for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct]. This integration doesn't provide much atributes thus using it generates very generic card. |
+| [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for warnings in Poland from [Burze.dzis.net][burze-direct]. These warnings are issued by [Skywarn / Polscy Łowcy Burz ](https://lowcyburz.pl) which is not backed by government or any official agency. |
 | [weatheralerts][weatheralerts]      | `weatheralerts`  | Custom integration for USA from [National Weather Service (NWS)][weatheralerts-direct]. |
 | [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose) | | [You can request a new integration to be added here!]((https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)) |
 
