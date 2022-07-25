@@ -49,10 +49,11 @@ body:
     options:
       - Meteoalarm
       - Météo-France
-      - Deutscher Wetterdienst (DWD)
-      - weatheralerts (weather.gov)
       - Environnement Canada
+      - Deutscher Wetterdienst (DWD)
       - NINA
+      - Burze.dzis.net
+      - weatheralerts
       - Other
   validations:
     required: true
