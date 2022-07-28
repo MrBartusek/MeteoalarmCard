@@ -1,4 +1,5 @@
 import { MeteoalarmEventType, MeteoalarmLevelType } from './types';
+import { Util } from './util';
 
 export class MeteoalarmEventInfo {
 	constructor(
@@ -32,28 +33,13 @@ export class MeteoalarmLevelInfo {
 
 export class MeteoalarmData {
 	static get events(): MeteoalarmEventInfo[] {
-		// Use tsunami icon only in 2022.06 and up
-		let supportsTsunami = false;
-		try {
-			const rawVersion = (window as any).frontendVersion as string;
-			if(!rawVersion) {
-				supportsTsunami = false;
-				/* eslint-disable-next-line no-console */
-				console.error('MeteoalarmCard: Failed to check HA version! Please report this issue to https://bit.ly/3hK1hL4.');
-			}
-			else {
-				const year = rawVersion.substring(0,4);
-				const version = rawVersion.substring(4,6);
-				supportsTsunami = Number(year) >= 2022 && Number(version) >= 6;
-				/* eslint-disable-next-line no-console */
-				console.log(`MeteoalarmCard: Detected HA version: ${year}.${version} Using tsunami icon: ${supportsTsunami}`);
-			}
-		}
-		catch {
+		// Use some new icons
+		if(!Util.minHAversion(2022, 8)) {
 			/* eslint-disable-next-line no-console */
-			console.error('MeteoalarmCard: Failed to check HA version! Please report this issue to https://bit.ly/3hK1hL4.');
+			console.warn('MeteoalarmCard: You are using old HA version! Please update to at least 2022.08 for the best experience.');
 		}
-		const tsunami = supportsTsunami ? 'tsunami' : 'waves';
+		const tsunami = Util.minHAversion(2022, 6) ? 'tsunami' : 'waves';
+		const dust = Util.minHAversion(2022, 8) ? 'weather-dust' : 'weather-windy';
 
 		return [
 			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline'),
@@ -73,7 +59,7 @@ export class MeteoalarmData {
 			new MeteoalarmEventInfo(MeteoalarmEventType.SnowIce,         'Snow/Ice',         'weather-snowy-heavy'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.HighTemperature, 'High Temperature', 'thermometer'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.LowTemperature,  'Low Temperature',  'snowflake'),
-			new MeteoalarmEventInfo(MeteoalarmEventType.Dust,            'Dust',             'weather-windy'), // https://github.com/Templarian/MaterialDesign/issues/6658
+			new MeteoalarmEventInfo(MeteoalarmEventType.Dust,            'Dust',              dust),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Wind,            'Wind',             'weather-windy'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Fog,             'Fog',              'weather-fog'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.AirQuality,      'Air Quality',      'air-filter')
