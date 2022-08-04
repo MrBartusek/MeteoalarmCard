@@ -3,8 +3,8 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card upozorava na trenutne vremenske prilike.",
-    "warning": null,
-    "expected": null,
+    "warning": "Upozorenje",
+    "expected": "Očekivano",
     "unavailable": {
       "long": "Integracija nedostupna",
       "short": "Nedostupno"
@@ -14,8 +14,8 @@
     "missing_entity": "Potrebno je navesti entitet!",
     "invalid_integration": "Integracija nije ispravna!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "Odabrana integracija se ne podudara s odabranim entitetom.",
+      "multiple": "Odabrana integracija se ne podudara s odabranim entitetima: {entity}."
     }
   },
   "editor": {
@@ -25,44 +25,44 @@
     "recommended": "Preporučeno",
     "override_headline": "Nadjačaj naslov",
     "hide_when_no_warning": "Sakri kada nema upozorenja",
-    "hide_caption": null,
-    "disable_swiper": null,
+    "hide_caption": "Sakri naslov",
+    "disable_swiper": "Isključi klizač upozorenja",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement": null,
-      "end": null
+      "start": "Odabrana integracija kreirat će više entiteta.",
+      "current_expected": "Prvi s trenutnim događajima, a drugi sa budućim.",
+      "slots": "Točan broj je definiran konfiguracijom.",
+      "separate_events": "Svaki tip događaja ima svoj entitet.",
+      "warning_watch_statement": "Tri vrste entiteta: upozorenja, pretplate i izjave.",
+      "end": "Trebate ih dodati sve kako ne bi propustili niti jedno uzpozorenje."
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "Očekivani entiteti upozorenja nisu pronađeni. Budući događaji neće biti prikazani.",
+      "too_many_entities": "Pronađeno je više entiteta nego je očekivano. Očekivani {expected} entiteti, pronađeni {got} entiteti.",
+      "duplicate": "Pronađeni su dupli entiteti u listi."
     }
   },
   "events": {
     "no_warnings": "Nema upozorenja",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "nuklearni događaj",
+    "tornado": "tornado",
+    "hurricane": "uragan",
     "wind": "vjetar",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "potres",
+    "volcano": "vulkan",
     "snow_ice": "snijeg/poledicu",
     "fog": "maglu",
-    "high_temperature": null,
-    "low_temperature": "hladnoću",
+    "high_temperature": "visoku temperaturu",
+    "low_temperature": "nisku temperaturu",
     "coastal_event": "obalni događaj",
-    "tsunami": null,
-    "sea_event": null,
+    "tsunami": "tsunami",
+    "sea_event": "morski događaj",
     "forest_fire": "šumski požar",
     "avalanches": "lavinu",
     "thunderstorms": "grmljavinsku oluju",
     "rain": "kišu",
-    "flooding": null,
-    "air_quality": null,
-    "dust": null
+    "flooding": "poplavu",
+    "air_quality": "kvalitetu zraka",
+    "dust": "pršinu"
   },
   "messages": {
     "yellow": {
