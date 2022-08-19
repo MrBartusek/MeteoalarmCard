@@ -10,6 +10,7 @@ import * as sk from './languages/sk.json';
 import * as se from './languages/se.json';
 import * as hr from './languages/hr.json';
 import * as cs from './languages/cs.json';
+import * as pt from './languages/pt.json';
 
 const languages: any = {
 	en: en,
@@ -23,7 +24,8 @@ const languages: any = {
 	hr: hr,
 	sk: sk,
 	se: se,
-	cs: cs
+	cs: cs,
+	pt: pt
 };
 export function localize(string: string): string {
 	if(string.toLocaleLowerCase() != string) {
