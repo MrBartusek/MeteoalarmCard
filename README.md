@@ -88,6 +88,7 @@ This card supports translations. Please, help to add more translations and impro
 - Italiano (Italian)
 - Nederlands (Dutch)
 - Polski (Polish)
+- Português (Portuguese)
 - Slovenský (Slovak)
 - Svenska (Swedish)
 
