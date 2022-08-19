@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Cartão Meteoalarm",
+    "description": "O cartão Meteoalarm adverte sobre eventos meteorológicos actuais.",
+    "warning": "Aviso",
+    "expected": "Esperado",
+    "unavailable": {
+      "long": "A integração não está disponível",
+      "short": "Indisponível"
+    }
+  },
+  "error": {
+    "missing_entity": "É necessário especificar a entidade!",
+    "invalid_integration": "A integração não é válida!",
+    "entity_invalid": {
+      "single": "A integração seleccionada não conincide com a entidade seleccionada.",
+      "multiple": "A integração seleccionada não conincide com as entidades seleccionadas: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Entidade",
+    "integration": "Integração",
+    "required": "Necessário",
+    "recommended": "Recomendado",
+    "override_headline": "Modificar cabeçalho",
+    "hide_when_no_warning": "Ocultar quando não há avisos",
+    "hide_caption": "Ocultar título",
+    "disable_swiper": "Desactivar o deslizador de alertas",
+    "description": {
+      "start": "A integração seleccionada cria múltiplas entidades.",
+      "current_expected": "O primeiro com eventos actuais e o segundo com eventos futuros.",
+      "slots": "A quantidade exacta criada é determinada pela sua configuracão.",
+      "separate_events": "Cada tipo de evento tem uma entidade separada.",
+      "warning_watch_statement": "Há 3 entidades: avisos, alertas e declaraçõea.",
+      "end": "Devem ser agregados para não serem perdidos alertas."
+    },
+    "error": {
+      "expected_entity": "Não foi especificada entidade de avisos esperada. Não se irão mostrar eventos futuros.",
+      "too_many_entities": "Foram especificadas mais entidades do que esperado. Esperavam-se {expected} entidades, mas foram especificadas {obtuve} entidades.",
+      "duplicate": "Encontrados duplicados na lista de entidades."
+    }
+  },
+  "events": {
+    "no_warnings": "Sem avisos",
+    "nuclear": "evento nuclear",
+    "tornado": "tornado",
+    "hurricane": "furacão",
+    "wind": "vento",
+    "earthquake": "terremoto",
+    "volcano": "vulcão",
+    "snow_ice": "neve/gelo",
+    "fog": "nevoeiro",
+    "high_temperature": "alta temperatura",
+    "low_temperature": "baixa temperatura",
+    "coastal_event": "fenómeno costeiro",
+    "tsunami": "tsunami",
+    "sea_event": "evento marinho",
+    "forest_fire": "incêndio forestal",
+    "avalanches": "avalanches",
+    "thunderstorms": "trovoadas",
+    "rain": "chuva",
+    "flooding": "inundação",
+    "air_quality": "qualidade do ar",
+    "dust": "pó"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Alerta amarelo por {event}",
+      "generic": "Alerta amarelo",
+      "color": "Amarelo"
+    },
+    "orange": {
+      "event": "Alerta laranja por {event}",
+      "generic": "Alerta laranja",
+      "color": "Laranja"
+    },
+    "red": {
+      "event": "Alerta vermelho por {event}",
+      "generic": "Alerta vermelho",
+      "color": "Vermelho"
+    }
+  }
+}
