@@ -37,7 +37,7 @@
     },
     "error": {
       "expected_entity": "Não foi especificada entidade de avisos esperada. Não se irão mostrar eventos futuros.",
-      "too_many_entities": "Foram especificadas mais entidades do que esperado. Esperavam-se {expected} entidades, mas foram especificadas {obtuve} entidades.",
+      "too_many_entities": "Foram especificadas mais entidades do que esperado. Esperavam-se {expected} entidades, mas foram especificadas {got} entidades.",
       "duplicate": "Encontrados duplicados na lista de entidades."
     }
   },
