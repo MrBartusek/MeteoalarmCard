@@ -30,14 +30,14 @@
     "description": {
       "start": "L'integrazione selezionata crea più entità.",
       "current_expected": "La prima con gli eventi attuali e la seconda con quelli futuri.",
-      "slots": "L'esatta quantità di è determinata dalla sua configurazione.",
+      "slots": "L'esatta quantità è determinata dalla sua configurazione.",
       "separate_events": "Ogni evento ha un'entità propria e separata.",
       "warning_watch_statement": "Esistono 3 entità: avvertenze, considerazioni e avvisi/messaggi.",
-      "end": "Dovreste aggiungerle tutte per essere sicuro di non perdere nessun avviso."
+      "end": "Dovresti aggiungerle tutte per essere sicuro di non perdere nessun avviso."
     },
     "error": {
       "expected_entity": "L'entità di avviso futuro non è stata inserita. Gli eventi futuri non saranno mostrati.",
-      "too_many_entities": "Più entità del previsto non sono state fornite. Entita Previste: {expected}; Entita Ottenute {got} entità.",
+      "too_many_entities": "Più entità del previsto non sono state fornite. Entita previste: {expected}; Entita fornite: {got} entità.",
       "duplicate": "Trovati duplicati nell'elenco delle entità."
     }
   },
@@ -48,20 +48,20 @@
     "hurricane": "Uragani",
     "wind": "Vento",
     "earthquake": "Terremoti",
-    "volcano": "Eruzione Vulcanica",
+    "volcano": "Eruzione vulcanica",
     "snow_ice": "Neve/Ghiaccio",
     "fog": "Nebbia",
-    "high_temperature": "Alte Temperature",
+    "high_temperature": "Alte temperature",
     "low_temperature": "Basse temperature",
-    "coastal_event": "Eventi Costieri",
+    "coastal_event": "Eventi costieri",
     "tsunami": "Tsunami",
-    "sea_event": "Eventi Marini",
-    "forest_fire": "Incendi Boschivi",
+    "sea_event": "Eventi marini",
+    "forest_fire": "Incendi boschivi",
     "avalanches": "Valanghe",
     "thunderstorms": "Temporali",
     "rain": "Pioggia",
     "flooding": "Allagamenti",
-    "air_quality": "Qualità dell'Aria",
+    "air_quality": "Qualità dell'aria",
     "dust": "Tempesta di Sabbia/Polveri"
   },
   "messages": {
