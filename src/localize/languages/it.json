@@ -2,83 +2,83 @@
   "$schema": "../schema/schema.json",
   "common": {
     "name": "Scheda Meteoalarm",
-    "description": "La scheda Meteoalarm ti informa degli eventi meteorologici in corso.",
-    "warning": null,
-    "expected": null,
+    "description": "La scheda Meteoalarm ti avvisa degli eventi meteorologici in corso.",
+    "warning": "Attenzione",
+    "expected": "Previsto",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "L'integrazione non è disponibile",
+      "short": "Non disponibile"
     }
   },
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
-    "invalid_integration": null,
+    "invalid_integration": "Questa integrazione non è valida!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "L'integrazione selezionata non corrisponde all'entità selezionata.",
+      "multiple": "L'integrazione selezionata non corrisponde alle entità selezionate: {entity}."
     }
   },
   "editor": {
-    "entity": null,
-    "integration": null,
-    "required": null,
-    "recommended": null,
-    "override_headline": null,
-    "hide_when_no_warning": null,
-    "hide_caption": null,
-    "disable_swiper": null,
+    "entity": "Entità",
+    "integration": "Integrazione",
+    "required": "Richiesto",
+    "recommended": "Consigliato",
+    "override_headline": "Sovrascrivere l'intestazione fornita dall'integrazione",
+    "hide_when_no_warning": "Nascondi quando non ci sono avvisi",
+    "hide_caption": "Nascondi la descrizione",
+    "disable_swiper": "Disabilità lo swipe delle allerte",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement": null,
-      "end": null
+      "start": "L'integrazione selezionata crea più entità.",
+      "current_expected": "La prima con gli eventi attuali e la seconda con quelli futuri.",
+      "slots": "L'esatta quantità è determinata dalla sua configurazione.",
+      "separate_events": "Ogni evento ha un'entità propria e separata.",
+      "warning_watch_statement": "Esistono 3 entità: avvertenze, considerazioni e avvisi/messaggi.",
+      "end": "Dovresti aggiungerle tutte per essere sicuro di non perdere nessun avviso."
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "L'entità di avviso futuro non è stata inserita. Gli eventi futuri non saranno mostrati.",
+      "too_many_entities": "Più entità del previsto non sono state fornite. Entita previste: {expected}; Entita fornite: {got} entità.",
+      "duplicate": "Trovati duplicati nell'elenco delle entità."
     }
   },
   "events": {
     "no_warnings": "Nessun allarme",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
-    "wind": "vento",
-    "earthquake": null,
-    "volcano": null,
-    "snow_ice": "neve/ghiaccio",
-    "fog": "nebbia",
-    "high_temperature": null,
-    "low_temperature": "basse temperature",
-    "coastal_event": "eventi costieri",
-    "tsunami": null,
-    "sea_event": null,
-    "forest_fire": "incendi boschivi",
-    "avalanches": "valanghe",
-    "thunderstorms": "temporali",
-    "rain": "pioggia",
-    "flooding": null,
-    "air_quality": null,
-    "dust": null
+    "nuclear": "Nucleare",
+    "tornado": "Tornadi",
+    "hurricane": "Uragani",
+    "wind": "Vento",
+    "earthquake": "Terremoti",
+    "volcano": "Eruzione vulcanica",
+    "snow_ice": "Neve/Ghiaccio",
+    "fog": "Nebbia",
+    "high_temperature": "Alte temperature",
+    "low_temperature": "Basse temperature",
+    "coastal_event": "Eventi costieri",
+    "tsunami": "Tsunami",
+    "sea_event": "Eventi marini",
+    "forest_fire": "Incendi boschivi",
+    "avalanches": "Valanghe",
+    "thunderstorms": "Temporali",
+    "rain": "Pioggia",
+    "flooding": "Allagamenti",
+    "air_quality": "Qualità dell'aria",
+    "dust": "Tempesta di Sabbia/Polveri"
   },
   "messages": {
     "yellow": {
-      "event": "Allarme Giallo {event}",
-      "generic": null,
-      "color": null
+      "event": "Allerta Gialla: {event}",
+      "generic": "Allerta Gialla",
+      "color": "Giallo"
     },
     "orange": {
-      "event": "Allarme Arancione {event}",
-      "generic": null,
-      "color": null
+      "event": "Allerta Arancione: {event}",
+      "generic": "Allerta Arancione",
+      "color": "Arancione"
     },
     "red": {
-      "event": "Allarme Rosso {event}",
-      "generic": null,
-      "color": null
+      "event": "Allerta Rossa: {event}",
+      "generic": "Allerta Rossa",
+      "color": "Rosso"
     }
   }
 }
