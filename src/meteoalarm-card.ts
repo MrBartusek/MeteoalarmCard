@@ -237,6 +237,7 @@ export class MeteoalarmCard extends LitElement {
 		});
 		if(unavailableEntity) {
 			return [{
+				isActive: false,
 				entity: unavailableEntity,
 				icon: 'cloud-question',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
@@ -327,6 +328,7 @@ export class MeteoalarmCard extends LitElement {
 			}
 
 			result.push({
+				isActive: true,
 				entity: alert._entity!,
 				icon: event.icon,
 				color: level.color,
@@ -341,6 +343,7 @@ export class MeteoalarmCard extends LitElement {
 		// if hide_when_no_warning keep this list empty
 		if(result.length == 0 && !this.config.hide_when_no_warning) {
 			return [{
+				isActive: false,
 				entity: this.entities[0],
 				icon: 'shield-outline',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
@@ -394,7 +397,7 @@ export class MeteoalarmCard extends LitElement {
 								${events.map((event => html`
 									<div
 										class="swiper-slide"
-										style="background-color: ${event.color};"
+										style="background-color: ${event.color}; color: ${event.isActive ? '#fff' : 'inherit'}"
 										entity_id=${event.entity.entity_id}
 									>
 										<div class="content">
