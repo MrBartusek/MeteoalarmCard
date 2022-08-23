@@ -42,6 +42,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	public alertActive(entity: MeteoalarmEntity): boolean {
+		return true;
 		return (entity.attributes.status || entity.attributes.state || entity.state) != 'off';
 	}
 
@@ -81,41 +82,11 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	public getAlerts(entity: MeteoalarmEntity): MeteoalarmAlert[] {
-		const {
-			event: eventHeadline,
-			headline,
-			severity,
-			awareness_type: awarenessType,
-			awareness_level: awarenessLevel
-		} = entity.attributes;
-
-		let event: MeteoalarmEventType | undefined;
-		let level: MeteoalarmLevelType | undefined;
-
-		if(awarenessType != undefined) {
-			event = this.eventTypes[Number(awarenessType.split(';')[0]) - 1];
-		}
-
-		if(awarenessLevel != undefined) {
-			let levelID = Number(awarenessLevel.split(';')[0]);
-			if(levelID == 1) {
-				// Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
-				levelID = 2;
-			}
-			level = levelID - 1 as MeteoalarmLevelType;
-		}
-
-		if(level === undefined && severity !== undefined) {
-			level = this.getLevelBySeverity(severity);
-		}
-		if(level === undefined) {
-			throw new Error('Failed to determine alert level. awareness_level nor severity are provided');
-		}
-
+		entity;
 		return [{
-			headline: eventHeadline || headline,
-			level: level,
-			event: event || MeteoalarmEventType.Unknown
-		}];
+			level: MeteoalarmLevelType.Orange,
+			event: MeteoalarmEventType.AirQuality
+		}
+		];
 	}
 }
