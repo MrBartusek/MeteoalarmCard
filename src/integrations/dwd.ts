@@ -136,7 +136,7 @@ export default class DWD implements MeteoalarmIntegration {
 
 	// Convert DWD scale 1-4 to meteoalarm scale 1-3
 	private convertAwarenessLevel(level: number) {
-		return level == 3 ? 2 : level;
+		return level == 4 ? 3 : level;
 	}
 
 	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
