@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Card",
+    "description": "Meteoalarm card varnar dig om aktuella väderhändelser.",
+    "warning": "Varning",
+    "expected": "förväntad",
+    "unavailable": {
+      "long": "Integrationen är inte tillgänglig",
+      "short": "Inte tillgänglig"
+    }
+  },
+  "error": {
+    "missing_entity": "Det är nödvändigt att ange en enhet!",
+    "invalid_integration": "Denna integration är inte giltig!",
+    "entity_invalid": {
+      "single": "Den valda integrationen matchar inte den valda enheten.",
+      "multiple": "Den valda integrationen matchar inte de valda enheterna: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Enhet",
+    "integration": "Integration",
+    "required": "Krävs",
+    "recommended": "Rekommenderas",
+    "override_headline": "Överrida titel",
+    "hide_when_no_warning": "Göm när det inte finns några varningar",
+    "hide_caption": "Dölj bildtext",
+    "disable_swiper": null,
+    "description": {
+      "start": "Vald integration skapar flera enheter.",
+      "current_expected": "Första med nuvarande händelser och andra med framtida händelser.",
+      "slots": "Den exakta mängden av dem som skapas bestäms av dess konfiguration.",
+      "separate_events": "Varje evenemangstyp har en enskild enhet.",
+      "warning_watch_statement": "Det finns 3 enheter: varningar, bevakningar och uttalanden",
+      "end": "Du bör lägga till samtliga för att inte missa några varningar."
+    },
+    "error": {
+      "expected_entity": "Förväntad enhet för varningar har inte tilldelats. Framtida event kommer inte visas.",
+      "too_many_entities": "Fler enheter än förväntat har inte tilldelats. Förväntade {expected} entiteter, fick {got} enheter",
+      "duplicate": "Hittade dupplicerade enheter i listan"
+    }
+  },
+  "events": {
+    "no_warnings": "Inga varningar",
+    "nuclear": "nukleär",
+    "tornado": "tornado",
+    "hurricane": "orkan",
+    "wind": "vind",
+    "earthquake": "jordbävning",
+    "volcano": "vulkan",
+    "snow_ice": "snö/is",
+    "fog": "dimma",
+    "high_temperature": "hög temperatur",
+    "low_temperature": "låg temperatur",
+    "coastal_event": "kusthändelse",
+    "tsunami": "flodvåg",
+    "sea_event": null,
+    "forest_fire": "skogsbrand",
+    "avalanches": "laviner",
+    "thunderstorms": "åska",
+    "rain": "regn",
+    "flooding": "översvämning",
+    "air_quality": "luftkvalitet",
+    "dust": null
+  },
+  "messages": {
+    "yellow": {
+      "event": "Gul varning för {event}",
+      "generic": "Gul varning",
+      "color": "Gul"
+    },
+    "orange": {
+      "event": "Orange varning för {event}",
+      "generic": "Orange varning",
+      "color": "Orange"
+    },
+    "red": {
+      "event": "Röd varning för {event}",
+      "generic": "Röd varning",
+      "color": "Röd"
+    }
+  }
+}
