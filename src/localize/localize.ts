@@ -23,7 +23,7 @@ const languages: any = {
 	es: es,
 	hr: hr,
 	sk: sk,
-	se: se,
+	sv: sv,
 	cs: cs,
 	pt: pt
 };
