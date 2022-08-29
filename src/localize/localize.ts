@@ -7,7 +7,7 @@ import * as pl from './languages/pl.json';
 import * as et from './languages/et.json';
 import * as es from './languages/es.json';
 import * as sk from './languages/sk.json';
-import * as se from './languages/se.json';
+import * as sv from './languages/sv.json';
 import * as hr from './languages/hr.json';
 import * as cs from './languages/cs.json';
 import * as pt from './languages/pt.json';
