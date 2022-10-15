@@ -15,10 +15,13 @@ type EnvCanadaEntity = HassEntity & {
 }
 
 export enum EnvCanadaEntityType {
-	Warning = 'Warning',
-	Watch = 'Watch',
-	Statement = 'Statement'
-  }
+	Warning,
+	Watch,
+	Statement
+}
+
+const ATTRIBUTION_EN = 'Data provided by Environment Canada';
+const ATTRIBUTION_FR = 'Données fournies par Environnement Canada';
 
 export default class EnvironmentCanada implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
@@ -35,10 +38,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 	public supports(entity: EnvCanadaEntity): boolean {
 		const isStateNumber = !Number.isNaN(Number(entity.state));
 		return (
-			entity.attributes.attribution in [
-				'Données fournies par Environnement Canada',
-				'Data provided by Environment Canada'
-			] &&
+			[ATTRIBUTION_EN, ATTRIBUTION_FR].includes(entity.attributes.attribution) &&
 			this.getEntityType(entity) !== undefined &&
 			isStateNumber);
 	}
@@ -174,6 +174,48 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		];
 	}
 
+	private get entityTypeTranslation(): {en: string, fr: string, type: EnvCanadaEntityType }[] {
+		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
+		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
+		return [
+			{
+				type: EnvCanadaEntityType.Warning,
+				en: 'Warning',
+				fr: 'Avertissement De'
+			},
+			{
+				type: EnvCanadaEntityType.Statement,
+				en: 'Statement',
+				fr: ''
+			},
+			{
+				type: EnvCanadaEntityType.Watch,
+				en: 'Watch',
+				fr: ''
+			}
+		];
+	}
+
+	/**
+	 * Alert name in the integration are combined event type
+	 * and sensor from which it was sent like:
+	 * Wind + Warning = Wind Warning
+	 * This transforms this back to event type
+	 */
+	private praseAlertName(alertName: string, type: EnvCanadaEntityType, isFrench: boolean) {
+		const prefixTranslation = this.entityTypeTranslation.find(t => t.type == type)!;
+		const prefix = isFrench ? prefixTranslation.fr : prefixTranslation.en;
+		if(!alertName.includes(prefix)) throw new Error(`Translated event prefix was not found. (isFrench=${isFrench})`);
+		alertName = alertName.replace(prefix, '') .trim();
+
+		return this.eventTypes.find(e => {
+			return (
+				(isFrench && e.fr == alertName) ||
+				(!isFrench && e.en == alertName)
+			);
+		});
+	}
+
 	public getAlerts(entity: EnvCanadaEntity): MeteoalarmAlert[] {
 		const warningCount = Number(entity.state);
 
@@ -181,23 +223,10 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		const type = this.getEntityType(entity)!;
 
 		for (let i = 1; i < warningCount + 1; i++) {
-			// Alert name in the integration are combined event type
-			// and sensor from which it was sent like:
-			// Wind + Warning = Wind Warning
-			// This transforms this back to event type
-			let alertName = entity.attributes[`alert_${i}`] as string;
-			for(const type in EnvCanadaEntityType) {
-				alertName = alertName.replace(type, '');
-			}
-			alertName = alertName.trim();
-
+			const alertName = entity.attributes[`alert_${i}`] as string;
 			const isFrench = entity.attributes.attribution == 'Données fournies par Environnement Canada';
-			const alert = this.eventTypes.find(e => {
-				return (
-					(isFrench && e.fr == alertName) ||
-					(!isFrench && e.en == alertName)
-				);
-			});
+			const alert = this.praseAlertName(alertName, type, isFrench);
+
 			if(alert) {
 				result.push({
 					level: this.getLevelFromType(type),
