@@ -168,7 +168,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Special Weather',
-				fr: '', //TODO: add french special weather
+				fr: 'Météorologique Spécial',
 				type: MeteoalarmEventType.Unknown
 			}
 		];
@@ -184,14 +184,14 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 				fr: 'Avertissement De'
 			},
 			{
-				type: EnvCanadaEntityType.Statement,
-				en: 'Statement',
-				fr: ''
-			},
-			{
 				type: EnvCanadaEntityType.Watch,
 				en: 'Watch',
-				fr: ''
+				fr: 'Veille De'
+			},
+			{
+				type: EnvCanadaEntityType.Statement,
+				en: 'Statement',
+				fr: 'Bulletin'
 			}
 		];
 	}
@@ -205,7 +205,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 	private praseAlertName(alertName: string, type: EnvCanadaEntityType, isFrench: boolean) {
 		const prefixTranslation = this.entityTypeTranslation.find(t => t.type == type)!;
 		const prefix = isFrench ? prefixTranslation.fr : prefixTranslation.en;
-		if(!alertName.includes(prefix)) throw new Error(`Translated event prefix was not found. (isFrench=${isFrench})`);
+		if(!alertName.includes(prefix)) throw new Error(`Translated event prefix was not found in alert name '${prefix}' (isFrench=${isFrench})`);
 		alertName = alertName.replace(prefix, '') .trim();
 
 		return this.eventTypes.find(e => {
