@@ -1,0 +1,84 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Card",
+    "description": "Картата Meteoalarm Ви предупреждава за текущите метеорологични събития.",
+    "warning": "Предупреждение",
+    "expected": "Очаквано",
+    "unavailable": {
+      "long": "Интеграцията не е достъпна",
+      "short": "Недостъпно"
+    }
+  },
+  "error": {
+    "missing_entity": "Изисква се посочване на обекти!",
+    "invalid_integration": "Тази интеграция не е валидна!",
+    "entity_invalid": {
+      "single": "Избраната интеграция не съответства на избрания обект.",
+      "multiple": "Избраната интеграция не съответства на избраните обекти: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Обект",
+    "integration": "Интеграция",
+    "required": "Задължително",
+    "recommended": "Препоръчително",
+    "override_headline": "Заменете заглавието, предоставено от интеграцията",
+    "hide_when_no_warning": "Скриване, когато няма предупреждения",
+    "hide_caption": "Скриване на надписа",
+    "disable_swiper": "Деактивиране на alerts swiper",
+    "description": {
+      "start": "Избраната интеграция създава множество обекти.",
+      "current_expected": "Първият с текущите събития, а вторият с бъдещите.",
+      "slots": "The exact amount of them created is determined by it's configuration.",
+      "separate_events": "Всеки вид събитие има отделен обект.",
+      "warning_watch_statement": "Има 3 обекта: предупреждения, наблюдения и изявления.",
+      "end": "Трябва да добавите всички тях, за да сте сигурни, че няма да пропуснете никакви сигнали."
+    },
+    "error": {
+      "expected_entity": "Expected warnings entity haven't been provided. Future event won't be shown.",
+      "too_many_entities": "More entities than expected haven't been provided. Expected {expected} entities, got {got} entities.",
+      "duplicate": "Открити са дубликати в списъка с обекти."
+    }
+  },
+  "events": {
+    "no_warnings": "Няма предупреждения",
+    "nuclear": "ядрено събитие",
+    "tornado": "торнадо",
+    "hurricane": "ураган",
+    "wind": "вятър",
+    "earthquake": "земетресение",
+    "volcano": "вулкан",
+    "snow_ice": "сняг/поледица",
+    "fog": "мъгла",
+    "high_temperature": "високи температури",
+    "low_temperature": "ниски температури",
+    "coastal_event": "крайбрежно събитие",
+    "tsunami": "цунами",
+    "sea_event": "морско събитие",
+    "forest_fire": "горски пожари",
+    "avalanches": "лавини",
+    "thunderstorms": "гръмотевична активност",
+    "rain": "дъжд",
+    "flooding": "наводнение",
+    "air_quality": "качество на въздуха",
+    "dust": "прах"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Жълт код за {event}",
+      "generic": "Жълт код",
+      "color": "Жълт"
+    },
+    "orange": {
+      "event": "Оранжев код за {event}",
+      "generic": "Оранжев код",
+      "color": "Оранжев"
+    },
+    "red": {
+      "event": "Червен код за {event}",
+      "generic": "Червен код",
+      "color": "Червен"
+    }
+  }
+}

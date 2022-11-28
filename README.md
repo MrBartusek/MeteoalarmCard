@@ -79,6 +79,7 @@ This card supports translations. Please, help to add more translations and impro
 
 <!-- Languages except English are sorted alphabetically -->
 - English
+- Български (Bulgarian)
 - Čeština (Czech)
 - Deutsch (German)
 - Eesti (Estonian)
