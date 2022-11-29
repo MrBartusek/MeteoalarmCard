@@ -92,7 +92,6 @@ This card supports translations. Please, help to add more translations and impro
 - Português (Portuguese)
 - Slovenský (Slovak)
 - Svenska (Swedish)
-
 - [_Your language?_](./CONTRIBUTING.md#how-to-add-translation)
 
 ## Supported integrations
