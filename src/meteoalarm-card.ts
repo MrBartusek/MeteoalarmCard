@@ -76,18 +76,26 @@ export class MeteoalarmCard extends LitElement {
 
 	public static getStubConfig(hass: HomeAssistant, entities: string[]): Record<string, unknown> {
 		// Find fist entity that is supported by any integration
+		const ALLOWED_INTEGRATION_TYPES = [
+			MeteoalarmIntegrationEntityType.SingleEntity,
+			MeteoalarmIntegrationEntityType.CurrentExpected
+		 ];
+
 		for(const entity of entities) {
-			for(const integration of MeteoalarmCard.integrations) {
+			const integrations = MeteoalarmCard.integrations.filter((x) =>
+				ALLOWED_INTEGRATION_TYPES.includes(x.metadata.type)
+			);
+			for(const integration of integrations) {
 				if(integration.supports(hass.states[entity])) {
 					return {
-						entity: entity,
+						entities: { entity },
 						integration: integration.metadata.key
 					};
 				}
 			}
 		}
 		return {
-			entity: '',
+			entities: '',
 			integration: ''
 		};
 	}
