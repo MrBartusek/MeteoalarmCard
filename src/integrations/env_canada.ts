@@ -53,7 +53,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		return [
 			{
 				en: 'Arctic Outflow',
-				fr: 'Poussée d’air arctique',
+				fr: 'Poussée d’air Arctique',
 				type: MeteoalarmEventType.SnowIce
 			},
 			{
@@ -68,7 +68,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Dust Storm',
-				fr: 'Tempête de poussière',
+				fr: 'Tempête de Poussière',
 				type: MeteoalarmEventType.Dust
 			},
 			{
@@ -78,7 +78,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Flash Freeze',
-				fr: 'Refroidissement soudain',
+				fr: 'Refroidissement Soudain',
 				type: MeteoalarmEventType.SnowIce
 			},
 			{
@@ -88,12 +88,12 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Freezing Drizzle',
-				fr: 'Bruine verglaçante',
+				fr: 'Bruine Verglaçante',
 				type: MeteoalarmEventType.SnowIce
 			},
 			{
 				en: 'Freezing Rain',
-				fr: 'Pluie verglaçante',
+				fr: 'Pluie Verglaçante',
 				type: MeteoalarmEventType.SnowIce
 			},
 			{
@@ -118,7 +118,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Severe Thunderstorm',
-				fr: 'Orage violent',
+				fr: 'Orage Violent',
 				type: MeteoalarmEventType.Thunderstorms
 			},
 			{
@@ -128,12 +128,12 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Snow Squall',
-				fr: 'Bourrasques de neige',
+				fr: 'Bourrasques de Neige',
 				type: MeteoalarmEventType.SnowIce
 			},
 			{
 				en: 'Storm Surge',
-				fr: 'Onde de tempête',
+				fr: 'Onde de Tempête',
 				type: MeteoalarmEventType.Thunderstorms
 			},
 			{
@@ -143,7 +143,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Tropical Storm',
-				fr: 'Tempête tropicale',
+				fr: 'Tempête Tropicale',
 				type: MeteoalarmEventType.Hurricane
 			},
 			{
@@ -163,7 +163,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Winter Storm',
-				fr: 'Tempête hivernale',
+				fr: 'Tempête Hivernale',
 				type: MeteoalarmEventType.SnowIce
 			},
 			{
