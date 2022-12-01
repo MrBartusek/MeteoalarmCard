@@ -64,6 +64,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
   	return this._config?.disable_swiper || false;
   }
 
+  get _scaling_mode(): string {
+  	return this._config?.scaling_mode || '';
+  }
+
   protected render(): TemplateResult | void {
   	if (!this.hass) {
   		return html``;

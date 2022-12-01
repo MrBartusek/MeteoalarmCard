@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
     "invalid_integration": "Questa integrazione non è valida!",
+    "invalid_scaling_mode": null,
     "entity_invalid": {
       "single": "L'integrazione selezionata non corrisponde all'entità selezionata.",
       "multiple": "L'integrazione selezionata non corrisponde alle entità selezionate: {entity}."
@@ -39,6 +40,13 @@
       "expected_entity": "L'entità di avviso futuro non è stata inserita. Gli eventi futuri non saranno mostrati.",
       "too_many_entities": "Più entità del previsto non sono state fornite. Entita previste: {expected}; Entita fornite: {got} entità.",
       "duplicate": "Trovati duplicati nell'elenco delle entità."
+    },
+    "scaling_mode": null,
+    "scaling_mode_options": {
+      "disabled": null,
+      "headline": null,
+      "scale": null,
+      "headline_and_scale": null
     }
   },
   "events": {

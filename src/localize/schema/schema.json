@@ -69,6 +69,7 @@
             "required": [
                 "missing_entity",
                 "invalid_integration",
+                "invalid_scaling_mode",
                 "entity_invalid"
             ],
             "properties": {
@@ -78,6 +79,10 @@
                 },
                 "invalid_integration": {
                     "$id": "#/properties/error/properties/invalid_integration",
+                    "type": ["string", "null"]
+                },
+                "invalid_scaling_mode": {
+                    "$id": "#/properties/error/properties/invalid_scaling_mode",
                     "type": ["string", "null"]
                 },
                 "entity_invalid": {
@@ -115,7 +120,9 @@
                 "hide_caption",
                 "disable_swiper",
                 "description",
-                "error"
+                "error",
+                "scaling_mode",
+                "scaling_mode_options"
             ],
             "properties": {
                 "entity": {
@@ -208,6 +215,39 @@
                         },
                         "duplicate": {
                             "$id": "#/properties/editor/properties/duplicate/",
+                            "type": ["string", "null"]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "scaling_mode": {
+                    "$id": "#/properties/editor/properties/scaling_mode",
+                    "type": ["string", "null"]
+                },
+                "scaling_mode_options": {
+                    "$id": "#/properties/scaling_mode_options",
+                    "type": "object",
+                    "required": [
+                        "disabled",
+                        "headline",
+                        "scale",
+                        "headline_and_scale"
+                    ],
+                    "properties": {
+                        "disabled": {
+                            "$id": "#/properties/editor/properties/disabled",
+                            "type": ["string", "null"]
+                        },
+                        "headline": {
+                            "$id": "#/properties/editor/properties/headline",
+                            "type": ["string", "null"]
+                        },
+                        "scale": {
+                            "$id": "#/properties/editor/properties/scale",
+                            "type": ["string", "null"]
+                        },
+                        "headline_and_scale": {
+                            "$id": "#/properties/editor/properties/headline_and_scale",
                             "type": ["string", "null"]
                         }
                     },

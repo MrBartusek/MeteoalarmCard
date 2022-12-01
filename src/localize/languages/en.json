@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "Specifying entities is required!",
     "invalid_integration": "This integration is not valid!",
+    "invalid_scaling_mode": "This scaling mode is not valid!",
     "entity_invalid": {
       "single": "Selected integration doesn't match selected entity.",
       "multiple": "Selected integration doesn't match selected entities: {entity}."
@@ -39,6 +40,13 @@
       "expected_entity": "Expected warnings entity haven't been provided. Future event won't be shown.",
       "too_many_entities": "More entities than expected haven't been provided. Expected {expected} entities, got {got} entities.",
       "duplicate": "Found duplicates in entities list."
+    },
+    "scaling_mode": "Scaling Mode",
+    "scaling_mode_options": {
+      "disabled": "Disabled",
+      "headline": "Headline Only",
+      "scale": "Scale Only",
+      "headline_and_scale": "Headline and scale"
     }
   },
   "events": {

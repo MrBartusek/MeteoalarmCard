@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",
     "invalid_integration": "Nieprawidłowa integracja!",
+    "invalid_scaling_mode": null,
     "entity_invalid": {
       "single": "Wybrana integracja nie opdowiada wybranej encji.",
       "multiple": "Wybrana integracja nie odpowiada wybranym encjom: {entity}."
@@ -39,6 +40,13 @@
       "expected_entity": "Nie podano encji z przyszłymi zdarzeniami pogodowymi. Pryszłe ostrzeżenia nie bedą pokazywane.",
       "too_many_entities": "Podano więcej encji niż się spodziewano. Spodziewano: {expected} encji, otrzymano {got} encji.",
       "duplicate": "Znaleziono duplikaty w liście encji."
+    },
+    "scaling_mode": "Tryb skalowania",
+    "scaling_mode_options": {
+      "disabled": "Wyłaczony",
+      "headline": "Tylko Nagłówek",
+      "scale": "Tylko Skala",
+      "headline_and_scale": "Nagłówek i skala"
     }
   },
   "events": {

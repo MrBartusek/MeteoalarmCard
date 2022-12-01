@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "L'entité est requise !",
     "invalid_integration": "Cette intégration n'est pas valide !",
+    "invalid_scaling_mode": null,
     "entity_invalid": {
       "single": null,
       "multiple": null
@@ -39,6 +40,13 @@
       "expected_entity": null,
       "too_many_entities": null,
       "duplicate": null
+    },
+    "scaling_mode": null,
+    "scaling_mode_options": {
+      "disabled": null,
+      "headline": null,
+      "scale": null,
+      "headline_and_scale": null
     }
   },
   "events": {

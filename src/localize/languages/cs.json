@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "Entita je povinná!",
     "invalid_integration": "Integrace není validní!",
+    "invalid_scaling_mode": null,
     "entity_invalid": {
       "single": "Vybraná integrace se neshoduje s entitou",
       "multiple": "Vybraná integrace se neshoduje s entitami: {entity}"
@@ -39,6 +40,13 @@
       "expected_entity": "Nenalezena entita. Budoucí události nebudou zobrazeny.",
       "too_many_entities": "Nalezeno více entit než bylo očekáváno. Očekáváno: {expected} entit, nalezeno {got} entit.",
       "duplicate": "Nalezeny duplikáty v seznamu entit."
+    },
+    "scaling_mode": null,
+    "scaling_mode_options": {
+      "disabled": null,
+      "headline": null,
+      "scale": null,
+      "headline_and_scale": null
     }
   },
   "events": {

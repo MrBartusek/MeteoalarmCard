@@ -16,6 +16,7 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
   hide_when_no_warning?: boolean;
   hide_caption?: boolean;
   disable_swiper?: boolean;
+  scaling_mode?: string;
 
   tap_action?: ActionConfig;
   hold_action?: ActionConfig;
@@ -62,6 +63,13 @@ export enum MeteoalarmAlertKind {
   // This is mostly used with type MeteoalarmIntegrationEntityType.CurrentExpected
   Current = 0,
   Expected = 1
+}
+
+export enum MeteoalarmScalingMode {
+  Disabled = 'disabled',
+  Headline = 'headline',
+  Scale = 'scale',
+  HeadlineAndScale = 'headline_and_scale'
 }
 
 // Event returned by the integration
