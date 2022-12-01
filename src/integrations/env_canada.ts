@@ -15,10 +15,13 @@ type EnvCanadaEntity = HassEntity & {
 }
 
 export enum EnvCanadaEntityType {
-	Warning = 'Warning',
-	Watch = 'Watch',
-	Statement = 'Statement'
-  }
+	Warning,
+	Watch,
+	Statement
+}
+
+const ATTRIBUTION_EN = 'Data provided by Environment Canada';
+const ATTRIBUTION_FR = 'Données fournies par Environnement Canada';
 
 export default class EnvironmentCanada implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
@@ -35,7 +38,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 	public supports(entity: EnvCanadaEntity): boolean {
 		const isStateNumber = !Number.isNaN(Number(entity.state));
 		return (
-			entity.attributes.attribution == 'Data provided by Environment Canada' &&
+			[ATTRIBUTION_EN, ATTRIBUTION_FR].includes(entity.attributes.attribution) &&
 			this.getEntityType(entity) !== undefined &&
 			isStateNumber);
 	}
@@ -44,62 +47,194 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		return Number(entity.state) > 0;
 	}
 
-	private get eventTypes(): { [key: string]: MeteoalarmEventType } {
-		// From: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
-		return {
-			'Arctic Outflow': MeteoalarmEventType.SnowIce,
-			'Blizzard': MeteoalarmEventType.SnowIce,
-			'Blowing Snow': MeteoalarmEventType.SnowIce,
-			'Dust Storm': MeteoalarmEventType.Dust,
-			'Extreme Cold': MeteoalarmEventType.LowTemperature,
-			'Flash Freeze': MeteoalarmEventType.SnowIce,
-			'Fog': MeteoalarmEventType.Fog,
-			'Freezing Drizzle': MeteoalarmEventType.SnowIce,
-			'Freezing Rain': MeteoalarmEventType.SnowIce,
-			'Frost': MeteoalarmEventType.SnowIce,
-			'Heat': MeteoalarmEventType.HighTemperature,
-			'Hurricane': MeteoalarmEventType.Hurricane,
-			'Rainfall': MeteoalarmEventType.Rain,
-			'Severe Thunderstorm': MeteoalarmEventType.Thunderstorms,
-			'Snowfall': MeteoalarmEventType.SnowIce,
-			'Snow Squall': MeteoalarmEventType.SnowIce,
-			'Storm Surge': MeteoalarmEventType.Thunderstorms,
-			'Tornado': MeteoalarmEventType.Tornado,
-			'Tropical Storm': MeteoalarmEventType.Hurricane,
-			'Tsunami': MeteoalarmEventType.Tsunami,
-			'Weather': MeteoalarmEventType.Unknown,
-			'Wind': MeteoalarmEventType.Wind,
-			'Winter Storm': MeteoalarmEventType.SnowIce,
-			'Special Weather': MeteoalarmEventType.Unknown
-		};
+	private get eventTypes(): {en: string, fr: string, type: MeteoalarmEventType }[] {
+		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
+		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
+		return [
+			{
+				en: 'Arctic Outflow',
+				fr: 'Poussée d’air Arctique',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Blizzard',
+				fr: 'Blizzard',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Blowing Snow',
+				fr: 'Poudrerie',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Dust Storm',
+				fr: 'Tempête de Poussière',
+				type: MeteoalarmEventType.Dust
+			},
+			{
+				en: 'Extreme Cold',
+				fr: 'Froid extrême',
+				type: MeteoalarmEventType.LowTemperature
+			},
+			{
+				en: 'Flash Freeze',
+				fr: 'Refroidissement Soudain',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Fog',
+				fr: 'Brouillard',
+				type: MeteoalarmEventType.Fog
+			},
+			{
+				en: 'Freezing Drizzle',
+				fr: 'Bruine Verglaçante',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Freezing Rain',
+				fr: 'Pluie Verglaçante',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Frost',
+				fr: 'Gel',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Heat',
+				fr: 'Chaleur',
+				type: MeteoalarmEventType.HighTemperature
+			},
+			{
+				en: 'Hurricane',
+				fr: 'Ouragan',
+				type: MeteoalarmEventType.Hurricane
+			},
+			{
+				en: 'Rainfall',
+				fr: 'Pluie',
+				type: MeteoalarmEventType.Rain
+			},
+			{
+				en: 'Severe Thunderstorm',
+				fr: 'Orage Violent',
+				type: MeteoalarmEventType.Thunderstorms
+			},
+			{
+				en: 'Snowfall',
+				fr: 'Neige',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Snow Squall',
+				fr: 'Bourrasques de Neige',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Storm Surge',
+				fr: 'Onde de Tempête',
+				type: MeteoalarmEventType.Thunderstorms
+			},
+			{
+				en: 'Tornado',
+				fr: 'Tornade',
+				type: MeteoalarmEventType.Tornado
+			},
+			{
+				en: 'Tropical Storm',
+				fr: 'Tempête Tropicale',
+				type: MeteoalarmEventType.Hurricane
+			},
+			{
+				en: 'Tsunami',
+				fr: 'Tsunami',
+				type: MeteoalarmEventType.Tsunami
+			},
+			{
+				en: 'Weather',
+				fr: 'Météorologique',
+				type: MeteoalarmEventType.Unknown
+			},
+			{
+				en: 'Wind',
+				fr: 'Vents',
+				type: MeteoalarmEventType.Wind
+			},
+			{
+				en: 'Winter Storm',
+				fr: 'Tempête Hivernale',
+				type: MeteoalarmEventType.SnowIce
+			},
+			{
+				en: 'Special Weather',
+				fr: 'Météorologique Spécial',
+				type: MeteoalarmEventType.Unknown
+			}
+		];
 	}
 
-	public getAlerts(entity: HassEntity): MeteoalarmAlert[] {
+	private get entityTypeTranslation(): {en: string, fr: string, type: EnvCanadaEntityType }[] {
+		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
+		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
+		return [
+			{
+				type: EnvCanadaEntityType.Warning,
+				en: 'Warning',
+				fr: 'Avertissement De'
+			},
+			{
+				type: EnvCanadaEntityType.Watch,
+				en: 'Watch',
+				fr: 'Veille De'
+			},
+			{
+				type: EnvCanadaEntityType.Statement,
+				en: 'Statement',
+				fr: 'Bulletin'
+			}
+		];
+	}
+
+	/**
+	 * Alert name in the integration are combined event type
+	 * and sensor from which it was sent like:
+	 * Wind + Warning = Wind Warning
+	 * This transforms this back to event type
+	 */
+	private praseAlertName(alertName: string, type: EnvCanadaEntityType, isFrench: boolean) {
+		const prefixTranslation = this.entityTypeTranslation.find(t => t.type == type)!;
+		const prefix = isFrench ? prefixTranslation.fr : prefixTranslation.en;
+		if(!alertName.includes(prefix)) throw new Error(`Translated event prefix was not found in alert name '${prefix}' (isFrench=${isFrench})`);
+		alertName = alertName.replace(prefix, '') .trim();
+
+		return this.eventTypes.find(e => {
+			return (
+				(isFrench && e.fr == alertName) ||
+				(!isFrench && e.en == alertName)
+			);
+		});
+	}
+
+	public getAlerts(entity: EnvCanadaEntity): MeteoalarmAlert[] {
 		const warningCount = Number(entity.state);
 
 		const result: MeteoalarmAlert[] = [];
 		const type = this.getEntityType(entity)!;
 
 		for (let i = 1; i < warningCount + 1; i++) {
-			// Alert name in the integration are combined event type
-			// and sensor from which it was sent like:
-			// Wind + Warning = Wind Warning
-			// This transforms this back to event type
-			let alertName = entity.attributes[`alert_${i}`] as string;
-			for(const type in EnvCanadaEntityType) {
-				alertName = alertName.replace(type, '');
-			}
-			alertName = alertName.trim();
+			const alertName = entity.attributes[`alert_${i}`] as string;
+			const isFrench = entity.attributes.attribution == 'Données fournies par Environnement Canada';
+			const alert = this.praseAlertName(alertName, type, isFrench);
 
-			if(alertName in this.eventTypes) {
-				const alertType = this.eventTypes[alertName];
+			if(alert) {
 				result.push({
 					level: this.getLevelFromType(type),
-					event: alertType
+					event: alert.type
 				});
 			}
 			else {
-				throw new Error('Unknown Env canada alert type: ' + alertName);
+				throw new Error(`Unknown Env canada alert type: ${alertName} (isFrench=${isFrench})`);
 			}
 		}
 
