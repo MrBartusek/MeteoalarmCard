@@ -399,8 +399,8 @@ export class MeteoalarmCard extends LitElement {
 				icon: event.icon,
 				color: level.color,
 				headlines: headlines,
-				caption: 'scaling mode: ' + this.scalingMode,
-				captionIcon: 'resize'
+				caption: caption,
+				captionIcon: captionIcon
 			});
 		}
 
@@ -448,7 +448,6 @@ export class MeteoalarmCard extends LitElement {
 				return html``;
 			}
 			this.setCardMargin(true);
-			console.log(events[0].headlines);
 			return html`
 				<ha-card
 					@action=${this.handleAction}
