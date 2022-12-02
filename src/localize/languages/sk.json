@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "Je potrebné zadať entitu!",
     "invalid_integration": "Táto integrácia nie je platná!",
+    "invalid_scaling_mode": null,
     "entity_invalid": {
       "single": "Vybratá integrácia sa nezhoduje s vybratou entitou.",
       "multiple": "Vybratá integrácia sa nezhoduje s vybratými entitami: {entity}."
@@ -39,6 +40,13 @@
       "expected_entity": "Nebola poskytnutá entita očakávaných upozornení. Budúca udalosť sa nebude zobrazovať.",
       "too_many_entities": "Nebolo poskytnutých viac entít, ako sa očakávalo. Očakávaných entít: {expected}, počet entít: {got}.",
       "duplicate": "V zozname entít sa našli duplikáty."
+    },
+    "scaling_mode": null,
+    "scaling_mode_options": {
+      "disabled": null,
+      "headline": null,
+      "scale": null,
+      "headline_and_scale": null
     }
   },
   "events": {

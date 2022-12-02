@@ -13,6 +13,7 @@
   "error": {
     "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
     "invalid_integration": "Diese Integration ist nicht gültig!",
+    "invalid_scaling_mode": null,
     "entity_invalid": {
       "single": "Ausgewählte Integration und Entität passen nicht zusammen.",
       "multiple": "Ausgewählte Integration passt nicht zu Entitäten: {entity}."
@@ -39,6 +40,13 @@
       "expected_entity": "Die erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
       "too_many_entities": "Es wurden mehr Entitäten als erwartet erzeugt. Erwarten wurde(n) {expected}, vorhanden sind {got}.",
       "duplicate": "Doppelte Entitäten in Liste gefunden"
+    },
+    "scaling_mode": null,
+    "scaling_mode_options": {
+      "disabled": null,
+      "headline": null,
+      "scale": null,
+      "headline_and_scale": null
     }
   },
   "events": {

@@ -3,7 +3,7 @@ import { LitElement, html, TemplateResult, css, CSSResultGroup } from 'lit';
 import { HomeAssistant, fireEvent, LovelaceCardEditor, EntityConfig } from 'custom-card-helpers';
 
 import { ScopedRegistryHost } from '@lit-labs/scoped-registry-mixin';
-import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType } from './types';
+import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
 import { customElement, property, state } from 'lit/decorators';
 import { formfieldDefinition } from '../elements/formfield';
 import { selectDefinition } from '../elements/select';
@@ -62,6 +62,10 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 
   get _disable_swiper(): boolean {
   	return this._config?.disable_swiper || false;
+  }
+
+  get _scaling_mode(): string {
+  	return this._config?.scaling_mode || 'headline_and_scale';
   }
 
   protected render(): TemplateResult | void {
@@ -153,6 +157,7 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 		  @entities-changed=${this._entitiesChanged}
 		></hui-entity-editor>
 	  `}
+
 	  <!-- Switches section -->
 	  <div class="options">
 		<!-- Disable slider -->
@@ -196,6 +201,31 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 			@change=${this._valueChanged}
 		></mwc-switch>
 		</mwc-formfield>
+	  </div>
+	  
+	  <!-- Card scaling mode select -->
+	  <div class="options">
+		<div>
+			<mwc-select
+				naturalMenuWidth
+				fixedMenuPosition
+				label=${`${localize('editor.scaling_mode')}`}
+				.configValue=${'scaling_mode'}
+				.value=${this._scaling_mode}
+				@selected=${this._valueChanged}
+				@closed=${(ev) => ev.stopPropagation()}
+			>
+				${Object.values(MeteoalarmScalingMode).map((mode) => {
+					return html`
+						<mwc-list-item .value=${mode}>
+							${localize(`editor.scaling_mode_options.${mode}`)}
+						</mwc-list-item>`;
+				})}
+			</mwc-select>
+			<a href="https://github.com/MrBartusek/MeteoalarmCard/blob/master/dosc/scaling-mode.md" target="_blank">
+				Scaling mode documentation
+	  		</a>
+		</div>
 	  </div>
 	`;
   }
@@ -296,7 +326,8 @@ export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implem
 	.options {
 		display: grid;
     	grid-template-columns: repeat(2, 1fr);
-		gap: 15px;
+		gap: 18px;
+		margin: 24px 0;
 	}
 	p {
 		max-width: 600px;

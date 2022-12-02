@@ -48,15 +48,14 @@ export default css`
   .headline
   {
     flex: 1;
-    display: flex;
-    flex-direction: column;
     font-size: 22px;
     line-height: normal;
     margin: auto;
     margin-left: 18px;
     text-align: center;
     overflow: hidden;
-    white-space: nowrap
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .caption {

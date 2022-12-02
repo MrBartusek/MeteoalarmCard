@@ -21,7 +21,8 @@ import {
 	MeteoalarmLevelType,
 	MeteoalarmAlertKind,
 	MeteoalarmIntegrationEntityType,
-	MeteoalarmAlert
+	MeteoalarmAlert,
+	MeteoalarmScalingMode
 } from './types';
 import { actionHandler } from './action-handler-directive';
 import { version as CARD_VERSION } from '../package.json';
@@ -33,6 +34,7 @@ import { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
 import INTEGRATIONS from './integrations/integrations';
 import { processConfigEntities } from './process-config-entities';
+import { getCanvasFont, getTextWidth } from './measure-text';
 
 // eslint-disable-next-line no-console
 console.info(
@@ -138,7 +140,8 @@ export class MeteoalarmCard extends LitElement {
 	public firstUpdated(): void {
 		this.measureCard();
 		this.attachObserver();
-		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper')!;
+		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper');
+		if(!swiper) return;
 		this.swiper = new Swiper(swiper, {
 			modules: [Pagination],
 			pagination: {
@@ -171,44 +174,90 @@ export class MeteoalarmCard extends LitElement {
 		this.resizeObserver.observe(card);
 	}
 
+	private getHeadlineElements(container: HTMLElement): [HTMLElement, HTMLElement, HTMLElement] {
+		const regular = container.querySelector('.headline-regular') as HTMLElement;
+		const narrow = container.querySelector('.headline-narrow') as HTMLElement;
+		const veryNarrow = container.querySelector('.headline-verynarrow') as HTMLElement;
+		return [ regular, narrow, veryNarrow ];
+	}
+
 	private measureCard() {
 		if (!this.isConnected) return;
 		const card = this.shadowRoot!.querySelector('ha-card');
 		if (!card) return;
+		if(this.scalingMode == MeteoalarmScalingMode.Disabled) return;
+
+		const scaleHeadline = [MeteoalarmScalingMode.Scale, MeteoalarmScalingMode.HeadlineAndScale].includes(this.scalingMode);
+		const swapHeadline = [MeteoalarmScalingMode.Headline, MeteoalarmScalingMode.HeadlineAndScale].includes(this.scalingMode);
+		const MAX_FONT_SIZE = 22;
+		const MIN_FONT_SIZE = 17;
 
 		// Scale headlines of each swiper card
 		const swiper = card.querySelector('.swiper-wrapper');
 		const slides = swiper?.getElementsByClassName('swiper-slide') as HTMLCollectionOf<HTMLElement>;
 		for(const slide of slides) {
-			const regular = slide.querySelector('.headline-regular') as HTMLElement;
-			const narrow = slide.querySelector('.headline-narrow') as HTMLElement;
-			const veryNarrow = slide.querySelector('.headline-verynarrow') as HTMLElement;
+			const [ regular, narrow, veryNarrow ] = this.getHeadlineElements(slide);
+			const sizes: [string, HTMLElement][]= [['regular', regular]];
+			if(swapHeadline) {
+				sizes.push(['narrow', narrow]);
+				sizes.push(['veryNarrow', veryNarrow]);
+			}
 
-			// Normal Size
-			regular.style.display = 'flex';
+			this.setCardScaling(slide, 'regular', MAX_FONT_SIZE);
+
+			let isSizeSet = false;
+			for(const [ size, element ] of sizes) {
+				if(isSizeSet) break;
+				const minFontSize = scaleHeadline ? MIN_FONT_SIZE : MAX_FONT_SIZE;
+				for (let fontSize = MAX_FONT_SIZE; fontSize >= minFontSize; fontSize--) {
+					const elementSize = getTextWidth(element.textContent!, getCanvasFont(regular, fontSize + 'px'));
+					if(regular.clientWidth <= 0) isSizeSet = true;
+					if(elementSize <= regular.clientWidth) {
+						this.setCardScaling(slide, size as any, fontSize);
+						isSizeSet = true;
+						break;
+					}
+				}
+			}
+
+			// Fallback if measuring couldn't fit the text
+			if(!isSizeSet) {
+				if(swapHeadline) {
+					this.setCardScaling(slide, 'icon', MAX_FONT_SIZE);
+				}
+				else {
+					this.setCardScaling(slide, 'regular' as any, MIN_FONT_SIZE);
+				}
+
+			}
+		}
+	}
+
+	private setCardScaling(container: HTMLElement, scale: 'regular' | 'narrow' | 'veryNarrow' | 'icon', fontSize: number) {
+		const [ regular, narrow, veryNarrow ] = this.getHeadlineElements(container);
+
+		if(scale == 'regular') {
+			regular.style.fontSize = `${fontSize}px`;
+			regular.style.display = 'block';
 			narrow.style.display = 'none';
 			veryNarrow.style.display = 'none';
-
-			// Narrow Size
-			if(regular.scrollWidth > regular.clientWidth) {
-				regular.style.display = 'none';
-				narrow.style.display = 'flex';
-				veryNarrow.style.display = 'none';
-			}
-
-			// Very Narrow Size
-			if(narrow.scrollWidth > narrow.clientWidth) {
-				regular.style.display = 'none';
-				narrow.style.display = 'none';
-				veryNarrow.style.display = 'flex';
-			}
-
-			// Only Icon Size
-			if(veryNarrow.scrollWidth > veryNarrow.clientWidth) {
-				regular.style.display = 'none';
-				narrow.style.display = 'none';
-				veryNarrow.style.display = 'none';
-			}
+		}
+		else if(scale == 'narrow') {
+			narrow.style.fontSize = `${fontSize}px`;
+			regular.style.display = 'none';
+			narrow.style.display = 'block';
+			veryNarrow.style.display = 'none';
+		}
+		else if(scale == 'veryNarrow') {
+			veryNarrow.style.fontSize = `${fontSize}px`;
+			regular.style.display = 'none';
+			narrow.style.display = 'none';
+			veryNarrow.style.display = 'block';
+		}
+		else if(scale == 'icon') {
+			regular.style.display = 'none';
+			narrow.style.display = 'none';
+			veryNarrow.style.display = 'none';
 		}
 	}
 
@@ -234,6 +283,15 @@ export class MeteoalarmCard extends LitElement {
 			}
 		}
 		return integration!;
+	}
+
+	private get scalingMode(): MeteoalarmScalingMode {
+		const modeString = this.config.scaling_mode;
+		if(!modeString) return MeteoalarmScalingMode.HeadlineAndScale;
+		if(!(Object.values(MeteoalarmScalingMode)).includes(modeString as any)) {
+			throw new Error('MeteoalarmCard: ' + localize('error.invalid_scaling_mode'));
+		}
+		return modeString as MeteoalarmScalingMode;
 	}
 
 	// This function graters all of the attributes needed for rendering of the card
