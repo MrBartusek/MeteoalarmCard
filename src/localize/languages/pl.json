@@ -37,7 +37,7 @@
       "end": "Powinieneś dodać wszystkie encje aby mieć pewność że nie przegapisz żadnych ostrzeżeń."
     },
     "error": {
-      "expected_entity": "Nie podano encji z przyszłymi zdarzeniami pogodowymi. Pryszłe ostrzeżenia nie bedą pokazywane.",
+      "expected_entity": "Nie podano encji z przyszłymi zdarzeniami pogodowymi. Przyszłe ostrzeżenia nie bedą pokazywane.",
       "too_many_entities": "Podano więcej encji niż się spodziewano. Spodziewano: {expected} encji, otrzymano {got} encji.",
       "duplicate": "Znaleziono duplikaty w liście encji."
     },
