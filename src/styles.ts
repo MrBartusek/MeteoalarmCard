@@ -14,7 +14,7 @@ export default css`
     flex: 1;
     position: relative;
     padding: 0px;
-    border-radius: 4px;
+    border-radius: var(--ha-card-border-radius, 4px);
     overflow: hidden;
   }
 
