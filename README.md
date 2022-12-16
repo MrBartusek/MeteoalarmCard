@@ -1,6 +1,9 @@
 # Meteoalarm Card
 
-[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card) [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration) [![build status](https://img.shields.io/github/workflow/status/MrBartusek/MeteoalarmCard/Lint)](https://github.com/MrBartusek/MeteoalarmCard/actions) [![LGTM alerts](https://img.shields.io/lgtm/alerts/g/MrBartusek/MeteoalarmCard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MrBartusek/MeteoalarmCard/alerts/) [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
+[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/MrBartusek/MeteoalarmCard/build.yaml?branch=master)](https://github.com/MrBartusek/MeteoalarmCard/actions)
+[![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
 
 MeteoalarmCard is a powerful yet simple custom card to show meteorological warnings card for [Home Assistant][ha]. It supports most of the core integrations as well as custom integrations like [MeteoAlarm][meteoalarm], [Météo-France][meteo-france], [NINA][nina], [DWD][dwd] and [more](#supported-integrations)! When there are any alerts issued, card will change color to let you know about upcoming dangerous conditions.
 
