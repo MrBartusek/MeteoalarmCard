@@ -14,7 +14,7 @@ export default css`
     flex: 1;
     position: relative;
     padding: 0px;
-    border-radius: var(--ha-card-border-radius, 4px);
+    border-radius: var(--ha-card-border-radius, 12px);
     box-shadow: var(
       --ha-card-box-shadow,
       0px 2px 1px -1px rgba(0, 0, 0, 0.2),
