@@ -73,7 +73,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Extreme Cold',
-				fr: 'Froid extrême',
+				fr: 'Froid Extrême',
 				type: MeteoalarmEventType.LowTemperature
 			},
 			{
