@@ -51,9 +51,10 @@ Here is what configuration options mean:
 | `type`                 | `string`  | **Required** | `custom:meteoalarm-card`                                                             |
 | `integration`          | `string`  | **Required** | Name of the integration. Available options are listed under [Supported integrations](#supported-integrations) |
 | `entities`             | `string`  | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                         |
-| `override_headline`    | `boolean` | `false`      | *[Only some integrations]* Override headline proved by integration by generated one. |
-| `disable_swiper`       | `boolean` | `false`      | *[Only some integrations]* Disable slider when displaying multiple alerts, you may not see some important alerts. |
-| `hide_caption`         | `boolean` | `false`      | *[DWD only]* Hide top-right caption when showing advance alerts.
+| `override_headline`    | `boolean` | `false`      | _[Only some integrations]_ Override headline proved by integration by generated one. |
+| `scaling_mode`         | `string`  | `headline_and_scale` | Headline scaling mode. See [scaling-mode.md](dosc/scaling-mode.md)           |
+| `disable_swiper`       | `boolean` | `false`      | _[Only some integrations]_ Disable slider when displaying multiple alerts, you may not see some important alerts. |
+| `hide_caption`         | `boolean` | `false`      | _[DWD only]_ Hide top-right caption when showing advance alerts.
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 
 Example configuration for [Meteoalarm](meteoalarm):
