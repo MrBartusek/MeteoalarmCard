@@ -182,7 +182,8 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			const { event, severity, title } = alert;
 			if(event in this.eventTypes) {
 				result.push({
-					headline: title,
+					// Return event name 'Coastal Flood Watch' or fallback to longer title
+					headline: event && title,
 					level: this.getLevelBySeverity(severity),
 					event: this.eventTypes[event]
 				});
