@@ -3,8 +3,8 @@
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
-    "warning": null,
-    "expected": null,
+    "warning": "Hoiatus",
+    "expected": "Eeldatavalt",
     "unavailable": {
       "long": "Olem pole saadaval",
       "short": "Pole saadaval"
@@ -13,10 +13,10 @@
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
     "invalid_integration": "Meteoalarmi sidumine on vale!",
-    "invalid_scaling_mode": null,
+    "invalid_scaling_mode": "Skaleerimisviga",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "Skaleerimisviga",
+      "multiple": "Skaleerimisvead"
     }
   },
   "editor": {
@@ -26,65 +26,65 @@
     "recommended": "Soovituslik",
     "override_headline": "Pealdise alistamine",
     "hide_when_no_warning": "Hoiatuste puudumisel peida kaart",
-    "hide_caption": null,
-    "disable_swiper": null,
+    "hide_caption": "Peida päis",
+    "disable_swiper": "Keela libitamine",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement": null,
-      "end": null
+      "start": "Algus",
+      "current_expected": "Eeldatav",
+      "slots": "esinemist",
+      "separate_events": "eraldi nähtused",
+      "warning_watch_statement": "Esinemine",
+      "end": "Lõpp"
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "Eeldatav olem",
+      "too_many_entities": "Liiga palju olemeid",
+      "duplicate": "Duplikaat"
     },
-    "scaling_mode": null,
+    "scaling_mode": "Skaleerimine",
     "scaling_mode_options": {
-      "disabled": null,
-      "headline": null,
-      "scale": null,
-      "headline_and_scale": null
+      "disabled": "keelatud",
+      "headline": "päis",
+      "scale": "suurus",
+      "headline_and_scale": "päis ja suurus"
     }
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "radioaktiivne saaste",
+    "tornado": "tornaado",
+    "hurricane": "tuulispask",
     "wind": "tugev tuul",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "maavärin",
+    "volcano": "vulkaanipurse",
     "snow_ice": "lumi või jää",
     "fog": "udu",
-    "high_temperature": null,
+    "high_temperature": "kuumalaine",
     "low_temperature": "külmalaine",
     "coastal_event": "rannikumeri",
-    "tsunami": null,
-    "sea_event": null,
+    "tsunami": "tsunami",
+    "sea_event": "oht rannikul",
     "forest_fire": "metsapõleng",
     "avalanches": "laviin",
     "thunderstorms": "äike",
     "rain": "sademed",
-    "flooding": null,
-    "air_quality": null,
-    "dust": null
+    "flooding": "uputus",
+    "air_quality": "õhu kvaliteet",
+    "dust": "tolm"
   },
   "messages": {
     "yellow": {
-      "event": "Kollane hoiatus {event}",
+      "event": "Hoiatus {event}",
       "generic": "Kollane hoiatus",
       "color": "Kollane"
     },
     "orange": {
-      "event": "Oranž hoiatus {event}",
+      "event": "Hoiatus {event}",
       "generic": "Oranž hoiatus",
       "color": "Oranž"
     },
     "red": {
-      "event": "Punane hoiatus {event}",
+      "event": "Hoiatus {event}",
       "generic": "Punane hoiatus",
       "color": "Punane"
     }
