@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { Utils } from '../utils';
 
 type WeatheralertsAlert = {
 	event: string,
@@ -184,7 +185,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 				result.push({
 					// Return event name 'Coastal Flood Watch' or fallback to longer title
 					headline: event && title,
-					level: this.getLevelBySeverity(severity),
+					level: Utils.getLevelBySeverity(severity),
 					event: this.eventTypes[event]
 				});
 			}
@@ -193,21 +194,5 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			}
 		}
 		return result;
-	}
-
-	// Generate level from severity when it's not provided
-	private getLevelBySeverity(severity: string): MeteoalarmLevelType {
-		if(['Moderate', 'Unknown'].includes(severity)) {
-			return MeteoalarmLevelType.Yellow;
-		}
-		else if(['Severe'].includes(severity)) {
-			return MeteoalarmLevelType.Orange;
-		}
-		else if(['High', 'Extreme'].includes(severity)) {
-			return MeteoalarmLevelType.Red;
-		}
-		else {
-			throw new Error(`Unknown event severity: ${severity}`);
-		}
 	}
 }
