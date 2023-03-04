@@ -211,7 +211,6 @@ export class MeteoalarmCard extends LitElement {
 				const minFontSize = scaleHeadline ? MIN_FONT_SIZE : MAX_FONT_SIZE;
 				for (let fontSize = MAX_FONT_SIZE; fontSize >= minFontSize; fontSize--) {
 					const elementSize = getTextWidth(element.textContent!, getCanvasFont(regular, fontSize + 'px'));
-					if(regular.clientWidth <= 0) isSizeSet = true;
 					if(elementSize <= regular.clientWidth) {
 						this.setCardScaling(slide, size as any, fontSize);
 						isSizeSet = true;
