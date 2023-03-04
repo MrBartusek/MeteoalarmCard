@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { Utils } from '../utils';
 
 type MeteoalarmEntity = HassEntity & {
 	attributes: {
@@ -63,23 +64,6 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		];
 	}
 
-	// Generate level from severity when it's not provided
-	// https://github.com/MrBartusek/MeteoalarmCard/issues/48
-	private getLevelBySeverity(severity: string): MeteoalarmLevelType {
-		if(['Moderate'].includes(severity)) {
-			return MeteoalarmLevelType.Yellow;
-		}
-		else if(['Severe'].includes(severity)) {
-			return MeteoalarmLevelType.Orange;
-		}
-		else if(['High', 'Extreme'].includes(severity)) {
-			return MeteoalarmLevelType.Red;
-		}
-		else {
-			throw new Error(`Unknown event severity: ${severity}`);
-		}
-	}
-
 	public getAlerts(entity: MeteoalarmEntity): MeteoalarmAlert[] {
 		const {
 			event: eventHeadline,
@@ -106,7 +90,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		}
 
 		if(level === undefined && severity !== undefined) {
-			level = this.getLevelBySeverity(severity);
+			level = Utils.getLevelBySeverity(severity);
 		}
 		if(level === undefined) {
 			throw new Error('Failed to determine alert level. awareness_level nor severity are provided');

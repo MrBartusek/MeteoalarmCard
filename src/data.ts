@@ -1,5 +1,5 @@
 import { MeteoalarmEventType, MeteoalarmLevelType } from './types';
-import { Util } from './util';
+import { Utils } from './utils';
 
 export class MeteoalarmEventInfo {
 	constructor(
@@ -34,12 +34,12 @@ export class MeteoalarmLevelInfo {
 export class MeteoalarmData {
 	static get events(): MeteoalarmEventInfo[] {
 		// Use some new icons
-		if(!Util.minHAversion(2022, 8)) {
+		if(!Utils.minHAversion(2022, 8)) {
 			/* eslint-disable-next-line no-console */
 			console.warn('MeteoalarmCard: You are using old HA version! Please update to at least 2022.08 for the best experience.');
 		}
-		const tsunami = Util.minHAversion(2022, 6) ? 'tsunami' : 'waves';
-		const dust = Util.minHAversion(2022, 8) ? 'weather-dust' : 'weather-windy';
+		const tsunami = Utils.minHAversion(2022, 6) ? 'tsunami' : 'waves';
+		const dust = Utils.minHAversion(2022, 8) ? 'weather-dust' : 'weather-windy';
 
 		return [
 			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline'),

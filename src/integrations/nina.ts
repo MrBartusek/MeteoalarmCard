@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { Utils } from '../utils';
 
 type NinaEntity = HassEntity & {
 	attributes: {
@@ -42,22 +43,7 @@ export default class NINA implements MeteoalarmIntegration {
 		return [{
 			event: MeteoalarmEventType.Unknown,
 			headline: headline,
-			level: this.getLevelBySeverity(severity)
+			level: Utils.getLevelBySeverity(severity)
 		}];
-	}
-
-	private getLevelBySeverity(severity: string): MeteoalarmLevelType {
-		if(['Minor', 'Unknown'].includes(severity)) {
-			return MeteoalarmLevelType.Yellow;
-		}
-		else if(['Moderate','Severe'].includes(severity)) {
-			return MeteoalarmLevelType.Orange;
-		}
-		else if(['Extreme'].includes(severity)) {
-			return MeteoalarmLevelType.Red;
-		}
-		else {
-			throw new Error(`Unknown event severity: ${severity}`);
-		}
 	}
 }
