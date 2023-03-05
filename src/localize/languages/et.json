@@ -74,17 +74,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Hoiatus {event}",
+      "event": "Kollane hoiatus {event}",
       "generic": "Kollane hoiatus",
       "color": "Kollane"
     },
     "orange": {
-      "event": "Hoiatus {event}",
+      "event": "Oranž hoiatus {event}",
       "generic": "Oranž hoiatus",
       "color": "Oranž"
     },
     "red": {
-      "event": "Hoiatus {event}",
+      "event": "Punane hoiatus {event}",
       "generic": "Punane hoiatus",
       "color": "Punane"
     }
