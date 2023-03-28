@@ -10,7 +10,7 @@ export class Utils {
 		if(!rawVersion) return false;
 		const year = rawVersion.substring(0,4);
 		const version = rawVersion.substring(4,6);
-		return Number(year) >= minYear && Number(version) >= minMonth;
+		return Number(year) >= minYear || (Number(year) >= minYear && Number(version) >= minMonth) ;
 	}
 
 	/**
