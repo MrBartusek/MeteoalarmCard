@@ -14,7 +14,7 @@ export function generateEditorWarnings(
 	return html`
 		${duplicateWarning(entities)}
         ${missingExpectedEntityWarning(integration, entities)}
-		${notEnoughEntitiesWarning(integration, entities)}
+		${tooManyEntitiesWarning(integration, entities)}
     `;
 }
 
@@ -50,10 +50,11 @@ function duplicateWarning(entities: EntityConfig[]): TemplateResult {
 }
 
 /**
- * Generate warning when there are not enough entities
+ * Generate warning when there are too much entities provided
  */
-function notEnoughEntitiesWarning(integration: MeteoalarmIntegration, entities: EntityConfig[]): TemplateResult {
-	if(entities.length > 0 && entities.length < integration.metadata.entitiesCount) {
+function tooManyEntitiesWarning(integration: MeteoalarmIntegration, entities: EntityConfig[]): TemplateResult {
+	const shouldConsider = integration.metadata.entitiesCount > 0;
+	if(shouldConsider && entities.length > integration.metadata.entitiesCount) {
 		return html`
 			<ha-alert alert-type="warning" title=${localize('common.warning')}> 
 			${localize('editor.error.too_many_entities')
