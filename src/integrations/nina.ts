@@ -43,7 +43,10 @@ export default class NINA implements MeteoalarmIntegration {
 		return [{
 			event: MeteoalarmEventType.Unknown,
 			headline: headline,
-			level: Utils.getLevelBySeverity(severity)
+			level: Utils.getLevelBySeverity(
+				severity, {
+					'Moderate': MeteoalarmLevelType.Orange
+				})
 		}];
 	}
 }

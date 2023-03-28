@@ -21,13 +21,21 @@ export class Utils {
 	 *
 	 * These are mostly rare cases like this one:
 	 * https://github.com/MrBartusek/MeteoalarmCard/issues/48
+	 *
+	 * @param severity severity as string (Minor, Moderate, Severe)
+	 * @param overrides optionally provide an list of overrides as object.
+	 * For example `{ "Moderate": MeteoalarmLevelType.Orange }`
+	 * @returns
 	 */
-	public static getLevelBySeverity(severity: string): MeteoalarmLevelType {
+	public static getLevelBySeverity(severity: string, overrides?: { [key: string]: MeteoalarmLevelType }): MeteoalarmLevelType {
+		if(overrides && overrides[severity]) {
+			return overrides[severity];
+		}
 		switch(severity) {
 			case 'Unknown':
 			case 'Minor':
-				return MeteoalarmLevelType.Yellow;
 			case 'Moderate':
+				return MeteoalarmLevelType.Yellow;
 			case 'Severe':
 				return MeteoalarmLevelType.Orange;
 			case 'High':
