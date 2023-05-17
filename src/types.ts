@@ -84,12 +84,12 @@ export interface MeteoalarmAlert {
 // Event transformed from MeteoalarmEvent used for rendering card
 export interface MeteoalarmAlertParsed {
   isActive: boolean,
-  entity: HassEntity,
   icon: string,
   color: string,
   headlines: string[],
   captionIcon?: string,
-  caption?: string
+  caption?: string,
+  entity?: HassEntity,
 }
 
 // This list is ordered how dangerous events are
