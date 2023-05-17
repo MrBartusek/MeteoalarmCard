@@ -13,12 +13,24 @@ body:
 - type: textarea
   attributes:
     label: Integration state attributes 
-    value: |
-      ```yaml
-        [PASTE STATE ATTRIBUTES HERE]
-      ```
+    placeholder: |
+      language: en-US
+      category: Met
+      event: Moderate alert for Wind
+      responseType: Monitor
+      urgency: Future
+      severity: Moderate
+      certainty: Likely
+      effective: 2023-05-18T00:00:00+02:00
+      onset: 2023-05-18T00:00:00+02:00
+      expires: 2023-05-18T10:59:00+02:00
+      headline:  Moderate alert for Wind
+      awareness_level: 2; yellow; Moderate
+      awareness_type: 1; Wind
+      attribution: Information provided by MeteoAlarm
+      device_class: safety
     description: |
-      If applicable, please add state attributes of your integration in YAML
+      Please add state attributes of your integration in YAML. You can find them in your developer tools:
       
       [![Open your Home Assistant instance and show your state developer tools.](https://my.home-assistant.io/badges/developer_states.svg)](https://my.home-assistant.io/redirect/developer_states/)
 
@@ -28,8 +40,7 @@ body:
     description: |
      Please add screenshots to help us to diagnose the issue:
       - screenshots of card in your Lovelace
-      - if it's error card [it looks like that](https://i.imgur.com/8COQUeo.png) please also
-      provide screenshot from you's browser console showing the error
+      - if it's error card [it looks like that](https://i.imgur.com/8COQUeo.png) please also provide screenshot from you's browser console showing the error
   validations:
     required: true
 
@@ -66,10 +77,13 @@ body:
     label: Card Configuration
     description: |
       Please provide your Meteoalarm Card configuration in Dashboard
-    value: |
-      ```yaml
-      [PASTE CONFIGURATION HERE]
-      ```
+    placeholder: |
+      type: custom:meteoalarm-card
+      integration: meteoalarm
+      entities:
+        - entity: binary_sensor.meteoalarm
+      override_headline: true
+
   validations:
     required: true
 
