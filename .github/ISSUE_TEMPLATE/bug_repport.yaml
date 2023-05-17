@@ -109,6 +109,8 @@ body:
       - YAML (configuration.yaml)
       - GUI
       - Other
+  validations:
+    required: true
 
 - type: textarea
   attributes:
@@ -116,7 +118,7 @@ body:
     description: |
       If you have configured integration with YAML - Please provide your integration
       configuration from `configuration.yaml`.
-    value: |
+    placeholder: |
       binary_sensor:
         - platform: meteoalarm
           language: 'it'
