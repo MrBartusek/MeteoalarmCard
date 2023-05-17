@@ -1,5 +1,6 @@
 import { LitElement, html, TemplateResult, PropertyValues, CSSResultGroup } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
+import {ifDefined} from 'lit/directives/if-defined';
 import {
 	HomeAssistant,
 	hasConfigOrEntityChanged,
@@ -297,13 +298,13 @@ export class MeteoalarmCard extends LitElement {
 	// from the selected integration, sometimes doing additional processing and checks
 	private getEvents(): MeteoalarmAlertParsed[] {
 		// If any entity is unavailable show unavailable card
-		const unavailableEntity = this.entities.find(e => {
-			return (e.attributes.status || e.attributes.state || e.state) === 'unavailable';
+		const unavailableEntity = this.entities.some(e => {
+			return e == undefined || (e.attributes.status || e.attributes.state || e.state) === 'unavailable';
 		});
 		if(unavailableEntity) {
 			return [{
 				isActive: false,
-				entity: unavailableEntity,
+				entity: undefined,
 				icon: 'cloud-question',
 				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
 				headlines: [
@@ -463,7 +464,7 @@ export class MeteoalarmCard extends LitElement {
 									<div
 										class="swiper-slide"
 										style="background-color: ${event.color}; color: ${event.isActive ? '#fff' : 'inherit'}"
-										entity_id=${event.entity.entity_id}
+										entity_id=${ifDefined(event.entity?.entity_id)}
 									>
 										<div class="content">
 											${this.renderMainIcon(event.icon)}
