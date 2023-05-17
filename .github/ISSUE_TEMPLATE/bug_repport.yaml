@@ -116,8 +116,7 @@ body:
   attributes:
     label: Integration Configuration
     description: |
-      If you have configured integration with YAML - Please provide your integration
-      configuration from `configuration.yaml`.
+      If you have configured integration with YAML - Please provide your integration configuration from `configuration.yaml`.
     placeholder: |
       binary_sensor:
         - platform: meteoalarm
