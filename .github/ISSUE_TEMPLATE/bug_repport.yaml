@@ -117,8 +117,10 @@ body:
       If you have configured integration with YAML - Please provide your integration
       configuration from `configuration.yaml`.
     value: |
-      ```yaml
-      [PASTE CONFIGURATION HERE]
-      ```
+      binary_sensor:
+        - platform: meteoalarm
+          language: 'it'
+          country: "italy"
+          province: "Abruzzo" 
   validations:
     required: false
