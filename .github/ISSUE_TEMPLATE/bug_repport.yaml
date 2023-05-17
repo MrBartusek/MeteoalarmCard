@@ -120,7 +120,7 @@ body:
     placeholder: |
       binary_sensor:
         - platform: meteoalarm
-          language: 'it'
+          language: "it"
           country: "italy"
           province: "Abruzzo" 
   validations:
