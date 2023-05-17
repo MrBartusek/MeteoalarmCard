@@ -2,40 +2,46 @@ name: Bug report
 description: Create a report to help us improve
 labels: [bug]
 body:
+
 - type: textarea
   attributes:
     label: Describe the bug
     description: A concise description of what you're experiencing.
   validations:
     required: true
+
 - type: textarea
   attributes:
-    label: Steps to reproduce
-    description: Steps to reproduce the behavior.
-    placeholder: |
-      1. Go to '...'
-      2. Click on '....'
-      3. Scroll down to '....'
-      4. See error
-  validations:
-    required: false
+    label: Integration state attributes 
+    value: |
+      ```yaml
+        [PASTE STATE ATTRIBUTES HERE]
+      ```
+    description: |
+      If applicable, please add state attributes of your integration in YAML
+      
+      [![Open your Home Assistant instance and show your state developer tools.](https://my.home-assistant.io/badges/developer_states.svg)](https://my.home-assistant.io/redirect/developer_states/)
+
 - type: textarea
   attributes:
     label: Screenshots
     description: |
-      If applicable, add:
-      - screenshots of your integration in HA developer tools
-      - screenshots of rendered card
-      - screenshots from your browser developer console
+     Please add screenshots to help us to diagnose the issue:
+      - screenshots of card in your Lovelace
+      - if it's error card [it looks like that](https://i.imgur.com/8COQUeo.png) please also
+      provide screenshot from you's browser console showing the error
   validations:
-    required: false
+    required: true
+
 - type: markdown
   attributes:
     value: "## Environment"
+
 - type: markdown
   attributes:
     value: |
       Please provide information about current configuration that you are using.
+
 - type: input
   attributes:
     label: Card version
@@ -43,6 +49,30 @@ body:
     placeholder: v1.1.0
   validations:
     required: true
+
+- type: dropdown
+  attributes:
+    label: Installation type
+    options:
+      - Home Assistant Community Store (HACS)
+      - Manual
+      - Other
+
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Card Configuration
+    description: |
+      Please provide your Meteoalarm Card configuration in Dashboard
+    value: |
+      ```yaml
+      [PASTE CONFIGURATION HERE]
+      ```
+  validations:
+    required: true
+
 - type: dropdown
   attributes:
     label: Integration type
@@ -57,34 +87,24 @@ body:
       - Other
   validations:
     required: true
+
 - type: dropdown
   attributes:
-    label: Installation type
+    label: Integration configuration
     options:
-      - Home Assistant Community Store (HACS)
-      - Manual
+      - YAML (configuration.yaml)
+      - GUI
       - Other
-  validations:
-    required: true
-- type: textarea
-  attributes:
-    label: Card Configuration
-    description: |
-      Please provide your Meteoalarm Card configuration in Dashboard
-    value: |
-      ```yaml
-      [PASTE CONFIGURATION HERE]
-      ```
-  validations:
-    required: true
+
 - type: textarea
   attributes:
     label: Integration Configuration
     description: |
-      Please provide your integration configuration from `configuration.yaml`
+      If you have configured integration with YAML - Please provide your integration
+      configuration from `configuration.yaml`.
     value: |
       ```yaml
       [PASTE CONFIGURATION HERE]
       ```
   validations:
-    required: true
+    required: false
