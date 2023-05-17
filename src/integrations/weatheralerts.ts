@@ -4,8 +4,7 @@ import {
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
-	MeteoalarmIntegrationMetadata,
-	MeteoalarmLevelType
+	MeteoalarmIntegrationMetadata
 } from '../types';
 import { Utils } from '../utils';
 

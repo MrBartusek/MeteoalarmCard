@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LitElement, html, TemplateResult, css, CSSResultGroup } from 'lit';
-import { HomeAssistant, fireEvent, LovelaceCardEditor, EntityConfig } from 'custom-card-helpers';
-
 import { ScopedRegistryHost } from '@lit-labs/scoped-registry-mixin';
-import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
+import { EntityConfig, fireEvent, HomeAssistant, LovelaceCardEditor } from 'custom-card-helpers';
+import { css, CSSResultGroup, html, LitElement, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
 import { formfieldDefinition } from '../elements/formfield';
 import { selectDefinition } from '../elements/select';
 import { switchDefinition } from '../elements/switch';
 import { textfieldDefinition } from '../elements/textfield';
-import { MeteoalarmCard } from './meteoalarm-card';
-import { localize } from './localize/localize';
-import { processEditorEntities } from './process-editor-entities';
 import { generateEditorWarnings } from './editor-warnings';
+import { localize } from './localize/localize';
+import { MeteoalarmCard } from './meteoalarm-card';
+import { processEditorEntities } from './process-editor-entities';
+import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
 
 @customElement('meteoalarm-card-editor')
 export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implements LovelaceCardEditor {

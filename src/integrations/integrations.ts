@@ -1,10 +1,10 @@
+import BurzeDzisNet from './burze_dzis_net';
+import DWD from './dwd';
+import EnvironmentCanada from './env_canada';
 import Meteoalarm from './meteoalarm';
 import MeteoFrance from './meteofrance';
-import DWD from './dwd';
-import Weatheralerts from './weatheralerts';
 import NINA from './nina';
-import EnvironmentCanada from './env_canada';
-import BurzeDzisNet from './burze_dzis_net';
+import Weatheralerts from './weatheralerts';
 
 const INTEGRATIONS = [
 	Meteoalarm,

@@ -1,41 +1,26 @@
-import { LitElement, html, TemplateResult, PropertyValues, CSSResultGroup } from 'lit';
-import { customElement, property, state } from 'lit/decorators';
-import {ifDefined} from 'lit/directives/if-defined';
 import {
-	HomeAssistant,
-	hasConfigOrEntityChanged,
-	hasAction,
-	ActionHandlerEvent,
-	handleAction,
-	LovelaceCardEditor,
-	LovelaceCardConfig,
-	debounce,
-	EntityConfig
+	ActionHandlerEvent, debounce,
+	EntityConfig, handleAction, hasAction, hasConfigOrEntityChanged, HomeAssistant, LovelaceCardConfig, LovelaceCardEditor
 } from 'custom-card-helpers';
-import Swiper, { Pagination } from 'swiper';
-
-import {
-	MeteoalarmCardConfig,
-	MeteoalarmAlertParsed,
-	MeteoalarmEventType,
-	MeteoalarmIntegration,
-	MeteoalarmLevelType,
-	MeteoalarmAlertKind,
-	MeteoalarmIntegrationEntityType,
-	MeteoalarmAlert,
-	MeteoalarmScalingMode
-} from './types';
-import { actionHandler } from './action-handler-directive';
-import { version as CARD_VERSION } from '../package.json';
-import { localize } from './localize/localize';
-import styles from './styles';
-import swiperStyles from './external/swiperStyles';
-import ResizeObserver from 'resize-observer-polyfill';
 import { HassEntity } from 'home-assistant-js-websocket';
+import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
+import { customElement, property, state } from 'lit/decorators';
+import { ifDefined } from 'lit/directives/if-defined';
+import ResizeObserver from 'resize-observer-polyfill';
+import Swiper, { Pagination } from 'swiper';
+import { version as CARD_VERSION } from '../package.json';
+import { actionHandler } from './action-handler-directive';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
+import swiperStyles from './external/swiperStyles';
 import INTEGRATIONS from './integrations/integrations';
-import { processConfigEntities } from './process-config-entities';
+import { localize } from './localize/localize';
 import { getCanvasFont, getTextWidth } from './measure-text';
+import { processConfigEntities } from './process-config-entities';
+import styles from './styles';
+import {
+	MeteoalarmAlert, MeteoalarmAlertKind, MeteoalarmAlertParsed, MeteoalarmCardConfig, MeteoalarmEventType,
+	MeteoalarmIntegration, MeteoalarmIntegrationEntityType, MeteoalarmLevelType, MeteoalarmScalingMode
+} from './types';
 
 // eslint-disable-next-line no-console
 console.info(
