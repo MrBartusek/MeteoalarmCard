@@ -10,7 +10,7 @@ import { textfieldDefinition } from '../elements/textfield';
 import { generateEditorWarnings } from './editor-warnings';
 import { localize } from './localize/localize';
 import { MeteoalarmCard } from './meteoalarm-card';
-import { processEditorEntities } from './process-editor-entities';
+import { processEditorEntities } from './helpers/process-editor-entities';
 import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
 
 @customElement('meteoalarm-card-editor')

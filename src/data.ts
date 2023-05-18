@@ -41,8 +41,8 @@ export class MeteoalarmData {
 		const tsunami = Utils.minHAversion(2022, 6) ? 'tsunami' : 'waves';
 		const dust = Utils.minHAversion(2022, 8) ? 'weather-dust' : 'weather-windy';
 
+		// This list should be ordered from most to least dangerous
 		return [
-			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Nuclear,         'Nuclear Event',    'radioactive'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Hurricane,       'Hurricane',        'weather-hurricane'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Tornado,         'Tornado',          'weather-tornado'),
@@ -62,7 +62,8 @@ export class MeteoalarmData {
 			new MeteoalarmEventInfo(MeteoalarmEventType.Dust,            'Dust',              dust),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Wind,            'Wind',             'weather-windy'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Fog,             'Fog',              'weather-fog'),
-			new MeteoalarmEventInfo(MeteoalarmEventType.AirQuality,      'Air Quality',      'air-filter')
+			new MeteoalarmEventInfo(MeteoalarmEventType.AirQuality,      'Air Quality',      'air-filter'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Unknown,         'Unknown Event',    'alert-circle-outline')
 		];
 	}
 

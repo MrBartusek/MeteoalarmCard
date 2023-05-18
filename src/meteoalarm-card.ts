@@ -1,6 +1,6 @@
 import {
-	ActionHandlerEvent, debounce,
-	EntityConfig, handleAction, hasAction, hasConfigOrEntityChanged, HomeAssistant, LovelaceCardConfig, LovelaceCardEditor
+	ActionHandlerEvent, debounce, EntityConfig, handleAction, hasAction, hasConfigOrEntityChanged,
+	HomeAssistant, LovelaceCardConfig, LovelaceCardEditor
 } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
 import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
@@ -9,18 +9,15 @@ import { ifDefined } from 'lit/directives/if-defined';
 import ResizeObserver from 'resize-observer-polyfill';
 import Swiper, { Pagination } from 'swiper';
 import { version as CARD_VERSION } from '../package.json';
-import { actionHandler } from './action-handler-directive';
-import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
+import EventsParser from './events-praser';
 import swiperStyles from './external/swiperStyles';
+import { actionHandler } from './helpers/action-handler-directive';
+import { processConfigEntities } from './helpers/process-config-entities';
 import INTEGRATIONS from './integrations/integrations';
 import { localize } from './localize/localize';
 import { getCanvasFont, getTextWidth } from './measure-text';
-import { processConfigEntities } from './process-config-entities';
 import styles from './styles';
-import {
-	MeteoalarmAlert, MeteoalarmAlertKind, MeteoalarmAlertParsed, MeteoalarmCardConfig, MeteoalarmEventType,
-	MeteoalarmIntegration, MeteoalarmIntegrationEntityType, MeteoalarmLevelType, MeteoalarmScalingMode
-} from './types';
+import { MeteoalarmCardConfig, MeteoalarmIntegration, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
 
 // eslint-disable-next-line no-console
 console.info(
@@ -256,17 +253,6 @@ export class MeteoalarmCard extends LitElement {
 		if(integration === undefined) {
 			throw new Error(localize('error.invalid_integration'));
 		}
-		if(!this.entities.every(e => integration.supports(e))) {
-			if(this.entities.length == 1) {
-				throw new Error(localize('error.entity_invalid.single'));
-			}
-			else {
-				throw new Error(
-					localize('error.entity_invalid.multiple')
-						.replace('{entity}', this.entities.filter(e => !integration.supports(e)).map(x => x.entity_id).join(', '))
-				);
-			}
-		}
 		return integration!;
 	}
 
@@ -279,160 +265,26 @@ export class MeteoalarmCard extends LitElement {
 		return modeString as MeteoalarmScalingMode;
 	}
 
-	// This function graters all of the attributes needed for rendering of the card
-	// from the selected integration, sometimes doing additional processing and checks
-	private getEvents(): MeteoalarmAlertParsed[] {
-		// If any entity is unavailable show unavailable card
-		const unavailableEntity = this.entities.some(e => {
-			return e == undefined || (e.attributes.status || e.attributes.state || e.state) === 'unavailable';
-		});
-		if(unavailableEntity) {
-			return [{
-				isActive: false,
-				entity: undefined,
-				icon: 'cloud-question',
-				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
-				headlines: [
-					localize('common.unavailable.long'),
-					localize('common.unavailable.short')
-				]
-			}];
-		}
-
-		let alerts: MeteoalarmAlert[] = [];
-		for(const entity of this.entities) {
-			const active = this.integration.alertActive(entity);
-			if(!active) continue;
-
-			let entityAlerts = this.integration.getAlerts(entity);
-			if(!Array.isArray(entityAlerts)) {
-				entityAlerts = [ entityAlerts ];
-			}
-			if(entityAlerts.length == 0) {
-				throw new Error('Integration is active but did not return any events');
-			}
-			for(const alert of entityAlerts) {
-				alerts.push({...alert, _entity: entity});
-			}
-		}
-
-		// Sort by how dangerous events are
-		alerts = alerts.sort((a, b) => {
-			if(a.event < b.event) return -1;
-			else if(a.event > b.event) return 1;
-			return 0;
-		});
-
-		// Sort by level
-		alerts = alerts.sort((a, b) => {
-			return b.level - a.level;
-		});
-
-		// Push expected events to back of the list
-		alerts = alerts.sort((a, b) => {
-			if(a.kind === undefined) return 0;
-			if(a.kind == MeteoalarmAlertKind.Current && b.kind == MeteoalarmAlertKind.Expected) return -1;
-			else if(a.kind == MeteoalarmAlertKind.Expected && b.kind == MeteoalarmAlertKind.Current) return 1;
-			return 0;
-		});
-
-		// Limit to 1 event if swiper is disabled
-		if(this.config.disable_swiper) {
-			alerts = alerts.splice(0, 1);
-		}
-
-		const result: MeteoalarmAlertParsed[] = [];
-		for(const alert of alerts) {
-			// Verify that integration response match standards
-			if(alert.event === undefined || alert.level === undefined) {
-				throw new Error(`[Invalid response from integration] Received partial event: event: ${alert.event} level: ${alert.level}`);
-			}
-			if(!this.integration.metadata.returnHeadline && alert.headline) {
-				throw new Error('[Invalid response from integration] metadata.returnHeadline is false but headline was returned');
-			}
-			if((this.integration.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind == undefined) {
-				throw new Error('[Invalid response from integration] CurrentExpected type is required to provide alert.kind');
-			}
-			if((this.integration.metadata.type != MeteoalarmIntegrationEntityType.CurrentExpected) && alert.kind != undefined) {
-				throw new Error('[Invalid response from integration] only CurrentExpected type can return alert.kind');
-			}
-			if(!this.integration.metadata.returnMultipleAlerts && alerts.length > 1) {
-				throw new Error('[Invalid response from integration] returnMultipleAlerts is false but more than one alert was returned');
-			}
-
-			const event = MeteoalarmData.getEvent(alert.event);
-			const level = MeteoalarmData.getLevel(alert.level);
-
-			const headlines = this.generateHeadlines(event, level);
-			// If there is provided headline, and user wants it, push it to headlines
-			if(!this.config.override_headline && alert.headline) {
-				headlines.unshift(alert.headline);
-			}
-
-			let caption: string | undefined = undefined;
-			let captionIcon: string | undefined = undefined;
-			if(!this.config.hide_caption) {
-				if(alert.kind == MeteoalarmAlertKind.Expected) {
-					caption = localize('common.expected');
-					captionIcon = 'clock-outline';
-				}
-			}
-
-			result.push({
-				isActive: true,
-				entity: alert._entity!,
-				icon: event.icon,
-				color: level.color,
-				headlines: headlines,
-				caption: caption,
-				captionIcon: captionIcon
-			});
-		}
-
-		// If there are no results that mean above loop didn't trigger
-		// event parsing even once since every sensor was inactive.
-		// if hide_when_no_warning keep this list empty
-		if(result.length == 0 && !this.config.hide_when_no_warning) {
-			return [{
-				isActive: false,
-				entity: this.entities[0],
-				icon: 'shield-outline',
-				color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
-				headlines: [
-					localize('events.no_warnings')
-				]
-			}];
-		}
-		return result;
-	}
-
-	// Artificially generate headlines from event type and level
-	private generateHeadlines(event: MeteoalarmEventInfo, level: MeteoalarmLevelInfo): string[] {
-		if(event.type === MeteoalarmEventType.Unknown) {
-			return [
-				localize(level.translationKey + '.generic'),
-				localize(level.translationKey + '.color')
-			];
-		}
-		else {
-			const e = localize(event.translationKey);
-			return [
-				localize(level.translationKey + '.event').replace('{event}', localize(event.translationKey)),
-				e.charAt(0).toUpperCase() + e.slice(1)
-			];
-		}
-	}
-
 	protected render(): TemplateResult | void {
 		try {
-			const events = this.getEvents();
-			if(events.length == 0) {
+			const parser = new EventsParser(this.integration);
+			const events = parser.getEvents(
+				this.entities,
+				this.config.disable_swiper,
+				this.config.override_headline,
+				this.config.hide_caption
+			);
+
+			// Handle hide_when_no_warning
+			if(events.length == 0 && this.config.hide_when_no_warning) {
 				// eslint-disable-next-line no-console
 				console.log('MeteoalarmCard: Card is hidden since hide_when_no_warning is enabled and there are no warnings');
 				this.setCardMargin(false);
 				return html``;
 			}
+
 			this.setCardMargin(true);
+
 			return html`
 				<ha-card
 					@action=${this.handleAction}
@@ -471,7 +323,7 @@ export class MeteoalarmCard extends LitElement {
 		}
 		catch(error) {
 			// eslint-disable-next-line no-console
-			console.error('=== METEOALARM CARD ERROR ===\nReport issue: https://bit.ly/3hK1hL4 \n\n', error);
+			console.error('[METEOALARM CARD ERROR]\nReport issue: https://bit.ly/3hK1hL4 \n\n', error);
 			return this.showError(error as string);
 		}
 	}

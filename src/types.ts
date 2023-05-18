@@ -57,10 +57,12 @@ export enum MeteoalarmIntegrationEntityType {
   // Each warning is dedicated for one entity kind
   SeparateEvents = 4
 }
-
+/**
+ * Is the alert currently active or will be active in the future
+ * This is mostly used with type MeteoalarmIntegrationEntityType.CurrentExpected
+ */
 export enum MeteoalarmAlertKind {
-  // Is the alert currently active or will be active in the future
-  // This is mostly used with type MeteoalarmIntegrationEntityType.CurrentExpected
+
   Current = 0,
   Expected = 1
 }
@@ -81,8 +83,13 @@ export interface MeteoalarmAlert {
   _entity?: HassEntity
 }
 
-// Event transformed from MeteoalarmEvent used for rendering card
+/**
+ * Event transformed from MeteoalarmEvent used for rendering card
+ */
 export interface MeteoalarmAlertParsed {
+  /**
+   * Should this alert be shown when hide_when_no_warnings is enabled
+   */
   isActive: boolean,
   icon: string,
   color: string,
@@ -92,7 +99,6 @@ export interface MeteoalarmAlertParsed {
   entity?: HassEntity,
 }
 
-// This list is ordered how dangerous events are
 export enum MeteoalarmEventType {
   Unknown,
   Nuclear,
