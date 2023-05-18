@@ -272,7 +272,9 @@ export class MeteoalarmCard extends LitElement {
 				this.entities,
 				this.config.disable_swiper,
 				this.config.override_headline,
-				this.config.hide_caption
+				this.config.hide_caption,
+				this.config.ignored_levels,
+				this.config.ignored_events
 			);
 
 			// Handle hide_when_no_warning
