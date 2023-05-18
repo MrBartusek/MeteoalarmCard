@@ -1,10 +1,12 @@
 import { HassEntity } from 'home-assistant-js-websocket';
 import {
 	MeteoalarmAlert,
+	MeteoalarmAlertKind,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
-	MeteoalarmIntegrationMetadata
+	MeteoalarmIntegrationMetadata,
+	MeteoalarmLevelType
 } from '../types';
 import { Utils } from '../utils';
 
@@ -42,155 +44,81 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 	}
 
 	private get eventTypes(): { [key: string]: MeteoalarmEventType } {
+		// Event types from: https://www.weather.gov/lwx/WarningsDefined
 		return {
-			'Tornado Warning': MeteoalarmEventType.Tornado,
-			'Tsunami Warning': MeteoalarmEventType.Tsunami,
-			'Extreme Wind Warning': MeteoalarmEventType.Wind,
-			'Severe Thunderstorm Warning': MeteoalarmEventType.Thunderstorms,
-			'Flash Flood Warning': MeteoalarmEventType.Flooding,
-			'Flash Flood Statement': MeteoalarmEventType.Flooding,
-			'Severe Weather Statement': MeteoalarmEventType.Unknown,
-			'Shelter In Place Warning': MeteoalarmEventType.Unknown,
-			'Evacuation Immediate': MeteoalarmEventType.Unknown,
-			'Civil Danger Warning': MeteoalarmEventType.Unknown,
-			'Nuclear Power Plant Warning': MeteoalarmEventType.Nuclear,
-			'Radiological Hazard Warning': MeteoalarmEventType.Nuclear,
-			'Hazardous Materials Warning': MeteoalarmEventType.Nuclear,
-			'Fire Warning': MeteoalarmEventType.ForestFire,
-			'Civil Emergency Message': MeteoalarmEventType.Unknown,
-			'Law Enforcement Warning': MeteoalarmEventType.Unknown,
-			'Storm Surge Warning': MeteoalarmEventType.CoastalEvent,
-			'Hurricane Force Wind Warning': MeteoalarmEventType.Wind,
-			'Hurricane Warning': MeteoalarmEventType.Hurricane,
-			'Typhoon Warning': MeteoalarmEventType.Hurricane,
-			'Special Marine Warning': MeteoalarmEventType.SeaEvent,
-			'Blizzard Warning': MeteoalarmEventType.SnowIce,
-			'Snow Squall Warning': MeteoalarmEventType.SnowIce,
-			'Ice Storm Warning': MeteoalarmEventType.SnowIce,
-			'Winter Storm Warning': MeteoalarmEventType.SnowIce,
-			'High Wind Warning': MeteoalarmEventType.Wind,
-			'Tropical Storm Warning': MeteoalarmEventType.Thunderstorms,
-			'Storm Warning': MeteoalarmEventType.Thunderstorms,
-			'Tsunami Advisory': MeteoalarmEventType.Tsunami,
-			'Tsunami Watch': MeteoalarmEventType.Tsunami,
-			'Avalanche Warning': MeteoalarmEventType.Avalanches,
-			'Earthquake Warning': MeteoalarmEventType.Earthquake,
-			'Volcano Warning': MeteoalarmEventType.Volcano,
-			'Ashfall Warning': MeteoalarmEventType.Rain,
-			'Coastal Flood Warning': MeteoalarmEventType.Flooding,
-			'Lakeshore Flood Warning': MeteoalarmEventType.Flooding,
-			'Flood Warning': MeteoalarmEventType.Flooding,
-			'High Surf Warning': MeteoalarmEventType.CoastalEvent,
-			'Dust Storm Warning': MeteoalarmEventType.Dust,
-			'Blowing Dust Warning': MeteoalarmEventType.Dust,
-			'Lake Effect Snow Warning': MeteoalarmEventType.SnowIce,
-			'Excessive Heat Warning': MeteoalarmEventType.HighTemperature,
-			'Tornado Watch': MeteoalarmEventType.Tornado,
-			'Severe Thunderstorm Watch': MeteoalarmEventType.Thunderstorms,
-			'Flash Flood Watch': MeteoalarmEventType.Flooding,
-			'Gale Warning': MeteoalarmEventType.Wind,
-			'Flood Statement': MeteoalarmEventType.Flooding,
-			'Wind Chill Warning': MeteoalarmEventType.LowTemperature,
-			'Extreme Cold Warning': MeteoalarmEventType.LowTemperature,
-			'Hard Freeze Warning': MeteoalarmEventType.LowTemperature,
-			'Freeze Warning': MeteoalarmEventType.LowTemperature,
-			'Red Flag Warning': MeteoalarmEventType.CoastalEvent,
-			'Storm Surge Watch': MeteoalarmEventType.CoastalEvent,
-			'Hurricane Watch': MeteoalarmEventType.Hurricane,
-			'Hurricane Force Wind Watch': MeteoalarmEventType.Wind,
-			'Typhoon Watch': MeteoalarmEventType.Hurricane,
-			'Tropical Storm Watch': MeteoalarmEventType.Wind,
-			'Storm Watch': MeteoalarmEventType.Thunderstorms,
-			'Hurricane Local Statement': MeteoalarmEventType.Wind,
-			'Typhoon Local Statement': MeteoalarmEventType.Hurricane,
-			'Tropical Storm Local Statement': MeteoalarmEventType.Wind,
-			'Tropical Depression Local Statement': MeteoalarmEventType.Hurricane,
-			'Avalanche Advisory': MeteoalarmEventType.Avalanches,
-			'Winter Weather Advisory': MeteoalarmEventType.SnowIce,
-			'Wind Chill Advisory': MeteoalarmEventType.LowTemperature,
-			'Heat Advisory': MeteoalarmEventType.HighTemperature,
-			'Urban and Small Stream Flood Advisory': MeteoalarmEventType.Flooding,
-			'Small Stream Flood Advisory': MeteoalarmEventType.Flooding,
-			'Arroyo and Small Stream Flood Advisory': MeteoalarmEventType.Flooding,
-			'Flood Advisory': MeteoalarmEventType.Flooding,
-			'Hydrologic Advisory': MeteoalarmEventType.Flooding,
-			'Lakeshore Flood Advisory': MeteoalarmEventType.Flooding,
-			'Coastal Flood Advisory': MeteoalarmEventType.Flooding,
-			'High Surf Advisory': MeteoalarmEventType.CoastalEvent,
-			'Heavy Freezing Spray Warning': MeteoalarmEventType.SnowIce,
-			'Dense Fog Advisory': MeteoalarmEventType.Fog,
-			'Dense Smoke Advisory': MeteoalarmEventType.Fog,
-			'Small Craft Advisory For Hazardous Seas': MeteoalarmEventType.Unknown,
-			'Small Craft Advisory for Rough Bar': MeteoalarmEventType.Unknown,
-			'Small Craft Advisory for Winds': MeteoalarmEventType.Unknown,
-			'Small Craft Advisory': MeteoalarmEventType.Unknown,
-			'Brisk Wind Advisory': MeteoalarmEventType.Wind,
-			'Hazardous Seas Warning': MeteoalarmEventType.SeaEvent,
-			'Dust Advisory': MeteoalarmEventType.Dust,
-			'Blowing Dust Advisory': MeteoalarmEventType.Dust,
-			'Lake Wind Advisory': MeteoalarmEventType.Wind,
-			'Wind Advisory': MeteoalarmEventType.Wind,
-			'Frost Advisory': MeteoalarmEventType.SnowIce,
-			'Ashfall Advisory': MeteoalarmEventType.SnowIce,
-			'Freezing Fog Advisory': MeteoalarmEventType.SnowIce,
-			'Freezing Spray Advisory': MeteoalarmEventType.SnowIce,
-			'Low Water Advisory': MeteoalarmEventType.SeaEvent,
-			'Local Area Emergency': MeteoalarmEventType.Unknown,
-			'Avalanche Watch': MeteoalarmEventType.Avalanches,
-			'Blizzard Watch': MeteoalarmEventType.Thunderstorms,
-			'Rip Current Statement': MeteoalarmEventType.CoastalEvent,
-			'Beach Hazards Statement': MeteoalarmEventType.CoastalEvent,
-			'Gale Watch': MeteoalarmEventType.SeaEvent,
-			'Winter Storm Watch': MeteoalarmEventType.SnowIce,
-			'Hazardous Seas Watch': MeteoalarmEventType.SeaEvent,
-			'Heavy Freezing Spray Watch': MeteoalarmEventType.SnowIce,
-			'Coastal Flood Watch': MeteoalarmEventType.Flooding,
-			'Lakeshore Flood Watch': MeteoalarmEventType.Flooding,
-			'Flood Watch': MeteoalarmEventType.Flooding,
-			'High Wind Watch': MeteoalarmEventType.Wind,
-			'Excessive Heat Watch': MeteoalarmEventType.HighTemperature,
-			'Extreme Cold Watch': MeteoalarmEventType.LowTemperature,
-			'Wind Chill Watch': MeteoalarmEventType.LowTemperature,
-			'Lake Effect Snow Watch': MeteoalarmEventType.SnowIce,
-			'Hard Freeze Watch': MeteoalarmEventType.SnowIce,
-			'Freeze ': MeteoalarmEventType.SnowIce,
-			'Fire Weather Watch': MeteoalarmEventType.ForestFire,
-			'Extreme Fire Danger': MeteoalarmEventType.ForestFire,
-			'911 Telephone Outage': MeteoalarmEventType.Unknown,
-			'Coastal Flood Statement': MeteoalarmEventType.Flooding,
-			'Lakeshore Flood Statement': MeteoalarmEventType.Flooding,
-			'Special Weather Statement': MeteoalarmEventType.Unknown,
-			'Marine Weather Statement': MeteoalarmEventType.Unknown,
-			'Air Quality Alert': MeteoalarmEventType.AirQuality,
-			'Air Stagnation Advisory': MeteoalarmEventType.AirQuality,
-			'Hazardous Weather Outlook': MeteoalarmEventType.Unknown,
-			'Hydrologic Outlook': MeteoalarmEventType.CoastalEvent,
-			'Short Term Forecast': MeteoalarmEventType.Unknown,
-			'Administrative Message': MeteoalarmEventType.Unknown,
-			'Test': MeteoalarmEventType.Unknown,
-			'Child Abduction Emergency': MeteoalarmEventType.Unknown,
-			'Blue Alert': MeteoalarmEventType.Unknown
+			'Winter Storm': MeteoalarmEventType.SnowIce,
+			'Blizzard': MeteoalarmEventType.SnowIce,
+			'Ice Storm': MeteoalarmEventType.SnowIce,
+			'Winter Weather': MeteoalarmEventType.SnowIce,
+			'Freeze': MeteoalarmEventType.LowTemperature,
+			'Frost': MeteoalarmEventType.LowTemperature,
+			'Wind Chill': MeteoalarmEventType.LowTemperature,
+			'Fire Weather': MeteoalarmEventType.ForestFire,
+			'Red Flag': MeteoalarmEventType.ForestFire,
+			'Dense Fog': MeteoalarmEventType.Fog,
+			'High Wind': MeteoalarmEventType.Wind,
+			'Wind': MeteoalarmEventType.Wind,
+			'Severe Thunderstorm': MeteoalarmEventType.Thunderstorms,
+			'Tornado': MeteoalarmEventType.Tornado,
+			'Extreme Wind': MeteoalarmEventType.Wind,
+			'Small Craft': MeteoalarmEventType.Wind,
+			'Gale': MeteoalarmEventType.SeaEvent,
+			'Storm': MeteoalarmEventType.Thunderstorms,
+			'Hurricane Force Wind': MeteoalarmEventType.Hurricane,
+			'Special Marine': MeteoalarmEventType.Unknown,
+			'Coastal Flood': MeteoalarmEventType.Flooding,
+			'Flash Flood': MeteoalarmEventType.Flooding,
+			'Flood': MeteoalarmEventType.Flooding,
+			'River Flood': MeteoalarmEventType.Flooding,
+			'Excessive Heat': MeteoalarmEventType.HighTemperature,
+			'Heat': MeteoalarmEventType.HighTemperature,
+			'Tropical Storm': MeteoalarmEventType.Hurricane,
+			'Hurricane': MeteoalarmEventType.Hurricane,
+			'Air Quality': MeteoalarmEventType.AirQuality
 		};
 	}
 
-	public getAlerts(entity: HassEntity): MeteoalarmAlert[] {
+	private get eventLevels(): { [key: string]: MeteoalarmLevelType } {
+		// Event types from: https://www.weather.gov/lwx/WarningsDefined
+		return {
+			'Warning': MeteoalarmLevelType.Red,
+			'Watch': MeteoalarmLevelType.Orange,
+			'Advisory': MeteoalarmLevelType.Yellow,
+			'Alert': MeteoalarmLevelType.Yellow
+		};
+	}
+
+	public getAlerts(entity: WeatheralertsEntity): MeteoalarmAlert[] {
 		const { alerts } = entity.attributes;
 
 		const result: MeteoalarmAlert[] = [];
 
 		for(const alert of alerts) {
-			const { event, severity, title } = alert;
-			if(event in this.eventTypes) {
-				result.push({
-					// Return event name 'Coastal Flood Watch' or fallback to longer title
-					headline: event && title,
-					level: Utils.getLevelBySeverity(severity),
-					event: this.eventTypes[event]
-				});
+			const { event: fullAlertName, title } = alert;
+
+			let alertLevel: MeteoalarmLevelType | undefined = undefined;
+			let alertType: MeteoalarmEventType | undefined = undefined;
+
+			for(const [levelName, level] of Object.entries(this.eventLevels)) {
+				if(!fullAlertName.includes(levelName)) continue;
+				alertLevel = level;
+				const alertName = fullAlertName.replace(levelName, '').trim();
+				alertType = this.eventTypes[alertName];
+				if(!alertType) {
+					throw Error(`Unknown weatheralerts alert type: ${alertName}`);
+				}
 			}
-			else {
-				throw new Error('Unknown warning: ' + event);
+
+			if(!alertLevel) {
+				throw Error(`Unknown weatheralerts alert level: ${fullAlertName}`);
 			}
+
+			result.push({
+				// Return event name 'Coastal Flood Watch' or fallback to longer title
+				headline: fullAlertName && title,
+				level: alertLevel,
+				event: alertType!
+			});
 		}
 		return result;
 	}
