@@ -79,8 +79,7 @@ class EventsParser {
 			return [ PredefinedCards.noWarningsCard(entities[0]) ];
 		}
 
-		if(disableSweeper) result.slice(1);
-		return result;
+		return disableSweeper ? result.slice(1) : result;
 	}
 
 	/**
