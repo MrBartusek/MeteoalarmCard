@@ -32,7 +32,7 @@ export default class NINA implements MeteoalarmIntegration {
 	}
 
 	public supports(entity: NinaEntity): boolean {
-		// Nina doesn't regally provide a good way of verification
+		// Nina doesn't really provide a good way of verification
 		return ['on', 'off'].includes(entity.state);
 	}
 
