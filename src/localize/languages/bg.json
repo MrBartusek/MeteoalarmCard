@@ -33,7 +33,7 @@
       "current_expected": "Първият с текущите събития, а вторият с бъдещите.",
       "slots": "The exact amount of them created is determined by it's configuration.",
       "separate_events": "Всеки вид събитие има отделен обект.",
-      "warning_watch_statement": "Има 3 обекта: предупреждения, наблюдения и изявления.",
+      "warning_watch_statement_advisory": null,
       "end": "Трябва да добавите всички тях, за да сте сигурни, че няма да пропуснете никакви сигнали."
     },
     "error": {

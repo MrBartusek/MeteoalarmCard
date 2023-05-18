@@ -33,7 +33,7 @@
       "current_expected": null,
       "slots": null,
       "separate_events": null,
-      "warning_watch_statement": null,
+      "warning_watch_statement_advisory": null,
       "end": null
     },
     "error": {

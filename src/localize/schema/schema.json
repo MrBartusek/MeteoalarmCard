@@ -165,7 +165,7 @@
                         "current_expected",
                         "slots",
                         "separate_events",
-                        "warning_watch_statement",
+                        "warning_watch_statement_advisory",
                         "end"
                     ],
                     "properties": { 
@@ -185,8 +185,8 @@
                             "$id": "#/properties/editor/properties/description/separate_events",
                             "type": ["string", "null"]
                         },
-                        "warning_watch_statement": {
-                            "$id": "#/properties/editor/properties/description/warning_watch_statement",
+                        "warning_watch_statement_advisory": {
+                            "$id": "#/properties/editor/properties/description/warning_watch_statement_advisory",
                             "type": ["string", "null"]
                         },
                         "end": {

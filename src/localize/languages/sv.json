@@ -33,7 +33,7 @@
       "current_expected": "Första med nuvarande händelser och andra med framtida händelser.",
       "slots": "Den exakta mängden av dem som skapas bestäms av dess konfiguration.",
       "separate_events": "Varje evenemangstyp har en enskild enhet.",
-      "warning_watch_statement": "Det finns 3 enheter: varningar, bevakningar och uttalanden",
+      "warning_watch_statement_advisory": null,
       "end": "Du bör lägga till samtliga för att inte missa några varningar."
     },
     "error": {

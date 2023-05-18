@@ -33,7 +33,7 @@
       "current_expected": "Prvi s trenutnim događajima, a drugi sa budućim.",
       "slots": "Točan broj je definiran konfiguracijom.",
       "separate_events": "Svaki tip događaja ima svoj entitet.",
-      "warning_watch_statement": "Tri vrste entiteta: upozorenja, pretplate i izjave.",
+      "warning_watch_statement_advisory": null,
       "end": "Trebate ih dodati sve kako ne bi propustili niti jedno uzpozorenje."
     },
     "error": {

@@ -33,7 +33,7 @@
       "current_expected": "La prima con gli eventi attuali e la seconda con quelli futuri.",
       "slots": "L'esatta quantità è determinata dalla sua configurazione.",
       "separate_events": "Ogni evento ha un'entità propria e separata.",
-      "warning_watch_statement": "Esistono 3 entità: avvertenze, considerazioni e avvisi/messaggi.",
+      "warning_watch_statement_advisory": null,
       "end": "Dovresti aggiungerle tutte per essere sicuro di non perdere nessun avviso."
     },
     "error": {

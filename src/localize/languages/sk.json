@@ -33,7 +33,7 @@
       "current_expected": "Prvý s aktuálnymi udalosťami a druhý s budúcimi",
       "slots": "Ich presné množstvo je určené jeho konfiguráciou.",
       "separate_events": "Každý druh udalosti má samostatnú entitu.",
-      "warning_watch_statement": "Existujú 3 entity: varovania, stráženia a vyhlásenia.",
+      "warning_watch_statement_advisory": null,
       "end": "Mali by ste ich pridať všetky, aby ste sa uistili, že vám žiadne upozornenia neuniknú."
     },
     "error": {

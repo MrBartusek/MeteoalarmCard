@@ -33,7 +33,7 @@
       "current_expected": "Eeldatav",
       "slots": "esinemist",
       "separate_events": "eraldi nähtused",
-      "warning_watch_statement": "Esinemine",
+      "warning_watch_statement_advisory": null,
       "end": "Lõpp"
     },
     "error": {

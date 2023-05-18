@@ -33,7 +33,7 @@
       "current_expected": "First one with the current events and the second one with future ones.",
       "slots": "The exact amount of them created is determined by it's configuration.",
       "separate_events": "Each event kind has a separate entity.",
-      "warning_watch_statement": "There are 3 entities: warnings, watches and statements.",
+      "warning_watch_statement_advisory": "There are 4 entities: warnings, watches, statements and advisories.",
       "end": "You should add all of them to make sure you don't miss any alerts."
     },
     "error": {

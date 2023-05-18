@@ -33,7 +33,7 @@
       "current_expected": "Pierwszą z aktualnymi zdarzeniami a drugą z przyszłymi.",
       "slots": "Dokładna ilość określana jest przez jej konfiguracje.",
       "separate_events": "Każde ostrzeżenie ma swoją własną encję",
-      "warning_watch_statement": "Tworzone sa 3 encje: warnings, watches i statements.",
+      "warning_watch_statement_advisory": "Tworzone są 3 encje: warnings, watches, statements, advisories.",
       "end": "Powinieneś dodać wszystkie encje aby mieć pewność że nie przegapisz żadnych ostrzeżeń."
     },
     "error": {

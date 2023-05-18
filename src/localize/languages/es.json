@@ -33,7 +33,7 @@
       "current_expected": "El primero con los eventos actuales y el segundo con los futuros.",
       "slots": "La cantidad exacta creada está determinada por su configuración.",
       "separate_events": "Cada tipo de evento tiene una entidad separada.",
-      "warning_watch_statement": "Hay 3 entidades: avisos, alertas y declaraciones.",
+      "warning_watch_statement_advisory": null,
       "end": "Debes agregarlos todos para asegurarte de no perderte ninguna alerta."
     },
     "error": {

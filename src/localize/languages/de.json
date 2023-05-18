@@ -33,7 +33,7 @@
       "current_expected": "Die erste mit aktuellen, die zweite mit zukünftigen Meldungen.",
       "slots": "Die exakte Anzahl wird durch die Konfiguration bestimmt.",
       "separate_events": "Jeder Ereignistyp erhält eine eigene Entität.",
-      "warning_watch_statement": "Es gibt 3 Entitäten: Warnungen, Beobachtungen und Hinweise/Mitteilungen.",
+      "warning_watch_statement_advisory": null,
       "end": "Um keine Warnhinweise zu verpassen, sollten alle ausgewählt werden."
     },
     "error": {
