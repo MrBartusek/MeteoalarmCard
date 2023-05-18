@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { Utils } from '../utils';
 
 type WeatheralertsAlert = {
 	event: string,
@@ -29,7 +30,8 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.SingleEntity,
 			returnHeadline: true,
 			returnMultipleAlerts: true,
-			entitiesCount: 1
+			entitiesCount: 1,
+			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes)
 		};
 	}
 

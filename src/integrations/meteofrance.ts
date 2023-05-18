@@ -52,7 +52,18 @@ export default class MeteoFrance implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.SingleEntity,
 			returnHeadline: false,
 			returnMultipleAlerts: true,
-			entitiesCount: 1
+			entitiesCount: 1,
+			monitoredConditions: [
+				MeteoalarmEventType.Wind,
+				MeteoalarmEventType.Flooding,
+				MeteoalarmEventType.Thunderstorms,
+				MeteoalarmEventType.Flooding,
+				MeteoalarmEventType.SnowIce,
+				MeteoalarmEventType.HighTemperature,
+	 			MeteoalarmEventType.LowTemperature,
+				MeteoalarmEventType.Avalanches,
+				MeteoalarmEventType.CoastalEvent
+			]
 		};
 	}
 
