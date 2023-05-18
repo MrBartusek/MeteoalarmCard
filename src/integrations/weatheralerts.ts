@@ -94,8 +94,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		const result: MeteoalarmAlert[] = [];
 
 		for(const alert of alerts) {
-			const { event: fullAlertName, title } = alert;
-
+			const fullAlertName = alert.event;
 			let alertLevel: MeteoalarmLevelType | undefined = undefined;
 			let alertType: MeteoalarmEventType | undefined = undefined;
 
