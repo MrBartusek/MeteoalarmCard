@@ -8,9 +8,9 @@ import { selectDefinition } from '../elements/select';
 import { switchDefinition } from '../elements/switch';
 import { textfieldDefinition } from '../elements/textfield';
 import { generateEditorWarnings } from './editor-warnings';
+import { processEditorEntities } from './helpers/process-editor-entities';
 import { localize } from './localize/localize';
 import { MeteoalarmCard } from './meteoalarm-card';
-import { processEditorEntities } from './helpers/process-editor-entities';
 import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
 
 @customElement('meteoalarm-card-editor')

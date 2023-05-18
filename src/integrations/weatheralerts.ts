@@ -1,14 +1,12 @@
 import { HassEntity } from 'home-assistant-js-websocket';
 import {
 	MeteoalarmAlert,
-	MeteoalarmAlertKind,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
-import { Utils } from '../utils';
 
 type WeatheralertsAlert = {
 	event: string,
