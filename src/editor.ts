@@ -14,7 +14,7 @@ import { MeteoalarmCard } from './meteoalarm-card';
 import { MeteoalarmCardConfig, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
 
 @customElement('meteoalarm-card-editor')
-export class BoilerplateCardEditor extends ScopedRegistryHost(LitElement) implements LovelaceCardEditor {
+export class MeteoalarmCardCardEditor extends ScopedRegistryHost(LitElement) implements LovelaceCardEditor {
   @property({ attribute: false }) public hass?: HomeAssistant;
   @state() private _config?: MeteoalarmCardConfig;
   @state() private _helpers?: any;
