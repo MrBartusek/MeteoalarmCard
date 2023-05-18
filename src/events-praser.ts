@@ -2,7 +2,14 @@ import { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
 import { localize } from './localize/localize';
 import { PredefinedCards } from './predefined-cards';
-import { MeteoalarmAlert, MeteoalarmAlertKind, MeteoalarmAlertParsed, MeteoalarmEventType, MeteoalarmIntegration, MeteoalarmIntegrationEntityType, MeteoalarmLevelType } from './types';
+import {
+	MeteoalarmAlert,
+	MeteoalarmAlertKind,
+	MeteoalarmAlertParsed,
+	MeteoalarmEventType,
+	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType
+} from './types';
 
 /**
  * This is the class that stands between integration and rendering code.
