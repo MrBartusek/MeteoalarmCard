@@ -32,7 +32,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.WarningWatchStatementAdvisory,
 			returnHeadline: false,
 			returnMultipleAlerts: true,
-			entitiesCount: 4
+			entitiesCount: 4,
+			monitoredConditions: [...new Set(this.eventTypes.map(e => e.type))]
 		};
 	}
 

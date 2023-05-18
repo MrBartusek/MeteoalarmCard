@@ -24,7 +24,10 @@ export default class NINA implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.Slots,
 			returnHeadline: true,
 			returnMultipleAlerts: true,
-			entitiesCount: 0
+			entitiesCount: 0,
+			monitoredConditions: [
+				MeteoalarmEventType.Unknown
+			]
 		};
 	}
 

@@ -37,6 +37,7 @@ export interface MeteoalarmIntegrationMetadata {
   entitiesCount:  number
   returnHeadline: boolean,
   returnMultipleAlerts: boolean,
+  monitoredConditions: MeteoalarmEventType[]
 }
 
 export enum MeteoalarmIntegrationEntityType {
