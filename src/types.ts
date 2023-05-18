@@ -48,11 +48,8 @@ export enum MeteoalarmIntegrationEntityType {
   // Alerts in this integration are split across multiple (probably unlimited amount) of entities
   // each one contains one warning
   Slots = 2,
-  // Alerts in this integration are split across exactly 3 entities
-  // Warnings entity contains red warnings
-  // Watch entity contains orange warnings
-  // Statement entity contains yellow warnings
-  WarningWatchStatement = 3,
+  // Alerts in this integration are split across exactly 4 entities: warnings, watches, statements, advisories
+  WarningWatchStatementAdvisory  = 3,
   // Alerts in this integration are split across multiple entities, count is strictly specified
   // Each warning is dedicated for one entity kind
   SeparateEvents = 4
