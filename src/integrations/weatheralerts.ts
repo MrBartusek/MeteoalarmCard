@@ -114,8 +114,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			}
 
 			result.push({
-				// Return event name 'Coastal Flood Watch' or fallback to longer title
-				headline: fullAlertName && title,
+				headline: fullAlertName,
 				level: alertLevel,
 				event: alertType!
 			});
