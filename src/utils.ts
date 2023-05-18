@@ -1,4 +1,4 @@
-import { MeteoalarmLevelType } from './types';
+import { MeteoalarmEventType, MeteoalarmLevelType } from './types';
 
 export class Utils {
 	/**
@@ -44,5 +44,14 @@ export class Utils {
 			default:
 				throw new Error(`[Utils.getLevelBySeverity] unknown event severity: "${severity}"`);
 		}
+	}
+
+	/**
+	 * Some integrations store their event mapping in key-value dict, this
+	 * function convert this list for metadata.monitoredConditions
+	 * @param evenTypes evenTypes dict
+	 */
+	public static convertEventTypesForMetadata(evenTypes: { [key: number | string]: MeteoalarmEventType }): MeteoalarmEventType[] {
+		return [...new Set(Object.values(evenTypes))];
 	}
 }

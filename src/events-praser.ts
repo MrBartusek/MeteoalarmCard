@@ -2,7 +2,14 @@ import { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
 import { localize } from './localize/localize';
 import { PredefinedCards } from './predefined-cards';
-import { MeteoalarmAlert, MeteoalarmAlertKind, MeteoalarmAlertParsed, MeteoalarmEventType, MeteoalarmIntegration, MeteoalarmIntegrationEntityType } from './types';
+import {
+	MeteoalarmAlert,
+	MeteoalarmAlertKind,
+	MeteoalarmAlertParsed,
+	MeteoalarmEventType,
+	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType
+} from './types';
 
 /**
  * This is the class that stands between integration and rendering code.
@@ -21,15 +28,18 @@ class EventsParser {
 		entities: HassEntity[],
 		disableSweeper = false,
 		overrideHeadline = false,
-		hideCaption = false
+		hideCaption = false,
+		ignoredLevels: string[] = [],
+		ignoredEvents: string[] = []
 	): MeteoalarmAlertParsed[] {
 		if(this.isAnyEntityUnavailable(entities)) {
 			return [ PredefinedCards.unavailableCard() ];
 		}
 		this.checkIfIntegrationSupportsEntities(entities);
 
-		const alerts = this.sortAlerts(this.graterAllAlerts(entities));
+		let alerts = this.sortAlerts(this.graterAllAlerts(entities));
 		this.validateAlert(alerts);
+		alerts = this.filterAlerts(alerts, ignoredLevels, ignoredEvents);
 
 		const result: MeteoalarmAlertParsed[] = [];
 		for(const alert of alerts) {
@@ -94,6 +104,25 @@ class EventsParser {
 			}
 		}
 		return alerts;
+	}
+
+	private filterAlerts(
+		alerts: MeteoalarmAlert[],
+		ignoredLevels: string[],
+		ignoredEvents: string[]
+	): MeteoalarmAlert[] {
+		if(ignoredEvents.length == 0 && ignoredLevels.length == 0) return alerts;
+		const result: MeteoalarmAlert[] = [];
+
+		for(const alert of alerts) {
+			const eventInfo = MeteoalarmData.events.find(e => e.type == alert.event)!;
+			const levelInfo = MeteoalarmData.levels.find(e => e.type == alert.level)!;
+			if(!ignoredEvents.includes(eventInfo.fullName) && !ignoredLevels.includes(levelInfo.fullName)) {
+				result.push(alert);
+			}
+		}
+
+		return result;
 	}
 
 	private sortAlerts(alertsInput: MeteoalarmAlert[]): MeteoalarmAlert[] {

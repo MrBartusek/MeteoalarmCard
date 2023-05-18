@@ -34,7 +34,8 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.SingleEntity,
 			returnHeadline: true,
 			returnMultipleAlerts: false,
-			entitiesCount: 1
+			entitiesCount: 1,
+			monitoredConditions: this.eventTypes
 		};
 	}
 

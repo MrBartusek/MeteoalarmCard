@@ -23,7 +23,15 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.SeparateEvents,
 			returnHeadline: true,
 			returnMultipleAlerts: true,
-			entitiesCount: 6
+			entitiesCount: 6,
+			monitoredConditions: [
+				MeteoalarmEventType.LowTemperature,
+				MeteoalarmEventType.HighTemperature,
+				MeteoalarmEventType.Rain,
+				MeteoalarmEventType.Thunderstorms,
+				MeteoalarmEventType.Tornado,
+				MeteoalarmEventType.Wind
+			]
 		};
 	}
 

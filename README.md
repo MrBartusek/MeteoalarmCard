@@ -50,12 +50,16 @@ Here is what configuration options mean:
 | ---------------------- | --------- | ------------ | ------------------------------------------------------------------------------------ |
 | `type`                 | `string`  | **Required** | `custom:meteoalarm-card`                                                             |
 | `integration`          | `string`  | **Required** | Name of the integration. Available options are listed under [Supported integrations](#supported-integrations) |
-| `entities`             | `string`  | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                         |
+| `entities`             | `array`   | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                         |
 | `override_headline`    | `boolean` | `false`      | _[Only some integrations]_ Override headline proved by integration by generated one. |
 | `scaling_mode`         | `string`  | `headline_and_scale` | Headline scaling mode. See [scaling-mode.md](dosc/scaling-mode.md)           |
 | `disable_swiper`       | `boolean` | `false`      | _[Only some integrations]_ Disable slider when displaying multiple alerts, you may not see some important alerts. |
 | `hide_caption`         | `boolean` | `false`      | _[DWD only]_ Hide top-right caption when showing advance alerts.
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
+| `ignored_levels`*      | `array`   | `[]`         | List of levels that will not be shown on the card. Possible values are: `Yellow`, `Orange` and `Red` |
+| `ignored_events`*      | `array`   | `[]`         | List of events that will not be shown on the card. Possible values are: `Nuclear Event`, `Hurricane`, `Tornado`,`Coastal Event`,`Tsunami`,`Forest Fire`,`Avalanches`,`Earthquake`,`Volcanic Activity`,`Flooding`,`Sea Event`,`Thunderstorms`,`Rain`,`Snow/Ice`,`High Temperature`,`Low Temperature`,`Dust`,`Wind`, `Fog`, `Air Quality` and `Unknown Event` |
+
+\* Not available thought visual editor
 
 Example configuration for [Meteoalarm](meteoalarm):
 

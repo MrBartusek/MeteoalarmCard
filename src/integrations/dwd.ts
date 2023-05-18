@@ -8,6 +8,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { Utils } from '../utils';
 
 type DWDEntity = HassEntity & {
 	attributes: {
@@ -24,7 +25,8 @@ export default class DWD implements MeteoalarmIntegration {
 			type: MeteoalarmIntegrationEntityType.CurrentExpected,
 			returnHeadline: true,
 			returnMultipleAlerts: true,
-			entitiesCount: 2
+			entitiesCount: 2,
+			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes)
 		};
 	}
 

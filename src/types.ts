@@ -17,6 +17,8 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
   hide_caption?: boolean;
   disable_swiper?: boolean;
   scaling_mode?: string;
+  ignored_events?: string[];
+  ignored_levels?: string[];
 
   tap_action?: ActionConfig;
   hold_action?: ActionConfig;
@@ -37,6 +39,7 @@ export interface MeteoalarmIntegrationMetadata {
   entitiesCount:  number
   returnHeadline: boolean,
   returnMultipleAlerts: boolean,
+  monitoredConditions: MeteoalarmEventType[]
 }
 
 export enum MeteoalarmIntegrationEntityType {
