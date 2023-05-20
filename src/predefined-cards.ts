@@ -6,7 +6,7 @@ import { MeteoalarmAlertParsed, MeteoalarmLevelType } from './types';
 export class PredefinedCards {
 	public static unavailableCard(): MeteoalarmAlertParsed {
 		return {
-			isActive: false,
+			isActive: true,
 			entity: undefined,
 			icon: 'cloud-question',
 			color: MeteoalarmData.getLevel(MeteoalarmLevelType.None).color,
