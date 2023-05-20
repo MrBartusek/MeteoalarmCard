@@ -278,9 +278,9 @@ export class MeteoalarmCard extends LitElement {
 			);
 
 			// Handle hide_when_no_warning
-			if(events.length == 0 && this.config.hide_when_no_warning) {
+			if(events.every(e => !e.isActive) && this.config.hide_when_no_warning) {
 				// eslint-disable-next-line no-console
-				console.log('MeteoalarmCard: Card is hidden since hide_when_no_warning is enabled and there are no warnings');
+				console.log('MeteoalarmCard: Card is hidden - hide_when_no_warning is enabled and there are no warnings');
 				this.setCardMargin(false);
 				return html``;
 			}
