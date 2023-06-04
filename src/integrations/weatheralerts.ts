@@ -74,7 +74,8 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Heat': MeteoalarmEventType.HighTemperature,
 			'Tropical Storm': MeteoalarmEventType.Hurricane,
 			'Hurricane': MeteoalarmEventType.Hurricane,
-			'Air Quality': MeteoalarmEventType.AirQuality
+			'Air Quality': MeteoalarmEventType.AirQuality,
+			'Rip Current': MeteoalarmEventType.CoastalEvent // https://github.com/MrBartusek/MeteoalarmCard/issues/183
 		};
 	}
 
