@@ -83,6 +83,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		// Event types from: https://www.weather.gov/lwx/WarningsDefined
 		return {
 			'Warning': MeteoalarmLevelType.Red,
+			'Statement': MeteoalarmLevelType.Orange,
 			'Watch': MeteoalarmLevelType.Orange,
 			'Advisory': MeteoalarmLevelType.Yellow,
 			'Alert': MeteoalarmLevelType.Yellow
