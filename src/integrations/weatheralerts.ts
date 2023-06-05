@@ -75,7 +75,11 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Tropical Storm': MeteoalarmEventType.Hurricane,
 			'Hurricane': MeteoalarmEventType.Hurricane,
 			'Air Quality': MeteoalarmEventType.AirQuality,
-			'Rip Current': MeteoalarmEventType.CoastalEvent // https://github.com/MrBartusek/MeteoalarmCard/issues/183
+			'Special Weather': MeteoalarmEventType.Unknown,
+			'Rip Current': MeteoalarmEventType.CoastalEvent, // https://github.com/MrBartusek/MeteoalarmCard/issues/183
+			'High Surf': MeteoalarmEventType.CoastalEvent,
+			'Hazardous Seas': MeteoalarmEventType.SeaEvent,
+			'Beach Hazard': MeteoalarmEventType.CoastalEvent
 		};
 	}
 
@@ -83,6 +87,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		// Event types from: https://www.weather.gov/lwx/WarningsDefined
 		return {
 			'Warning': MeteoalarmLevelType.Red,
+			'Statement': MeteoalarmLevelType.Orange,
 			'Watch': MeteoalarmLevelType.Orange,
 			'Advisory': MeteoalarmLevelType.Yellow,
 			'Alert': MeteoalarmLevelType.Yellow
