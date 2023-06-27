@@ -49,9 +49,9 @@ export class Utils {
 	/**
 	 * Some integrations store their event mapping in key-value dict, this
 	 * function convert this list for metadata.monitoredConditions
-	 * @param evenTypes evenTypes dict
+	 * @param eventTypes eventTypes dict
 	 */
-	public static convertEventTypesForMetadata(evenTypes: { [key: number | string]: MeteoalarmEventType }): MeteoalarmEventType[] {
-		return [...new Set(Object.values(evenTypes))];
+	public static convertEventTypesForMetadata(eventTypes: { [key: number | string]: MeteoalarmEventType }): MeteoalarmEventType[] {
+		return [...new Set(Object.values(eventTypes))];
 	}
 }
