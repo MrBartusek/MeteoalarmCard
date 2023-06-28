@@ -76,7 +76,11 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Hurricane': MeteoalarmEventType.Hurricane,
 			'Air Quality': MeteoalarmEventType.AirQuality,
 			'Rip Current': MeteoalarmEventType.CoastalEvent, // https://github.com/MrBartusek/MeteoalarmCard/issues/183
-			'Special Weather': MeteoalarmEventType.Unknown
+			'Special Weather': MeteoalarmEventType.Unknown,
+			'High Surf': MeteoalarmEventType.CoastalEvent,
+			'Hazardous Seas': MeteoalarmEventType.SeaEvent,
+			'Beach Hazard': MeteoalarmEventType.CoastalEvent
+
 		};
 	}
 
