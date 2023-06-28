@@ -1,6 +1,6 @@
 {
   "name": "meteoalarm-card",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Meteoalarm card for Home Assistant Lovelace UI",
   "main": "dist/meteoalarm-card.js",
   "keywords": [
