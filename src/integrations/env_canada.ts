@@ -175,7 +175,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Special Air Quality',
-				fr: 'Qualité de l\'air',
+				fr: 'Spécial Sur La Qualité De L\'Air',
 				type: MeteoalarmEventType.AirQuality
 			}
 		];
