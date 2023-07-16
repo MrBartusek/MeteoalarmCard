@@ -59,22 +59,22 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 	private async getEventType(hass: HomeAssistant, entity: HassEntity): Promise<MeteoalarmEventType | undefined> {
 		const entityInfo = await Utils.getEntityInfo(hass, entity);
 
-		if(entityInfo.unique_id.endsWith('binary_sensor_warning_present_frost_warning')) {
+		if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_frost_warning')) {
 			return MeteoalarmEventType.LowTemperature;
 		}
-		else if(entityInfo.unique_id.endsWith('binary_sensor_warning_present_heat_warning')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_heat_warning')) {
 			return MeteoalarmEventType.HighTemperature;
 		}
-		else if(entityInfo.unique_id.endsWith('binary_sensor_warning_present_precipitation_warning')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_precipitation_warning')) {
 			return MeteoalarmEventType.Rain;
 		}
-		else if(entityInfo.unique_id.endsWith('binary_sensor_warning_present_storm_warning')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_storm_warning')) {
 			return MeteoalarmEventType.Thunderstorms;
 		}
-		else if(entityInfo.unique_id.endsWith('binary_sensor_warning_present_tornado_warning')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_tornado_warning')) {
 			return MeteoalarmEventType.Tornado;
 		}
-		else if(entityInfo.unique_id.endsWith('binary_sensor_warning_present_wind_warning')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_wind_warning')) {
 			return MeteoalarmEventType.Wind;
 		}
 		return undefined;
