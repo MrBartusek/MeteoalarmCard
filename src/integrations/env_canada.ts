@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { HomeAssistant } from 'custom-card-helpers';
 
 type EnvCanadaEntity = HassEntity & {
 	attributes: {
@@ -37,7 +38,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: EnvCanadaEntity): boolean {
+	public async supports(_hass: HomeAssistant, entity: EnvCanadaEntity): Promise<boolean> {
 		const isStateNumber = !Number.isNaN(Number(entity.state));
 		return (
 			[ATTRIBUTION_EN, ATTRIBUTION_FR].includes(entity.attributes.attribution) &&
@@ -231,7 +232,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		});
 	}
 
-	public getAlerts(entity: EnvCanadaEntity): MeteoalarmAlert[] {
+	public async getAlerts(_hass: HomeAssistant, entity: EnvCanadaEntity): Promise<MeteoalarmAlert[]> {
 		const warningCount = Number(entity.state);
 
 		const result: MeteoalarmAlert[] = [];

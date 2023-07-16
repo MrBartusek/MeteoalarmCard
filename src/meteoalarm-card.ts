@@ -17,7 +17,13 @@ import INTEGRATIONS from './integrations/integrations';
 import { localize } from './localize/localize';
 import { getCanvasFont, getTextWidth } from './measure-text';
 import styles from './styles';
-import { MeteoalarmCardConfig, MeteoalarmIntegration, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
+import {
+	MeteoalarmAlertParsed,
+	MeteoalarmCardConfig,
+	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType,
+	MeteoalarmScalingMode
+} from './types';
 
 // eslint-disable-next-line no-console
 console.info(
@@ -49,6 +55,7 @@ export class MeteoalarmCard extends LitElement {
 	// Entity of which alert is displayed on currently selected slide
 	// Used to display correct entity on click
 	private currentEntity?: string;
+	private events: MeteoalarmAlertParsed[] | undefined = undefined;
 
 	static get integrations(): MeteoalarmIntegration[] {
 		return INTEGRATIONS.map(i => new i());
@@ -59,7 +66,7 @@ export class MeteoalarmCard extends LitElement {
 		return document.createElement('meteoalarm-card-editor');
 	}
 
-	public static getStubConfig(hass: HomeAssistant, entities: string[]): Record<string, unknown> {
+	public static async getStubConfig(hass: HomeAssistant, entities: string[]): Promise<Record<string, unknown>> {
 		// Find fist entity that is supported by any integration
 		const ALLOWED_INTEGRATION_TYPES = [
 			MeteoalarmIntegrationEntityType.SingleEntity,
@@ -71,7 +78,7 @@ export class MeteoalarmCard extends LitElement {
 				ALLOWED_INTEGRATION_TYPES.includes(x.metadata.type)
 			);
 			for(const integration of integrations) {
-				if(integration.supports(hass.states[entity])) {
+				if(await integration.supports(hass, hass.states[entity])) {
 					return {
 						entities: { entity },
 						integration: integration.metadata.key
@@ -265,17 +272,26 @@ export class MeteoalarmCard extends LitElement {
 		return modeString as MeteoalarmScalingMode;
 	}
 
+	protected override async scheduleUpdate(): Promise<void> {
+		const parser = new EventsParser(this.integration);
+		this.events = await parser.getEvents(
+			this.hass,
+			this.entities,
+			this.config.disable_swiper,
+			this.config.override_headline,
+			this.config.hide_caption,
+			this.config.ignored_levels,
+			this.config.ignored_events
+		);
+		await super.scheduleUpdate();
+	}
+
 	protected render(): TemplateResult | void {
 		try {
-			const parser = new EventsParser(this.integration);
-			const events = parser.getEvents(
-				this.entities,
-				this.config.disable_swiper,
-				this.config.override_headline,
-				this.config.hide_caption,
-				this.config.ignored_levels,
-				this.config.ignored_events
-			);
+			const events = this.events;
+			if(!events) {
+				return;
+			}
 
 			// Handle hide_when_no_warning
 			if(events.every(e => !e.isActive) && this.config.hide_when_no_warning) {

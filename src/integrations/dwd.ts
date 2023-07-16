@@ -9,6 +9,7 @@ import {
 	MeteoalarmLevelType
 } from '../types';
 import { Utils } from '../utils';
+import { HomeAssistant } from 'custom-card-helpers';
 
 type DWDEntity = HassEntity & {
 	attributes: {
@@ -30,7 +31,7 @@ export default class DWD implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: DWDEntity): boolean {
+	public async supports(_hass: HomeAssistant, entity: DWDEntity): Promise<boolean> {
 		return entity.attributes.attribution == 'Data provided by DWD' && this.getEntityKind(entity) !== undefined;
 	}
 
@@ -105,7 +106,7 @@ export default class DWD implements MeteoalarmIntegration {
 		};
 	}
 
-	public getAlerts(entity: HassEntity): MeteoalarmAlert[] {
+	public async getAlerts(_hass: HomeAssistant, entity: HassEntity): Promise<MeteoalarmAlert[]> {
 		const { warning_count: warningCount } = entity.attributes;
 
 		const result: MeteoalarmAlert[] = [];

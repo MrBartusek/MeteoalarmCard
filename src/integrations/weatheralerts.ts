@@ -8,6 +8,7 @@ import {
 	MeteoalarmLevelType
 } from '../types';
 import { Utils } from '../utils';
+import { HomeAssistant } from 'custom-card-helpers';
 
 type WeatheralertsAlert = {
 	event: string,
@@ -35,7 +36,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: WeatheralertsEntity): boolean {
+	public async supports(_hass: HomeAssistant, entity: WeatheralertsEntity): Promise<boolean> {
 		return entity.attributes.integration == 'weatheralerts';
 	}
 
@@ -95,7 +96,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		};
 	}
 
-	public getAlerts(entity: WeatheralertsEntity): MeteoalarmAlert[] {
+	public async getAlerts(_hass: HomeAssistant, entity: WeatheralertsEntity): Promise<MeteoalarmAlert[]> {
 		const { alerts } = entity.attributes;
 
 		const result: MeteoalarmAlert[] = [];
