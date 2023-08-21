@@ -39,8 +39,8 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	private get eventTypes(): { [key: number]: MeteoalarmEventType } {
-		// https://www.dwd.de/DE/leistungen/opendata/help/warnungen/gesamtueberblickII.pdf?__blob=publicationFile&v=3
-		// Google translate can actually translate PDFs, quite usefull
+		// https://www.dwd.de/DE/leistungen/opendata/help/warnungen/cap_dwd_profile_en_pdf_1_12.pdf?__blob=publicationFile&v=3
+		// Event codes are listed in appendix 3.1
 		return {
 			22: MeteoalarmEventType.SnowIce,
 			24: MeteoalarmEventType.SnowIce,
@@ -94,6 +94,7 @@ export default class DWD implements MeteoalarmIntegration {
 			96: MeteoalarmEventType.Thunderstorms,
 			246: MeteoalarmEventType.HighTemperature,
 			247: MeteoalarmEventType.HighTemperature,
+			248: MeteoalarmEventType.HighTemperature,
 			11: MeteoalarmEventType.CoastalEvent,
 			12: MeteoalarmEventType.CoastalEvent,
 			13: MeteoalarmEventType.CoastalEvent,
