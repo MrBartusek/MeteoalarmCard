@@ -94,6 +94,7 @@ export default class DWD implements MeteoalarmIntegration {
 			96: MeteoalarmEventType.Thunderstorms,
 			246: MeteoalarmEventType.HighTemperature,
 			247: MeteoalarmEventType.HighTemperature,
+			248: MeteoalarmEventType.HighTemperature,
 			11: MeteoalarmEventType.CoastalEvent,
 			12: MeteoalarmEventType.CoastalEvent,
 			13: MeteoalarmEventType.CoastalEvent,
