@@ -3,20 +3,20 @@
   "common": {
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
-    "warning": null,
-    "expected": null,
+    "warning": "Waarschuwing",
+    "expected": "Verwacht",
     "unavailable": {
-      "long": null,
-      "short": null
+      "long": "De integratie is niet beschikbaar",
+      "short": "Onbeschikbaar"
     }
   },
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",
     "invalid_integration": "Deze integratie is niet geldig!",
-    "invalid_scaling_mode": null,
+    "invalid_scaling_mode": "Deze schalings modus is niet geldig!",
     "entity_invalid": {
-      "single": null,
-      "multiple": null
+      "single": "De geselecteerde integratie komt niet overeen met de geselecteerde entiteit.",
+      "multiple": "De geselecteerde integratie komt niet overeen met de geselecteerde entiteiten: {entity}."
     }
   },
   "editor": {
@@ -25,68 +25,68 @@
     "required": "Verplicht",
     "recommended": "Aanbevolen",
     "override_headline": "Koptekst overschrijven",
-    "hide_when_no_warning": null,
-    "hide_caption": null,
-    "disable_swiper": null,
+    "hide_when_no_warning": "Verbergen als er geen waarschuwingen zijn",
+    "hide_caption": "Verberg onderschrift",
+    "disable_swiper": "Schakel waarschuwingen swiper uit",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement_advisory": null,
-      "end": null
+      "start": "De geselecteerde integratie maakt meerdere entiteiten aan.",
+      "current_expected": "De eerste is eerste is een voor een huidige waarschuring en de tweede is voor toekomstige.",
+      "slots": "Het precieze aantal is afhankelijk van de configuratie.",
+      "separate_events": "Ieder waarschuwingssoort heeft een eigen entiteit.",
+      "warning_watch_statement_advisory": "Er zijn 4 entiteittypen: waarschuwingen, berichten, verklaringen en adviezen.",
+      "end": "U zult alle typen moeten toevoegen zodat u geen bericht mist."
     },
     "error": {
-      "expected_entity": null,
-      "too_many_entities": null,
-      "duplicate": null
+      "expected_entity": "Er is geen entiteit voor verwachte waarschuwingen opgegeven. Toekomstig evenement wordt niet getoond.",
+      "too_many_entities": "Er zijn niet meer entiteiten opgegeven dan verwacht. Verwachtte {expected} entiteiten, kreeg {got} entiteiten.",
+      "duplicate": "Er zijn duplicaten gevonden in de entiteitenlijst."
     },
-    "scaling_mode": null,
+    "scaling_mode": "Schalingsmodus",
     "scaling_mode_options": {
-      "disabled": null,
-      "headline": null,
-      "scale": null,
-      "headline_and_scale": null
+      "disabled": "Uitgeschakeld",
+      "headline": "Alleen koptekst",
+      "scale": "Alleen schalen",
+      "headline_and_scale": "Koptekst en schalen"
     }
   },
   "events": {
     "no_warnings": "Geen waarschuwingen",
-    "nuclear": null,
-    "tornado": null,
-    "hurricane": null,
+    "nuclear": "nuclear",
+    "tornado": "tornado",
+    "hurricane": "orkaan",
     "wind": "wind",
-    "earthquake": null,
-    "volcano": null,
+    "earthquake": "aardbeving",
+    "volcano": "vulkaan",
     "snow_ice": "sneeuw/ijzel/bevriezing",
     "fog": "mist",
-    "high_temperature": null,
-    "low_temperature": "koude",
+    "high_temperature": "zeer hoge temperatuur",
+    "low_temperature": "zeer lage temperatuur",
     "coastal_event": "kustbedreiging",
-    "tsunami": null,
-    "sea_event": null,
+    "tsunami": "tsunami",
+    "sea_event": "zeeniveau",
     "forest_fire": "bos- en heidebranden",
     "avalanches": "lawines",
     "thunderstorms": "onweer",
     "rain": "regen",
-    "flooding": null,
-    "air_quality": null,
-    "dust": null
+    "flooding": "overstroming",
+    "air_quality": "luchtkwaliteit",
+    "dust": "stof"
   },
   "messages": {
     "yellow": {
       "event": "Waarschuwing geel {event}",
-      "generic": null,
-      "color": null
+      "generic": "Gele waarschuwing",
+      "color": "Geel"
     },
     "orange": {
       "event": "Waarschuwing oranje {event}",
-      "generic": null,
-      "color": null
+      "generic": "Oranje waarschuwing",
+      "color": "Oranje"
     },
     "red": {
       "event": "Waarschuwing rood {event}",
-      "generic": null,
-      "color": null
+      "generic": "Rode waarschuwing",
+      "color": "Rood"
     }
   }
 }
