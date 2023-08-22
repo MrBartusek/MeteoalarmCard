@@ -4,7 +4,7 @@
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
     "warning": "Waarschuwing",
-    "expected": ""Verwacht",
+    "expected": "Verwacht",
     "unavailable": {
       "long": "De integratie is niet beschikbaar",
       "short": "Onbeschikbaar"
