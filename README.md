@@ -110,7 +110,7 @@ Expect Meteoalarm this card supports many other integrations:
 | ----------------------------------- | ---------------- | ------------------------ |
 | [MeteoAlarm][meteoalarm]            | `meteoalarm`     | Warnings for Europe collected by [MeteoAlarm][meteoalarm-direct] (EUMETNET). The website integrates all important severe weather information originating from the official National Public Weather Services across a large number of European countries  |
 | [Météo-France][meteo-france]        | `meteofrance`    | Warnings for France from [Météo-France][meteo-france-direct]. |
-| [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Warnings for Germany from [Dutscher Wetterdienst][dwd-direct]. |
+| [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Warnings for Germany from [Deutscher Wetterdienst][dwd-direct]. |
 | [Environnement Canada][env-canada]  | `env_canada`     | Warnings for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
 | [NINA][nina]                        | `nina`           | Warnings for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct]. This integration doesn't provide much atributes thus using it generates very generic card. |
 | [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for warnings in Poland from [Burze.dzis.net][burze-direct]. These warnings are issued by [Skywarn / Polscy Łowcy Burz ](https://lowcyburz.pl) which is not backed by government or any official agency. |
