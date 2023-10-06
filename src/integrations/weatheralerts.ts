@@ -110,7 +110,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 				alertLevel = level;
 				const alertName = fullAlertName.replace(levelName, '').trim();
 				alertType = this.eventTypes[alertName];
-				if(!alertType) {
+				if(alertType == undefined) {
 					throw Error(`Unknown weatheralerts alert type: ${alertName}`);
 				}
 			}
