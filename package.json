@@ -30,7 +30,7 @@
     "build-tools": "tsc -p tools",
     "fix-translations": "node tools/dist/fix-translations.js",
     "translations-summary": "node tools/dist/translations-summary",
-    "lint": "eslint src/*.ts",
+    "lint": "eslint src/**/*.ts",
     "rollup": "rollup -c"
   },
   "dependencies": {
