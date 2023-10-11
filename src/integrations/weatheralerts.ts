@@ -115,7 +115,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 				}
 			}
 
-			if(!alertLevel) {
+			if(alertLevel == undefined) {
 				throw Error(`Unknown weatheralerts alert level: ${fullAlertName}`);
 			}
 
