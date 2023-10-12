@@ -8,6 +8,7 @@ import {
 	MeteoalarmLevelType
 } from '../types';
 import { Utils } from '../utils';
+import { HomeAssistant } from 'custom-card-helpers';
 
 type NinaEntity = HassEntity & {
 	attributes: {
@@ -31,7 +32,7 @@ export default class NINA implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: NinaEntity): boolean {
+	public async supports(_hass: HomeAssistant, entity: NinaEntity): Promise<boolean> {
 		// Nina doesn't really provide a good way of verification
 		return ['on', 'off'].includes(entity.state);
 	}
@@ -40,7 +41,7 @@ export default class NINA implements MeteoalarmIntegration {
 		return entity.state == 'on';
 	}
 
-	public getAlerts(entity: NinaEntity): MeteoalarmAlert[] {
+	public async getAlerts(_hass: HomeAssistant, entity: NinaEntity): Promise<MeteoalarmAlert[]> {
 		const { severity, headline } = entity.attributes;
 
 		return [{

@@ -10,6 +10,7 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType
 } from './types';
+import { HomeAssistant } from 'custom-card-helpers';
 
 /**
  * This is the class that stands between integration and rendering code.
@@ -24,20 +25,21 @@ class EventsParser {
      * to integration specified in constructors. The result is additionally processed and
      * verified then, packed to array of MeteoalarmAlertParsed objects
      */
-	public getEvents(
+	public async getEvents(
+		hass: HomeAssistant,
 		entities: HassEntity[],
 		disableSweeper = false,
 		overrideHeadline = false,
 		hideCaption = false,
 		ignoredLevels: string[] = [],
 		ignoredEvents: string[] = []
-	): MeteoalarmAlertParsed[] {
+	): Promise<MeteoalarmAlertParsed[]> {
 		if(this.isAnyEntityUnavailable(entities)) {
 			return [ PredefinedCards.unavailableCard() ];
 		}
-		this.checkIfIntegrationSupportsEntities(entities);
+		await this.checkIfIntegrationSupportsEntities(hass, entities);
 
-		let alerts = this.sortAlerts(this.graterAllAlerts(entities));
+		let alerts = this.sortAlerts(await this.graterAllAlerts(hass, entities));
 		this.validateAlert(alerts);
 		alerts = this.filterAlerts(alerts, ignoredLevels, ignoredEvents);
 
@@ -85,13 +87,13 @@ class EventsParser {
 	/**
      * Call integration for each of the entities and put all alerts in array
      */
-	private graterAllAlerts(entities: HassEntity[]): MeteoalarmAlert[] {
+	private async graterAllAlerts(hass: HomeAssistant, entities: HassEntity[]): Promise<MeteoalarmAlert[]> {
 		const alerts: MeteoalarmAlert[] = [];
 		for(const entity of entities) {
 			const active = this.integration.alertActive(entity);
 			if(!active) continue;
 
-			let entityAlerts = this.integration.getAlerts(entity);
+			let entityAlerts = await this.integration.getAlerts(hass, entity);
 			if(!Array.isArray(entityAlerts)) {
 				entityAlerts = [ entityAlerts ];
 			}
@@ -204,16 +206,20 @@ class EventsParser {
 		});
 	}
 
-	private checkIfIntegrationSupportsEntities(entities: HassEntity[]): void {
-		if(!entities.every(e => this.integration.supports(e))) {
+	private async checkIfIntegrationSupportsEntities(hass: HomeAssistant, entities: HassEntity[]): Promise<void> {
+		const supportData = await Promise.all(entities.map(async e => {
+			const supports = await this.integration.supports(hass, e);
+			return {entity: e, supports};
+		}));
+		if(!supportData.every(e => e.supports)) {
 			if(entities.length == 1) {
 				throw new Error(localize('error.entity_invalid.single'));
 			}
 			else {
-				const unsupportedEntities = entities.filter(e => !this.integration.supports(e));
+				const unsupportedEntities = supportData.filter(e => !e.supports);
 				throw new Error(
 					localize('error.entity_invalid.multiple')
-						.replace('{entity}', unsupportedEntities.map(x => x.entity_id).join(', '))
+						.replace('{entity}', unsupportedEntities.map(x => x.entity.entity_id).join(', '))
 				);
 			}
 		}

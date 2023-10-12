@@ -1,4 +1,6 @@
-import { MeteoalarmEventType, MeteoalarmLevelType } from './types';
+import { EntityRegistryEntry, MeteoalarmEventType, MeteoalarmLevelType } from './types';
+import { HomeAssistant } from 'custom-card-helpers';
+import { HassEntity } from 'home-assistant-js-websocket';
 
 export class Utils {
 	/**
@@ -53,5 +55,12 @@ export class Utils {
 	 */
 	public static convertEventTypesForMetadata(eventTypes: { [key: number | string]: MeteoalarmEventType }): MeteoalarmEventType[] {
 		return [...new Set(Object.values(eventTypes))];
+	}
+
+	public static async getEntityInfo(hass: HomeAssistant, entity: HassEntity): Promise<EntityRegistryEntry> {
+		return await hass.callWS<EntityRegistryEntry>({
+			type: 'config/entity_registry/get',
+			entity_id: entity.entity_id
+		});
 	}
 }

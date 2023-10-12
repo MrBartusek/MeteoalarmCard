@@ -8,6 +8,7 @@ import {
 	MeteoalarmLevelType
 } from '../types';
 import { Utils } from '../utils';
+import { HomeAssistant } from 'custom-card-helpers';
 
 type MeteoalarmEntity = HassEntity & {
 	attributes: {
@@ -39,7 +40,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: MeteoalarmEntity): boolean {
+	public async supports(_hass: HomeAssistant, entity: MeteoalarmEntity): Promise<boolean> {
 		return entity.attributes.attribution == 'Information provided by MeteoAlarm';
 	}
 
@@ -65,7 +66,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		];
 	}
 
-	public getAlerts(entity: MeteoalarmEntity): MeteoalarmAlert[] {
+	public async getAlerts(_hass: HomeAssistant, entity: MeteoalarmEntity): Promise<MeteoalarmAlert[]> {
 		const {
 			event: eventHeadline,
 			headline,

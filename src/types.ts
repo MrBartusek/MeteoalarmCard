@@ -1,4 +1,4 @@
-import { ActionConfig, EntityConfig, LovelaceCard, LovelaceCardConfig, LovelaceCardEditor } from 'custom-card-helpers';
+import { ActionConfig, EntityConfig, HomeAssistant, LovelaceCard, LovelaceCardConfig, LovelaceCardEditor } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
 
 declare global {
@@ -27,9 +27,9 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 
 export interface MeteoalarmIntegration {
   metadata: MeteoalarmIntegrationMetadata,
-  supports(entity: HassEntity): boolean,
+  supports(hass: HomeAssistant, entity: HassEntity): Promise<boolean>,
   alertActive(entity: HassEntity): boolean,
-  getAlerts(entity: HassEntity): MeteoalarmAlert[] | MeteoalarmAlert,
+  getAlerts(hass: HomeAssistant, entity: HassEntity): Promise<MeteoalarmAlert[]> | Promise<MeteoalarmAlert>,
 }
 
 export interface MeteoalarmIntegrationMetadata {
@@ -128,4 +128,12 @@ export enum MeteoalarmLevelType {
   Orange = 2,
   Yellow = 1,
   None = 0
+}
+
+export type EntityRegistryEntry = {
+  entity_id: string;
+  original_icon: string;
+  icon?: string;
+  unique_id: string;
+  disabled_by?: string;
 }

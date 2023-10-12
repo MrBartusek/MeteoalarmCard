@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType
 } from '../types';
+import { HomeAssistant } from 'custom-card-helpers';
 
 const STATE_GREEN  = 'Vert';
 const STATE_YELLOW = 'Jaune';
@@ -67,7 +68,7 @@ export default class MeteoFrance implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: HassEntity): boolean {
+	public async supports(_hass: HomeAssistant, entity: HassEntity): Promise<boolean> {
 		return entity.attributes.attribution == 'Data provided by Météo-France' && entity.attributes[EVENT_WIND] != undefined;
 	}
 
@@ -75,7 +76,7 @@ export default class MeteoFrance implements MeteoalarmIntegration {
 		return entity.state !== STATE_GREEN;
 	}
 
-	public getAlerts(entity: HassEntity): MeteoalarmAlert[] {
+	public async getAlerts(_hass: HomeAssistant, entity: HassEntity): Promise<MeteoalarmAlert[]> {
 		const result: MeteoalarmAlert[] = [];
 
 		for(const [eventName, event] of Object.entries(EVENT_TYPES)) {

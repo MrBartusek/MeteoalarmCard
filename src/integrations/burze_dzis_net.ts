@@ -6,6 +6,8 @@ import {
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata
 } from '../types';
+import { HomeAssistant } from 'custom-card-helpers';
+import { Utils } from '../utils';
 
 type BurzeDzisNetEntity = HassEntity & {
 	attributes: {
@@ -35,18 +37,18 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 		};
 	}
 
-	public supports(entity: BurzeDzisNetEntity): boolean {
+	public async supports(hass: HomeAssistant, entity: BurzeDzisNetEntity): Promise<boolean> {
 		return (
 			entity.attributes.attribution == 'Information provided by Burze.dzis.net.' &&
-			this.getEventType(entity) !== undefined);
+			await this.getEventType(hass, entity) !== undefined);
 	}
 
 	public alertActive(entity: BurzeDzisNetEntity): boolean {
 		return entity.state === 'on';
 	}
 
-	public getAlerts(entity: BurzeDzisNetEntity): MeteoalarmAlert {
-		const event = this.getEventType(entity)!;
+	public async getAlerts(hass: HomeAssistant, entity: BurzeDzisNetEntity): Promise<MeteoalarmAlert> {
+		const event = (await this.getEventType(hass, entity))!;
 		return {
 			event: event,
 			level: entity.attributes.level!,
@@ -54,23 +56,25 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 		};
 	}
 
-	private getEventType(entity: HassEntity): MeteoalarmEventType | undefined {
-		if(entity.entity_id.endsWith('frost_warning') && entity.attributes.friendly_name?.endsWith('Ostrzeżenie - Mróz')) {
+	private async getEventType(hass: HomeAssistant, entity: HassEntity): Promise<MeteoalarmEventType | undefined> {
+		const entityInfo = await Utils.getEntityInfo(hass, entity);
+
+		if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_frost_warning')) {
 			return MeteoalarmEventType.LowTemperature;
 		}
-		else if(entity.entity_id.endsWith('heat_warning') && entity.attributes.friendly_name?.endsWith('Ostrzeżenie - Upał')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_heat_warning')) {
 			return MeteoalarmEventType.HighTemperature;
 		}
-		else if(entity.entity_id.endsWith('precipitation_warning') && entity.attributes.friendly_name?.endsWith('Ostrzeżenie - Opad')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_precipitation_warning')) {
 			return MeteoalarmEventType.Rain;
 		}
-		else if(entity.entity_id.endsWith('storm_warning') && entity.attributes.friendly_name?.endsWith('Ostrzeżenie - Burza')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_storm_warning')) {
 			return MeteoalarmEventType.Thunderstorms;
 		}
-		else if(entity.entity_id.endsWith('tornado_warning') && entity.attributes.friendly_name?.endsWith('Ostrzeżenie - Trąba')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_tornado_warning')) {
 			return MeteoalarmEventType.Tornado;
 		}
-		else if(entity.entity_id.endsWith('wind_warning') && entity.attributes.friendly_name?.endsWith(' Ostrzeżenie - Wiatr')) {
+		else if(entityInfo.unique_id.match('binary_sensor_warning_(present|active)_wind_warning')) {
 			return MeteoalarmEventType.Wind;
 		}
 		return undefined;
