@@ -5,16 +5,16 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
-	MeteoalarmLevelType
+	MeteoalarmLevelType,
 } from '../types';
 import { Utils } from '../utils';
 
 type NinaEntity = HassEntity & {
 	attributes: {
-		headline: string,
-		severity: string,
-	}
-}
+		headline: string;
+		severity: string;
+	};
+};
 
 export default class NINA implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
@@ -25,9 +25,7 @@ export default class NINA implements MeteoalarmIntegration {
 			returnHeadline: true,
 			returnMultipleAlerts: true,
 			entitiesCount: 0,
-			monitoredConditions: [
-				MeteoalarmEventType.Unknown
-			]
+			monitoredConditions: [MeteoalarmEventType.Unknown],
 		};
 	}
 
@@ -43,13 +41,14 @@ export default class NINA implements MeteoalarmIntegration {
 	public getAlerts(entity: NinaEntity): MeteoalarmAlert[] {
 		const { severity, headline } = entity.attributes;
 
-		return [{
-			event: MeteoalarmEventType.Unknown,
-			headline: headline,
-			level: Utils.getLevelBySeverity(
-				severity, {
-					'Moderate': MeteoalarmLevelType.Orange
-				})
-		}];
+		return [
+			{
+				event: MeteoalarmEventType.Unknown,
+				headline: headline,
+				level: Utils.getLevelBySeverity(severity, {
+					Moderate: MeteoalarmLevelType.Orange,
+				}),
+			},
+		];
 	}
 }

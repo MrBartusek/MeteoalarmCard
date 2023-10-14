@@ -1,6 +1,13 @@
 import {
-	ActionHandlerEvent, debounce, EntityConfig, handleAction, hasAction, hasConfigOrEntityChanged,
-	HomeAssistant, LovelaceCardConfig, LovelaceCardEditor
+	ActionHandlerEvent,
+	debounce,
+	EntityConfig,
+	handleAction,
+	hasAction,
+	hasConfigOrEntityChanged,
+	HomeAssistant,
+	LovelaceCardConfig,
+	LovelaceCardEditor,
 } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
 import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
@@ -17,13 +24,18 @@ import INTEGRATIONS from './integrations/integrations';
 import { localize } from './localize/localize';
 import { getCanvasFont, getTextWidth } from './measure-text';
 import styles from './styles';
-import { MeteoalarmCardConfig, MeteoalarmIntegration, MeteoalarmIntegrationEntityType, MeteoalarmScalingMode } from './types';
+import {
+	MeteoalarmCardConfig,
+	MeteoalarmIntegration,
+	MeteoalarmIntegrationEntityType,
+	MeteoalarmScalingMode,
+} from './types';
 
 // eslint-disable-next-line no-console
 console.info(
 	`%c MeteoalarmCard %c ${CARD_VERSION} `,
 	'color: white; font-weight: bold; background: #1c1c1c',
-	'color: white; font-weight: bold; background: #db4437'
+	'color: white; font-weight: bold; background: #db4437',
 );
 
 // Push card into UI card picker
@@ -32,12 +44,11 @@ console.info(
 	preview: true,
 	type: 'meteoalarm-card',
 	name: localize('common.name'),
-	description: localize('common.description')
+	description: localize('common.description'),
 });
 
 @customElement('meteoalarm-card')
 export class MeteoalarmCard extends LitElement {
-
 	@property({ attribute: false }) public hass!: HomeAssistant;
 
 	@state() private config!: MeteoalarmCardConfig;
@@ -51,7 +62,7 @@ export class MeteoalarmCard extends LitElement {
 	private currentEntity?: string;
 
 	static get integrations(): MeteoalarmIntegration[] {
-		return INTEGRATIONS.map(i => new i());
+		return INTEGRATIONS.map((i) => new i());
 	}
 
 	public static async getConfigElement(): Promise<LovelaceCardEditor> {
@@ -63,53 +74,49 @@ export class MeteoalarmCard extends LitElement {
 		// Find fist entity that is supported by any integration
 		const ALLOWED_INTEGRATION_TYPES = [
 			MeteoalarmIntegrationEntityType.SingleEntity,
-			MeteoalarmIntegrationEntityType.CurrentExpected
-		 ];
+			MeteoalarmIntegrationEntityType.CurrentExpected,
+		];
 
-		for(const entity of entities) {
+		for (const entity of entities) {
 			const integrations = MeteoalarmCard.integrations.filter((x) =>
-				ALLOWED_INTEGRATION_TYPES.includes(x.metadata.type)
+				ALLOWED_INTEGRATION_TYPES.includes(x.metadata.type),
 			);
-			for(const integration of integrations) {
-				if(integration.supports(hass.states[entity])) {
+			for (const integration of integrations) {
+				if (integration.supports(hass.states[entity])) {
 					return {
 						entities: { entity },
-						integration: integration.metadata.key
+						integration: integration.metadata.key,
 					};
 				}
 			}
 		}
 		return {
 			entities: '',
-			integration: ''
+			integration: '',
 		};
 	}
 
 	public setConfig(config: LovelaceCardConfig): void {
 		if (!config) {
 			throw new Error(localize('common.invalid_configuration'));
-		}
-		else if (
+		} else if (
 			config.entities == undefined ||
 			(Array.isArray(config.entities) && config.entities.length == 0) ||
-			(Array.isArray(config.entities) && config.entities.every(e => e == null))) {
+			(Array.isArray(config.entities) && config.entities.every((e) => e == null))
+		) {
 			throw new Error(localize('error.missing_entity'));
-		}
-		else if (config.integration == undefined) {
+		} else if (config.integration == undefined) {
 			throw new Error(localize('error.invalid_integration'));
 		}
 
 		this.config = {
 			name: 'Meteoalarm',
-			...config
+			...config,
 		};
 	}
 
 	static get styles(): CSSResultGroup {
-		return [
-			swiperStyles,
-			styles
-		];
+		return [swiperStyles, styles];
 	}
 
 	public getCardSize(): number {
@@ -124,13 +131,13 @@ export class MeteoalarmCard extends LitElement {
 		this.measureCard();
 		this.attachObserver();
 		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper');
-		if(!swiper) return;
+		if (!swiper) return;
 		this.swiper = new Swiper(swiper, {
 			modules: [Pagination],
 			pagination: {
-				el: swiper.getElementsByClassName('swiper-pagination')[0] as HTMLElement
+				el: swiper.getElementsByClassName('swiper-pagination')[0] as HTMLElement,
 			},
-			observer: true
+			observer: true,
 		});
 		this.swiper.on('transitionEnd', () => {
 			this.updateCurrentEntity();
@@ -148,9 +155,7 @@ export class MeteoalarmCard extends LitElement {
 
 	private attachObserver() {
 		if (!this.resizeObserver) {
-			this.resizeObserver = new ResizeObserver(
-				debounce(() => this.measureCard(), 250, false)
-			);
+			this.resizeObserver = new ResizeObserver(debounce(() => this.measureCard(), 250, false));
 		}
 		const card = this.shadowRoot!.querySelector('ha-card');
 		if (!card) return;
@@ -161,27 +166,33 @@ export class MeteoalarmCard extends LitElement {
 		const regular = container.querySelector('.headline-regular') as HTMLElement;
 		const narrow = container.querySelector('.headline-narrow') as HTMLElement;
 		const veryNarrow = container.querySelector('.headline-verynarrow') as HTMLElement;
-		return [ regular, narrow, veryNarrow ];
+		return [regular, narrow, veryNarrow];
 	}
 
 	private measureCard() {
 		if (!this.isConnected) return;
 		const card = this.shadowRoot!.querySelector('ha-card');
 		if (!card) return;
-		if(this.scalingMode == MeteoalarmScalingMode.Disabled) return;
+		if (this.scalingMode == MeteoalarmScalingMode.Disabled) return;
 
-		const scaleHeadline = [MeteoalarmScalingMode.Scale, MeteoalarmScalingMode.HeadlineAndScale].includes(this.scalingMode);
-		const swapHeadline = [MeteoalarmScalingMode.Headline, MeteoalarmScalingMode.HeadlineAndScale].includes(this.scalingMode);
+		const scaleHeadline = [
+			MeteoalarmScalingMode.Scale,
+			MeteoalarmScalingMode.HeadlineAndScale,
+		].includes(this.scalingMode);
+		const swapHeadline = [
+			MeteoalarmScalingMode.Headline,
+			MeteoalarmScalingMode.HeadlineAndScale,
+		].includes(this.scalingMode);
 		const MAX_FONT_SIZE = 22;
 		const MIN_FONT_SIZE = 17;
 
 		// Scale headlines of each swiper card
 		const swiper = card.querySelector('.swiper-wrapper');
 		const slides = swiper?.getElementsByClassName('swiper-slide') as HTMLCollectionOf<HTMLElement>;
-		for(const slide of slides) {
-			const [ regular, narrow, veryNarrow ] = this.getHeadlineElements(slide);
-			const sizes: [string, HTMLElement][]= [['regular', regular]];
-			if(swapHeadline) {
+		for (const slide of slides) {
+			const [regular, narrow, veryNarrow] = this.getHeadlineElements(slide);
+			const sizes: [string, HTMLElement][] = [['regular', regular]];
+			if (swapHeadline) {
 				sizes.push(['narrow', narrow]);
 				sizes.push(['veryNarrow', veryNarrow]);
 			}
@@ -189,12 +200,15 @@ export class MeteoalarmCard extends LitElement {
 			this.setCardScaling(slide, 'regular', MAX_FONT_SIZE);
 
 			let isSizeSet = false;
-			for(const [ size, element ] of sizes) {
-				if(isSizeSet) break;
+			for (const [size, element] of sizes) {
+				if (isSizeSet) break;
 				const minFontSize = scaleHeadline ? MIN_FONT_SIZE : MAX_FONT_SIZE;
 				for (let fontSize = MAX_FONT_SIZE; fontSize >= minFontSize; fontSize--) {
-					const elementSize = getTextWidth(element.textContent!, getCanvasFont(regular, fontSize + 'px'));
-					if(elementSize <= regular.clientWidth) {
+					const elementSize = getTextWidth(
+						element.textContent!,
+						getCanvasFont(regular, fontSize + 'px'),
+					);
+					if (elementSize <= regular.clientWidth) {
 						this.setCardScaling(slide, size as any, fontSize);
 						isSizeSet = true;
 						break;
@@ -203,40 +217,39 @@ export class MeteoalarmCard extends LitElement {
 			}
 
 			// Fallback if measuring couldn't fit the text
-			if(!isSizeSet) {
-				if(swapHeadline) {
+			if (!isSizeSet) {
+				if (swapHeadline) {
 					this.setCardScaling(slide, 'icon', MAX_FONT_SIZE);
-				}
-				else {
+				} else {
 					this.setCardScaling(slide, 'regular' as any, MIN_FONT_SIZE);
 				}
-
 			}
 		}
 	}
 
-	private setCardScaling(container: HTMLElement, scale: 'regular' | 'narrow' | 'veryNarrow' | 'icon', fontSize: number) {
-		const [ regular, narrow, veryNarrow ] = this.getHeadlineElements(container);
+	private setCardScaling(
+		container: HTMLElement,
+		scale: 'regular' | 'narrow' | 'veryNarrow' | 'icon',
+		fontSize: number,
+	) {
+		const [regular, narrow, veryNarrow] = this.getHeadlineElements(container);
 
-		if(scale == 'regular') {
+		if (scale == 'regular') {
 			regular.style.fontSize = `${fontSize}px`;
 			regular.style.display = 'block';
 			narrow.style.display = 'none';
 			veryNarrow.style.display = 'none';
-		}
-		else if(scale == 'narrow') {
+		} else if (scale == 'narrow') {
 			narrow.style.fontSize = `${fontSize}px`;
 			regular.style.display = 'none';
 			narrow.style.display = 'block';
 			veryNarrow.style.display = 'none';
-		}
-		else if(scale == 'veryNarrow') {
+		} else if (scale == 'veryNarrow') {
 			veryNarrow.style.fontSize = `${fontSize}px`;
 			regular.style.display = 'none';
 			narrow.style.display = 'none';
 			veryNarrow.style.display = 'block';
-		}
-		else if(scale == 'icon') {
+		} else if (scale == 'icon') {
 			regular.style.display = 'none';
 			narrow.style.display = 'none';
 			veryNarrow.style.display = 'none';
@@ -245,12 +258,14 @@ export class MeteoalarmCard extends LitElement {
 
 	private get entities(): HassEntity[] {
 		const entities: EntityConfig[] = processConfigEntities(this.config.entities!);
-		return entities.map(e => this.hass.states[e.entity]);
+		return entities.map((e) => this.hass.states[e.entity]);
 	}
 
 	private get integration(): MeteoalarmIntegration {
-		const integration = MeteoalarmCard.integrations.find(i => i.metadata.key === this.config.integration);
-		if(integration === undefined) {
+		const integration = MeteoalarmCard.integrations.find(
+			(i) => i.metadata.key === this.config.integration,
+		);
+		if (integration === undefined) {
 			throw new Error(localize('error.invalid_integration'));
 		}
 		return integration!;
@@ -258,8 +273,8 @@ export class MeteoalarmCard extends LitElement {
 
 	private get scalingMode(): MeteoalarmScalingMode {
 		const modeString = this.config.scaling_mode;
-		if(!modeString) return MeteoalarmScalingMode.HeadlineAndScale;
-		if(!(Object.values(MeteoalarmScalingMode)).includes(modeString as any)) {
+		if (!modeString) return MeteoalarmScalingMode.HeadlineAndScale;
+		if (!Object.values(MeteoalarmScalingMode).includes(modeString as any)) {
 			throw new Error('MeteoalarmCard: ' + localize('error.invalid_scaling_mode'));
 		}
 		return modeString as MeteoalarmScalingMode;
@@ -274,13 +289,15 @@ export class MeteoalarmCard extends LitElement {
 				this.config.override_headline,
 				this.config.hide_caption,
 				this.config.ignored_levels,
-				this.config.ignored_events
+				this.config.ignored_events,
 			);
 
 			// Handle hide_when_no_warning
-			if(events.every(e => !e.isActive) && this.config.hide_when_no_warning) {
+			if (events.every((e) => !e.isActive) && this.config.hide_when_no_warning) {
 				// eslint-disable-next-line no-console
-				console.log('MeteoalarmCard: Card is hidden - hide_when_no_warning is enabled and there are no warnings');
+				console.log(
+					'MeteoalarmCard: Card is hidden - hide_when_no_warning is enabled and there are no warnings',
+				);
 				this.setCardMargin(false);
 				return html``;
 			}
@@ -292,38 +309,45 @@ export class MeteoalarmCard extends LitElement {
 					@action=${this.handleAction}
 					.actionHandler=${actionHandler({
 						hasHold: hasAction(this.config.hold_action),
-						hasDoubleClick: hasAction(this.config.double_tap_action)
+						hasDoubleClick: hasAction(this.config.double_tap_action),
 					})}
 					tabindex="0"
 				>
 					<div class="container">
-						<div class="swiper" id="swiper">
+						<div
+							class="swiper"
+							id="swiper"
+						>
 							<div class="swiper-wrapper">
-								${events.map((event => html`
-									<div
-										class="swiper-slide"
-										style="background-color: ${event.color}; color: ${event.isActive ? '#fff' : 'inherit'}"
-										entity_id=${ifDefined(event.entity?.entity_id)}
-									>
-										<div class="content">
-											${this.renderMainIcon(event.icon)}
-											${this.renderHeadlines(event.headlines)}
-										</div>
-										${event.caption && event.captionIcon ? html`
-											<div class="caption">
-												${this.renderCaption(event.captionIcon, event.caption)}
+								${events.map(
+									(event) => html`
+										<div
+											class="swiper-slide"
+											style="background-color: ${event.color}; color: ${event.isActive
+												? '#fff'
+												: 'inherit'}"
+											entity_id=${ifDefined(event.entity?.entity_id)}
+										>
+											<div class="content">
+												${this.renderMainIcon(event.icon)} ${this.renderHeadlines(event.headlines)}
 											</div>
-										` : ''}
-									</div>
-								`))}
+											${event.caption && event.captionIcon
+												? html`
+														<div class="caption">
+															${this.renderCaption(event.captionIcon, event.caption)}
+														</div>
+												  `
+												: ''}
+										</div>
+									`,
+								)}
 							</div>
 							<div class="swiper-pagination"></div>
 						</div>
 					</div>
 				</ha-card>
 			`;
-		}
-		catch(error) {
+		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error('[METEOALARM CARD ERROR]\nReport issue: https://bit.ly/3hK1hL4 \n\n', error);
 			return this.showError(error as string);
@@ -331,7 +355,10 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private renderMainIcon(icon: string): TemplateResult {
-		return html`<ha-icon class="main-icon" icon="mdi:${icon}"></ha-icon>`;
+		return html`<ha-icon
+			class="main-icon"
+			icon="mdi:${icon}"
+		></ha-icon>`;
 	}
 
 	// Transfer array of one, two or three headlines in descending length
@@ -339,26 +366,24 @@ export class MeteoalarmCard extends LitElement {
 	// card width (screen size) by resize observer
 	private renderHeadlines(headlines: string[]): TemplateResult {
 		// TODO: Fix this array mess
-		let regular = '', narrow = '', verynarrow = '';
-		if(headlines.length == 0) {
+		let regular = '',
+			narrow = '',
+			verynarrow = '';
+		if (headlines.length == 0) {
 			throw new Error('headlines array length is 0');
-		}
-		else if(headlines.length == 1) {
+		} else if (headlines.length == 1) {
 			regular = headlines[0];
 			narrow = headlines[0];
 			verynarrow = headlines[0];
-		}
-		else if(headlines.length == 2) {
+		} else if (headlines.length == 2) {
 			regular = headlines[0];
 			narrow = headlines[1];
 			verynarrow = headlines[1];
-		}
-		else if(headlines.length == 3) {
+		} else if (headlines.length == 3) {
 			regular = headlines[0];
 			narrow = headlines[1];
 			verynarrow = headlines[2];
-		}
-		else if(headlines.length > 3) {
+		} else if (headlines.length > 3) {
 			throw new Error('headlines array length is higher than 3');
 		}
 
@@ -372,13 +397,16 @@ export class MeteoalarmCard extends LitElement {
 	private renderCaption(icon: string, caption: string): TemplateResult {
 		return html`
 			<span class="caption-text">${caption}</span>
-			<ha-icon class="caption-icon" icon="mdi:${icon}"></ha-icon>
+			<ha-icon
+				class="caption-icon"
+				icon="mdi:${icon}"
+			></ha-icon>
 		`;
 	}
 
 	private setCardMargin(showMargin: boolean): void {
 		const container = this.shadowRoot?.host as HTMLElement;
-		if(!container) return;
+		if (!container) return;
 		container.style.margin = showMargin ? '' : '0px';
 	}
 
@@ -387,7 +415,7 @@ export class MeteoalarmCard extends LitElement {
 		errorCard.setConfig({
 			type: 'error',
 			error,
-			origConfig: this.config
+			origConfig: this.config,
 		});
 
 		return html` ${errorCard} `;
@@ -396,7 +424,7 @@ export class MeteoalarmCard extends LitElement {
 	private handleAction(ev: ActionHandlerEvent): void {
 		const config = {
 			...this.config,
-			entity: this.currentEntity
+			entity: this.currentEntity,
 		};
 		if (this.hass && this.config && ev.detail.action) {
 			handleAction(this, this.hass, config, ev.detail.action);

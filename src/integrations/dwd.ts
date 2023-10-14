@@ -6,16 +6,16 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
-	MeteoalarmLevelType
+	MeteoalarmLevelType,
 } from '../types';
 import { Utils } from '../utils';
 
 type DWDEntity = HassEntity & {
 	attributes: {
-		attribution: string,
-		warning_count: number
-	}
-}
+		attribution: string;
+		warning_count: number;
+	};
+};
 
 export default class DWD implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
@@ -26,12 +26,15 @@ export default class DWD implements MeteoalarmIntegration {
 			returnHeadline: true,
 			returnMultipleAlerts: true,
 			entitiesCount: 2,
-			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes)
+			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes),
 		};
 	}
 
 	public supports(entity: DWDEntity): boolean {
-		return entity.attributes.attribution == 'Data provided by DWD' && this.getEntityKind(entity) !== undefined;
+		return (
+			entity.attributes.attribution == 'Data provided by DWD' &&
+			this.getEntityKind(entity) !== undefined
+		);
 	}
 
 	public alertActive(entity: DWDEntity): boolean {
@@ -102,7 +105,7 @@ export default class DWD implements MeteoalarmIntegration {
 			15: MeteoalarmEventType.CoastalEvent,
 			16: MeteoalarmEventType.CoastalEvent,
 			57: MeteoalarmEventType.CoastalEvent,
-			58: MeteoalarmEventType.CoastalEvent
+			58: MeteoalarmEventType.CoastalEvent,
 		};
 	}
 
@@ -116,19 +119,17 @@ export default class DWD implements MeteoalarmIntegration {
 			const level = entity.attributes[`warning_${i}_level`];
 			const id = entity.attributes[`warning_${i}_type`];
 			const headline = entity.attributes[`warning_${i}_headline`];
-			if(level == entity.state) {
-				if(id in this.eventTypes) {
+			if (level == entity.state) {
+				if (id in this.eventTypes) {
 					result.push({
-						headline:  headline,
+						headline: headline,
 						level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
 						event: this.eventTypes[id],
-						kind: kind
+						kind: kind,
 					});
-				}
-				else if(id == 98 || id == 99) {
+				} else if (id == 98 || id == 99) {
 					throw new Error('An test warning was issued! ID: ' + id);
-				}
-				else {
+				} else {
 					throw new Error('Unknown event ID: ' + id);
 				}
 			}
@@ -143,16 +144,13 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
-		if(entity.entity_id.split('_').includes('current')) {
+		if (entity.entity_id.split('_').includes('current')) {
 			return MeteoalarmAlertKind.Current;
-		}
-		else if(entity.entity_id.split('_').includes('advance')) {
+		} else if (entity.entity_id.split('_').includes('advance')) {
 			return MeteoalarmAlertKind.Expected;
-		}
-		else if(entity.attributes.friendly_name?.split(' ').includes('Current')) {
+		} else if (entity.attributes.friendly_name?.split(' ').includes('Current')) {
 			return MeteoalarmAlertKind.Current;
-		}
-		else if(entity.attributes.friendly_name?.split(' ').includes('Advance')) {
+		} else if (entity.attributes.friendly_name?.split(' ').includes('Advance')) {
 			return MeteoalarmAlertKind.Expected;
 		}
 		return undefined;

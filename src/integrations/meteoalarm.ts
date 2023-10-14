@@ -5,7 +5,7 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
-	MeteoalarmLevelType
+	MeteoalarmLevelType,
 } from '../types';
 import { Utils } from '../utils';
 
@@ -15,16 +15,16 @@ type MeteoalarmEntity = HassEntity & {
 		// Only awareness_level and awareness_type: https://github.com/MrBartusek/MeteoalarmCard/issues/49
 		// awareness_level and awareness_type not present: https://github.com/MrBartusek/MeteoalarmCard/issues/48
 		// code should except that everything or nothing will be there
-		awareness_level?: string,
-		awareness_type?: string,
-		event?: string,
-		severity?: string,
-		headline?: string,
-		description?: string,
-		icon: string,
-		attribution: string
-	}
-}
+		awareness_level?: string;
+		awareness_type?: string;
+		event?: string;
+		severity?: string;
+		headline?: string;
+		description?: string;
+		icon: string;
+		attribution: string;
+	};
+};
 
 export default class Meteoalarm implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
@@ -35,7 +35,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			returnHeadline: true,
 			returnMultipleAlerts: false,
 			entitiesCount: 1,
-			monitoredConditions: this.eventTypes
+			monitoredConditions: this.eventTypes,
 		};
 	}
 
@@ -61,7 +61,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			MeteoalarmEventType.Avalanches,
 			MeteoalarmEventType.Rain,
 			MeteoalarmEventType.Flooding,
-			MeteoalarmEventType.Flooding
+			MeteoalarmEventType.Flooding,
 		];
 	}
 
@@ -71,36 +71,38 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			headline,
 			severity,
 			awareness_type: awarenessType,
-			awareness_level: awarenessLevel
+			awareness_level: awarenessLevel,
 		} = entity.attributes;
 
 		let event: MeteoalarmEventType | undefined;
 		let level: MeteoalarmLevelType | undefined;
 
-		if(awarenessType != undefined) {
+		if (awarenessType != undefined) {
 			event = this.eventTypes[Number(awarenessType.split(';')[0]) - 1];
 		}
 
-		if(awarenessLevel != undefined) {
+		if (awarenessLevel != undefined) {
 			let levelID = Number(awarenessLevel.split(';')[0]);
-			if(levelID == 1) {
+			if (levelID == 1) {
 				// Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
 				levelID = 2;
 			}
-			level = levelID - 1 as MeteoalarmLevelType;
+			level = (levelID - 1) as MeteoalarmLevelType;
 		}
 
-		if(level === undefined && severity !== undefined) {
+		if (level === undefined && severity !== undefined) {
 			level = Utils.getLevelBySeverity(severity);
 		}
-		if(level === undefined) {
+		if (level === undefined) {
 			throw new Error('Failed to determine alert level. awareness_level nor severity are provided');
 		}
 
-		return [{
-			headline: eventHeadline || headline,
-			level: level,
-			event: event || MeteoalarmEventType.Unknown
-		}];
+		return [
+			{
+				headline: eventHeadline || headline,
+				level: level,
+				event: event || MeteoalarmEventType.Unknown,
+			},
+		];
 	}
 }
