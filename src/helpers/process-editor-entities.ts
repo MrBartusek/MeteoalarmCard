@@ -5,13 +5,13 @@ import { EntityConfig } from 'custom-card-helpers';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function processEditorEntities(entities: Array<any> | string | undefined): EntityConfig[] {
-	if(entities == undefined) {
+	if (entities == undefined) {
 		return [];
 	}
-	if(!Array.isArray(entities)) {
-		entities = [ entities ];
+	if (!Array.isArray(entities)) {
+		entities = [entities];
 	}
-	if(entities.length > 0 && entities.every(e => e == null)) {
+	if (entities.length > 0 && entities.every((e) => e == null)) {
 		return [];
 	}
 	return entities.map((entityConf: any) => {

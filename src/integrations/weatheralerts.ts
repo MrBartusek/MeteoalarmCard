@@ -5,22 +5,22 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
-	MeteoalarmLevelType
+	MeteoalarmLevelType,
 } from '../types';
 import { Utils } from '../utils';
 
 type WeatheralertsAlert = {
-	event: string,
-	severity: string,
-	title: string
-}
+	event: string;
+	severity: string;
+	title: string;
+};
 
 type WeatheralertsEntity = HassEntity & {
 	attributes: {
-		integration: string,
-		alerts: WeatheralertsAlert[]
-	}
-}
+		integration: string;
+		alerts: WeatheralertsAlert[];
+	};
+};
 
 export default class Weatheralerts implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
@@ -31,7 +31,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			returnHeadline: true,
 			returnMultipleAlerts: true,
 			entitiesCount: 1,
-			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes)
+			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes),
 		};
 	}
 
@@ -47,51 +47,51 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 		// Event types from: https://www.weather.gov/lwx/WarningsDefined
 		return {
 			'Winter Storm': MeteoalarmEventType.SnowIce,
-			'Blizzard': MeteoalarmEventType.SnowIce,
+			Blizzard: MeteoalarmEventType.SnowIce,
 			'Ice Storm': MeteoalarmEventType.SnowIce,
 			'Winter Weather': MeteoalarmEventType.SnowIce,
-			'Freeze': MeteoalarmEventType.LowTemperature,
-			'Frost': MeteoalarmEventType.LowTemperature,
+			Freeze: MeteoalarmEventType.LowTemperature,
+			Frost: MeteoalarmEventType.LowTemperature,
 			'Wind Chill': MeteoalarmEventType.LowTemperature,
 			'Fire Weather': MeteoalarmEventType.ForestFire,
 			'Red Flag': MeteoalarmEventType.ForestFire,
 			'Dense Fog': MeteoalarmEventType.Fog,
 			'High Wind': MeteoalarmEventType.Wind,
-			'Wind': MeteoalarmEventType.Wind,
+			Wind: MeteoalarmEventType.Wind,
 			'Severe Thunderstorm': MeteoalarmEventType.Thunderstorms,
-			'Tornado': MeteoalarmEventType.Tornado,
+			Tornado: MeteoalarmEventType.Tornado,
 			'Extreme Wind': MeteoalarmEventType.Wind,
 			'Small Craft': MeteoalarmEventType.Wind,
-			'Gale': MeteoalarmEventType.SeaEvent,
-			'Storm': MeteoalarmEventType.Thunderstorms,
+			Gale: MeteoalarmEventType.SeaEvent,
+			Storm: MeteoalarmEventType.Thunderstorms,
 			'Hurricane Force Wind': MeteoalarmEventType.Hurricane,
 			'Special Marine': MeteoalarmEventType.Unknown,
 			'Coastal Flood': MeteoalarmEventType.Flooding,
 			'Flash Flood': MeteoalarmEventType.Flooding,
-			'Flood': MeteoalarmEventType.Flooding,
+			Flood: MeteoalarmEventType.Flooding,
 			'River Flood': MeteoalarmEventType.Flooding,
 			'Excessive Heat': MeteoalarmEventType.HighTemperature,
-			'Heat': MeteoalarmEventType.HighTemperature,
+			Heat: MeteoalarmEventType.HighTemperature,
 			'Tropical Storm': MeteoalarmEventType.Hurricane,
-			'Hurricane': MeteoalarmEventType.Hurricane,
+			Hurricane: MeteoalarmEventType.Hurricane,
 			'Air Quality': MeteoalarmEventType.AirQuality,
 			'Rip Current': MeteoalarmEventType.CoastalEvent,
 			'Special Weather': MeteoalarmEventType.Unknown,
 			'High Surf': MeteoalarmEventType.CoastalEvent,
 			'Hazardous Seas': MeteoalarmEventType.SeaEvent,
 			'Beach Hazard': MeteoalarmEventType.CoastalEvent,
-			'Blowing Dust': MeteoalarmEventType.Dust
+			'Blowing Dust': MeteoalarmEventType.Dust,
 		};
 	}
 
 	private get eventLevels(): { [key: string]: MeteoalarmLevelType } {
 		// Event types from: https://www.weather.gov/lwx/WarningsDefined
 		return {
-			'Warning': MeteoalarmLevelType.Red,
-			'Statement': MeteoalarmLevelType.Orange,
-			'Watch': MeteoalarmLevelType.Orange,
-			'Advisory': MeteoalarmLevelType.Yellow,
-			'Alert': MeteoalarmLevelType.Yellow
+			Warning: MeteoalarmLevelType.Red,
+			Statement: MeteoalarmLevelType.Orange,
+			Watch: MeteoalarmLevelType.Orange,
+			Advisory: MeteoalarmLevelType.Yellow,
+			Alert: MeteoalarmLevelType.Yellow,
 		};
 	}
 
@@ -100,29 +100,29 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 
 		const result: MeteoalarmAlert[] = [];
 
-		for(const alert of alerts) {
+		for (const alert of alerts) {
 			const fullAlertName = alert.event;
 			let alertLevel: MeteoalarmLevelType | undefined = undefined;
 			let alertType: MeteoalarmEventType | undefined = undefined;
 
-			for(const [levelName, level] of Object.entries(this.eventLevels)) {
-				if(!fullAlertName.includes(levelName)) continue;
+			for (const [levelName, level] of Object.entries(this.eventLevels)) {
+				if (!fullAlertName.includes(levelName)) continue;
 				alertLevel = level;
 				const alertName = fullAlertName.replace(levelName, '').trim();
 				alertType = this.eventTypes[alertName];
-				if(alertType == undefined) {
+				if (alertType == undefined) {
 					throw Error(`Unknown weatheralerts alert type: ${alertName}`);
 				}
 			}
 
-			if(alertLevel == undefined) {
+			if (alertLevel == undefined) {
 				throw Error(`Unknown weatheralerts alert level: ${fullAlertName}`);
 			}
 
 			result.push({
 				headline: fullAlertName,
 				level: alertLevel,
-				event: alertType!
+				event: alertType!,
 			});
 		}
 		return result;

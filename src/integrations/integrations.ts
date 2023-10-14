@@ -13,7 +13,7 @@ const INTEGRATIONS = [
 	NINA,
 	EnvironmentCanada,
 	BurzeDzisNet,
-	Weatheralerts
+	Weatheralerts,
 ];
 
 export default INTEGRATIONS;

@@ -7,10 +7,10 @@ export class Utils {
 	 */
 	public static minHAversion(minYear: number, minMonth: number): boolean {
 		const rawVersion = (window as any).frontendVersion as string;
-		if(!rawVersion) return false;
-		const year = rawVersion.substring(0,4);
-		const version = rawVersion.substring(4,6);
-		return Number(year) >= minYear || (Number(year) >= minYear && Number(version) >= minMonth) ;
+		if (!rawVersion) return false;
+		const year = rawVersion.substring(0, 4);
+		const version = rawVersion.substring(4, 6);
+		return Number(year) >= minYear || (Number(year) >= minYear && Number(version) >= minMonth);
 	}
 
 	/**
@@ -27,11 +27,14 @@ export class Utils {
 	 * For example `{ "Moderate": MeteoalarmLevelType.Orange }`
 	 * @returns
 	 */
-	public static getLevelBySeverity(severity: string, overrides?: { [key: string]: MeteoalarmLevelType }): MeteoalarmLevelType {
-		if(overrides && overrides[severity]) {
+	public static getLevelBySeverity(
+		severity: string,
+		overrides?: { [key: string]: MeteoalarmLevelType },
+	): MeteoalarmLevelType {
+		if (overrides && overrides[severity]) {
 			return overrides[severity];
 		}
-		switch(severity) {
+		switch (severity) {
 			case 'Unknown':
 			case 'Minor':
 			case 'Moderate':
@@ -51,7 +54,9 @@ export class Utils {
 	 * function convert this list for metadata.monitoredConditions
 	 * @param eventTypes eventTypes dict
 	 */
-	public static convertEventTypesForMetadata(eventTypes: { [key: number | string]: MeteoalarmEventType }): MeteoalarmEventType[] {
+	public static convertEventTypesForMetadata(eventTypes: {
+		[key: number | string]: MeteoalarmEventType;
+	}): MeteoalarmEventType[] {
 		return [...new Set(Object.values(eventTypes))];
 	}
 }

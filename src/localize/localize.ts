@@ -27,42 +27,46 @@ const languages: any = {
 	sv: sv,
 	cs: cs,
 	pt: pt,
-	bg: bg
+	bg: bg,
 };
 export function localize(string: string): string {
-	if(string.toLocaleLowerCase() != string) {
+	if (string.toLocaleLowerCase() != string) {
 		// eslint-disable-next-line no-console
 		console.warn(`MeteoalarmCard: Received invalid translation key: ${string}`);
 	}
 	string = string.toLocaleLowerCase();
 
 	let storedLang = localStorage.getItem('selectedLanguage');
-	if(storedLang === 'null') {
+	if (storedLang === 'null') {
 		storedLang = null;
 	}
-	const lang = (storedLang || navigator.language.split('-')[0]  || 'en').replace(/['"]+/g, '').replace('-', '_');
+	const lang = (storedLang || navigator.language.split('-')[0] || 'en')
+		.replace(/['"]+/g, '')
+		.replace('-', '_');
 
 	let translated: string | undefined = undefined;
 
 	// Try using specified language
 	try {
 		translated = string.split('.').reduce((o, i) => o[i], languages[lang]);
-	}
-	catch (e) {
+	} catch (e) {
 		// eslint-disable-next-line no-console
-		console.warn(`MeteoalarmCard: Translation for "${string}" is not specified in "${lang}" language.`);
+		console.warn(
+			`MeteoalarmCard: Translation for "${string}" is not specified in "${lang}" language.`,
+		);
 	}
 	// Try using english
 	if (translated == undefined) {
 		try {
 			translated = string.split('.').reduce((o, i) => o[i], languages['en']);
-		}
-		catch (e) {
+		} catch (e) {
 			// eslint-disable-next-line no-console
-			console.warn(`MeteoalarmCard: Translation for "${string}" is not specified in fallback english language.`);
+			console.warn(
+				`MeteoalarmCard: Translation for "${string}" is not specified in fallback english language.`,
+			);
 		}
 	}
 	// Fall back to string
-	if(translated == undefined) translated = string;
+	if (translated == undefined) translated = string;
 	return translated;
 }
