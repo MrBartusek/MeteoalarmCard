@@ -21,7 +21,6 @@ type MeteoalarmEntity = HassEntity & {
 		severity?: string;
 		headline?: string;
 		description?: string;
-		icon: string;
 		attribution: string;
 	};
 };
@@ -48,20 +47,21 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	private get eventTypes(): MeteoalarmEventType[] {
-		// This list is ordered by id in meteoalarm
+		// Alert list at: https://edrop.zamg.ac.at/owncloud/index.php/s/GxPbmaRFpzrDmjn#pdfviewer
 		return [
-			MeteoalarmEventType.Wind,
-			MeteoalarmEventType.SnowIce,
-			MeteoalarmEventType.Thunderstorms,
-			MeteoalarmEventType.Fog,
-			MeteoalarmEventType.HighTemperature,
-			MeteoalarmEventType.LowTemperature,
-			MeteoalarmEventType.CoastalEvent,
-			MeteoalarmEventType.ForestFire,
-			MeteoalarmEventType.Avalanches,
-			MeteoalarmEventType.Rain,
-			MeteoalarmEventType.Flooding,
-			MeteoalarmEventType.Flooding,
+			MeteoalarmEventType.Wind, // 1; Wind
+			MeteoalarmEventType.SnowIce, // 2; snow-ice
+			MeteoalarmEventType.Thunderstorms, // 3; Thunderstorm
+			MeteoalarmEventType.Fog, // 4; Fog
+			MeteoalarmEventType.HighTemperature, // 5; high-temperature
+			MeteoalarmEventType.LowTemperature, // 6; low-temperature
+			MeteoalarmEventType.CoastalEvent, // 7; coastalevent
+			MeteoalarmEventType.ForestFire, // 8; forest-fire
+			MeteoalarmEventType.Avalanches, // 9; avalanches
+			MeteoalarmEventType.Rain, // 10; Rain
+			MeteoalarmEventType.Unknown, // Reserved: there is no alert id 11
+			MeteoalarmEventType.Flooding, // 12; flooding
+			MeteoalarmEventType.Flooding, // 13; rain-flood
 		];
 	}
 
