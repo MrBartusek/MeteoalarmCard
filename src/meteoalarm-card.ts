@@ -322,10 +322,7 @@ export class MeteoalarmCard extends LitElement {
 								${events.map(
 									(event) => html`
 										<div
-											class="swiper-slide"
-											style="background-color: ${event.color}; color: ${event.isActive
-												? '#fff'
-												: 'inherit'}"
+											class="swiper-slide ${event.cssClass}"
 											entity_id=${ifDefined(event.entity?.entity_id)}
 										>
 											<div class="content">

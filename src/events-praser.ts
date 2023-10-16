@@ -64,7 +64,7 @@ class EventsParser {
 				isActive: true,
 				entity: alert._entity!,
 				icon: event.icon,
-				color: level.color,
+				cssClass: level.cssClass,
 				headlines: headlines,
 				caption: caption,
 				captionIcon: captionIcon,

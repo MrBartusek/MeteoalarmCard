@@ -20,7 +20,7 @@ export class MeteoalarmLevelInfo {
 	constructor(
 		public type: MeteoalarmLevelType,
 		public fullName: string,
-		public color: string,
+		public cssClass: string,
 	) {}
 
 	get translationKey(): string {
@@ -79,10 +79,10 @@ export class MeteoalarmData {
 
 	static get levels(): MeteoalarmLevelInfo[] {
 		return [
-			new MeteoalarmLevelInfo(MeteoalarmLevelType.Red, 'Red', '#db4437'),
-			new MeteoalarmLevelInfo(MeteoalarmLevelType.Orange, 'Orange', '#EE5A24'),
-			new MeteoalarmLevelInfo(MeteoalarmLevelType.Yellow, 'Yellow', '#ff9800'),
-			new MeteoalarmLevelInfo(MeteoalarmLevelType.None, 'None', 'inherit'),
+			new MeteoalarmLevelInfo(MeteoalarmLevelType.Red, 'Red', 'event-red'),
+			new MeteoalarmLevelInfo(MeteoalarmLevelType.Orange, 'Orange', 'event-orange'),
+			new MeteoalarmLevelInfo(MeteoalarmLevelType.Yellow, 'Yellow', 'event-yellow'),
+			new MeteoalarmLevelInfo(MeteoalarmLevelType.None, 'None', 'event-none'),
 		];
 	}
 
