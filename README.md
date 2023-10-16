@@ -132,6 +132,36 @@ Expect Meteoalarm this card supports many other integrations:
 [weatheralerts]: https://github.com/custom-components/weatheralerts
 [weatheralerts-direct]: https://www.weather.gov
 
+## Customizing the Card's Appearance
+
+You can customize card appearance using provided CSS variables and [card-mod](https://github.com/thomasloven/lovelace-card-mod). For example:
+
+```yaml
+type: custom:meteoalarm-card
+entities:
+  entity: binary_sensor.meteoalarm
+integration: meteoalarm
+style: |
+  ha-card {
+    --inactive-background-color: blue;
+  }
+```
+
+Which produces result:
+
+![result](https://i.imgur.com/D0hZ86G.png)
+
+
+Below are the available CSS variables that you can modify:
+
+- `--text-color`: The text color of inactive card.
+- `--text-color-active`: The text color for card with active warnings.
+- `--red-level-color`: The background color for red level alerts.
+- `--orange-level-background-color`: The background color for orange level alerts.
+- `--yellow-level-background-color`: The background color for yellow-level alerts.
+- `--inactive-background-color`: This variable defines the background color when there are no warnings active.
+
+
 ## Contributing
 
 Want to contribute to the project?
