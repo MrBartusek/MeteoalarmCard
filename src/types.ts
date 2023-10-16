@@ -97,7 +97,7 @@ export interface MeteoalarmAlertParsed {
 	 */
 	isActive: boolean;
 	icon: string;
-	color: string;
+	cssClass: string;
 	headlines: string[];
 	captionIcon?: string;
 	caption?: string;

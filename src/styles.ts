@@ -5,6 +5,14 @@ export default css`
 		display: flex;
 		flex: 1;
 		flex-direction: column;
+
+		--text-color: inherit;
+		--text-color-active: white;
+
+		--red-level-color: var(---error-color, #db4437);
+		--orange-level-background-color: #ee5a24;
+		--yellow-level-background-color: var(--warning-color, #ffa600);
+		--inactive-background-color: inherit;
 	}
 
 	ha-card {
@@ -21,6 +29,7 @@ export default css`
 		);
 		overflow: hidden;
 		transition: all 0.3s ease-out 0s;
+		color: var(--text-color);
 	}
 
 	a {
@@ -79,6 +88,28 @@ export default css`
 	.headline-narrow,
 	.headline-verynarrow {
 		display: none;
+	}
+
+	.event-red {
+		background-color: var(--red-level-color);
+	}
+
+	.event-orange {
+		background-color: var(--red-level-color);
+	}
+
+	.event-yellow {
+		background-color: var(--yellow-level-background-color);
+	}
+
+	.event-red,
+	.event-orange,
+	.event-yellow {
+		color: var(--text-color-active);
+	}
+
+	.event-none {
+		background-color: var(--inactive-background-color);
 	}
 
 	.swiper {
