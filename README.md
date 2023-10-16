@@ -161,7 +161,6 @@ Below are the available CSS variables that you can modify:
 - `--yellow-level-background-color`: The background color for yellow-level alerts.
 - `--inactive-background-color`: This variable defines the background color when there are no warnings active.
 
-
 ## Contributing
 
 Want to contribute to the project?
