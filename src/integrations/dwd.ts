@@ -144,13 +144,24 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
-		if (entity.entity_id.split('_').includes('current')) {
+		const CURRENT_IDENTIFIERS = ['current', 'vorwahnstufe'];
+		const EXPECTED_IDENTIFIERS = ['advance', 'warnstufe'];
+
+		const friendlyName = entity.attributes.friendly_name || '';
+		const entityIdParts = entity.entity_id.split('_').map((p) => p.toLocaleLowerCase());
+		const friendlyNameParts = friendlyName?.split(' ').map((p) => p.toLocaleLowerCase());
+
+		if (
+			CURRENT_IDENTIFIERS.some(
+				(ident) => entityIdParts.includes(ident) || friendlyNameParts.includes(ident),
+			)
+		) {
 			return MeteoalarmAlertKind.Current;
-		} else if (entity.entity_id.split('_').includes('advance')) {
-			return MeteoalarmAlertKind.Expected;
-		} else if (entity.attributes.friendly_name?.split(' ').includes('Current')) {
-			return MeteoalarmAlertKind.Current;
-		} else if (entity.attributes.friendly_name?.split(' ').includes('Advance')) {
+		} else if (
+			EXPECTED_IDENTIFIERS.some(
+				(ident) => entityIdParts.includes(ident) || friendlyNameParts.includes(ident),
+			)
+		) {
 			return MeteoalarmAlertKind.Expected;
 		}
 		return undefined;
