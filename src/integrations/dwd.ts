@@ -144,13 +144,29 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
-		if (entity.entity_id.split('_').includes('current')) {
+		/**
+		 * Detecting only by English and German entity_id translations here is hardly
+		 * a good solution but, it covers 99% of use cases, should be improved in the
+		 * future
+		 */
+		const CURRENT_IDENTIFIERS = ['current', 'aktuelle'];
+		const EXPECTED_IDENTIFIERS = ['advance', 'vorwahnstufe'];
+
+		const friendlyName = entity.attributes.friendly_name || '';
+		const entityIdParts = entity.entity_id.split('_').map((p) => p.toLocaleLowerCase());
+		const friendlyNameParts = friendlyName?.split(' ').map((p) => p.toLocaleLowerCase());
+
+		if (
+			CURRENT_IDENTIFIERS.some(
+				(ident) => entityIdParts.includes(ident) || friendlyNameParts.includes(ident),
+			)
+		) {
 			return MeteoalarmAlertKind.Current;
-		} else if (entity.entity_id.split('_').includes('advance')) {
-			return MeteoalarmAlertKind.Expected;
-		} else if (entity.attributes.friendly_name?.split(' ').includes('Current')) {
-			return MeteoalarmAlertKind.Current;
-		} else if (entity.attributes.friendly_name?.split(' ').includes('Advance')) {
+		} else if (
+			EXPECTED_IDENTIFIERS.some(
+				(ident) => entityIdParts.includes(ident) || friendlyNameParts.includes(ident),
+			)
+		) {
 			return MeteoalarmAlertKind.Expected;
 		}
 		return undefined;
