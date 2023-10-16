@@ -121,7 +121,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			},
 			{
 				en: 'Severe Thunderstorm',
-				fr: 'Orage Violent',
+				fr: 'Orages Violents',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
@@ -187,29 +187,29 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		];
 	}
 
-	private get entityTypeTranslation(): { en: string; fr: string; type: EnvCanadaEntityType }[] {
+	private get entityTypeTranslation(): { en: string[]; fr: string[]; type: EnvCanadaEntityType }[] {
 		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
 		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
 		return [
 			{
 				type: EnvCanadaEntityType.Warning,
-				en: 'Warning',
-				fr: 'Avertissement De',
+				en: ['Warning'],
+				fr: ['Avertissement De'],
 			},
 			{
 				type: EnvCanadaEntityType.Watch,
-				en: 'Watch',
-				fr: 'Veille De',
+				en: ['Watch'],
+				fr: ['Veille De', "Veille D'"],
 			},
 			{
 				type: EnvCanadaEntityType.Statement,
-				en: 'Statement',
-				fr: 'Bulletin',
+				en: ['Statement'],
+				fr: ['Bulletin'],
 			},
 			{
 				type: EnvCanadaEntityType.Advisory,
-				en: 'Advisory',
-				fr: 'Avis De',
+				en: ['Advisory'],
+				fr: ['Avis De'],
 			},
 		];
 	}
@@ -222,13 +222,17 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 	 */
 	private praseAlertName(alertName: string, type: EnvCanadaEntityType, isFrench: boolean) {
 		const prefixTranslation = this.entityTypeTranslation.find((t) => t.type == type)!;
-		const prefix = isFrench ? prefixTranslation.fr : prefixTranslation.en;
+		const prefixes = isFrench ? prefixTranslation.fr : prefixTranslation.en;
 
-		if (!alertName.includes(prefix)) {
+		const prefix = prefixes.find((p) => alertName.includes(p));
+		if (prefix == undefined) {
 			throw new Error(
-				`Translated event prefix was not found in alert name '${prefix}' (isFrench=${isFrench})`,
+				`Failed to match one of the known prefixes to alert name! ` +
+					`Was looking for [ "${prefixes.join('", "')}" ] and failed ` +
+					`(isFrench=${isFrench})`,
 			);
 		}
+
 		alertName = alertName.replace(prefix, '').trim();
 
 		return this.eventTypes.find((e) => {
@@ -253,7 +257,9 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 					event: alert.type,
 				});
 			} else {
-				throw new Error(`Unknown Env canada alert type: ${alertName} (isFrench=${isFrench})`);
+				throw new Error(
+					`Unknown Environnement Canada alert encountered! Name: ${alertName} (isFrench=${isFrench})`,
+				);
 			}
 		}
 
