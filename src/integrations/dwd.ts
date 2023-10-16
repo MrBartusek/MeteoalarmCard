@@ -150,7 +150,7 @@ export default class DWD implements MeteoalarmIntegration {
 		 * future
 		 */
 		const CURRENT_IDENTIFIERS = ['current', 'aktuelle'];
-		const EXPECTED_IDENTIFIERS = ['advance', 'vorwahnstufe'];
+		const EXPECTED_IDENTIFIERS = ['advance', 'vorwarnstufe'];
 
 		const friendlyName = entity.attributes.friendly_name || '';
 		const entityIdParts = entity.entity_id.split('_').map((p) => p.toLocaleLowerCase());
