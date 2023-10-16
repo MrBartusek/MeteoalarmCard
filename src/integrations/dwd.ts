@@ -144,8 +144,13 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
-		const CURRENT_IDENTIFIERS = ['current', 'vorwahnstufe'];
-		const EXPECTED_IDENTIFIERS = ['advance', 'warnstufe'];
+		/**
+		 * Detecting only by English and German entity_id translations here is hardly
+		 * a good solution but, it covers 99% of use cases, should be improved in the
+		 * future
+		 */
+		const CURRENT_IDENTIFIERS = ['current', 'aktuelle'];
+		const EXPECTED_IDENTIFIERS = ['advance', 'vorwahnstufe'];
 
 		const friendlyName = entity.attributes.friendly_name || '';
 		const entityIdParts = entity.entity_id.split('_').map((p) => p.toLocaleLowerCase());
