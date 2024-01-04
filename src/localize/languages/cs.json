@@ -6,14 +6,14 @@
     "warning": "Varování",
     "expected": "Očekávané",
     "unavailable": {
-      "long": "Meteoalarm není dostupný",
+      "long": "Výstraha není dostupná",
       "short": "Není k dispozici"
     }
   },
   "error": {
     "missing_entity": "Entita je povinná!",
-    "invalid_integration": "Integrace není validní!",
-    "invalid_scaling_mode": null,
+    "invalid_integration": "Tato integrace není platná!",
+    "invalid_scaling_mode": "Tento režim změny velikosti není platný!",
     "entity_invalid": {
       "single": "Vybraná integrace se neshoduje s entitou",
       "multiple": "Vybraná integrace se neshoduje s entitami: {entity}"
@@ -24,29 +24,29 @@
     "integration": "Integrace",
     "required": "Povinné",
     "recommended": "Doporučeno",
-    "override_headline": "Přepsat nadpis",
-    "hide_when_no_warning": "Skrýt, pokud nejsou žádná varování",
+    "override_headline": "Přepsat nadpis poskytnutý integrací",
+    "hide_when_no_warning": "Skrýt, pokud nejsou žádná výstrahy",
     "hide_caption": "Skrýt popis",
     "disable_swiper": "Zakázat swipování",
     "description": {
-      "start": null,
-      "current_expected": null,
-      "slots": null,
-      "separate_events": null,
-      "warning_watch_statement_advisory": null,
-      "end": null
+      "start": "Zvolená integrace vytváří více entit.",
+      "current_expected": "První s aktuálnímí výstrahami a druhá s budoucímí.",
+      "slots": "Jejich přesný počet závisí na nastavení.",
+      "separate_events": "Každý druh výstrahy má vlastní entitu.",
+      "warning_watch_statement_advisory": "Jsou 4 entity: varování, sledování, oznámení a doporučení.",
+      "end": "Je doporučeno přidat všechny ať nepřijdete o žádná upozornění."
     },
     "error": {
-      "expected_entity": "Nenalezena entita. Budoucí události nebudou zobrazeny.",
+      "expected_entity": "Nenalezena entita. Budoucí výstrahy nebudou zobrazeny.",
       "too_many_entities": "Nalezeno více entit než bylo očekáváno. Očekáváno: {expected} entit, nalezeno {got} entit.",
-      "duplicate": "Nalezeny duplikáty v seznamu entit."
+      "duplicate": "Nalezeny duplicity v seznamu entit."
     },
-    "scaling_mode": null,
+    "scaling_mode": "Režim změny velikosti",
     "scaling_mode_options": {
-      "disabled": null,
-      "headline": null,
-      "scale": null,
-      "headline_and_scale": null
+      "disabled": "Vypnuto",
+      "headline": "Pouze nadpis",
+      "scale": "Pouze měřítko",
+      "headline_and_scale": "Nadpis i měřítko"
     }
   },
   "events": {
@@ -74,17 +74,17 @@
   },
   "messages": {
     "yellow": {
-      "event": "Žluté {event} varování",
+      "event": "Žluté varování: {event}",
       "generic": "Žluté varování",
       "color": "Žluté"
     },
     "orange": {
-      "event": "Oranžové {event} varování",
+      "event": "Oranžové varování: {event}",
       "generic": "Oranžové varování",
       "color": "Oranžové"
     },
     "red": {
-      "event": "Červené {event} varování",
+      "event": "Červené varování: {event}",
       "generic": "Červené varování",
       "color": "Červené"
     }
