@@ -141,10 +141,11 @@ type: custom:meteoalarm-card
 entities:
   entity: binary_sensor.meteoalarm
 integration: meteoalarm
-style: |
-  ha-card {
-    --inactive-background-color: blue;
-  }
+card_mod:
+  style: |
+    ha-card {
+      --inactive-background-color: blue;
+    }
 ```
 
 Which produces result:
