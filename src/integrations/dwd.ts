@@ -42,11 +42,10 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	private get eventTypes(): { [key: number]: MeteoalarmEventType } {
-		// https://www.dwd.de/DE/leistungen/opendata/help/warnungen/cap_dwd_profile_en_pdf_1_12.pdf?__blob=publicationFile&v=3
+		// https://www.dwd.de/DE/leistungen/opendata/help/warnungen/cap_dwd_profile_en_pdf_2_1_14.pdf?__blob=publicationFile&v=2
 		// Event codes are listed in appendix 3.1
 		return {
 			22: MeteoalarmEventType.SnowIce,
-			24: MeteoalarmEventType.SnowIce,
 			31: MeteoalarmEventType.Thunderstorms,
 			33: MeteoalarmEventType.Thunderstorms,
 			34: MeteoalarmEventType.Thunderstorms,
@@ -66,6 +65,8 @@ export default class DWD implements MeteoalarmIntegration {
 			54: MeteoalarmEventType.Wind,
 			55: MeteoalarmEventType.Wind,
 			56: MeteoalarmEventType.Wind,
+			57: MeteoalarmEventType.Wind,
+			58: MeteoalarmEventType.Wind,
 			59: MeteoalarmEventType.Fog,
 			61: MeteoalarmEventType.Rain,
 			62: MeteoalarmEventType.Rain,
@@ -80,12 +81,11 @@ export default class DWD implements MeteoalarmIntegration {
 			74: MeteoalarmEventType.SnowIce,
 			75: MeteoalarmEventType.SnowIce,
 			76: MeteoalarmEventType.SnowIce,
-			77: MeteoalarmEventType.SnowIce,
-			78: MeteoalarmEventType.SnowIce,
 			79: MeteoalarmEventType.SnowIce,
 			82: MeteoalarmEventType.SnowIce,
 			84: MeteoalarmEventType.SnowIce,
 			85: MeteoalarmEventType.SnowIce,
+			86: MeteoalarmEventType.SnowIce,
 			87: MeteoalarmEventType.SnowIce,
 			88: MeteoalarmEventType.SnowIce,
 			89: MeteoalarmEventType.SnowIce,
@@ -104,8 +104,6 @@ export default class DWD implements MeteoalarmIntegration {
 			14: MeteoalarmEventType.CoastalEvent,
 			15: MeteoalarmEventType.CoastalEvent,
 			16: MeteoalarmEventType.CoastalEvent,
-			57: MeteoalarmEventType.CoastalEvent,
-			58: MeteoalarmEventType.CoastalEvent,
 		};
 	}
 
