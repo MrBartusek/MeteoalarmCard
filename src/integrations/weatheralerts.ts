@@ -44,7 +44,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 	}
 
 	private get eventTypes(): { [key: string]: MeteoalarmEventType } {
-		// Event types from: https://alerts.weather.gov/search
+		// https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation#_eventcode_inclusion-16
 		return {
 			'911 Telephone Outage': MeteoalarmEventType.Unknown,
 			Administrative: MeteoalarmEventType.Unknown,
@@ -135,6 +135,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 	}
 
 	private get eventLevels(): { [key: string]: MeteoalarmLevelType } {
+		// https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation#_eventcode_inclusion-16
 		return {
 			Warning: MeteoalarmLevelType.Red,
 			Statement: MeteoalarmLevelType.Orange,
