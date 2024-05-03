@@ -142,9 +142,11 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			Watch: MeteoalarmLevelType.Orange,
 			Advisory: MeteoalarmLevelType.Yellow,
 			Alert: MeteoalarmLevelType.Yellow,
-			Emergency: MeteoalarmLevelType.Red,
-			Message: MeteoalarmLevelType.Orange,
-			Danger: MeteoalarmLevelType.Red,
+
+			Emergency: MeteoalarmLevelType.Red, // Local Area Emergency
+			Danger: MeteoalarmLevelType.Red, // Extreme Fire Danger
+			Message: MeteoalarmLevelType.Orange, //Civil Emergency Message
+			Outage: MeteoalarmLevelType.Orange, // 911 Telephone Outage.
 		};
 	}
 
