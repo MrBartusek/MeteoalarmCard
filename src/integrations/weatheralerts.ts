@@ -46,7 +46,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 	private get eventTypes(): { [key: string]: MeteoalarmEventType } {
 		// https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation#_eventcode_inclusion-16
 		return {
-			'911 Telephone Outage': MeteoalarmEventType.Unknown,
+			'911 Telephone': MeteoalarmEventType.Unknown,
 			Administrative: MeteoalarmEventType.Unknown,
 			'Air Quality': MeteoalarmEventType.AirQuality,
 			'Air Stagnation': MeteoalarmEventType.AirQuality,
@@ -58,7 +58,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Blowing Dust': MeteoalarmEventType.Dust,
 			'Brisk Wind': MeteoalarmEventType.Wind,
 			'Child Abduction': MeteoalarmEventType.Unknown,
-			'Civil Danger': MeteoalarmEventType.Unknown,
+			Civil: MeteoalarmEventType.Unknown,
 			'Civil Emergency': MeteoalarmEventType.Unknown,
 			'Coastal Flood': MeteoalarmEventType.Flooding,
 			'Dense Fog': MeteoalarmEventType.Fog,
