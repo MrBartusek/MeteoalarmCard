@@ -130,6 +130,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Wind Chill': MeteoalarmEventType.LowTemperature,
 			'Winter Storm': MeteoalarmEventType.SnowIce,
 			'Winter Weather': MeteoalarmEventType.SnowIce,
+			Blue: MeteoalarmEventType.Unknown,
 		};
 	}
 
