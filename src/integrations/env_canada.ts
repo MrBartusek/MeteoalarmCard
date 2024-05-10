@@ -194,7 +194,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			{
 				type: EnvCanadaEntityType.Warning,
 				en: ['Warning'],
-				fr: ['Avertissement De'],
+				fr: ['Avertissement De', 'Avertissement D'],
 			},
 			{
 				type: EnvCanadaEntityType.Watch,
