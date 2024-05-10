@@ -209,7 +209,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			{
 				type: EnvCanadaEntityType.Advisory,
 				en: ['Advisory'],
-				fr: ['Avis De'],
+				fr: ['Avis De', 'Avis'],
 			},
 		];
 	}
