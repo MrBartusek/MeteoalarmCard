@@ -8,11 +8,13 @@ export default css`
 
 		--text-color: inherit;
 		--text-color-active: white;
+		--headline-font-size: 22px;
+		--caption-font-size: 13px;
 
+		--inactive-background-color: inherit;
 		--red-level-color: var(---error-color, #db4437);
 		--orange-level-background-color: #ee5a24;
 		--yellow-level-background-color: var(--warning-color, #ffa600);
-		--inactive-background-color: inherit;
 	}
 
 	ha-card {
@@ -57,7 +59,7 @@ export default css`
 
 	.headline {
 		flex: 1;
-		font-size: 22px;
+		font-size: var(--headline-font-size);
 		line-height: normal;
 		margin: auto;
 		margin-left: 18px;
@@ -74,7 +76,7 @@ export default css`
 		display: flex;
 		align-items: center;
 		margin: 10px 12px;
-		font-size: 13px;
+		font-size: var(--caption-font-size);
 		line-height: normal;
 	}
 
