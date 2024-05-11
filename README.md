@@ -157,10 +157,13 @@ Below are the available CSS variables that you can modify:
 
 - `--text-color`: The text color of inactive card.
 - `--text-color-active`: The text color for card with active warnings.
+- `--inactive-background-color`: This background color when there are no warnings active.
 - `--red-level-color`: The background color for red level alerts.
 - `--orange-level-background-color`: The background color for orange level alerts.
-- `--yellow-level-background-color`: The background color for yellow-level alerts.
-- `--inactive-background-color`: This variable defines the background color when there are no warnings active.
+- `--yellow-level-background-color`: The background color for yellow level alerts.
+- `--headline-font-size`: Font size of headline (alert name). **Note**: in order for this to
+  work properly you need to set [scaling-mode](https://github.com/MrBartusek/MeteoalarmCard/blob/master/dosc/scaling-mode.md) to `disabled`
+- `--caption-font-size`: Font size for caption element. 
 
 ## Contributing
 
