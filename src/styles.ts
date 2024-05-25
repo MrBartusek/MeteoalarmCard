@@ -97,7 +97,7 @@ export default css`
 	}
 
 	.event-orange {
-		background-color: var(--red-level-color);
+		background-color: var(--orange-level-background-color);
 	}
 
 	.event-yellow {
