@@ -104,6 +104,8 @@ export default class DWD implements MeteoalarmIntegration {
 			14: MeteoalarmEventType.CoastalEvent,
 			15: MeteoalarmEventType.CoastalEvent,
 			16: MeteoalarmEventType.CoastalEvent,
+			98: MeteoalarmEventType.Unknown, // Test warning
+			99: MeteoalarmEventType.Unknown, // Test warning
 		};
 	}
 
@@ -117,6 +119,7 @@ export default class DWD implements MeteoalarmIntegration {
 			const level = entity.attributes[`warning_${i}_level`];
 			const id = entity.attributes[`warning_${i}_type`];
 			const headline = entity.attributes[`warning_${i}_headline`];
+
 			if (level == entity.state) {
 				if (id in this.eventTypes) {
 					result.push({
@@ -125,8 +128,6 @@ export default class DWD implements MeteoalarmIntegration {
 						event: this.eventTypes[id],
 						kind: kind,
 					});
-				} else if (id == 98 || id == 99) {
-					throw new Error('An test warning was issued! ID: ' + id);
 				} else {
 					throw new Error('Unknown event ID: ' + id);
 				}
