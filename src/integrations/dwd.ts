@@ -104,10 +104,12 @@ export default class DWD implements MeteoalarmIntegration {
 			14: MeteoalarmEventType.CoastalEvent,
 			15: MeteoalarmEventType.CoastalEvent,
 			16: MeteoalarmEventType.CoastalEvent,
+			98: MeteoalarmEventType.Unknown, // Test warning
+			99: MeteoalarmEventType.Unknown, // Test warning
 		};
 	}
 
-	public getAlerts(entity: HassEntity): MeteoalarmAlert[] {
+	public getAlerts(entity: DWDEntity): MeteoalarmAlert[] {
 		const { warning_count: warningCount } = entity.attributes;
 
 		const result: MeteoalarmAlert[] = [];
@@ -117,19 +119,16 @@ export default class DWD implements MeteoalarmIntegration {
 			const level = entity.attributes[`warning_${i}_level`];
 			const id = entity.attributes[`warning_${i}_type`];
 			const headline = entity.attributes[`warning_${i}_headline`];
-			if (level == entity.state) {
-				if (id in this.eventTypes) {
-					result.push({
-						headline: headline,
-						level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
-						event: this.eventTypes[id],
-						kind: kind,
-					});
-				} else if (id == 98 || id == 99) {
-					throw new Error('An test warning was issued! ID: ' + id);
-				} else {
-					throw new Error('Unknown event ID: ' + id);
-				}
+
+			if (id in this.eventTypes) {
+				result.push({
+					headline: headline,
+					level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
+					event: this.eventTypes[id],
+					kind: kind,
+				});
+			} else {
+				throw new Error('Unknown event ID: ' + id);
 			}
 		}
 
