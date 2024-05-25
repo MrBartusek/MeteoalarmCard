@@ -109,7 +109,7 @@ export default class DWD implements MeteoalarmIntegration {
 		};
 	}
 
-	public getAlerts(entity: HassEntity): MeteoalarmAlert[] {
+	public getAlerts(entity: DWDEntity): MeteoalarmAlert[] {
 		const { warning_count: warningCount } = entity.attributes;
 
 		const result: MeteoalarmAlert[] = [];
@@ -120,17 +120,15 @@ export default class DWD implements MeteoalarmIntegration {
 			const id = entity.attributes[`warning_${i}_type`];
 			const headline = entity.attributes[`warning_${i}_headline`];
 
-			if (level == entity.state) {
-				if (id in this.eventTypes) {
-					result.push({
-						headline: headline,
-						level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
-						event: this.eventTypes[id],
-						kind: kind,
-					});
-				} else {
-					throw new Error('Unknown event ID: ' + id);
-				}
+			if (id in this.eventTypes) {
+				result.push({
+					headline: headline,
+					level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
+					event: this.eventTypes[id],
+					kind: kind,
+				});
+			} else {
+				throw new Error('Unknown event ID: ' + id);
 			}
 		}
 
