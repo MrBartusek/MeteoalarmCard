@@ -1,0 +1,92 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm kortti",
+    "description": "Meteoalarm kortti ilmoittaa voimassa olevista säävaroituksista.",
+    "warning": "Varoitus",
+    "expected": "Odotettavissa",
+    "unavailable": {
+      "long": "Integraatio ei saatavilla",
+      "short": "Ei saatavilla"
+    }
+  },
+  "error": {
+    "missing_entity": "Entiteetti puuttuu!",
+    "invalid_integration": "Integraatiota ei ole valittu oikein.",
+    "invalid_scaling_mode": "Skaalautumisasetus ei ole oikein!",
+    "entity_invalid": {
+      "single": "Valittu integraatio ei sovi valitun entiteetin kanssa.",
+      "multiple": "Valittu integraatio ei sovi valittujen entiteettien kanssa: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Entiteetti",
+    "integration": "Integraatio",
+    "required": "Vaadittu",
+    "recommended": "Suositeltu",
+    "override_headline": "Ohita integraation tarjoama otsikko",
+    "hide_when_no_warning": "Piilota kun varoitusta ei ole saatavilla",
+    "hide_caption": "Piilota seloste",
+    "disable_swiper": "Poista varoitus swiper",
+    "description": {
+      "start": "Valittu integraatio luo monta entiteettiä.",
+      "current_expected": "Ensimmäinen on parhaillaan voimassa olevat varoitukset ja toinen tulevat varoitukset.",
+      "slots": "Niiden tarkempi määrä on päätetään asetuksissa.",
+      "separate_events": "Jokaisella tapahtumatyypillä on oma erillinen entiteetti.",
+      "warning_watch_statement_advisory": "There are 4 entities: warnings, watches, statements and advisories.",
+      "end": "You should add all of them to make sure you don't miss any alerts."
+    },
+    "error": {
+      "expected_entity": "Odotettavissa olevia varoituksia-entiteettiä ei ole lisätty. Tulevia varoituksia ei voida näyttää.",
+      "too_many_entities": "More entities than expected haven't been provided. Expected {expected} entities, got {got} entities.",
+      "duplicate": "Duplikaatti entiteettejä löydetty."
+    },
+    "scaling_mode": "Skaalausasetus",
+    "scaling_mode_options": {
+      "disabled": "Pois",
+      "headline": "Vain otsikko",
+      "scale": "Vain skaalaus",
+      "headline_and_scale": "Otsikko ja skaalaus"
+    }
+  },
+  "events": {
+    "no_warnings": "Ei varoituksia",
+    "nuclear": "radioaktiivinen saaste",
+    "tornado": "trombi",
+    "hurricane": "hurrikaani",
+    "wind": "tuuli",
+    "earthquake": "maanjäristys",
+    "volcano": "tulivuori",
+    "snow_ice": "lumi/jää",
+    "fog": "sumu",
+    "high_temperature": "korkea lämpötila",
+    "low_temperature": "matala lämpötila",
+    "coastal_event": "rannikkomeri",
+    "tsunami": "tsunami",
+    "sea_event": "meri",
+    "forest_fire": "maastopalo",
+    "avalanches": "maanvyöry",
+    "thunderstorms": "ukkosmyrsky",
+    "rain": "sade",
+    "flooding": "tulva",
+    "air_quality": "ilmanlaatu",
+    "dust": "pöly"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Keltainen {event} varoitus",
+      "generic": "Keltainen varoitus",
+      "color": "Keltainen"
+    },
+    "orange": {
+      "event": "Oranssi {event} varoitus",
+      "generic": "Oranssi varoitus",
+      "color": "Oranssi"
+    },
+    "red": {
+      "event": "Punainen {event} varoitus",
+      "generic": "Punainen varoitus",
+      "color": "Punainen"
+    }
+  }
+}
