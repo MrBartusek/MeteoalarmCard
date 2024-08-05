@@ -13,7 +13,7 @@
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
     "invalid_integration": "¡Esta integración no es válida!",
-    "invalid_scaling_mode": "¡Este modo de escala no es válido!",
+    "invalid_scaling_mode": "¡Este modo de escalado no es válido!",
     "entity_invalid": {
       "single": "La integración seleccionada no coincide con la entidad seleccionada.",
       "multiple": "La integración seleccionada no coincide con las entidades seleccionadas: {entity}."
@@ -41,12 +41,12 @@
       "too_many_entities": "No se han proporcionado más entidades de las esperadas. Esperaba {expected} entidades, obtuve {obtuve} entidades.",
       "duplicate": "Encontrados duplicados en la lista de entidades."
     },
-    "scaling_mode": "Modo de Escala",
+    "scaling_mode": "Modo de Escalado",
     "scaling_mode_options": {
       "disabled": "Deshabilitado",
       "headline": "Solo Encabezado",
-      "scale": "Escala",
-      "headline_and_scale": "Encabezado y Escala"
+      "scale": "Escalado",
+      "headline_and_scale": "Encabezado y Escalado"
     }
   },
   "events": {
