@@ -13,7 +13,7 @@
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
     "invalid_integration": "¡Esta integración no es válida!",
-    "invalid_scaling_mode": null,
+    "invalid_scaling_mode": "¡Este modo de escalado no es válido!",
     "entity_invalid": {
       "single": "La integración seleccionada no coincide con la entidad seleccionada.",
       "multiple": "La integración seleccionada no coincide con las entidades seleccionadas: {entity}."
@@ -33,7 +33,7 @@
       "current_expected": "El primero con los eventos actuales y el segundo con los futuros.",
       "slots": "La cantidad exacta creada está determinada por su configuración.",
       "separate_events": "Cada tipo de evento tiene una entidad separada.",
-      "warning_watch_statement_advisory": null,
+      "warning_watch_statement_advisory": "Hay 4 entidades: advertencias, alertas, declaraciones y avisos.",
       "end": "Debes agregarlos todos para asegurarte de no perderte ninguna alerta."
     },
     "error": {
@@ -41,12 +41,12 @@
       "too_many_entities": "No se han proporcionado más entidades de las esperadas. Esperaba {expected} entidades, obtuve {obtuve} entidades.",
       "duplicate": "Encontrados duplicados en la lista de entidades."
     },
-    "scaling_mode": null,
+    "scaling_mode": "Modo de Escalado",
     "scaling_mode_options": {
-      "disabled": null,
-      "headline": null,
-      "scale": null,
-      "headline_and_scale": null
+      "disabled": "Deshabilitado",
+      "headline": "Solo Encabezado",
+      "scale": "Escalado",
+      "headline_and_scale": "Encabezado y Escalado"
     }
   },
   "events": {
