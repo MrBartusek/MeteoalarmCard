@@ -1,4 +1,5 @@
 import * as bg from './languages/bg.json';
+import * as ca from './languages/ca.json';
 import * as cs from './languages/cs.json';
 import * as de from './languages/de.json';
 import * as en from './languages/en.json';
@@ -30,6 +31,7 @@ const languages: any = {
 	cs: cs,
 	pt: pt,
 	bg: bg,
+	ca: ca,
 };
 export function localize(string: string): string {
 	if (string.toLocaleLowerCase() != string) {
