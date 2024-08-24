@@ -1,0 +1,92 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Targeta Meteoalarm",
+    "description": "La targeta Meteoalarm t'avisa sobre els esdeveniments meteorològics actuals.",
+    "warning": "Advertència",
+    "expected": "Esperat",
+    "unavailable": {
+      "long": "La integració no està disponible",
+      "short": "No disponible"
+    }
+  },
+  "error": {
+    "missing_entity": "Cal especificar les entitats!",
+    "invalid_integration": "Aquesta integració no és vàlida!",
+    "invalid_scaling_mode": "Aquest mode d'escalat no és vàlid!",
+    "entity_invalid": {
+      "single": "La integració seleccionada no coincideix amb l'entitat seleccionada.",
+      "multiple": "La integració seleccionada no coincideix amb les entitats seleccionades: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Entitat",
+    "integration": "Integració",
+    "required": "Necessari",
+    "recommended": "Recomanat",
+    "override_headline": "Sobrescriu el títol proporcionat per la integració",
+    "hide_when_no_warning": "Amaga quan no hi ha advertències",
+    "hide_caption": "Amaga la descripció",
+    "disable_swiper": "Desactiva el desplaçament de les alertes",
+    "description": {
+      "start": "La integració seleccionada crea múltiples entitats.",
+      "current_expected": "La primera amb els esdeveniments actuals i la segona amb els futurs.",
+      "slots": "La quantitat exacta d'entitats creades es determina per la seva configuració.",
+      "separate_events": "Cada tipus d'esdeveniment té una entitat separada.",
+      "warning_watch_statement_advisory": "Hi ha 4 entitats: advertències, vigilàncies, declaracions i avisos.",
+      "end": "Hauries d'afegir-les totes per assegurar-te que no et perds cap alerta."
+    },
+    "error": {
+      "expected_entity": "No s'ha proporcionat l'entitat d'advertències esperada. No es mostraran els esdeveniments futurs.",
+      "too_many_entities": "S'han proporcionat més entitats de les esperades. S'esperaven {expected} entitats, però se n'han proporcionat {got}.",
+      "duplicate": "S'han trobat duplicats a la llista d'entitats."
+    },
+    "scaling_mode": "Mode d'escalat",
+    "scaling_mode_options": {
+      "disabled": "Desactivat",
+      "headline": "Només títol",
+      "scale": "Només escala",
+      "headline_and_scale": "Títol i escala"
+    }
+  },
+  "events": {
+    "no_warnings": "Sense advertències",
+    "nuclear": "esdeveniment nuclear",
+    "tornado": "tornado",
+    "hurricane": "huracà",
+    "wind": "vent",
+    "earthquake": "terratrèmol",
+    "volcano": "volcà",
+    "snow_ice": "neu/gel",
+    "fog": "boira",
+    "high_temperature": "temperatura alta",
+    "low_temperature": "temperatura baixa",
+    "coastal_event": "esdeveniment costaner",
+    "tsunami": "tsunami",
+    "sea_event": "esdeveniment marítim",
+    "forest_fire": "incendi forestal",
+    "avalanches": "allaus",
+    "thunderstorms": "tempestes",
+    "rain": "pluja",
+    "flooding": "inundació",
+    "air_quality": "qualitat de l'aire",
+    "dust": "pols"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Alerta groga per {event}",
+      "generic": "Alerta groga",
+      "color": "Groc"
+    },
+    "orange": {
+      "event": "Alerta taronja per {event}",
+      "generic": "Alerta taronja",
+      "color": "Taronja"
+    },
+    "red": {
+      "event": "Alerta vermella per {event}",
+      "generic": "Alerta vermella",
+      "color": "Vermell"
+    }
+  }
+}
