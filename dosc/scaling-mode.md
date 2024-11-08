@@ -2,27 +2,27 @@
 
 `scaling_mode` is the MeteoalarmCard configuration option introduced in version
 [`v2.4.0`](https://github.com/MrBartusek/MeteoalarmCard/releases/tag/v2.4.0). Card scaling
-is a module responsible for swapping headlines or reducing their size to ensure that whol
-headline is always visible. `scaling_mode` option controls bechavior of said module.
+is a module responsible for swapping headlines or reducing their size to ensure that whole
+headline is always visible. `scaling_mode` option controls behaviour of said module.
 
 ![scaling demo](https://i.imgur.com/LqULkry.gif)
 
 ## Headline generator
 
-While rendering card, MeteoalarmCard prepares three headlines. For example:
+While rendering the card, MeteoalarmCard prepares three headlines. For example:
 
 - **Provided by integration**: Snowfall Warning
 - **Long generated:** Yellow snow/ice warning
 - **Short generated:** Snow/ice
 
-Card then decided which headline at which size to display. When `override_headline` is enabled,
-the first headline is ommited. Depending on current width of the card and `scaling_mode`, card will
-try to swap these headlines, reduce thier size, or both. This may cause that you will see diffrent
-headlines on diffrent devices.
+The card then decided which headline to display at which size. When `override_headline` is enabled,
+the first headline is omitted. Depending on the current width of the card and `scaling_mode`, the card will
+try to swap these headlines, reduce their size, or both. This may cause you to see different
+headlines on different devices.
 
 ## Available options
 
-This option can be configured in four diffrent ways.
+This option can be configured in four different ways.
 
 ### `headline_and_scale` (default)
 
@@ -30,8 +30,8 @@ This option can be configured in four diffrent ways.
 scaling_mode: headline_and_scale
 ```
 
-Card will both use headline swaping and scaling. Card will try to find a headline that fits on
-the current card size even when it means reducing it's font size. This is default configuration
+The card will both use headline swapping and scaling. The card will try to find a headline that fits 
+the current card size even when it means reducing its font size. This is the default configuration
 option.
 
 ### `headline`
@@ -40,8 +40,8 @@ option.
 scaling_mode: headline
 ```
 
-Scaling module will try to find a headline that fits on the current card size without changing
-headline font size. This is pre-2.4.0 behavior.
+The scaling module will try to find a headline that fits the current card size without changing
+the headline font size. This is pre-2.4.0 behavior.
 
 
 ### `scale`
@@ -50,8 +50,8 @@ headline font size. This is pre-2.4.0 behavior.
 scaling_mode: scale
 ```
 
-Card will always use first headline (provided by integration or long auto-generated) and
-scale it to the current card size. When scaling hits lower limit, headline will be truncated
+The card will always use the first headline (provided by integration or long auto-generated) and
+scale it to the current card size. When scaling hits a lower limit, the headline will be truncated
 to fit.
 
 ### `disabled`
