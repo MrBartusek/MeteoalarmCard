@@ -149,6 +149,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			Danger: MeteoalarmLevelType.Red, // Extreme Fire Danger
 			Message: MeteoalarmLevelType.Orange, //Civil Emergency Message
 			Outage: MeteoalarmLevelType.Orange, // 911 Telephone Outage.
+			Outlook: MeteoalarmLevelType.Yellow, // Hydrologic Outlook
 		};
 	}
 
