@@ -61,6 +61,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			Civil: MeteoalarmEventType.Unknown,
 			'Civil Emergency': MeteoalarmEventType.Unknown,
 			'Coastal Flood': MeteoalarmEventType.Flooding,
+			'Cold Weather': MeteoalarmEventType.LowTemperature,
 			'Dense Fog': MeteoalarmEventType.Fog,
 			'Dense Smoke': MeteoalarmEventType.Fog,
 			Dust: MeteoalarmEventType.Dust,
@@ -69,6 +70,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Excessive Heat': MeteoalarmEventType.HighTemperature,
 			'Extreme Cold': MeteoalarmEventType.LowTemperature,
 			'Extreme Fire': MeteoalarmEventType.ForestFire,
+			'Extreme Heat': MeteoalarmEventType.HighTemperature,
 			'Extreme Wind': MeteoalarmEventType.Wind,
 			Fire: MeteoalarmEventType.ForestFire,
 			'Fire Weather': MeteoalarmEventType.ForestFire,
@@ -147,6 +149,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			Danger: MeteoalarmLevelType.Red, // Extreme Fire Danger
 			Message: MeteoalarmLevelType.Orange, //Civil Emergency Message
 			Outage: MeteoalarmLevelType.Orange, // 911 Telephone Outage.
+			Outlook: MeteoalarmLevelType.Yellow, // Hydrologic Outlook
 		};
 	}
 
