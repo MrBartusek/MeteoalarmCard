@@ -77,18 +77,37 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 		let event: MeteoalarmEventType | undefined;
 		let level: MeteoalarmLevelType | undefined;
 
-		if (awarenessType != undefined) {
-			event = this.eventTypes[Number(awarenessType.split(';')[0]) - 1];
-		}
+               let highestLevelIndex = 0;
+               if (awarenessLevel != undefined) {
+                       const parts = awarenessLevel.split(';');
+                       let highestLevelID: number | undefined;
 
-		if (awarenessLevel != undefined) {
-			let levelID = Number(awarenessLevel.split(';')[0]);
-			if (levelID == 1) {
-				// Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
-				levelID = 2;
-			}
-			level = (levelID - 1) as MeteoalarmLevelType;
-		}
+                       parts.forEach((part, idx) => {
+                               let levelID = Number(part.trim());
+                               if (Number.isNaN(levelID)) return;
+                               if (levelID == 1) {
+                                       // Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
+                                       levelID = 2;
+                               }
+
+                               if (highestLevelID === undefined || levelID > highestLevelID) {
+                                       highestLevelID = levelID;
+                                       highestLevelIndex = idx;
+                               }
+                       });
+
+                       if (highestLevelID !== undefined) {
+                               level = (highestLevelID - 1) as MeteoalarmLevelType;
+                       }
+               }
+
+               if (awarenessType != undefined) {
+                       const parts = awarenessType.split(';');
+                       const id = Number(parts[highestLevelIndex]?.trim() || parts[0]);
+                       if (!Number.isNaN(id)) {
+                               event = this.eventTypes[id - 1];
+                       }
+               }
 
 		if (level === undefined && severity !== undefined) {
 			level = Utils.getLevelBySeverity(severity);
