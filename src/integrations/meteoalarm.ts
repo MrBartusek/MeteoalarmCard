@@ -7,6 +7,7 @@ import {
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType,
 } from '../types';
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 import { Utils } from '../utils';
 
 type MeteoalarmEntity = HassEntity & {
@@ -42,9 +43,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	public alertActive(entity: MeteoalarmEntity): boolean {
-		return (
-			entity.attributes.status || entity.attributes.state || entity.state
-		) !== 'off';
+		return (entity.attributes.status || entity.attributes.state || entity.state) !== 'off';
 	}
 
 	private get eventTypes(): MeteoalarmEventType[] {
@@ -67,13 +66,8 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	public getAlerts(entity: MeteoalarmEntity): MeteoalarmAlert[] {
-		const {
-			event: eventHeadline,
-			headline,
-			severity,
-			awareness_type: awarenessType,
-			awareness_level: awarenessLevel,
-		} = entity.attributes;
+		/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+		const { event: eventHeadline, headline, severity, awareness_type: awarenessType, awareness_level: awarenessLevel, description } = entity.attributes;
 
 		// Collect parsed events and levels
 		const events: MeteoalarmEventType[] = [];
@@ -92,22 +86,18 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			for (const id of awarenessLevel.split(';')) {
 				let levelId = Number(id);
 				// Fallback for case where id==1 should map to 2
-				if (levelId === 1) {
-					levelId = 2;
-				}
+				if (levelId === 1) levelId = 2;
 				// MeteoalarmLevelType is zero-based
 				levels.push((levelId - 1) as MeteoalarmLevelType);
 			}
 		}
 
 		// Build alert objects: one per event/level pair
-		const alerts: MeteoalarmAlert[] = events.map((evt, i) => ({
+		return events.map((evt, i) => ({
 			event: evt,
 			level: levels[i]!,
 			headline: headline ?? eventHeadline ?? '',
-			description: entity.attributes.description ?? '',
+			description: description ?? '',
 		}));
-
-		return alerts;
 	}
 }
