@@ -98,3 +98,4 @@ export default class Meteoalarm implements MeteoalarmIntegration {
                 levels.push((levelID - 1) as MeteoalarmLevelType);
             }
         }
+    }
