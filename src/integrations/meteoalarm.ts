@@ -66,29 +66,47 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 	}
 
 	public getAlerts(entity: MeteoalarmEntity): MeteoalarmAlert[] {
-		const {
-			event: eventHeadline,
-			headline,
-			severity,
-			awareness_type: awarenessType,
-			awareness_level: awarenessLevel,
-		} = entity.attributes;
+                const {
+                        event: eventHeadline,
+                        headline,
+                        severity,
+                        awareness_type: awarenessType,
+                        awareness_level: awarenessLevel,
+                } = entity.attributes;
 
-		let event: MeteoalarmEventType | undefined;
-		let level: MeteoalarmLevelType | undefined;
+                let event: MeteoalarmEventType | undefined;
+                let level: MeteoalarmLevelType | undefined;
 
-		if (awarenessType != undefined) {
-			event = this.eventTypes[Number(awarenessType.split(';')[0]) - 1];
-		}
+                // Handle multiple alerts by selecting the highest level
+                const events: MeteoalarmEventType[] = [];
+                const levels: MeteoalarmLevelType[] = [];
 
-		if (awarenessLevel != undefined) {
-			let levelID = Number(awarenessLevel.split(';')[0]);
-			if (levelID == 1) {
-				// Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
-				levelID = 2;
-			}
-			level = (levelID - 1) as MeteoalarmLevelType;
-		}
+                if (awarenessType !== undefined) {
+                        for (const id of awarenessType.split(';')) {
+                                const parsed = this.eventTypes[Number(id) - 1];
+                                events.push(parsed);
+                        }
+                }
+
+                if (awarenessLevel !== undefined) {
+                        for (const id of awarenessLevel.split(';')) {
+                                let levelID = Number(id);
+                                if (levelID == 1) {
+                                        // Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
+                                        levelID = 2;
+                                }
+                                levels.push((levelID - 1) as MeteoalarmLevelType);
+                        }
+                }
+
+                if (levels.length > 0) {
+                        let idx = 0;
+                        for (let i = 1; i < levels.length; i++) {
+                                if (levels[i] > levels[idx]) idx = i;
+                        }
+                        level = levels[idx];
+                        event = events[idx] ?? events[0];
+                }
 
 		if (level === undefined && severity !== undefined) {
 			level = Utils.getLevelBySeverity(severity);
