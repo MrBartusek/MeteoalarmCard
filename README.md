@@ -110,27 +110,30 @@ Expect Meteoalarm this card supports many other integrations:
 
 | Integration                         | Key              | Description              |
 | ----------------------------------- | ---------------- | ------------------------ |
-| [MeteoAlarm][meteoalarm]            | `meteoalarm`     | Warnings for Europe collected by [MeteoAlarm][meteoalarm-direct] (EUMETNET). The website integrates all important severe weather information originating from the official National Public Weather Services across a large number of European countries  |
-| [Météo-France][meteo-france]        | `meteofrance`    | Warnings for France from [Météo-France][meteo-france-direct]. |
+| [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for warnings in Poland from [Burze.dzis.net][burze-direct]. These warnings are issued by [Skywarn / Polscy Łowcy Burz ](https://lowcyburz.pl) which is not backed by government or any official agency. |
 | [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Warnings for Germany from [Deutscher Wetterdienst][dwd-direct]. |
 | [Environnement Canada][env-canada]  | `env_canada`     | Warnings for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
+| [MeteoAlarm][meteoalarm]            | `meteoalarm`     | Warnings for Europe collected by [MeteoAlarm][meteoalarm-direct] (EUMETNET). The website integrates all important severe weather information originating from the official National Public Weather Services across a large number of European countries  |
+| [Météo-France][meteo-france]        | `meteofrance`    | Warnings for France from [Météo-France][meteo-france-direct]. |
 | [NINA][nina]                        | `nina`           | Warnings for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct]. This integration doesn't provide much atributes thus using it generates very generic card. |
-| [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for warnings in Poland from [Burze.dzis.net][burze-direct]. These warnings are issued by [Skywarn / Polscy Łowcy Burz ](https://lowcyburz.pl) which is not backed by government or any official agency. |
+| [NWSAlerts][nwsalerts]      | `nwsalerts`  | Custom integration for USA from [National Weather Service (NWS)][nwsalerts-direct]. |
 | [weatheralerts][weatheralerts]      | `weatheralerts`  | Custom integration for USA from [National Weather Service (NWS)][weatheralerts-direct]. |
 | [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose) | | [You can request a new integration to be added here!]((https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)) |
 
-[meteoalarm]: https://www.home-assistant.io/integrations/meteoalarm/
-[meteoalarm-direct]: https://www.meteoalarm.org
-[meteo-france]: https://www.home-assistant.io/integrations/meteo_france/
-[meteo-france-direct]: https://meteofrance.com
+[burze]: https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net
+[burze-direct]: https://burze.dzis.net
 [dwd]: https://www.home-assistant.io/integrations/dwd_weather_warnings/
 [dwd-direct]: https://www.dwd.de/
 [env-canada]: https://www.home-assistant.io/integrations/environment_canada/
 [env-canada-direct]: https://weather.gc.ca/
+[meteoalarm]: https://www.home-assistant.io/integrations/meteoalarm/
+[meteoalarm-direct]: https://www.meteoalarm.org
+[meteo-france]: https://www.home-assistant.io/integrations/meteo_france/
+[meteo-france-direct]: https://meteofrance.com
 [nina]: https://www.home-assistant.io/integrations/nina/
 [nina-direct]: https://www.bbk.bund.de/
-[burze]: https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net
-[burze-direct]: https://burze.dzis.net
+[nwsalerts]: https://github.com/finity69x2/nws_alerts
+[nwsalerts-direct]: https://www.weather.gov
 [weatheralerts]: https://github.com/custom-components/weatheralerts
 [weatheralerts-direct]: https://www.weather.gov
 
