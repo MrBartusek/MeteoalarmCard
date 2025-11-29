@@ -1,0 +1,92 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Card Meteoalarm",
+    "description": "Cardul Meteoalarm te avertizează despre evenimentele meteorologice actuale.",
+    "warning": "Avertizează",
+    "expected": "Așteptat",
+    "unavailable": {
+      "long": "Integrarea nu este disponibilă",
+      "short": "Indisponibil"
+    }
+  },
+  "error": {
+    "missing_entity": "Este necesară specificarea entităților!",
+    "invalid_integration": "Această integrare nu este validă!",
+    "invalid_scaling_mode": "Acest mod de scalare nu este valid!",
+    "entity_invalid": {
+      "single": "Integrarea selectată nu corespunde entității selectate.",
+      "multiple": "Integrarea selectată nu corespunde entităților selectate: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Entitate",
+    "integration": "Integrare",
+    "required": "Necesar",
+    "recommended": "Recomandat",
+    "override_headline": "Suprascrie titlul furnizat de integrare",
+    "hide_when_no_warning": "Ascunde când nu există avertismente",
+    "hide_caption": "Ascunde subtitlu",
+    "disable_swiper": "Dezactivează glisorul de alerte",
+    "description": {
+      "start": "Integrarea selectată creează mai multe entități.",
+      "current_expected": "Primul cu evenimentele actuale și al doilea cu cele viitoare.",
+      "slots": "Cantitatea exactă creată este determinată de configurația sa.",
+      "separate_events": "Fiecare tip de eveniment are o entitate separată.",
+      "warning_watch_statement_advisory": "Există 4 entități: avertismente, observații, declarații și recomandări.",
+      "end": "Ar trebui să le adaugi pe toate pentru a te asigura că nu ratezi nicio alertă.."
+    },
+    "error": {
+      "expected_entity": "Entitatea de avertizare așteptată nu a fost furnizată. Evenimentul viitor nu va fi afișat..",
+      "too_many_entities": "Nu au fost furnizate mai multe entități decât cele așteptate. Se așteptau {expected} entități, s-au obținut {got} entități..",
+      "duplicate": "S-au găsit duplicate în lista de entități."
+    },
+    "scaling_mode": "Mod de scalare",
+    "scaling_mode_options": {
+      "disabled": "Dezactivat",
+      "headline": "Doar titlu",
+      "scale": "Doar scală",
+      "headline_and_scale": "Titlu și scală"
+    }
+  },
+  "events": {
+    "no_warnings": "Nicio avertizare",
+    "nuclear": "eveniment nuclear",
+    "tornado": "tornadă",
+    "hurricane": "uragan",
+    "wind": "vânt",
+    "earthquake": "cutremur",
+    "volcano": "vulcan",
+    "snow_ice": "ăpadă/gheață",
+    "fog": "ceață",
+    "high_temperature": "temperatură ridicată",
+    "low_temperature": "temperatură scăzută",
+    "coastal_event": "eveniment costier",
+    "tsunami": "tsunami",
+    "sea_event": "eveniment maritime",
+    "forest_fire": "foc forestier",
+    "avalanches": "avalanșe",
+    "thunderstorms": "furtuni",
+    "rain": "ploaie",
+    "flooding": "indundație",
+    "air_quality": "calitate aer",
+    "dust": "vânt"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Cod galben {event}",
+      "generic": "Cod galben",
+      "color": "Galben"
+    },
+    "orange": {
+      "event": "Cod portocaliu {event}",
+      "generic": "Cod portocaliu",
+      "color": "Portocaliu"
+    },
+    "red": {
+      "event": "Cod roșu {event}",
+      "generic": "Cod roșu",
+      "color": "Roșu"
+    }
+  }
+}
