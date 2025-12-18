@@ -97,6 +97,7 @@ This card supports translations. Please, help to add more translations and impro
 - Français (French)
 - Hrvatski (Croatian)
 - Italiano (Italian)
+- Magyar (Hungarian)
 - Nederlands (Dutch)
 - Polski (Polish)
 - Português (Portuguese)

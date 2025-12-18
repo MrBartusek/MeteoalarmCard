@@ -1,0 +1,92 @@
+{
+  "$schema": "../schema/schema.json",
+  "common": {
+    "name": "Meteoalarm Kártya",
+    "description": "A Meteoalarm kártya figyelmeztet az aktuális időjárási eseményekre.",
+    "warning": "Figyelmeztetés",
+    "expected": "Várható",
+    "unavailable": {
+      "long": "Az integráció nem elérhető",
+      "short": "Nem elérhető"
+    }
+  },
+  "error": {
+    "missing_entity": "Az entitások megadása kötelező!",
+    "invalid_integration": "Ez az integráció nem érvényes!",
+    "invalid_scaling_mode": "Ez a méretezési mód nem érvényes!",
+    "entity_invalid": {
+      "single": "A kiválasztott integráció nem egyezik a kiválasztott entitással.",
+      "multiple": "A kiválasztott integráció nem egyezik a kiválasztott entitásokkal: {entity}."
+    }
+  },
+  "editor": {
+    "entity": "Entitás",
+    "integration": "Integráció",
+    "required": "Kötelező",
+    "recommended": "Ajánlott",
+    "override_headline": "Az integráció által biztosított címsor felülírása",
+    "hide_when_no_warning": "Elrejtés, ha nincs figyelmeztetés",
+    "hide_caption": "Felirat elrejtése",
+    "disable_swiper": "Riasztások lapozójának letiltása",
+    "description": {
+      "start": "A kiválasztott integráció több entitást hoz létre.",
+      "current_expected": "Az első az aktuális eseményekkel, a második a jövőbeli eseményekkel.",
+      "slots": "A létrehozott pontos mennyiséget a konfigurációja határozza meg.",
+      "separate_events": "Minden eseménytípusnak külön entitása van.",
+      "warning_watch_statement_advisory": "4 entitás van: figyelmeztetések, figyelések, nyilatkozatok és tanácsadások.",
+      "end": "Az összeset hozzá kell adnia, hogy ne maradjon le egyetlen riasztásról sem."
+    },
+    "error": {
+      "expected_entity": "A várható figyelmeztetések entitás nem lett megadva. A jövőbeli események nem jelennek meg.",
+      "too_many_entities": "Több entitás lett megadva a vártnál. Várt: {expected} entitás, kapott: {got} entitás.",
+      "duplicate": "Duplikátumok találhatók az entitások listájában."
+    },
+    "scaling_mode": "Méretezési mód",
+    "scaling_mode_options": {
+      "disabled": "Letiltva",
+      "headline": "Csak címsor",
+      "scale": "Csak méretezés",
+      "headline_and_scale": "Címsor és méretezés"
+    }
+  },
+  "events": {
+    "no_warnings": "Nincs figyelmeztetés",
+    "nuclear": "nukleáris esemény",
+    "tornado": "tornádó",
+    "hurricane": "hurrikán",
+    "wind": "szél",
+    "earthquake": "földrengés",
+    "volcano": "vulkán",
+    "snow_ice": "hó/jég",
+    "fog": "köd",
+    "high_temperature": "magas hőmérséklet",
+    "low_temperature": "alacsony hőmérséklet",
+    "coastal_event": "tengerparti esemény",
+    "tsunami": "cunami",
+    "sea_event": "tengeri esemény",
+    "forest_fire": "erdőtűz",
+    "avalanches": "lavinák",
+    "thunderstorms": "zivatarok",
+    "rain": "eső",
+    "flooding": "árvíz",
+    "air_quality": "levegőminőség",
+    "dust": "por"
+  },
+  "messages": {
+    "yellow": {
+      "event": "Sárga {event} figyelmeztetés",
+      "generic": "Sárga figyelmeztetés",
+      "color": "Sárga"
+    },
+    "orange": {
+      "event": "Narancs {event} figyelmeztetés",
+      "generic": "Narancssárga figyelmeztetés",
+      "color": "Narancssárga"
+    },
+    "red": {
+      "event": "Piros {event} figyelmeztetés",
+      "generic": "Piros figyelmeztetés",
+      "color": "Piros"
+    }
+  }
+}
