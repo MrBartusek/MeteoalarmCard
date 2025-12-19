@@ -13,6 +13,7 @@ import * as it from './languages/it.json';
 import * as nl from './languages/nl.json';
 import * as pl from './languages/pl.json';
 import * as pt from './languages/pt.json';
+import * as ro from './languages/ro.json';
 import * as sk from './languages/sk.json';
 import * as sv from './languages/sv.json';
 
@@ -34,6 +35,7 @@ const languages: any = {
 	pt: pt,
 	bg: bg,
 	ca: ca,
+	ro: ro,
 };
 export function localize(string: string): string {
 	if (string.toLocaleLowerCase() != string) {
