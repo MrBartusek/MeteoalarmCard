@@ -30,7 +30,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			key: 'env_canada',
 			name: 'Environment Canada',
 			type: MeteoalarmIntegrationEntityType.WarningWatchStatementAdvisory,
-			returnHeadline: false,
+			returnHeadline: true,
 			returnMultipleAlerts: true,
 			entitiesCount: 4,
 			monitoredConditions: [...new Set(this.eventTypes.map((e) => e.type))],
@@ -175,8 +175,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
-				en: 'Special Weather',
-				fr: 'Météorologique Spécial',
+				en: 'Special Weather Statement',
+				fr: 'Bulletin Météorologique Spécial',
 				type: MeteoalarmEventType.Unknown,
 			},
 			{
@@ -199,25 +199,28 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 
 		for (let i = 1; i < warningCount + 1; i++) {
 			const alert = entity.attributes[`alert_${i}`] as string;
-			const alertName = alert.substring(alert.indexOf('-') + 2);
-			const alertCriterion = alert.substring(0, alert.indexOf('-') - 1);
+			const alertNameIdx = alert.indexOf('-');
+			const isCodedAlert = alertNameIdx > 0;
+			const alertName = isCodedAlert ? alert.substring(alertNameIdx + 2) : alert;
+			const alertCriterion = isCodedAlert ? alert.substring(0, alertNameIdx - 1) : alert;
 			const isFrench = entity.attributes.attribution == 'Données fournies par Environnement Canada';
 			const level = this.getLevelType(alertCriterion);
 			const event = this.getEventType(alertName, isFrench);
 
-			if (level == MeteoalarmLevelType.None) {
+			if (level == MeteoalarmLevelType.None && isCodedAlert) {
 				throw new Error(
-					`Unknown Environnement Canada alert criterion encountered! Alert: ${alert} (isFrench=${isFrench})`,
+					`Unknown Environment Canada alert criterion encountered! Alert: ${alert} (isFrench=${isFrench})`,
 				);
 			} else if (!event) {
 				throw new Error(
-					`Unknown Environnement Canada alert type encountered! Alert: ${alert} (isFrench=${isFrench})`,
+					`Unknown Environment Canada alert type encountered! Alert: ${alert} (isFrench=${isFrench})`,
 				);
 			}
 
 			result.push({
 				level: level,
 				event: event.type,
+				headline: alert,
 			});
 		}
 
