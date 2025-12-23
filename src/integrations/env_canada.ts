@@ -56,132 +56,132 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		return [
 			{
 				en: 'Arctic Outflow',
-				fr: 'Poussée d’air Arctique',
+				fr: 'poussée d’air arctique',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Blizzard',
-				fr: 'Blizzard',
+				fr: 'blizzard',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Blowing Snow',
-				fr: 'Poudrerie',
+				fr: 'poudrerie',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Dust Storm',
-				fr: 'Tempête de Poussière',
+				fr: 'tempête de poussière',
 				type: MeteoalarmEventType.Dust,
 			},
 			{
 				en: 'Extreme Cold',
-				fr: 'Froid Extrême',
+				fr: 'froid extrême',
 				type: MeteoalarmEventType.LowTemperature,
 			},
 			{
 				en: 'Flash Freeze',
-				fr: 'Refroidissement Soudain',
+				fr: 'refroidissement soudain',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Fog',
-				fr: 'Brouillard',
+				fr: 'brouillard',
 				type: MeteoalarmEventType.Fog,
 			},
 			{
 				en: 'Freezing Drizzle',
-				fr: 'Bruine Verglaçante',
+				fr: 'bruine verglaçante',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Freezing Rain',
-				fr: 'Pluie Verglaçante',
+				fr: 'pluie Verglaçante',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Frost',
-				fr: 'Gel',
+				fr: 'gel',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Heat',
-				fr: 'Chaleur',
+				fr: 'chaleur',
 				type: MeteoalarmEventType.HighTemperature,
 			},
 			{
 				en: 'Hurricane',
-				fr: 'Ouragan',
+				fr: 'ouragan',
 				type: MeteoalarmEventType.Hurricane,
 			},
 			{
 				en: 'Rainfall',
-				fr: 'Pluie',
+				fr: 'pluie',
 				type: MeteoalarmEventType.Rain,
 			},
 			{
 				en: 'Severe Thunderstorm',
-				fr: 'Orages Violents',
+				fr: 'orages violents',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
 				en: 'Smog',
-				fr: 'Smog',
+				fr: 'smog',
 				type: MeteoalarmEventType.AirQuality,
 			},
 			{
 				en: 'Snowfall',
-				fr: 'Neige',
+				fr: 'neige',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Snow Squall',
-				fr: 'Bourrasques de Neige',
+				fr: 'bourrasques de neige',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Storm Surge',
-				fr: 'Onde de Tempête',
+				fr: 'onde de tempête',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
 				en: 'Tornado',
-				fr: 'Tornade',
+				fr: 'tornade',
 				type: MeteoalarmEventType.Tornado,
 			},
 			{
 				en: 'Tropical Storm',
-				fr: 'Tempête Tropicale',
+				fr: 'tempête tropicale',
 				type: MeteoalarmEventType.Hurricane,
 			},
 			{
 				en: 'Tsunami',
-				fr: 'Tsunami',
+				fr: 'tsunami',
 				type: MeteoalarmEventType.Tsunami,
 			},
 			{
 				en: 'Weather',
-				fr: 'Météorologique',
+				fr: 'météorologique',
 				type: MeteoalarmEventType.Unknown,
 			},
 			{
 				en: 'Wind',
-				fr: 'Vents',
+				fr: 'vents',
 				type: MeteoalarmEventType.Wind,
 			},
 			{
 				en: 'Winter Storm',
-				fr: 'Tempête Hivernale',
+				fr: 'tempête hivernale',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Special Weather Statement',
-				fr: 'Bulletin Météorologique Spécial',
+				fr: 'bulletin météorologique spécial',
 				type: MeteoalarmEventType.Unknown,
 			},
 			{
 				en: 'Special Air Quality',
-				fr: "Spécial Sur La Qualité De L'Air",
+				fr: "spécial sur la qualité de l'air",
 				type: MeteoalarmEventType.AirQuality,
 			},
 		];
@@ -255,12 +255,24 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		switch (level) {
 			case 'Red Warning':
 			case 'Avertissement rouge':
+			case 'Red Watch':
+			case 'Veille rouge':
+			case 'Red Advisory':
+			case 'Avis rouge':
 				return MeteoalarmLevelType.Red;
 			case 'Orange Warning':
 			case 'Avertissement orange':
+			case 'Orange Watch':
+			case 'Veille orange':
+			case 'Orange Advisory':
+			case 'Avis orange':
 				return MeteoalarmLevelType.Orange;
 			case 'Yellow Warning':
 			case 'Avertissement jaune':
+			case 'Yellow Watch':
+			case 'Veille jaune':
+			case 'Yellow Advisory':
+			case 'Avis jaune':
 				return MeteoalarmLevelType.Yellow;
 			default:
 				return MeteoalarmLevelType.None;
