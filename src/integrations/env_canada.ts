@@ -30,7 +30,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			key: 'env_canada',
 			name: 'Environment Canada',
 			type: MeteoalarmIntegrationEntityType.WarningWatchStatementAdvisory,
-			returnHeadline: false,
+			returnHeadline: true,
 			returnMultipleAlerts: true,
 			entitiesCount: 4,
 			monitoredConditions: [...new Set(this.eventTypes.map((e) => e.type))],
@@ -56,185 +56,138 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		return [
 			{
 				en: 'Arctic Outflow',
-				fr: 'Poussée d’air Arctique',
+				fr: 'poussée d’air arctique',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Blizzard',
-				fr: 'Blizzard',
+				fr: 'blizzard',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Blowing Snow',
-				fr: 'Poudrerie',
+				fr: 'poudrerie',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Dust Storm',
-				fr: 'Tempête de Poussière',
+				fr: 'tempête de poussière',
 				type: MeteoalarmEventType.Dust,
 			},
 			{
 				en: 'Extreme Cold',
-				fr: 'Froid Extrême',
+				fr: 'froid extrême',
 				type: MeteoalarmEventType.LowTemperature,
 			},
 			{
 				en: 'Flash Freeze',
-				fr: 'Refroidissement Soudain',
+				fr: 'refroidissement soudain',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Fog',
-				fr: 'Brouillard',
+				fr: 'brouillard',
 				type: MeteoalarmEventType.Fog,
 			},
 			{
 				en: 'Freezing Drizzle',
-				fr: 'Bruine Verglaçante',
+				fr: 'bruine verglaçante',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Freezing Rain',
-				fr: 'Pluie Verglaçante',
+				fr: 'pluie Verglaçante',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Frost',
-				fr: 'Gel',
+				fr: 'gel',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Heat',
-				fr: 'Chaleur',
+				fr: 'chaleur',
 				type: MeteoalarmEventType.HighTemperature,
 			},
 			{
 				en: 'Hurricane',
-				fr: 'Ouragan',
+				fr: 'ouragan',
 				type: MeteoalarmEventType.Hurricane,
 			},
 			{
 				en: 'Rainfall',
-				fr: 'Pluie',
+				fr: 'pluie',
 				type: MeteoalarmEventType.Rain,
 			},
 			{
 				en: 'Severe Thunderstorm',
-				fr: 'Orages Violents',
+				fr: 'orages violents',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
 				en: 'Smog',
-				fr: 'Smog',
+				fr: 'smog',
 				type: MeteoalarmEventType.AirQuality,
 			},
 			{
 				en: 'Snowfall',
-				fr: 'Neige',
+				fr: 'neige',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Snow Squall',
-				fr: 'Bourrasques de Neige',
+				fr: 'bourrasques de neige',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
 				en: 'Storm Surge',
-				fr: 'Onde de Tempête',
+				fr: 'onde de tempête',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
 				en: 'Tornado',
-				fr: 'Tornade',
+				fr: 'tornade',
 				type: MeteoalarmEventType.Tornado,
 			},
 			{
 				en: 'Tropical Storm',
-				fr: 'Tempête Tropicale',
+				fr: 'tempête tropicale',
 				type: MeteoalarmEventType.Hurricane,
 			},
 			{
 				en: 'Tsunami',
-				fr: 'Tsunami',
+				fr: 'tsunami',
 				type: MeteoalarmEventType.Tsunami,
 			},
 			{
 				en: 'Weather',
-				fr: 'Météorologique',
+				fr: 'météorologique',
 				type: MeteoalarmEventType.Unknown,
 			},
 			{
 				en: 'Wind',
-				fr: 'Vents',
+				fr: 'vents',
 				type: MeteoalarmEventType.Wind,
 			},
 			{
 				en: 'Winter Storm',
-				fr: 'Tempête Hivernale',
+				fr: 'tempête hivernale',
 				type: MeteoalarmEventType.SnowIce,
 			},
 			{
-				en: 'Special Weather',
-				fr: 'Météorologique Spécial',
+				en: 'Special Weather Statement',
+				fr: 'bulletin météorologique spécial',
 				type: MeteoalarmEventType.Unknown,
 			},
 			{
 				en: 'Special Air Quality',
-				fr: "Spécial Sur La Qualité De L'Air",
+				fr: "spécial sur la qualité de l'air",
 				type: MeteoalarmEventType.AirQuality,
 			},
 		];
 	}
 
-	private get entityTypeTranslation(): { en: string[]; fr: string[]; type: EnvCanadaEntityType }[] {
-		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
-		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
-		return [
-			{
-				type: EnvCanadaEntityType.Warning,
-				en: ['Warning'],
-				fr: ['Avertissement De', 'Avertissement D'],
-			},
-			{
-				type: EnvCanadaEntityType.Watch,
-				en: ['Watch'],
-				fr: ['Veille De', "Veille D'"],
-			},
-			{
-				type: EnvCanadaEntityType.Statement,
-				en: ['Statement'],
-				fr: ['Bulletin'],
-			},
-			{
-				type: EnvCanadaEntityType.Advisory,
-				en: ['Advisory'],
-				fr: ['Avis De', "Avis D'", 'Avis'],
-			},
-		];
-	}
-
-	/**
-	 * Alert name in the integration are combined event type
-	 * and sensor from which it was sent like:
-	 * Wind + Warning = Wind Warning
-	 * This transforms this back to event type
-	 */
-	private praseAlertName(alertName: string, type: EnvCanadaEntityType, isFrench: boolean) {
-		const prefixTranslation = this.entityTypeTranslation.find((t) => t.type == type)!;
-		const prefixes = isFrench ? prefixTranslation.fr : prefixTranslation.en;
-
-		const prefix = prefixes.find((p) => alertName.includes(p));
-		if (prefix == undefined) {
-			throw new Error(
-				`Failed to match one of the known prefixes to alert name! ` +
-					`Was looking for [ "${prefixes.join('", "')}" ] and failed ` +
-					`(isFrench=${isFrench})`,
-			);
-		}
-
-		alertName = alertName.replace(prefix, '').trim();
-
+	private getEventType(alertName: string, isFrench: boolean) {
 		return this.eventTypes.find((e) => {
 			return (isFrench && e.fr == alertName) || (!isFrench && e.en == alertName);
 		});
@@ -242,25 +195,33 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 
 	public getAlerts(entity: EnvCanadaEntity): MeteoalarmAlert[] {
 		const warningCount = Number(entity.state);
-
 		const result: MeteoalarmAlert[] = [];
-		const type = this.getEntityType(entity)!;
 
 		for (let i = 1; i < warningCount + 1; i++) {
-			const alertName = entity.attributes[`alert_${i}`] as string;
+			const alert = entity.attributes[`alert_${i}`] as string;
+			const alertNameIdx = alert.indexOf('-');
+			const isCodedAlert = alertNameIdx > 0;
+			const alertName = isCodedAlert ? alert.substring(alertNameIdx + 2) : alert;
+			const alertCriterion = isCodedAlert ? alert.substring(0, alertNameIdx - 1) : alert;
 			const isFrench = entity.attributes.attribution == 'Données fournies par Environnement Canada';
-			const alert = this.praseAlertName(alertName, type, isFrench);
+			const level = this.getLevelType(alertCriterion);
+			const event = this.getEventType(alertName, isFrench);
 
-			if (alert) {
-				result.push({
-					level: this.getLevelFromType(type),
-					event: alert.type,
-				});
-			} else {
+			if (level == MeteoalarmLevelType.None && isCodedAlert) {
 				throw new Error(
-					`Unknown Environnement Canada alert encountered! Name: ${alertName} (isFrench=${isFrench})`,
+					`Unknown Environment Canada alert criterion encountered! Alert: ${alert} (isFrench=${isFrench})`,
+				);
+			} else if (!event) {
+				throw new Error(
+					`Unknown Environment Canada alert type encountered! Alert: ${alert} (isFrench=${isFrench})`,
 				);
 			}
+
+			result.push({
+				level: level,
+				event: event.type,
+				headline: alert,
+			});
 		}
 
 		return result;
@@ -274,29 +235,47 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			entity.attributes.friendly_name?.toLocaleLowerCase(),
 		]) {
 			if (!attribute) continue;
-			if (attribute.includes('warnings')) {
+			if (attribute.endsWith('warnings')) {
 				return EnvCanadaEntityType.Warning;
-			} else if (attribute.includes('watches')) {
+			} else if (attribute.endsWith('watches')) {
 				return EnvCanadaEntityType.Watch;
-			} else if (attribute.includes('statements')) {
+			} else if (attribute.endsWith('statements')) {
 				return EnvCanadaEntityType.Statement;
-			} else if (attribute.includes('advisory')) {
+			} else if (attribute.endsWith('advisories')) {
 				return EnvCanadaEntityType.Advisory;
 			}
 		}
 		return undefined;
 	}
 
-	private getLevelFromType(type: EnvCanadaEntityType): MeteoalarmLevelType {
-		if (type == EnvCanadaEntityType.Warning) {
-			return MeteoalarmLevelType.Red;
-		} else if (type == EnvCanadaEntityType.Watch) {
-			return MeteoalarmLevelType.Orange;
-		} else if (type == EnvCanadaEntityType.Statement || type == EnvCanadaEntityType.Advisory) {
-			return MeteoalarmLevelType.Yellow;
-		} else {
-			// This should never happen but is required in order for TS to stop complaining
-			return MeteoalarmLevelType.Red;
+	private getLevelType(level: string): MeteoalarmLevelType {
+		// English from: https://www.canada.ca/en/services/environment/weather/severeweather/weather-alerts/colour-coded-alerts.html
+		// French from: https://www.canada.ca/fr/services/environnement/meteo/conditionsdangereuses/alertes-meteo/alertes-code-couleur.html
+
+		switch (level) {
+			case 'Red Warning':
+			case 'Avertissement rouge':
+			case 'Red Watch':
+			case 'Veille rouge':
+			case 'Red Advisory':
+			case 'Avis rouge':
+				return MeteoalarmLevelType.Red;
+			case 'Orange Warning':
+			case 'Avertissement orange':
+			case 'Orange Watch':
+			case 'Veille orange':
+			case 'Orange Advisory':
+			case 'Avis orange':
+				return MeteoalarmLevelType.Orange;
+			case 'Yellow Warning':
+			case 'Avertissement jaune':
+			case 'Yellow Watch':
+			case 'Veille jaune':
+			case 'Yellow Advisory':
+			case 'Avis jaune':
+				return MeteoalarmLevelType.Yellow;
+			default:
+				return MeteoalarmLevelType.None;
 		}
 	}
 }
