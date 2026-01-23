@@ -75,8 +75,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 				type: MeteoalarmEventType.Dust,
 			},
 			{
-				en: 'Extreme Cold',
-				fr: 'froid extrême',
+				en: 'Cold',
+				fr: 'froid',
 				type: MeteoalarmEventType.LowTemperature,
 			},
 			{
@@ -120,8 +120,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 				type: MeteoalarmEventType.Rain,
 			},
 			{
-				en: 'Severe Thunderstorm',
-				fr: 'orages violents',
+				en: 'Thunderstorm',
+				fr: 'orage',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
