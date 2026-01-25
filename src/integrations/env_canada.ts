@@ -219,13 +219,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 		];
 	}
 
-
 	private normalize(s: string): string {
-		return (s ?? '')
-			.trim()
-			.replace(/\s+/g, ' ')
-			.replace(/[’]/g, "'")
-			.toLowerCase();
+		return (s ?? '').trim().replace(/\s+/g, ' ').replace(/[’]/g, "'").toLowerCase();
 	}
 
 	private getHazardFromAlertName(alertName: string): string {
