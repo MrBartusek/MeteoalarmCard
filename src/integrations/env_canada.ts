@@ -120,8 +120,8 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 				type: MeteoalarmEventType.Rain,
 			},
 			{
-				en: 'Thunderstorm',
-				fr: 'orage',
+				en: 'Severe Thunderstorm',
+				fr: 'orages violents',
 				type: MeteoalarmEventType.Thunderstorms,
 			},
 			{
