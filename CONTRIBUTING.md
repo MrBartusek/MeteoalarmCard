@@ -13,7 +13,7 @@ you can [open a new issue](https://github.com/MrBartusek/MeteoalarmCard/issues/n
 
 If you don't have MeteoalarmCard running locally please follow this setup guide.
 
-1. Install newest LTS release of [Node.js](https://nodejs.org/en/), it has NPM package manager bundled with it.
+1. Install newest LTS release of [Node.js](https://nodejs.org/en/) and the [pnpm](https://pnpm.io/installation) package manager.
 1. Fork this repository using [Fork](https://github.com/MrBartusek/MeteoalarmCard/fork) button. This will create a new
 repository on your account named `<your username>/MeteoalarmCard`
 1. Clone this repo to wherever you want:
@@ -24,13 +24,13 @@ repository on your account named `<your username>/MeteoalarmCard`
    ```sh
    cd MeteoalarmCard
    ```
-1. Install dependencies (Node.js and npm are required):
+1. Install dependencies (Node.js and pnpm are required):
    ```sh
-   npm install
+   pnpm install
    ```
 1. Run development server. It's going to watch source files, recompile on changes and server compiled file on local server.
    ```sh
-   npm start
+   pnpm start
    ```
 1. Add `http://localhost:5000/meteoalarm-card.js` to your [Lovelace Resources](https://my.home-assistant.io/redirect/lovelace_resources/).
 1. Add `custom: Meteoalarm Card` to your Dashboard.
@@ -50,7 +50,7 @@ is going to recompile any changes that you make and after that you can see them 
        git checkout -b update-polish-translation
    ```
 1. Commit your changes and push it to your fork of the repository.
-1. Make sure your changes are working locally. Run `npm run build` to check code style.
+1. Make sure your changes are working locally. Run `pnpm run build` to check code style.
 1. Create a Pull Request (PR). Make sure to describe the changes that you made and use the `Fixes: #number` keyword if
 you were working on a issue.
 
