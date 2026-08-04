@@ -1,6 +1,7 @@
 import BurzeDzisNet from './burze_dzis_net';
 import DWD from './dwd';
 import EnvironmentCanada from './env_canada';
+import GeosphereAT from './geosphere_at';
 import Meteoalarm from './meteoalarm';
 import MeteoFrance from './meteofrance';
 import NINA from './nina';
@@ -14,6 +15,7 @@ const INTEGRATIONS = [
 	EnvironmentCanada,
 	BurzeDzisNet,
 	Weatheralerts,
+	GeosphereAT,
 ];
 
 export default INTEGRATIONS;
