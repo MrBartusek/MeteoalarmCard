@@ -63,9 +63,9 @@ export default class GeosphereAT implements MeteoalarmIntegration {
 		const kind = this.getEntityKind(entity)!;
 
 		for (let i = 1; i < warningCount + 1; i++) {
-			const level = entity.attributes[`warning_${i}`].level;
-			const id = entity.attributes[`warning_${i}`].type;
-			const headline = entity.attributes[`warning_${i}`].name;
+			const level = entity.attributes[`warning_${i}_level`];
+			const id = entity.attributes[`warning_${i}_type`];
+			const headline = entity.attributes[`warning_${i}_name`];
 
 			if (id in this.eventTypes) {
 				result.push({
