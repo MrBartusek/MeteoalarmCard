@@ -3,3 +3,4 @@
 package-lock.json
 /dist
 /tools/dist
+.DS_Store
