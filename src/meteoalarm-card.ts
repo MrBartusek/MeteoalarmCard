@@ -67,8 +67,13 @@ export class MeteoalarmCard extends LitElement {
 	 */
 	@state() private actionEntities?: HassEntity[];
 
-	private actionEntitiesLoading = false;
+	// Refresh key of the last successfully applied action response.
 	private actionEntitiesRefreshKey?: string;
+
+	// Refresh key of an action request that is still in flight. This prevents
+	// duplicate calls for the same state while permitting a new configuration
+	// to request its own data immediately.
+	private pendingActionEntitiesRefreshKey?: string;
 
 	static get integrations(): MeteoalarmIntegration[] {
 		return INTEGRATIONS.map((i) => new i());
@@ -122,6 +127,7 @@ export class MeteoalarmCard extends LitElement {
 		// from being rendered after a card configuration change.
 		this.actionEntities = undefined;
 		this.actionEntitiesRefreshKey = undefined;
+		this.pendingActionEntitiesRefreshKey = undefined;
 
 		this.config = {
 			name: 'Meteoalarm',
@@ -333,6 +339,39 @@ export class MeteoalarmCard extends LitElement {
 		void this.updateActionEntities();
 	}
 
+	private getActionEntitiesRefreshKey(
+		integration: MeteoalarmIntegration,
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+	): string {
+		return (
+			integration.getActionEntitiesRefreshKey?.(hass, config) ??
+			`${config.integration}:${Date.now()}`
+		);
+	}
+
+	private isCurrentActionRequest(
+		integration: MeteoalarmIntegration,
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+		refreshKey: string,
+	): boolean {
+		if (this.hass !== hass || this.config !== config) {
+			return false;
+		}
+
+		// Without a custom key, configuration identity is all we can validate.
+		if (!integration.getActionEntitiesRefreshKey) {
+			return true;
+		}
+
+		try {
+			return this.getActionEntitiesRefreshKey(integration, hass, config) === refreshKey;
+		} catch {
+			return false;
+		}
+	}
+
 	/**
 	 * Refresh virtual entities from an action-backed integration, if configured.
 	 */
@@ -347,38 +386,56 @@ export class MeteoalarmCard extends LitElement {
 			return;
 		}
 
-		const refreshKey =
-			integration.getActionEntitiesRefreshKey?.(this.hass, this.config) ??
-			`${this.config.integration}:${Date.now()}`;
+		const hass = this.hass;
+		const config = this.config;
 
-		// Do not request the same cached action result again merely because
-		// Lovelace has performed a non-relevant hass update.
+		let refreshKey: string;
+
+		try {
+			refreshKey = this.getActionEntitiesRefreshKey(integration, hass, config);
+		} catch (error) {
+			console.error(
+				'[METEOALARM CARD ERROR] Failed to prepare action-backed integration refresh',
+				error,
+			);
+			this.actionEntities = integration.getInitialActionEntities?.() ?? [];
+			return;
+		}
+
 		if (
-			this.actionEntitiesLoading ||
-			refreshKey === this.actionEntitiesRefreshKey
+			refreshKey === this.actionEntitiesRefreshKey ||
+			refreshKey === this.pendingActionEntitiesRefreshKey
 		) {
 			return;
 		}
 
-		this.actionEntitiesLoading = true;
+		this.pendingActionEntitiesRefreshKey = refreshKey;
 
 		try {
-			this.actionEntities = await integration.getActionEntities(
-				this.hass,
-				this.config,
-			);
+			const actionEntities = await integration.getActionEntities(hass, config);
 
+			if (!this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				return;
+			}
+
+			this.actionEntities = actionEntities;
 			this.actionEntitiesRefreshKey = refreshKey;
 		} catch (error) {
-			console.error(
-				'[METEOALARM CARD ERROR] Failed to obtain warnings from action-backed integration',
-				error,
-			);
-
-			this.actionEntities =
-				integration.getInitialActionEntities?.() ?? [];
+			if (this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				console.error(
+					'[METEOALARM CARD ERROR] Failed to obtain warnings from action-backed integration',
+					error,
+				);
+				this.actionEntities = integration.getInitialActionEntities?.() ?? [];
+			}
 		} finally {
-			this.actionEntitiesLoading = false;
+			if (this.pendingActionEntitiesRefreshKey === refreshKey) {
+				this.pendingActionEntitiesRefreshKey = undefined;
+			}
+
+			if (!this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				void this.updateActionEntities();
+			}
 		}
 	}
 

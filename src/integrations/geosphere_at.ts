@@ -100,10 +100,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 	 * Called by the generic card infrastructure when the configured trigger
 	 * entities update.
 	 */
-	public getActionEntitiesRefreshKey(
-		hass: HomeAssistant,
-		config: MeteoalarmCardConfig,
-	): string {
+	public getActionEntitiesRefreshKey(hass: HomeAssistant, config: MeteoalarmCardConfig): string {
 		const configEntry = this.getConfigEntry(config);
 
 		const triggerEntities = processConfigEntities(config.entities!);
@@ -116,12 +113,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 					return `${entityConfig.entity}:missing`;
 				}
 
-				return [
-					entity.entity_id,
-					entity.state,
-					entity.last_changed,
-					entity.last_updated,
-				].join(':');
+				return [entity.entity_id, entity.state, entity.last_changed, entity.last_updated].join(':');
 			})
 			.join('|');
 
@@ -149,14 +141,8 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 		});
 
 		return [
-			this.createVirtualEntity(
-				'active',
-				result.response.active_warnings,
-			),
-			this.createVirtualEntity(
-				'advance',
-				result.response.advance_warnings,
-			),
+			this.createVirtualEntity('active', result.response.active_warnings),
+			this.createVirtualEntity('advance', result.response.advance_warnings),
 		];
 	}
 
@@ -172,9 +158,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 
 	private getConfigEntry(config: MeteoalarmCardConfig): string {
 		if (!config.config_entry) {
-			throw new Error(
-				'MeteoalarmCard: config_entry is required for integration geosphere_at.',
-			);
+			throw new Error('MeteoalarmCard: config_entry is required for integration geosphere_at.');
 		}
 
 		if (!config.entities) {
@@ -214,9 +198,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 		} as HassEntity;
 	}
 
-	private createUnavailableVirtualEntity(
-		kind: 'active' | 'advance',
-	): HassEntity {
+	private createUnavailableVirtualEntity(kind: 'active' | 'advance'): HassEntity {
 		const now = new Date().toISOString();
 
 		return {
@@ -265,9 +247,10 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 		const result = warningLevels[level];
 
 		if (result === undefined) {
-			throw new Error(
-				`Unknown GeoSphere Austria warning level: ${level}`,
+			console.warn(
+				`MeteoalarmCard: unknown GeoSphere Austria warning level: ${level}`,
 			);
+			return MeteoalarmLevelType.None;
 		}
 
 		return result;
