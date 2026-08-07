@@ -136,8 +136,7 @@ export class MeteoalarmCardCardEditor
 						</p>
 
 						<p>
-							For GeoSphere Austria, select the active warning-level sensor and,
-							optionally, the advance warning-level sensor.
+							For GeoSphere Austria, each warning-level sensor will provide current and advance warnings.
 						</p>
 
 						<hui-entity-editor

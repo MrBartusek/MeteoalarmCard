@@ -247,9 +247,8 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 		const result = warningLevels[level];
 
 		if (result === undefined) {
-			console.warn(
-				`MeteoalarmCard: unknown GeoSphere Austria warning level: ${level}`,
-			);
+			// eslint-disable-next-line no-console
+			console.warn(`MeteoalarmCard: unknown GeoSphere Austria warning level: ${level}`);
 			return MeteoalarmLevelType.None;
 		}
 
