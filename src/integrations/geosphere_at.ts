@@ -1,113 +1,289 @@
+import { HomeAssistant } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
+import { processConfigEntities } from '../helpers/process-config-entities';
 import {
 	MeteoalarmAlert,
 	MeteoalarmAlertKind,
+	MeteoalarmCardConfig,
 	MeteoalarmEventType,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 	MeteoalarmLevelType,
 } from '../types';
-import { Utils } from '../utils';
 
-type GeosphereATEntity = HassEntity & {
+type GeoSphereWarning = {
+	warning_id: number;
+	change_id: number;
+	course_id: number;
+	type: string;
+	level: string;
+	start: string;
+	end: string;
+	text?: string;
+	impacts?: string;
+	recommendations?: string;
+	meteo_text?: string;
+	update_reason?: string;
+};
+
+type GeoSphereWarningsResponse = {
+	active_warnings: GeoSphereWarning[];
+	advance_warnings: GeoSphereWarning[];
+};
+
+type GeoSphereServiceCallResult = {
+	context: unknown;
+	response: GeoSphereWarningsResponse;
+};
+
+type GeoSphereVirtualEntity = HassEntity & {
 	attributes: {
-		attribution: string;
-		warning_count: number;
+		integration: 'geosphere_austria_warnings';
+		warning_kind: 'active' | 'advance';
+		warnings: GeoSphereWarning[];
 	};
 };
 
-export default class GeosphereAT implements MeteoalarmIntegration {
+/**
+ * GeoSphere Austria Warnings adapter.
+ *
+ * All GeoSphere-specific action handling and payload conversion remains here.
+ * meteoalarm-card.ts only knows that this adapter can asynchronously supply
+ * virtual entities.
+ */
+export default class GeoSphereAustria implements MeteoalarmIntegration {
 	public get metadata(): MeteoalarmIntegrationMetadata {
 		return {
 			key: 'geosphere_at',
-			name: 'GeoSphere Austria',
+			name: 'GeoSphere Austria Warnings',
 			type: MeteoalarmIntegrationEntityType.CurrentExpected,
 			returnHeadline: true,
 			returnMultipleAlerts: true,
-			entitiesCount: 2,
-			monitoredConditions: Utils.convertEventTypesForMetadata(this.eventTypes),
+			// GeoSphere creates current/advance virtual entities internally.
+			// The user-selected entities are refresh triggers, not warning entities.
+			entitiesCount: 0,
+			monitoredConditions: [
+				MeteoalarmEventType.Wind,
+				MeteoalarmEventType.Rain,
+				MeteoalarmEventType.SnowIce,
+				MeteoalarmEventType.Thunderstorms,
+				MeteoalarmEventType.HighTemperature,
+				MeteoalarmEventType.LowTemperature,
+			],
 		};
 	}
 
-	public supports(entity: GeosphereATEntity): boolean {
-		return (
-			entity.attributes.attribution == 'Data provided by GeoSphere Austria' &&
-			this.getEntityKind(entity) !== undefined
-		);
+	public supports(entity: GeoSphereVirtualEntity): boolean {
+		return entity.attributes.integration === 'geosphere_austria_warnings';
 	}
 
-	public alertActive(entity: GeosphereATEntity): boolean {
-		return entity.attributes.warning_count > 0;
+	public alertActive(entity: GeoSphereVirtualEntity): boolean {
+		return entity.attributes.warnings.length > 0;
 	}
 
-	private get eventTypes(): { [key: number]: MeteoalarmEventType } {
-		// https://openapi.hub.geosphere.at/warnapi/v1/#/warnings/
-		// API documentation
+	public getAlerts(entity: GeoSphereVirtualEntity): MeteoalarmAlert[] {
+		const kind =
+			entity.attributes.warning_kind === 'active'
+				? MeteoalarmAlertKind.Current
+				: MeteoalarmAlertKind.Expected;
+
+		return entity.attributes.warnings.map((warning) => ({
+			event: this.mapWarningType(warning.type),
+			level: this.mapWarningLevel(warning.level),
+			headline: warning.text || this.getFallbackHeadline(warning.type),
+			kind,
+		}));
+	}
+
+	/**
+	 * Called by the generic card infrastructure when the configured trigger
+	 * entities update.
+	 */
+	public getActionEntitiesRefreshKey(
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+	): string {
+		const configEntry = this.getConfigEntry(config);
+
+		const triggerEntities = processConfigEntities(config.entities!);
+
+		const triggerState = triggerEntities
+			.map((entityConfig) => {
+				const entity = hass.states[entityConfig.entity];
+
+				if (entity === undefined) {
+					return `${entityConfig.entity}:missing`;
+				}
+
+				return [
+					entity.entity_id,
+					entity.state,
+					entity.last_changed,
+					entity.last_updated,
+				].join(':');
+			})
+			.join('|');
+
+		return `${configEntry}|${triggerState}`;
+	}
+
+	/**
+	 * Calls the GeoSphere action and turns both warning lists into virtual
+	 * entities compatible with the existing current/expected parser.
+	 */
+	public async getActionEntities(
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+	): Promise<HassEntity[]> {
+		const configEntry = this.getConfigEntry(config);
+
+		const result = await hass.callWS<GeoSphereServiceCallResult>({
+			type: 'call_service',
+			domain: 'geosphere_austria_warnings',
+			service: 'get_warnings',
+			service_data: {
+				config_entry: configEntry,
+			},
+			return_response: true,
+		});
+
+		return [
+			this.createVirtualEntity(
+				'active',
+				result.response.active_warnings,
+			),
+			this.createVirtualEntity(
+				'advance',
+				result.response.advance_warnings,
+			),
+		];
+	}
+
+	/**
+	 * Used while the initial action request is pending, or after an error.
+	 */
+	public getInitialActionEntities(): HassEntity[] {
+		return [
+			this.createUnavailableVirtualEntity('active'),
+			this.createUnavailableVirtualEntity('advance'),
+		];
+	}
+
+	private getConfigEntry(config: MeteoalarmCardConfig): string {
+		if (!config.config_entry) {
+			throw new Error(
+				'MeteoalarmCard: config_entry is required for integration geosphere_at.',
+			);
+		}
+
+		if (!config.entities) {
+			throw new Error(
+				'MeteoalarmCard: entities must contain at least one GeoSphere refresh trigger.',
+			);
+		}
+
+		return config.config_entry;
+	}
+
+	private createVirtualEntity(
+		kind: 'active' | 'advance',
+		warnings: GeoSphereWarning[],
+	): HassEntity {
+		const now = new Date().toISOString();
+
 		return {
-			1: MeteoalarmEventType.Wind,
-			2: MeteoalarmEventType.Rain,
-			3: MeteoalarmEventType.SnowIce,
-			4: MeteoalarmEventType.SnowIce,
-			5: MeteoalarmEventType.Thunderstorms,
-			6: MeteoalarmEventType.HighTemperature,
-			7: MeteoalarmEventType.LowTemperature,
-			99: MeteoalarmEventType.Unknown, // Test warning
-		};
+			entity_id: `sensor.meteoalarm_card_geosphere_${kind}`,
+			state: String(warnings.length),
+			attributes: {
+				integration: 'geosphere_austria_warnings',
+				warning_kind: kind,
+				warnings,
+				friendly_name:
+					kind === 'active'
+						? 'GeoSphere Austria active warnings'
+						: 'GeoSphere Austria advance warnings',
+			},
+			last_changed: now,
+			last_updated: now,
+			context: {
+				id: '',
+				parent_id: null,
+				user_id: null,
+			},
+		} as HassEntity;
 	}
 
-	public getAlerts(entity: GeosphereATEntity): MeteoalarmAlert[] {
-		const { warning_count: warningCount } = entity.attributes;
+	private createUnavailableVirtualEntity(
+		kind: 'active' | 'advance',
+	): HassEntity {
+		const now = new Date().toISOString();
 
-		const result: MeteoalarmAlert[] = [];
-		const kind = this.getEntityKind(entity)!;
+		return {
+			entity_id: `sensor.meteoalarm_card_geosphere_${kind}`,
+			state: 'unavailable',
+			attributes: {
+				integration: 'geosphere_austria_warnings',
+				warning_kind: kind,
+				warnings: [],
+				friendly_name:
+					kind === 'active'
+						? 'GeoSphere Austria active warnings'
+						: 'GeoSphere Austria advance warnings',
+			},
+			last_changed: now,
+			last_updated: now,
+			context: {
+				id: '',
+				parent_id: null,
+				user_id: null,
+			},
+		} as HassEntity;
+	}
 
-		for (let i = 1; i < warningCount + 1; i++) {
-			const level = entity.attributes[`warning_${i}_level`];
-			const id = entity.attributes[`warning_${i}_type`];
-			const headline = entity.attributes[`warning_${i}_name`];
+	private mapWarningType(type: string): MeteoalarmEventType {
+		const warningTypes: Record<string, MeteoalarmEventType> = {
+			storm: MeteoalarmEventType.Wind,
+			rain: MeteoalarmEventType.Rain,
+			snow: MeteoalarmEventType.SnowIce,
+			black_ice: MeteoalarmEventType.SnowIce,
+			thunderstorm: MeteoalarmEventType.Thunderstorms,
+			heat: MeteoalarmEventType.HighTemperature,
+			cold: MeteoalarmEventType.LowTemperature,
+		};
 
-			if (id in this.eventTypes) {
-				result.push({
-					headline: headline,
-					level: level as MeteoalarmLevelType,
-					event: this.eventTypes[id],
-					kind: kind,
-				});
-			} else {
-				throw new Error('Unknown event ID: ' + id);
-			}
+		return warningTypes[type] ?? MeteoalarmEventType.Unknown;
+	}
+
+	private mapWarningLevel(level: string): MeteoalarmLevelType {
+		const warningLevels: Record<string, MeteoalarmLevelType> = {
+			yellow: MeteoalarmLevelType.Yellow,
+			orange: MeteoalarmLevelType.Orange,
+			red: MeteoalarmLevelType.Red,
+		};
+
+		const result = warningLevels[level];
+
+		if (result === undefined) {
+			throw new Error(
+				`Unknown GeoSphere Austria warning level: ${level}`,
+			);
 		}
 
 		return result;
 	}
 
-	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {
-		/**
-		 * Detecting only by English and German entity_id translations here is hardly
-		 * a good solution but, it covers 99% of use cases, should be improved in the
-		 * future
-		 */
-		const CURRENT_IDENTIFIERS = ['current', 'aktuelle'];
-		const EXPECTED_IDENTIFIERS = ['advance', 'vorwarnstufe'];
+	private getFallbackHeadline(type: string): string {
+		const headlines: Record<string, string> = {
+			storm: 'Storm warning',
+			rain: 'Rain warning',
+			snow: 'Snow warning',
+			black_ice: 'Black ice warning',
+			thunderstorm: 'Thunderstorm warning',
+			heat: 'Heat warning',
+			cold: 'Cold warning',
+		};
 
-		const friendlyName = entity.attributes.friendly_name || '';
-		const entityIdParts = entity.entity_id.split('_').map((p) => p.toLocaleLowerCase());
-		const friendlyNameParts = friendlyName?.split(' ').map((p) => p.toLocaleLowerCase());
-
-		if (
-			CURRENT_IDENTIFIERS.some(
-				(ident) => entityIdParts.includes(ident) || friendlyNameParts.includes(ident),
-			)
-		) {
-			return MeteoalarmAlertKind.Current;
-		} else if (
-			EXPECTED_IDENTIFIERS.some(
-				(ident) => entityIdParts.includes(ident) || friendlyNameParts.includes(ident),
-			)
-		) {
-			return MeteoalarmAlertKind.Expected;
-		}
-		return undefined;
+		return headlines[type] || 'Weather warning';
 	}
 }

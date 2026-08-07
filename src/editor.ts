@@ -55,6 +55,10 @@ export class MeteoalarmCardCardEditor
 		return this._config?.integration || '';
 	}
 
+	get _config_entry(): string {
+		return this._config?.config_entry || '';
+	}
+
 	get _override_headline(): boolean {
 		return this._config?.override_headline || false;
 	}
@@ -84,9 +88,11 @@ export class MeteoalarmCardCardEditor
 			(i) => i.metadata.key === this._integration,
 		);
 
+		const isActionBacked = integration?.getActionEntities !== undefined;
+
 		return html`
 			<!-- Warnings-->
-			${generateEditorWarnings(integration, this._configEntities)}
+			${isActionBacked ? html`` : generateEditorWarnings(integration, this._configEntities)}
 
 			<!-- Integration select -->
 			<mwc-select
@@ -105,8 +111,43 @@ export class MeteoalarmCardCardEditor
 				})}
 			</mwc-select>
 
+			<!-- Action-backed integration configuration -->
+			${isActionBacked
+				? html`
+						<mwc-textfield
+							label="GeoSphere Austria config entry ID (required)"
+							helper="Paste the config-entry ID of the GeoSphere Austria Warnings integration."
+							helperPersistent
+							.configValue=${'config_entry'}
+							.value=${this._config_entry}
+							@input=${this._valueChanged}
+						></mwc-textfield>
+				`
+				: ''}
+
 			<!-- Entity selector -->
-			${integration?.metadata.type == MeteoalarmIntegrationEntityType.SingleEntity
+			${isActionBacked
+				? html`
+						<h3>Refresh entities (${localize('editor.required')})</h3>
+						<p>
+							Select one or more entities belonging to the selected weather-warning
+							integration. Their state changes trigger a new warning-list request.
+							The card does not render their attributes directly.
+						</p>
+
+						<p>
+							For GeoSphere Austria, select the active warning-level sensor and,
+							optionally, the advance warning-level sensor.
+						</p>
+
+						<hui-entity-editor
+							.label=${' '}
+							.hass=${this.hass}
+							.entities=${this._configEntities}
+							@entities-changed=${this._entitiesChanged}
+						></hui-entity-editor>
+				`
+				: integration?.metadata.type == MeteoalarmIntegrationEntityType.SingleEntity
 				? html`
 						<ha-entity-picker
 							label=${`${localize('editor.entity')} (${localize('editor.required')})`}
@@ -119,33 +160,27 @@ export class MeteoalarmCardCardEditor
 								: ''}
 							@value-changed=${this._valueChanged}
 						></ha-entity-picker>
-				  `
+				`
 				: html`
 						<h3>${localize('editor.entity')} (${localize('editor.required')})</h3>
 						<p>
-							${localize('editor.description.start')} ${' '}
+							${localize('editor.description.start')}
+							${' '}
 							${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected
-								? html`
-					${localize('editor.description.current_expected')}</p>
-				`
+								? localize('editor.description.current_expected')
 								: ''}
 							${integration?.metadata.type == MeteoalarmIntegrationEntityType.Slots
-								? html`
-					${localize('editor.description.slots')}</p>
-				`
+								? localize('editor.description.slots')
 								: ''}
 							${integration?.metadata.type ==
 							MeteoalarmIntegrationEntityType.WarningWatchStatementAdvisory
-								? html`
-					${localize('editor.description.warning_watch_statement_advisory')}</p>
-				`
+								? localize('editor.description.warning_watch_statement_advisory')
 								: ''}
 							${integration?.metadata.type == MeteoalarmIntegrationEntityType.SeparateEvents
-								? html`
-					${localize('editor.description.separate_events')}</p>
-				`
+								? localize('editor.description.separate_events')
 								: ''}
-							${' '} ${localize('editor.description.end')}
+							${' '}
+							${localize('editor.description.end')}
 						</p>
 
 						<hui-entity-editor
@@ -154,7 +189,7 @@ export class MeteoalarmCardCardEditor
 							.entities=${this._configEntities}
 							@entities-changed=${this._entitiesChanged}
 						></hui-entity-editor>
-				  `}
+				`}
 
 			<!-- Switches section -->
 			<div class="options">
