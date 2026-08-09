@@ -5,10 +5,6 @@ import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve';
 import json from '@rollup/plugin-json';
-import ignore from './rollup-plugins/ignore';
-import { ignoreTextfieldFiles } from './elements/ignore/textfield';
-import { ignoreSelectFiles } from './elements/ignore/select';
-import { ignoreSwitchFiles } from './elements/ignore/switch';
 
 const dev = process.env.ROLLUP_WATCH;
 
@@ -31,10 +27,7 @@ const plugins = [
 		exclude: 'node_modules/**'
 	}),
 	dev && serve(serveopts),
-	!dev && terser(),
-	ignore({
-		files: [...ignoreTextfieldFiles, ...ignoreSelectFiles, ...ignoreSwitchFiles].map((file) => require.resolve(file))
-	})
+	!dev && terser()
 ];
 
 export default [
