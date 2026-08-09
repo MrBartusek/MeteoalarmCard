@@ -16,7 +16,7 @@ import { ifDefined } from 'lit/directives/if-defined';
 import ResizeObserver from 'resize-observer-polyfill';
 import Swiper, { Pagination } from 'swiper';
 import { version as CARD_VERSION } from '../package.json';
-import EventsParser from './events-praser';
+import EventsParser from './events-parser';
 import swiperStyles from './external/swiperStyles';
 import { actionHandler } from './helpers/action-handler-directive';
 import { processConfigEntities } from './helpers/process-config-entities';
