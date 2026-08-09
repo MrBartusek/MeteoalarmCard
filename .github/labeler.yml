@@ -1,2 +1,3 @@
 translation:
-- src/localize/**/*
+- changed-files:
+  - any-glob-to-any-file: src/localize/**/*
