@@ -52,7 +52,7 @@ Here is what configuration options mean:
 | `integration`          | `string`  | **Required** | Name of the integration. Available options are listed under [Supported integrations](#supported-integrations) |
 | `entities`             | `array`   | **Required** | Entity ID, a list of entity IDs or a list of entity objects.                         |
 | `override_headline`    | `boolean` | `false`      | _[Only some integrations]_ Override headline proved by integration by generated one. |
-| `scaling_mode`         | `string`  | `headline_and_scale` | Headline scaling mode. See [scaling-mode.md](dosc/scaling-mode.md)           |
+| `scaling_mode`         | `string`  | `headline_and_scale` | Headline scaling mode. See [scaling-mode.md](docs/scaling-mode.md)           |
 | `disable_swiper`       | `boolean` | `false`      | _[Only some integrations]_ Disable slider when displaying multiple alerts, you may not see some important alerts. |
 | `hide_caption`         | `boolean` | `false`      | _[DWD only]_ Hide top-right caption when showing advance alerts.
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
@@ -165,7 +165,7 @@ Below are the available CSS variables that you can modify:
 - `--orange-level-background-color`: The background color for orange level alerts.
 - `--yellow-level-background-color`: The background color for yellow level alerts.
 - `--headline-font-size`: Font size of headline (alert name). **Note**: in order for this to
-  work properly you need to set [scaling-mode](https://github.com/MrBartusek/MeteoalarmCard/blob/master/dosc/scaling-mode.md) to `disabled`
+  work properly you need to set [scaling-mode](https://github.com/MrBartusek/MeteoalarmCard/blob/master/docs/scaling-mode.md) to `disabled`
 - `--caption-font-size`: Font size for caption element. 
 
 ## Contributing

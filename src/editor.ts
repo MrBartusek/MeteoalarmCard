@@ -226,7 +226,7 @@ export class MeteoalarmCardCardEditor
 						})}
 					</mwc-select>
 					<a
-						href="https://github.com/MrBartusek/MeteoalarmCard/blob/master/dosc/scaling-mode.md"
+						href="https://github.com/MrBartusek/MeteoalarmCard/blob/master/docs/scaling-mode.md"
 						target="_blank"
 					>
 						Scaling mode documentation
