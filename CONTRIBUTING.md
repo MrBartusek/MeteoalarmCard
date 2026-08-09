@@ -50,7 +50,7 @@ is going to recompile any changes that you make and after that you can see them 
        git checkout -b update-polish-translation
    ```
 1. Commit your changes and push it to your fork of the repository.
-1. Make sure your changes are working locally. Run `pnpm run build` to check code style.
+1. Make sure your changes are working locally. Run `pnpm run lint` to check code style and `pnpm run build` to build the card.
 1. Create a Pull Request (PR). Make sure to describe the changes that you made and use the `Fixes: #number` keyword if
 you were working on a issue.
 

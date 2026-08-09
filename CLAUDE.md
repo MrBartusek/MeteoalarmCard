@@ -7,7 +7,7 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 # Commands
 
 - `pnpm start` — dev server; add `http://localhost:5000/meteoalarm-card.js` as a resource in a live Home Assistant instance to see the card
-- `pnpm run build` — lint + build; this is the verification step (there is no test suite)
+- `pnpm run lint` and `pnpm run build` — the verification steps (there is no test suite); `build` only bundles, it does not lint
 - Translation tools: run `pnpm run build-tools` before `pnpm run fix-translations` or `pnpm run translations-summary`
 
 # Release process
@@ -19,6 +19,7 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 # Code style
 
 - Untranslated keys in `src/localize/languages/` must be `null`, not English text
+- NEVER run git commands that modify state (`add`, `commit`, `push`, `branch`, `tag`, `merge`, `reset`) without an explicit request. Read-only commands (`status`, `log`, `diff`, `show`) are always fine.
 
 # Home Assistant docs
 
