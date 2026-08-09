@@ -30,19 +30,19 @@
                     "type": ["string", "null"]
                 },
                 "description": {
-                    "$id": "#/properties/common/description",
+                    "$id": "#/properties/common/properties/description",
                     "type": ["string", "null"]
                 },
                 "warning": {
-                    "$id": "#/properties/common/warning",
+                    "$id": "#/properties/common/properties/warning",
                     "type": ["string", "null"]
                 },
                 "expected": {
-                    "$id": "#/properties/common/expected",
+                    "$id": "#/properties/common/properties/expected",
                     "type": ["string", "null"]
                 },
                 "unavailable": {
-                    "$id": "#/properties/common/properties/description/unavailable",
+                    "$id": "#/properties/common/properties/unavailable",
                     "type": "object",
                     "required": [
                         "long",
@@ -50,11 +50,11 @@
                     ],
                     "properties": {
                         "long": {
-                            "$id": "#/properties/common/properties/description/unavailable/properties/long",
+                            "$id": "#/properties/common/properties/unavailable/properties/long",
                             "type": ["string", "null"]
                         },
                         "short": {
-                            "$id": "#/properties/common/properties/description/unavailable/properties/long",
+                            "$id": "#/properties/common/properties/unavailable/properties/short",
                             "type": ["string", "null"]
                         }
                     },
@@ -86,7 +86,7 @@
                     "type": ["string", "null"]
                 },
                 "entity_invalid": {
-                    "$id": "#/properties/common/properties/entity_invalid",
+                    "$id": "#/properties/error/properties/entity_invalid",
                     "type": "object",
                     "required": [
                         "single",
@@ -94,11 +94,11 @@
                     ],
                     "properties": { 
                         "single": {
-                            "$id": "#/properties/error/properties/entity_invalid/single",
+                            "$id": "#/properties/error/properties/entity_invalid/properties/single",
                             "type": ["string", "null"]
                         },
                         "multiple": {
-                            "$id": "#/properties/error/properties/entity_invalid/multiple",
+                            "$id": "#/properties/error/properties/entity_invalid/properties/multiple",
                             "type": ["string", "null"]
                         }
                     },
@@ -170,27 +170,27 @@
                     ],
                     "properties": { 
                         "start": {
-                            "$id": "#/properties/editor/properties/description/start",
+                            "$id": "#/properties/editor/properties/description/properties/start",
                             "type": ["string", "null"]
                         },
                         "current_expected": {
-                            "$id": "#/properties/editor/properties/description/current_expected",
+                            "$id": "#/properties/editor/properties/description/properties/current_expected",
                             "type": ["string", "null"]
                         },
                         "slots": {
-                            "$id": "#/properties/editor/properties/description/slots",
+                            "$id": "#/properties/editor/properties/description/properties/slots",
                             "type": ["string", "null"]
                         },
                         "separate_events": {
-                            "$id": "#/properties/editor/properties/description/separate_events",
+                            "$id": "#/properties/editor/properties/description/properties/separate_events",
                             "type": ["string", "null"]
                         },
                         "warning_watch_statement_advisory": {
-                            "$id": "#/properties/editor/properties/description/warning_watch_statement_advisory",
+                            "$id": "#/properties/editor/properties/description/properties/warning_watch_statement_advisory",
                             "type": ["string", "null"]
                         },
                         "end": {
-                            "$id": "#/properties/editor/properties/description/end",
+                            "$id": "#/properties/editor/properties/description/properties/end",
                             "type": ["string", "null"]
                         }
                     },
@@ -206,15 +206,15 @@
                     ],
                     "properties": { 
                         "expected_entity": {
-                            "$id": "#/properties/editor/properties/error/expected_entity",
+                            "$id": "#/properties/editor/properties/error/properties/expected_entity",
                             "type": ["string", "null"]
                         },
                         "too_many_entities": {
-                            "$id": "#/properties/editor/properties/error/too_many_entities",
+                            "$id": "#/properties/editor/properties/error/properties/too_many_entities",
                             "type": ["string", "null"]
                         },
                         "duplicate": {
-                            "$id": "#/properties/editor/properties/duplicate/",
+                            "$id": "#/properties/editor/properties/error/properties/duplicate",
                             "type": ["string", "null"]
                         }
                     },
@@ -225,7 +225,7 @@
                     "type": ["string", "null"]
                 },
                 "scaling_mode_options": {
-                    "$id": "#/properties/scaling_mode_options",
+                    "$id": "#/properties/editor/properties/scaling_mode_options",
                     "type": "object",
                     "required": [
                         "disabled",
@@ -235,19 +235,19 @@
                     ],
                     "properties": {
                         "disabled": {
-                            "$id": "#/properties/editor/properties/disabled",
+                            "$id": "#/properties/editor/properties/scaling_mode_options/properties/disabled",
                             "type": ["string", "null"]
                         },
                         "headline": {
-                            "$id": "#/properties/editor/properties/headline",
+                            "$id": "#/properties/editor/properties/scaling_mode_options/properties/headline",
                             "type": ["string", "null"]
                         },
                         "scale": {
-                            "$id": "#/properties/editor/properties/scale",
+                            "$id": "#/properties/editor/properties/scaling_mode_options/properties/scale",
                             "type": ["string", "null"]
                         },
                         "headline_and_scale": {
-                            "$id": "#/properties/editor/properties/headline_and_scale",
+                            "$id": "#/properties/editor/properties/scaling_mode_options/properties/headline_and_scale",
                             "type": ["string", "null"]
                         }
                     },
@@ -279,7 +279,8 @@
                 "flooding",
                 "tornado",
                 "air_quality",
-                "dust"
+                "dust",
+                "tsunami"
             ],
             "properties": {
                 "no_warnings": {
@@ -359,7 +360,7 @@
                     "type": ["string", "null"]
                 },
                 "dust": {
-                    "$id": "#/properties/events/properties/air_quality",
+                    "$id": "#/properties/events/properties/dust",
                     "type": ["string", "null"]
                 },
                 "tsunami": {
@@ -388,19 +389,19 @@
                   ],
                   "properties": {
                       "event": {
-                          "$id": "#/properties/error/properties/messages/event",
+                          "$id": "#/properties/messages/properties/yellow/properties/event",
                           "type": ["string", "null"]
                       },
                       "generic": {
-                          "$id": "#/properties/error/properties/messages/generic",
+                          "$id": "#/properties/messages/properties/yellow/properties/generic",
                           "type": ["string", "null"]
                       },
                       "color": {
-                          "$id": "#/properties/error/properties/messages/color",
+                          "$id": "#/properties/messages/properties/yellow/properties/color",
                           "type": ["string", "null"]
-                      },
-                      "additionalProperties": false
-                    }
+                      }
+                    },
+                    "additionalProperties": false
                 },
                 "orange": {
                     "$id": "#/properties/messages/properties/orange",
@@ -412,19 +413,19 @@
                   ],
                   "properties": {
                       "event": {
-                          "$id": "#/properties/error/properties/messages/event",
+                          "$id": "#/properties/messages/properties/orange/properties/event",
                           "type": ["string", "null"]
                       },
                       "generic": {
-                          "$id": "#/properties/error/properties/messages/generic",
+                          "$id": "#/properties/messages/properties/orange/properties/generic",
                           "type": ["string", "null"]
                       },
                       "color": {
-                          "$id": "#/properties/error/properties/messages/color",
+                          "$id": "#/properties/messages/properties/orange/properties/color",
                           "type": ["string", "null"]
-                      },
-                      "additionalProperties": false
-                    }
+                      }
+                    },
+                    "additionalProperties": false
                 },
                 "red": {
                     "$id": "#/properties/messages/properties/red",
@@ -436,19 +437,19 @@
                   ],
                   "properties": {
                       "event": {
-                          "$id": "#/properties/error/properties/messages/event",
+                          "$id": "#/properties/messages/properties/red/properties/event",
                           "type": ["string", "null"]
                       },
                       "generic": {
-                          "$id": "#/properties/error/properties/messages/generic",
+                          "$id": "#/properties/messages/properties/red/properties/generic",
                           "type": ["string", "null"]
                       },
                       "color": {
-                          "$id": "#/properties/error/properties/messages/color",
+                          "$id": "#/properties/messages/properties/red/properties/color",
                           "type": ["string", "null"]
-                      },
-                      "additionalProperties": false
-                    }
+                      }
+                    },
+                    "additionalProperties": false
                 }
             },
             "additionalProperties": false
