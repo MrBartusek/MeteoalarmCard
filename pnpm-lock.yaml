@@ -67,8 +67,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(rollup@2.70.2)
       '@types/node':
-        specifier: ~18.16.0
-        version: 18.16.20
+        specifier: ^22.20.0
+        version: 22.20.1
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.7.5
         version: 6.7.5(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@4.6.3))(eslint@8.51.0)(typescript@4.6.3)
@@ -503,9 +503,6 @@ packages:
 
   '@types/json-schema@7.0.13':
     resolution: {integrity: sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==}
-
-  '@types/node@18.16.20':
-    resolution: {integrity: sha512-nL54VfDjThdP2UXJXZao5wp76CDiDw4zSRO8d4Tk7UgDqNKGKVEQB0/t3ti63NS+YNNkIQDvwEAF04BO+WYu7Q==}
 
   '@types/node@22.20.1':
     resolution: {integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==}
@@ -2129,8 +2126,6 @@ snapshots:
   '@types/estree@0.0.39': {}
 
   '@types/json-schema@7.0.13': {}
-
-  '@types/node@18.16.20': {}
 
   '@types/node@22.20.1':
     dependencies:
