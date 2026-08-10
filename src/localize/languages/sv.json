@@ -11,7 +11,8 @@
     },
     "today": "Idag",
     "tomorrow": "Imorgon",
-    "allday": "Hela dagen"
+    "allday": "Hela dagen",
+    "until": "till"
   },
   "error": {
     "missing_entity": "Det är nödvändigt att ange en enhet!",

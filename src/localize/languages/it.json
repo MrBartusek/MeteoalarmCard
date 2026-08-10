@@ -11,7 +11,8 @@
     },
     "today": "Oggi",
     "tomorrow": "Domani",
-    "allday": "Tutto il giorno"
+    "allday": "Tutto il giorno",
+    "until": "fino a"
   },
   "error": {
     "missing_entity": "È necessario specificare un'entità!",

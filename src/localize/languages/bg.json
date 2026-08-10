@@ -11,7 +11,8 @@
     },
     "today": "Днес",
     "tomorrow": "Утре",
-    "allday": "Цял ден"
+    "allday": "Цял ден",
+    "until": "до"
   },
   "error": {
     "missing_entity": "Изисква се посочване на обекти!",

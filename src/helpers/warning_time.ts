@@ -50,14 +50,14 @@ export function formatWarningCaption(
 	 */
 	if (alert.timing?.start) {
 		const start = parseTimestamp(alert.timing.start);
-		const notToday = start && getLocalDayDifference(start, now)!==0;
+		const notToday = start && getLocalDayDifference(start, now) !== 0;
 
 		if (start && notToday) {
 			return formatExpectedCaption(alert, now);
 		}
 	}
 
-	if (alert.timing?.start || alert.timing?.end) {
+	if (alert.timing?.start || alert.timing?.end) {
 		return formatCurrentCaption(alert, now);
 	}
 /*
@@ -103,9 +103,6 @@ function formatCurrentCaption(alert: MeteoalarmAlert, now: Date): WarningCaption
 	const start = alert.timing?.start;
 	const end = alert.timing?.end;
 
-	if (!end) {
-		return undefined;
-	}
 
 	const fullDay = isFullDayTiming(alert.timing);
 	const parsedStart = start ? parseTimestamp(start) : undefined;

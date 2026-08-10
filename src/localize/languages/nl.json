@@ -11,7 +11,8 @@
     },
     "today": "Vandaag",
     "tomorrow": "Morgen",
-    "allday": "Hele dag"
+    "allday": "Hele dag",
+    "until": "tot"
   },
   "error": {
     "missing_entity": "Het specificeren van de entiteit is vereist!",

@@ -84,6 +84,10 @@ export default css`
 		font-size: var(--caption-font-size);
 	}
 
+	.caption-prefix {
+		font-size: var(--caption-font-size);
+	}
+
 	.caption-icon {
 		--mdc-icon-size: 19px;
 		height: 19px;

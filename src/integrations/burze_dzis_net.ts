@@ -50,14 +50,17 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 
 	public getAlerts(entity: BurzeDzisNetEntity): MeteoalarmAlert {
 		const event = this.getEventType(entity)!;
+		const { from, to } = entity.attributes;
+
+		const timing: MeteoalarmAlert['timing'] = {};
+
+		if (from !== undefined) timing.start = from;
+		if (to !== undefined) timing.end = to;
 		return {
 			event: event,
 			level: entity.attributes.level!,
 			headline: entity.attributes.description,
-			timing: {
-				start: entity.attributes.from!,
-				end: entity.attributes.to!,
-			},
+			timing,
 		};
 	}
 

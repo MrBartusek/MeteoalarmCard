@@ -11,7 +11,8 @@
     },
     "today": "Tänään",
     "tomorrow": "Huomenna",
-    "allday": "Koko päivä"
+    "allday": "Koko päivä",
+    "until": "asti"
   },
   "error": {
     "missing_entity": "Entiteetti puuttuu!",

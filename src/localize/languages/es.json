@@ -11,7 +11,8 @@
     },
     "today": "Hoy",
     "tomorrow": "Mañana",
-    "allday": "Todo el día"
+    "allday": "Todo el día",
+    "until": "hasta"
   },
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",

@@ -11,7 +11,8 @@
     },
     "today": "Danas",
     "tomorrow": "Sutra",
-    "allday": "Cijeli dan"
+    "allday": "Cijeli dan",
+    "until": "do"
   },
   "error": {
     "missing_entity": "Potrebno je navesti entitet!",

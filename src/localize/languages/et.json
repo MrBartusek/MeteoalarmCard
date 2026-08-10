@@ -11,7 +11,8 @@
     },
     "today": "Täna",
     "tomorrow": "Homme",
-    "allday": "Kogu päev"
+    "allday": "Kogu päev",
+    "until": "kuni"
   },
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",

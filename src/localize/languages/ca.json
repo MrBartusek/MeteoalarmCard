@@ -11,7 +11,8 @@
     },
     "today": "Avui",
     "tomorrow": "Demà",
-    "allday": "Tot el dia"
+    "allday": "Tot el dia",
+    "until": "fins"
   },
   "error": {
     "missing_entity": "Cal especificar les entitats!",

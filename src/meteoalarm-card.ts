@@ -419,7 +419,7 @@ export class MeteoalarmCard extends LitElement {
 			: ''}
 
 		<span class="caption-text">${caption}</span>
-		
+
 		${suffixIcon
 			? html`
 					<ha-icon

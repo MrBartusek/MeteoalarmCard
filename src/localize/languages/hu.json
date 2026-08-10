@@ -11,7 +11,8 @@
     },
     "today": "Ma",
     "tomorrow": "Holnap",
-    "allday": "Egész nap"
+    "allday": "Egész nap",
+    "until": "eddig"
   },
   "error": {
     "missing_entity": "Az entitások megadása kötelező!",

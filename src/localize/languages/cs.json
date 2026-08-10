@@ -11,7 +11,8 @@
     },
     "today": "Dnes",
     "tomorrow": "Zítra",
-    "allday": "Celý den"
+    "allday": "Celý den",
+    "until": "do"
   },
   "error": {
     "missing_entity": "Entita je povinná!",
