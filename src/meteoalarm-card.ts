@@ -333,7 +333,6 @@ export class MeteoalarmCard extends LitElement {
 												? html`
 														<div class="caption">
 															${this.renderCaption(
-																event.captionPrefixIcon,
 																event.captionPrefixText,
 																event.caption,
 																event.captionSuffixIcon,
@@ -398,20 +397,11 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private renderCaption(
-	prefixIcon: string | undefined,
 	prefixText: string | undefined,
 	caption: string,
 	suffixIcon: string | undefined,
 ): TemplateResult {
 	return html`
-		${prefixIcon
-			? html`
-					<ha-icon
-						class="caption-icon caption-icon-prefix"
-						icon="mdi:${prefixIcon}"
-					></ha-icon>
-			  `
-			: ''}
 		${prefixText
 			? html`
 					<span class="caption-text caption-prefix">${prefixText}&nbsp;</span>

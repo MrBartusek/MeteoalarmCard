@@ -10,12 +10,10 @@ import {
 export interface WarningCaption {
   caption: string;
   prefixText?: string;
-  prefixIcon?: string;
   suffixIcon?: string;
 }
 
 const CLOCK_ICON = "clock-outline";
-//const END_ICON = 'clock-end';
 
 /**
  * Creates the caption content for an alert.

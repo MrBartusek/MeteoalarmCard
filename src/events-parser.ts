@@ -66,7 +66,6 @@ class EventsParser {
 				headlines,
 				caption: warningCaption?.caption,
 				captionPrefixText: warningCaption?.prefixText,
-				captionPrefixIcon: warningCaption?.prefixIcon,
 				captionSuffixIcon: warningCaption?.suffixIcon,
 			});
 		}

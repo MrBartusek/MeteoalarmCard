@@ -91,10 +91,6 @@ export default css`
 		margin-left: 5px;
 	}
 
-	.caption-icon-prefix {
-		margin-right: 5px;
-	}
-
 	.caption-icon-suffix {
 		margin-left: 5px;
 	}
