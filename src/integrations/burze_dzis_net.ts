@@ -12,6 +12,8 @@ type BurzeDzisNetEntity = HassEntity & {
 		attribution: string;
 		description?: string;
 		level?: number;
+		from?: string;
+		to?: string;
 	};
 };
 
@@ -52,6 +54,10 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 			event: event,
 			level: entity.attributes.level!,
 			headline: entity.attributes.description,
+			timing: {
+				start: entity.attributes.from!,
+				end: entity.attributes.to!,
+			},
 		};
 	}
 

@@ -8,7 +8,10 @@
     "unavailable": {
       "long": "Výstraha není dostupná",
       "short": "Není k dispozici"
-    }
+    },
+    "today": "Dnes",
+    "tomorrow": "Zítra",
+    "allday": "Celý den"
   },
   "error": {
     "missing_entity": "Entita je povinná!",
@@ -47,7 +50,8 @@
       "headline": "Pouze nadpis",
       "scale": "Pouze měřítko",
       "headline_and_scale": "Nadpis i měřítko"
-    }
+    },
+    "show_warning_times": "Zobrazit časy varování"
   },
   "events": {
     "no_warnings": "Žádné varování",

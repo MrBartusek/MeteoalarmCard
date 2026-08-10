@@ -79,11 +79,23 @@ export default css`
 		font-size: var(--caption-font-size);
 		line-height: normal;
 	}
+	
+	.caption-prefix {
+		font-size: var(--caption-font-size);
+	}
 
 	.caption-icon {
 		--mdc-icon-size: 19px;
 		height: 19px;
 		flex: 0;
+		margin-left: 5px;
+	}
+
+	.caption-icon-prefix {
+		margin-right: 5px;
+	}
+
+	.caption-icon-suffix {
 		margin-left: 5px;
 	}
 

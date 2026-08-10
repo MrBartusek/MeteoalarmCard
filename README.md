@@ -58,6 +58,7 @@ Here is what configuration options mean:
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
 | `ignored_levels` *     | `array`   | `[]`         | List of levels that will not be shown on the card. Possible values are: `Yellow`, `Orange` and `Red` |
 | `ignored_events` *     | `array`   | `[]`         | List of events that will not be shown on the card. Possible values are: `Nuclear Event`, `Hurricane`, `Tornado`,`Coastal Event`,`Tsunami`,`Forest Fire`,`Avalanches`,`Earthquake`,`Volcanic Activity`,`Flooding`,`Sea Event`,`Thunderstorms`,`Rain`,`Snow/Ice`,`High Temperature`,`Low Temperature`,`Dust`,`Wind`, `Fog`, `Air Quality` and `Unknown Event` |
+| `show_warning_times`   | `boolean` | `false`      | _[Only some integrations]_ Show warning start/end day and time in the top-right caption. |
 
 \* Not available through visual editor
 

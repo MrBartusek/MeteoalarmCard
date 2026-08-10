@@ -8,7 +8,10 @@
     "unavailable": {
       "long": "Integracija nedostupna",
       "short": "Nedostupno"
-    }
+    },
+    "today": "Danas",
+    "tomorrow": "Sutra",
+    "allday": "Cijeli dan"
   },
   "error": {
     "missing_entity": "Potrebno je navesti entitet!",
@@ -47,7 +50,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Prikaži vremena upozorenja"
   },
   "events": {
     "no_warnings": "Nema upozorenja",

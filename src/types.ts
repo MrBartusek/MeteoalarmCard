@@ -22,6 +22,7 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	hide_when_no_warning?: boolean;
 	hide_caption?: boolean;
 	disable_swiper?: boolean;
+	show_warning_times?: boolean;
 	scaling_mode?: string;
 	ignored_events?: string[];
 	ignored_levels?: string[];
@@ -46,6 +47,11 @@ export interface MeteoalarmIntegrationMetadata {
 	returnHeadline: boolean;
 	returnMultipleAlerts: boolean;
 	monitoredConditions: MeteoalarmEventType[];
+}
+
+export interface MeteoalarmAlertTiming {
+    start?: string;
+    end?: string;
 }
 
 export enum MeteoalarmIntegrationEntityType {
@@ -85,6 +91,7 @@ export interface MeteoalarmAlert {
 	level: MeteoalarmLevelType;
 	headline?: string;
 	kind?: MeteoalarmAlertKind;
+	timing?: MeteoalarmAlertTiming;
 	_entity?: HassEntity;
 }
 
@@ -99,8 +106,10 @@ export interface MeteoalarmAlertParsed {
 	icon: string;
 	cssClass: string;
 	headlines: string[];
-	captionIcon?: string;
 	caption?: string;
+	captionPrefixText?: string;
+	captionPrefixIcon?: string;
+	captionSuffixIcon?: string;
 	entity?: HassEntity;
 }
 
