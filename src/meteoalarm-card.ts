@@ -60,6 +60,20 @@ export class MeteoalarmCard extends LitElement {
 	// Entity of which alert is displayed on currently selected slide
 	// Used to display correct entity on click
 	private currentEntity?: string;
+	
+	/**
+	 * Entities returned by an adapter that fetches warning data through a
+	 * response-capable Home Assistant action.
+	 */
+	@state() private actionEntities?: HassEntity[];
+
+	// Refresh key of the last successfully applied action response.
+	private actionEntitiesRefreshKey?: string;
+
+	// Refresh key of an action request that is still in flight. This prevents
+	// duplicate calls for the same state while permitting a new configuration
+	// to request its own data immediately.
+	private pendingActionEntitiesRefreshKey?: string;
 
 	static get integrations(): MeteoalarmIntegration[] {
 		return INTEGRATIONS.map((i) => new i());
@@ -108,6 +122,12 @@ export class MeteoalarmCard extends LitElement {
 		} else if (config.integration == undefined) {
 			throw new Error(localize('error.invalid_integration'));
 		}
+		
+		// Prevent a response from a previously configured action-backed integration
+		// from being rendered after a card configuration change.
+		this.actionEntities = undefined;
+		this.actionEntitiesRefreshKey = undefined;
+		this.pendingActionEntitiesRefreshKey = undefined;
 
 		this.config = {
 			name: 'Meteoalarm',
@@ -124,6 +144,21 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	protected shouldUpdate(changedProps: PropertyValues): boolean {
+		// Action-backed adapters update local state instead of hass.states.
+		if (changedProps.has('actionEntities')) {
+			return true;
+		}
+
+		// Ensure action-backed adapters can perform their initial request and
+		// respond to changes of their configured trigger entities.
+		if (
+			(changedProps.has('hass') || changedProps.has('config')) &&
+			this.config &&
+			this.integration.getActionEntities
+		) {
+			return true;
+		}
+
 		return hasConfigOrEntityChanged(this, changedProps, false);
 	}
 
@@ -257,6 +292,18 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private get entities(): HassEntity[] {
+		const integration = this.integration;
+
+		// An adapter can supply virtual entities from an action response instead
+		// of reading its warning details from hass.states.
+		if (integration.getActionEntities) {
+			return (
+				this.actionEntities ??
+				integration.getInitialActionEntities?.() ??
+				[]
+			);
+		}
+
 		const entities: EntityConfig[] = processConfigEntities(this.config.entities!);
 		return entities.map((e) => this.hass.states[e.entity]);
 	}
@@ -278,6 +325,118 @@ export class MeteoalarmCard extends LitElement {
 			throw new Error('MeteoalarmCard: ' + localize('error.invalid_scaling_mode'));
 		}
 		return modeString as MeteoalarmScalingMode;
+	}
+
+	protected updated(changedProps: PropertyValues): void {
+		super.updated(changedProps);
+
+		// Action responses themselves trigger an update, but must not trigger a
+		// further request.
+		if (!changedProps.has('hass') && !changedProps.has('config')) {
+			return;
+		}
+
+		void this.updateActionEntities();
+	}
+
+	private getActionEntitiesRefreshKey(
+		integration: MeteoalarmIntegration,
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+	): string {
+		return (
+			integration.getActionEntitiesRefreshKey?.(hass, config) ??
+			`${config.integration}:${Date.now()}`
+		);
+	}
+
+	private isCurrentActionRequest(
+		integration: MeteoalarmIntegration,
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+		refreshKey: string,
+	): boolean {
+		if (this.hass !== hass || this.config !== config) {
+			return false;
+		}
+
+		// Without a custom key, configuration identity is all we can validate.
+		if (!integration.getActionEntitiesRefreshKey) {
+			return true;
+		}
+
+		try {
+			return this.getActionEntitiesRefreshKey(integration, hass, config) === refreshKey;
+		} catch {
+			return false;
+		}
+	}
+
+	/**
+	 * Refresh virtual entities from an action-backed integration, if configured.
+	 */
+	private async updateActionEntities(): Promise<void> {
+		if (!this.hass || !this.config) {
+			return;
+		}
+
+		const integration = this.integration;
+
+		if (!integration.getActionEntities) {
+			return;
+		}
+
+		const hass = this.hass;
+		const config = this.config;
+
+		let refreshKey: string;
+
+		try {
+			refreshKey = this.getActionEntitiesRefreshKey(integration, hass, config);
+		} catch (error) {
+			console.error(
+				'[METEOALARM CARD ERROR] Failed to prepare action-backed integration refresh',
+				error,
+			);
+			this.actionEntities = integration.getInitialActionEntities?.() ?? [];
+			return;
+		}
+
+		if (
+			refreshKey === this.actionEntitiesRefreshKey ||
+			refreshKey === this.pendingActionEntitiesRefreshKey
+		) {
+			return;
+		}
+
+		this.pendingActionEntitiesRefreshKey = refreshKey;
+
+		try {
+			const actionEntities = await integration.getActionEntities(hass, config);
+
+			if (!this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				return;
+			}
+
+			this.actionEntities = actionEntities;
+			this.actionEntitiesRefreshKey = refreshKey;
+		} catch (error) {
+			if (this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				console.error(
+					'[METEOALARM CARD ERROR] Failed to obtain warnings from action-backed integration',
+					error,
+				);
+				this.actionEntities = integration.getInitialActionEntities?.() ?? [];
+			}
+		} finally {
+			if (this.pendingActionEntitiesRefreshKey === refreshKey) {
+				this.pendingActionEntitiesRefreshKey = undefined;
+			}
+
+			if (!this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				void this.updateActionEntities();
+			}
+		}
 	}
 
 	protected render(): TemplateResult | void {
