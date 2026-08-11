@@ -93,6 +93,10 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 			level: this.mapWarningLevel(warning.level),
 			headline: warning.text || this.getFallbackHeadline(warning.type),
 			kind,
+			timing: {
+				start: warning.start,
+				end: warning.end,
+			},
 		}));
 	}
 
