@@ -75,6 +75,10 @@ export class MeteoalarmCardCardEditor
 		return this._config?.scaling_mode || 'headline_and_scale';
 	}
 
+	get _show_warning_times(): boolean {
+		return this._config?.show_warning_times || false;
+	}
+
 	protected render(): TemplateResult | void {
 		if (!this.hass) {
 			return html``;
@@ -196,6 +200,15 @@ export class MeteoalarmCardCardEditor
 							</mwc-formfield>
 					  `
 					: ''}
+
+				<!-- Show warning times -->
+				<mwc-formfield .label=${localize('editor.show_warning_times')}>
+					<mwc-switch
+						.checked=${this._show_warning_times !== false}
+						.configValue=${'show_warning_times'}
+						@change=${this._valueChanged}
+					></mwc-switch>
+				</mwc-formfield>
 
 				<!-- Hide when no warning -->
 				<mwc-formfield .label=${localize('editor.hide_when_no_warning')}>

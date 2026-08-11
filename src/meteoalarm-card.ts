@@ -288,6 +288,7 @@ export class MeteoalarmCard extends LitElement {
 				this.config.disable_swiper,
 				this.config.override_headline,
 				this.config.hide_caption,
+				this.config.show_warning_times,
 				this.config.ignored_levels,
 				this.config.ignored_events,
 			);
@@ -328,12 +329,16 @@ export class MeteoalarmCard extends LitElement {
 											<div class="content">
 												${this.renderMainIcon(event.icon)} ${this.renderHeadlines(event.headlines)}
 											</div>
-											${event.caption && event.captionIcon
+											${event.caption
 												? html`
 														<div class="caption">
-															${this.renderCaption(event.captionIcon, event.caption)}
+															${this.renderCaption(
+																event.captionPrefixText,
+																event.caption,
+																event.captionSuffixIcon,
+															)}
 														</div>
-												  `
+													`
 												: ''}
 										</div>
 									`,
@@ -391,15 +396,30 @@ export class MeteoalarmCard extends LitElement {
 		`;
 	}
 
-	private renderCaption(icon: string, caption: string): TemplateResult {
-		return html`
-			<span class="caption-text">${caption}</span>
-			<ha-icon
-				class="caption-icon"
-				icon="mdi:${icon}"
-			></ha-icon>
-		`;
-	}
+	private renderCaption(
+	prefixText: string | undefined,
+	caption: string,
+	suffixIcon: string | undefined,
+): TemplateResult {
+	return html`
+		${prefixText
+			? html`
+					<span class="caption-text caption-prefix">${prefixText}&nbsp;</span>
+			  `
+			: ''}
+
+		<span class="caption-text">${caption}</span>
+
+		${suffixIcon
+			? html`
+					<ha-icon
+						class="caption-icon caption-icon-suffix"
+						icon="mdi:${suffixIcon}"
+					></ha-icon>
+			  `
+			: ''}
+	`;
+}
 
 	private setCardMargin(showMargin: boolean): void {
 		const container = this.shadowRoot?.host as HTMLElement;

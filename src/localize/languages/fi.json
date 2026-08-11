@@ -8,7 +8,11 @@
     "unavailable": {
       "long": "Integraatio ei saatavilla",
       "short": "Ei saatavilla"
-    }
+    },
+    "today": "Tänään",
+    "tomorrow": "Huomenna",
+    "allday": "Koko päivä",
+    "until": "asti"
   },
   "error": {
     "missing_entity": "Entiteetti puuttuu!",
@@ -47,7 +51,8 @@
       "headline": "Vain otsikko",
       "scale": "Vain skaalaus",
       "headline_and_scale": "Otsikko ja skaalaus"
-    }
+    },
+    "show_warning_times": "Näytä varoitusajat"
   },
   "events": {
     "no_warnings": "Ei varoituksia",

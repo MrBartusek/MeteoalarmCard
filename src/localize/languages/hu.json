@@ -8,7 +8,11 @@
     "unavailable": {
       "long": "Az integráció nem elérhető",
       "short": "Nem elérhető"
-    }
+    },
+    "today": "Ma",
+    "tomorrow": "Holnap",
+    "allday": "Egész nap",
+    "until": "eddig"
   },
   "error": {
     "missing_entity": "Az entitások megadása kötelező!",
@@ -47,7 +51,8 @@
       "headline": "Csak címsor",
       "scale": "Csak méretezés",
       "headline_and_scale": "Címsor és méretezés"
-    }
+    },
+    "show_warning_times": "Figyelmeztetési idők megjelenítése"
   },
   "events": {
     "no_warnings": "Nincs figyelmeztetés",

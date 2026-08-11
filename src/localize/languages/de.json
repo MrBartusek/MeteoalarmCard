@@ -8,7 +8,11 @@
     "unavailable": {
       "long": "Integration nicht verfügbar",
       "short": "Nicht verfügbar"
-    }
+    },
+    "today": "Heute",
+    "tomorrow": "Morgen",
+    "allday": "Ganztägig",
+    "until": "bis"
   },
   "error": {
     "missing_entity": "Die angegebene Entität ist nicht vorhanden!",
@@ -47,7 +51,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Warnzeiten anzeigen"
   },
   "events": {
     "no_warnings": "Keine Warnungen",
