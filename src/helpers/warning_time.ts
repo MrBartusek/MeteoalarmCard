@@ -246,7 +246,7 @@ function formatDayReference(date: Date, now: Date): string {
     return localizeDay("tomorrow");
   }
 
-  return formatWeekday(date);
+  return formatWeekday(date, "long");
 }
 
 function getDayReference(date: Date, now: Date): string {
@@ -260,7 +260,7 @@ function getDayReference(date: Date, now: Date): string {
     return localizeDay("tomorrow");
   }
 
-  return formatWeekday(date);
+  return formatWeekday(date, "short");
 }
 
 function formatTime(date: Date): string {
@@ -271,9 +271,9 @@ function formatTime(date: Date): string {
   }).format(date);
 }
 
-function formatWeekday(date: Date): string {
+function formatWeekday(date: Date, dayFormat: "long" | "short" | "narrow"): string {
   return new Intl.DateTimeFormat(getLocale(), {
-    weekday: "short",
+    weekday: dayFormat,
   }).format(date);
 }
 
