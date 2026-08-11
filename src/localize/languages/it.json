@@ -8,7 +8,11 @@
     "unavailable": {
       "long": "L'integrazione non è disponibile",
       "short": "Non disponibile"
-    }
+    },
+    "today": "Oggi",
+    "tomorrow": "Domani",
+    "allday": "Tutto il giorno",
+    "until": "fino a"
   },
   "error": {
     "missing_entity": "È necessario specificare un'entità!",
@@ -47,7 +51,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Mostra orari degli avvisi"
   },
   "events": {
     "no_warnings": "Nessun allarme",

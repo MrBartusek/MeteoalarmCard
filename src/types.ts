@@ -1,6 +1,7 @@
 import {
 	ActionConfig,
 	EntityConfig,
+	HomeAssistant,
 	LovelaceCard,
 	LovelaceCardConfig,
 	LovelaceCardEditor,
@@ -18,10 +19,16 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	type: string;
 	entities?: string | string[] | EntityConfig[];
 	integration?: string;
+	/**
+	 * Optional integration-specific configuration-entry ID.
+	 * Currently used by the GeoSphere Austria action-backed adapter.
+	 */
+	config_entry?: string;
 	override_headline?: boolean;
 	hide_when_no_warning?: boolean;
 	hide_caption?: boolean;
 	disable_swiper?: boolean;
+	show_warning_times?: boolean;
 	scaling_mode?: string;
 	ignored_events?: string[];
 	ignored_levels?: string[];
@@ -36,6 +43,35 @@ export interface MeteoalarmIntegration {
 	supports(entity: HassEntity): boolean;
 	alertActive(entity: HassEntity): boolean;
 	getAlerts(entity: HassEntity): MeteoalarmAlert[] | MeteoalarmAlert;
+
+	/**
+	 * Optional action-backed source.
+	 *
+	 * Most adapters use ordinary Home Assistant entity states. An adapter may
+	 * implement these methods when it needs to retrieve its warning lists via a
+	 * Home Assistant action that returns response data.
+	 */
+	getActionEntities?(
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+	): Promise<HassEntity[]>;
+
+	/**
+	 * A value that changes whenever the action should be called again.
+	 *
+	 * For example, an adapter may derive this from selected entity states and
+	 * their last_updated timestamps.
+	 */
+	getActionEntitiesRefreshKey?(
+		hass: HomeAssistant,
+		config: MeteoalarmCardConfig,
+	): string;
+
+	/**
+	 * Entities to use until the first action result is received, or after an
+	 * action failure. Usually these should be unavailable virtual entities.
+	 */
+	getInitialActionEntities?(): HassEntity[];
 }
 
 export interface MeteoalarmIntegrationMetadata {
@@ -46,6 +82,11 @@ export interface MeteoalarmIntegrationMetadata {
 	returnHeadline: boolean;
 	returnMultipleAlerts: boolean;
 	monitoredConditions: MeteoalarmEventType[];
+}
+
+export interface MeteoalarmAlertTiming {
+    start?: string;
+    end?: string;
 }
 
 export enum MeteoalarmIntegrationEntityType {
@@ -85,6 +126,7 @@ export interface MeteoalarmAlert {
 	level: MeteoalarmLevelType;
 	headline?: string;
 	kind?: MeteoalarmAlertKind;
+	timing?: MeteoalarmAlertTiming;
 	_entity?: HassEntity;
 }
 
@@ -99,8 +141,10 @@ export interface MeteoalarmAlertParsed {
 	icon: string;
 	cssClass: string;
 	headlines: string[];
-	captionIcon?: string;
 	caption?: string;
+	captionPrefixText?: string;
+	captionPrefixIcon?: string;
+	captionSuffixIcon?: string;
 	entity?: HassEntity;
 }
 

@@ -22,7 +22,11 @@
                 "description",
                 "warning",
                 "expected",
-                "unavailable"
+                "unavailable",
+                "today",
+                "tomorrow",
+                "allday",
+                "until"
             ],
             "properties": {
                 "name": {
@@ -39,6 +43,22 @@
                 },
                 "expected": {
                     "$id": "#/properties/common/properties/expected",
+                    "type": ["string", "null"]
+                },
+                "today": {
+                    "$id": "#/properties/common/properties/today",
+                    "type": ["string", "null"]
+                },
+                "tomorrow": {
+                    "$id": "#/properties/common/properties/tomorrow",
+                    "type": ["string", "null"]
+                },
+                "allday": {
+                    "$id": "#/properties/common/properties/allday",
+                    "type": ["string", "null"]
+                },
+                "until": {
+                    "$id": "#/properties/common/properties/until",
                     "type": ["string", "null"]
                 },
                 "unavailable": {
@@ -120,6 +140,7 @@
                 "hide_caption",
                 "disable_swiper",
                 "description",
+                "show_warning_times",
                 "error",
                 "scaling_mode",
                 "scaling_mode_options"
@@ -195,6 +216,10 @@
                         }
                     },
                     "additionalProperties": false
+                },
+                "show_warning_times": {
+                    "$id": "#/properties/editor/properties/show_warning_times",
+                    "type": ["string", "null"]
                 },
                 "error": {
                     "$id": "#/properties/editor/properties/error",

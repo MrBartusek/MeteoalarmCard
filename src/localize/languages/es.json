@@ -8,7 +8,11 @@
     "unavailable": {
       "long": "La integración no está disponible",
       "short": "No disponible"
-    }
+    },
+    "today": "Hoy",
+    "tomorrow": "Mañana",
+    "allday": "Todo el día",
+    "until": "hasta"
   },
   "error": {
     "missing_entity": "¡Se requiere especificar la entidad!",
@@ -47,7 +51,8 @@
       "headline": "Solo Encabezado",
       "scale": "Escalado",
       "headline_and_scale": "Encabezado y Escalado"
-    }
+    },
+    "show_warning_times": "Mostrar horas de aviso"
   },
   "events": {
     "no_warnings": "Sin avisos",
