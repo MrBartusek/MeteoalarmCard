@@ -17,6 +17,10 @@ export default css`
 		--yellow-level-background-color: var(--warning-color, #ffa600);
 	}
 
+	:host([hidden]) {
+		display: none !important;
+	}
+
 	ha-card {
 		flex-direction: column;
 		flex: 1;
