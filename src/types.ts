@@ -36,27 +36,33 @@ export interface MeteoalarmIntegrationMetadata {
 }
 
 export enum MeteoalarmIntegrationEntityType {
-	// Alerts in this integrations all all in attributes of single entity
-	SingleEntity = 0,
-	// Alerts in this integration are split across two entities
-	// one contains current warnings and another future warnings
-	CurrentExpected = 1,
-	// Alerts in this integration are split across multiple (probably unlimited amount) of entities
-	// each one contains one warning
-	Slots = 2,
-	// Alerts in this integration are split across exactly 4 entities: warnings, watches, statements, advisories
-	WarningWatchStatementAdvisory = 3,
-	// Alerts in this integration are split across multiple entities, count is strictly specified
-	// Each warning is dedicated for one entity kind
-	SeparateEvents = 4,
+	/** Alerts in this integrations all all in attributes of single entity */
+	SingleEntity = 'single_entity',
+	/**
+	 * Alerts in this integration are split across two entities
+	 * one contains current warnings and another future warnings
+	 */
+	CurrentExpected = 'current_expected',
+	/**
+	 * Alerts in this integration are split across multiple (probably unlimited amount) of entities
+	 * each one contains one warning
+	 */
+	Slots = 'slots',
+	/** Alerts in this integration are split across exactly 4 entities: warnings, watches, statements, advisories */
+	WarningWatchStatementAdvisory = 'warning_watch_statement_advisory',
+	/**
+	 * Alerts in this integration are split across multiple entities, count is strictly specified
+	 * Each warning is dedicated for one entity kind
+	 */
+	SeparateEvents = 'separate_events',
 }
 /**
  * Is the alert currently active or will be active in the future
  * This is mostly used with type MeteoalarmIntegrationEntityType.CurrentExpected
  */
 export enum MeteoalarmAlertKind {
-	Current = 0,
-	Expected = 1,
+	Current = 'current',
+	Expected = 'expected',
 }
 
 export enum MeteoalarmScalingMode {

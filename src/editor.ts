@@ -170,19 +170,12 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 	private computeHelper = (schema: HaFormSchema): string | undefined => {
 		if (schema.name !== 'entities') return undefined;
-		const descriptionKeys: { [key in MeteoalarmIntegrationEntityType]?: string } = {
-			[MeteoalarmIntegrationEntityType.CurrentExpected]: 'current_expected',
-			[MeteoalarmIntegrationEntityType.Slots]: 'slots',
-			[MeteoalarmIntegrationEntityType.WarningWatchStatementAdvisory]:
-				'warning_watch_statement_advisory',
-			[MeteoalarmIntegrationEntityType.SeparateEvents]: 'separate_events',
-		};
 		const type = this.integration?.metadata.type;
-		const descriptionKey = type !== undefined ? descriptionKeys[type] : undefined;
-		if (!descriptionKey) return undefined;
+		if (type === undefined || type === MeteoalarmIntegrationEntityType.SingleEntity)
+			return undefined;
 		return [
 			localize('editor.description.start'),
-			localize(`editor.description.${descriptionKey}`),
+			localize(`editor.description.${type}`),
 			localize('editor.description.end'),
 		].join(' ');
 	};
