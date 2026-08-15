@@ -25,6 +25,7 @@ import { localize } from './localize/localize';
 import { getCanvasFont, getTextWidth } from './measure-text';
 import styles from './styles';
 import {
+	DEFAULT_SCALING_MODE,
 	MeteoalarmCardConfig,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
@@ -273,7 +274,7 @@ export class MeteoalarmCard extends LitElement {
 
 	private get scalingMode(): MeteoalarmScalingMode {
 		const modeString = this.config.scaling_mode;
-		if (!modeString) return MeteoalarmScalingMode.HeadlineAndScale;
+		if (!modeString) return DEFAULT_SCALING_MODE;
 		if (!Object.values(MeteoalarmScalingMode).includes(modeString as any)) {
 			throw new Error('MeteoalarmCard: ' + localize('error.invalid_scaling_mode'));
 		}

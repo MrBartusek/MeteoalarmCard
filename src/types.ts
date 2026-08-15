@@ -79,6 +79,8 @@ export enum MeteoalarmScalingMode {
 	HeadlineAndScale = 'headline_and_scale',
 }
 
+export const DEFAULT_SCALING_MODE = MeteoalarmScalingMode.HeadlineAndScale;
+
 // Event returned by the integration
 export interface MeteoalarmAlert {
 	event: MeteoalarmEventType;
