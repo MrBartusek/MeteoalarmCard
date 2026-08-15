@@ -18,6 +18,13 @@ function isSingleEntity(integration?: MeteoalarmIntegration): boolean {
 	return integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
 }
 
+function schemaNames(schema: HaFormSchema[]): string[] {
+	return schema.reduce<string[]>(
+		(names, field) => names.concat(field.schema ? schemaNames(field.schema) : field.name),
+		[],
+	);
+}
+
 @customElement('meteoalarm-card-editor')
 export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCardEditor {
 	@property({ attribute: false }) public hass?: HomeAssistant;
@@ -229,6 +236,16 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		Object.keys(value).forEach((key) => value[key] === undefined && delete value[key]);
 
 		const config: MeteoalarmCardConfig = { ...this.config, ...value };
+
+		// Fields dropped from the schema by the new integration would otherwise keep
+		// their old values and still affect the card, with no way to unset them
+		if (config.integration !== this.config.integration) {
+			const nextNames = schemaNames(this.computeSchema(this.findIntegration(config.integration)));
+			for (const name of schemaNames(this.schema)) {
+				if (!nextNames.includes(name)) delete config[name];
+			}
+		}
+
 		fireEvent(this, 'config-changed', { config });
 	}
 
