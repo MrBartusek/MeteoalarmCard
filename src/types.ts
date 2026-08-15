@@ -129,3 +129,19 @@ export enum MeteoalarmLevelType {
 	Yellow = 1,
 	None = 0,
 }
+
+// Schema for the built-in ha-form component - Home Assistant doesn't ship
+// types for it, see https://developers.home-assistant.io/docs/frontend/custom-ui/custom-card/#using-the-built-in-form-editor
+export interface HaFormSchema {
+	name: string;
+	required?: boolean;
+	type?: string;
+	selector?: Record<string, unknown>;
+	schema?: HaFormSchema[];
+}
+
+export interface WarningRule {
+	field: string;
+	warning: string;
+	condition: boolean;
+}

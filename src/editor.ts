@@ -6,27 +6,13 @@ import { localize } from './localize/localize';
 import { MeteoalarmCard } from './meteoalarm-card';
 import {
 	DEFAULT_SCALING_MODE,
+	HaFormSchema,
 	MeteoalarmCardConfig,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmScalingMode,
+	WarningRule,
 } from './types';
-
-// Schema for the built-in ha-form component - Home Assistant doesn't ship
-// types for it, see https://developers.home-assistant.io/docs/frontend/custom-ui/custom-card/#using-the-built-in-form-editor
-interface HaFormSchema {
-	name: string;
-	required?: boolean;
-	type?: string;
-	selector?: Record<string, unknown>;
-	schema?: HaFormSchema[];
-}
-
-interface WarningRule {
-	field: string;
-	warning: string;
-	condition: boolean;
-}
 
 function isSingleEntity(integration?: MeteoalarmIntegration): boolean {
 	return integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
