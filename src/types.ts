@@ -1,18 +1,5 @@
-import {
-	ActionConfig,
-	EntityConfig,
-	LovelaceCard,
-	LovelaceCardConfig,
-	LovelaceCardEditor,
-} from 'custom-card-helpers';
+import { ActionConfig, EntityConfig, LovelaceCardConfig } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
-
-declare global {
-	interface HTMLElementTagNameMap {
-		'meteoalarm-card-editor': LovelaceCardEditor;
-		'hui-error-card': LovelaceCard;
-	}
-}
 
 export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	type: string;
