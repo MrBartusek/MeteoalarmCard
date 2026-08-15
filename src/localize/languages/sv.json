@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Enhet",
+    "entities": null,
     "integration": "Integration",
     "required": "Krävs",
     "recommended": "Rekommenderas",

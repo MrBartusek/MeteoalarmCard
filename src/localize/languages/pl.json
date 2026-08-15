@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Encja",
+    "entities": null,
     "integration": "Integracja",
     "required": "Wymagane",
     "recommended": "Zalecane",

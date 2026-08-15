@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Обект",
+    "entities": null,
     "integration": "Интеграция",
     "required": "Задължително",
     "recommended": "Препоръчително",

@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Entiteit",
+    "entities": null,
     "integration": "Integratie",
     "required": "Verplicht",
     "recommended": "Aanbevolen",

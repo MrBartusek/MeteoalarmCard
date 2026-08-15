@@ -112,6 +112,7 @@
             "type": "object",
             "required": [
                 "entity",
+                "entities",
                 "integration",
                 "required",
                 "recommended",
@@ -127,6 +128,10 @@
             "properties": {
                 "entity": {
                     "$id": "#/properties/editor/properties/entity",
+                    "type": ["string", "null"]
+                },
+                "entities": {
+                    "$id": "#/properties/editor/properties/entities",
                     "type": ["string", "null"]
                 },
                 "integration": {

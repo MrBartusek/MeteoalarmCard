@@ -32,8 +32,6 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 	@property({ attribute: false }) public hass?: HomeAssistant;
 	@state() private config?: MeteoalarmCardConfig;
 
-	// Derived from config in willUpdate and kept as stable identities so that
-	// ha-form skips re-rendering its rows on unrelated hass updates
 	private integration?: MeteoalarmIntegration;
 	private configEntities: EntityConfig[] = [];
 	private schema: HaFormSchema[] = [];
@@ -41,10 +39,6 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 	public setConfig(config: MeteoalarmCardConfig): void {
 		this.config = config;
-	}
-
-	protected firstUpdated(): void {
-		this.loadHaComponents();
 	}
 
 	protected willUpdate(changedProperties: PropertyValues): void {
@@ -88,20 +82,6 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 	private findIntegration(key?: string): MeteoalarmIntegration | undefined {
 		return MeteoalarmCard.integrations.find((i) => i.metadata.key === key);
-	}
-
-	private async loadHaComponents(): Promise<void> {
-		// ha-form and ha-alert are lazy-loaded by Home Assistant. In practice they
-		// are already defined when the card editor dialog opens, this is a fallback
-		// that force-loads them through another card's config editor.
-		// https://github.com/thomasloven/hass-config/wiki/PreLoading-Lovelace-Elements
-		if (customElements.get('ha-form') && customElements.get('ha-alert')) return;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const helpers = await (window as any).loadCardHelpers?.();
-		if (!helpers) return;
-		const entitiesCard = await helpers.createCardElement({ type: 'entities', entities: [] });
-		await entitiesCard.constructor.getConfigElement();
-		this.requestUpdate();
 	}
 
 	private computeSchema(integration?: MeteoalarmIntegration): HaFormSchema[] {
@@ -167,10 +147,18 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 	private computeLabel = (schema: HaFormSchema): string => {
 		if (!schema.name) return '';
-		// 'entities' is labeled with the singular 'editor.entity' key
-		const key = schema.name === 'entities' ? 'entity' : schema.name;
-		const label = localize(`editor.${key}`);
-		return schema.required ? `${label} (${localize('editor.required')})` : label;
+
+		let label = localize(`editor.${schema.name}`);
+
+		if (schema.name === 'entities') {
+			label = localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
+		}
+
+		if (schema.required) {
+			label = `${label} (${localize('editor.required')})`;
+		}
+
+		return label;
 	};
 
 	private computeHelper = (schema: HaFormSchema): string | undefined => {
@@ -205,10 +193,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 		Object.keys(value).forEach((key) => value[key] === undefined && delete value[key]);
 
-		// Spread over the existing config so keys not managed by this
-		// editor (type, ignored_events, ignored_levels, actions) survive
-		const config: MeteoalarmCardConfig = { ...this.config, ...value };
-		fireEvent(this, 'config-changed', { config });
+		fireEvent(this, 'config-changed', { ...this.config, ...value });
 	}
 
 	static styles: CSSResultGroup = css`

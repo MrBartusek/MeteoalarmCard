@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Entity",
+    "entities": "Entities",
     "integration": "Integration",
     "required": "Required",
     "recommended": "Recommended",

@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Olem",
+    "entities": null,
     "integration": "Sidumine",
     "required": "Nõutav",
     "recommended": "Soovituslik",

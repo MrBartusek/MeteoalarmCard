@@ -21,6 +21,7 @@
   },
   "editor": {
     "entity": "Entitet",
+    "entities": null,
     "integration": "Integracija",
     "required": "Obavezno",
     "recommended": "Preporučeno",
