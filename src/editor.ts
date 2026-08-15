@@ -1,11 +1,12 @@
 import { EntityConfig, fireEvent, HomeAssistant, LovelaceCardEditor } from 'custom-card-helpers';
-import { css, CSSResultGroup, html, LitElement, TemplateResult } from 'lit';
+import { css, CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
 import { generateEditorWarnings } from './editor-warnings';
 import { processEditorEntities } from './helpers/process-editor-entities';
 import { localize } from './localize/localize';
 import { MeteoalarmCard } from './meteoalarm-card';
 import {
+	DEFAULT_SCALING_MODE,
 	MeteoalarmCardConfig,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
@@ -22,43 +23,55 @@ interface HaFormSchema {
 	schema?: HaFormSchema[];
 }
 
+function isSingleEntity(integration?: MeteoalarmIntegration): boolean {
+	return integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
+}
+
 @customElement('meteoalarm-card-editor')
 export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCardEditor {
 	@property({ attribute: false }) public hass?: HomeAssistant;
-	@state() private _config?: MeteoalarmCardConfig;
-	@state() private _configEntities: EntityConfig[] = [];
+	@state() private config?: MeteoalarmCardConfig;
+
+	// Derived from config in willUpdate and kept as stable identities so that
+	// ha-form skips re-rendering its rows on unrelated hass updates
+	private integration?: MeteoalarmIntegration;
+	private configEntities: EntityConfig[] = [];
+	private schema: HaFormSchema[] = [];
+	private formData: Record<string, unknown> = {};
 
 	public setConfig(config: MeteoalarmCardConfig): void {
-		this._config = config;
-		this._configEntities = processEditorEntities(config.entities);
+		this.config = config;
 	}
 
 	protected firstUpdated(): void {
 		this.loadHaComponents();
 	}
 
-	private get integration(): MeteoalarmIntegration | undefined {
-		return MeteoalarmCard.integrations.find((i) => i.metadata.key === this._config?.integration);
+	protected willUpdate(changedProperties: PropertyValues): void {
+		if (changedProperties.has('config')) {
+			this.integration = this.findIntegration(this.config?.integration);
+			this.configEntities = processEditorEntities(this.config?.entities);
+			this.schema = this.computeSchema(this.integration);
+			this.formData = this.computeFormData(this.integration);
+		}
 	}
 
 	protected render(): TemplateResult {
-		if (!this.hass || !this._config) {
+		if (!this.hass || !this.config) {
 			return html``;
 		}
 
-		const integration = this.integration;
-
 		return html`
-			${generateEditorWarnings(integration, this._configEntities)}
+			${generateEditorWarnings(this.integration, this.configEntities)}
 			<ha-form
 				.hass=${this.hass}
-				.data=${this.computeFormData(integration)}
-				.schema=${this.computeSchema(integration)}
+				.data=${this.formData}
+				.schema=${this.schema}
 				.computeLabel=${this.computeLabel}
 				.computeHelper=${this.computeHelper}
-				@value-changed=${this._valueChanged}
+				@value-changed=${this.valueChanged}
 			></ha-form>
-			${integration
+			${this.integration
 				? html`
 						<a
 							class="docs-link"
@@ -71,6 +84,10 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 				  `
 				: ''}
 		`;
+	}
+
+	private findIntegration(key?: string): MeteoalarmIntegration | undefined {
+		return MeteoalarmCard.integrations.find((i) => i.metadata.key === key);
 	}
 
 	private async loadHaComponents(): Promise<void> {
@@ -87,7 +104,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		this.requestUpdate();
 	}
 
-	private computeSchema(integration: MeteoalarmIntegration | undefined): HaFormSchema[] {
+	private computeSchema(integration?: MeteoalarmIntegration): HaFormSchema[] {
 		const schema: HaFormSchema[] = [
 			{
 				name: 'integration',
@@ -105,12 +122,10 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		];
 		if (!integration) return schema;
 
-		const isSingleEntity =
-			integration.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
 		schema.push({
 			name: 'entities',
 			required: true,
-			selector: { entity: isSingleEntity ? {} : { multiple: true } },
+			selector: { entity: isSingleEntity(integration) ? {} : { multiple: true } },
 		});
 
 		const switches: HaFormSchema[] = [];
@@ -141,31 +156,21 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		return schema;
 	}
 
-	private computeFormData(integration: MeteoalarmIntegration | undefined): Record<string, unknown> {
-		const isSingleEntity =
-			integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
-		const entityIds = this._configEntities.map((e) => e.entity);
+	private computeFormData(integration?: MeteoalarmIntegration): Record<string, unknown> {
+		const entityIds = this.configEntities.map((e) => e.entity);
 		return {
-			integration: this._config?.integration ?? '',
-			entities: isSingleEntity ? entityIds[0] ?? '' : entityIds,
-			disable_swiper: this._config?.disable_swiper ?? false,
-			override_headline: this._config?.override_headline ?? false,
-			hide_caption: this._config?.hide_caption ?? false,
-			hide_when_no_warning: this._config?.hide_when_no_warning ?? false,
-			scaling_mode: this._config?.scaling_mode ?? MeteoalarmScalingMode.HeadlineAndScale,
+			scaling_mode: DEFAULT_SCALING_MODE,
+			...this.config,
+			entities: isSingleEntity(integration) ? entityIds[0] ?? '' : entityIds,
 		};
 	}
 
 	private computeLabel = (schema: HaFormSchema): string => {
 		if (!schema.name) return '';
-		switch (schema.name) {
-			case 'integration':
-				return `${localize('editor.integration')} (${localize('editor.required')})`;
-			case 'entities':
-				return `${localize('editor.entity')} (${localize('editor.required')})`;
-			default:
-				return localize(`editor.${schema.name}`);
-		}
+		// 'entities' is labeled with the singular 'editor.entity' key
+		const key = schema.name === 'entities' ? 'entity' : schema.name;
+		const label = localize(`editor.${key}`);
+		return schema.required ? `${label} (${localize('editor.required')})` : label;
 	};
 
 	private computeHelper = (schema: HaFormSchema): string | undefined => {
@@ -180,25 +185,19 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		].join(' ');
 	};
 
-	private _valueChanged(ev: CustomEvent): void {
+	private valueChanged(ev: CustomEvent): void {
 		ev.stopPropagation();
-		if (!this._config || !this.hass) return;
+		if (!this.config || !this.hass) return;
 		const value = { ...ev.detail.value };
 
 		if ('entities' in value) {
 			// Normalize entities to a list of entity id strings
-			let entities: string[] =
-				typeof value.entities === 'string' ? [value.entities] : [...(value.entities ?? [])];
-			entities = entities.filter((entity) => entity);
+			let entities = processEditorEntities(value.entities)
+				.map((e) => e.entity)
+				.filter(Boolean);
 
 			// When switching to a single entity integration, keep only the first entity
-			const integration = MeteoalarmCard.integrations.find(
-				(i) => i.metadata.key === value.integration,
-			);
-			if (
-				integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity &&
-				entities.length > 1
-			) {
+			if (isSingleEntity(this.findIntegration(value.integration)) && entities.length > 1) {
 				entities = [entities[0]];
 			}
 			value.entities = entities;
@@ -208,7 +207,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 		// Spread over the existing config so keys not managed by this
 		// editor (type, ignored_events, ignored_levels, actions) survive
-		const config: MeteoalarmCardConfig = { ...this._config, ...value };
+		const config: MeteoalarmCardConfig = { ...this.config, ...value };
 		fireEvent(this, 'config-changed', { config });
 	}
 
