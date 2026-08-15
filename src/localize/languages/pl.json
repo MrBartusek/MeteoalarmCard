@@ -3,7 +3,6 @@
   "common": {
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
-    "warning": "Ostrzeżenie",
     "expected": "Spodziewane",
     "unavailable": {
       "long": "Integracja nie jest dostępna",
@@ -39,7 +38,7 @@
     },
     "error": {
       "expected_entity": "Nie podano encji z przyszłymi zdarzeniami pogodowymi. Przyszłe ostrzeżenia nie bedą pokazywane.",
-      "too_many_entities": "Podano więcej encji niż się spodziewano. Spodziewano: {expected} encji, otrzymano {got} encji.",
+      "too_many_entities": "Podano więcej encji niż się spodziewano. Spodziewano: {expected_entities_count} encji, otrzymano {selected_entities_count} encji.",
       "duplicate": "Znaleziono duplikaty w liście encji."
     },
     "scaling_mode": "Tryb skalowania",

@@ -1,7 +1,6 @@
 import { EntityConfig, fireEvent, HomeAssistant, LovelaceCardEditor } from 'custom-card-helpers';
 import { css, CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
-import { generateEditorWarnings } from './editor-warnings';
 import { processEditorEntities } from './helpers/process-editor-entities';
 import { localize } from './localize/localize';
 import { MeteoalarmCard } from './meteoalarm-card';
@@ -23,6 +22,12 @@ interface HaFormSchema {
 	schema?: HaFormSchema[];
 }
 
+interface WarningRule {
+	field: string;
+	warning: string;
+	condition: boolean;
+}
+
 function isSingleEntity(integration?: MeteoalarmIntegration): boolean {
 	return integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
 }
@@ -36,6 +41,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 	private configEntities: EntityConfig[] = [];
 	private schema: HaFormSchema[] = [];
 	private formData: Record<string, unknown> = {};
+	private warning?: Record<string, string>;
 
 	public setConfig(config: MeteoalarmCardConfig): void {
 		this.config = config;
@@ -47,6 +53,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 			this.configEntities = processEditorEntities(this.config?.entities);
 			this.schema = this.computeSchema(this.integration);
 			this.formData = this.computeFormData(this.integration);
+			this.warning = this.computeWarnings(this.integration);
 		}
 	}
 
@@ -56,13 +63,14 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		}
 
 		return html`
-			${generateEditorWarnings(this.integration, this.configEntities)}
 			<ha-form
 				.hass=${this.hass}
 				.data=${this.formData}
 				.schema=${this.schema}
+				.warning=${this.warning}
 				.computeLabel=${this.computeLabel}
 				.computeHelper=${this.computeHelper}
+				.computeWarning=${this.computeWarning}
 				@value-changed=${this.valueChanged}
 			></ha-form>
 			${this.integration
@@ -173,6 +181,47 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		].join(' ');
 	};
 
+	private computeWarnings(integration?: MeteoalarmIntegration): Record<string, string> | undefined {
+		if (!integration) return undefined;
+
+		const entities = this.configEntities.map((e) => e.entity);
+		const { type, entitiesCount } = integration.metadata;
+
+		const RULES: WarningRule[] = [
+			{
+				field: 'entities',
+				warning: 'duplicate',
+				condition: new Set(entities).size != entities.length,
+			},
+			{
+				field: 'entities',
+				warning: 'too_many_entities',
+				condition: entitiesCount > 0 && entities.length > entitiesCount,
+			},
+			{
+				field: 'entities',
+				warning: 'expected_entity',
+				condition: type == MeteoalarmIntegrationEntityType.CurrentExpected && entities.length == 1,
+			},
+		];
+
+		// ha-form renders one warning per field, so the first matching rule wins
+		const warnings: Record<string, string> = {};
+		for (const rule of RULES) {
+			if (rule.condition && !(rule.field in warnings)) {
+				warnings[rule.field] = rule.warning;
+			}
+		}
+
+		return Object.keys(warnings).length > 0 ? warnings : undefined;
+	}
+
+	private computeWarning = (warning: string): string => {
+		return localize(`editor.error.${warning}`)
+			.replace('{expected_entities_count}', String(this.integration?.metadata.entitiesCount))
+			.replace('{selected_entities_count}', String(this.configEntities.length));
+	};
+
 	private valueChanged(ev: CustomEvent): void {
 		ev.stopPropagation();
 		if (!this.config || !this.hass) return;
@@ -198,10 +247,6 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 	}
 
 	static styles: CSSResultGroup = css`
-		ha-alert {
-			display: block;
-			margin-bottom: 16px;
-		}
 		.docs-link {
 			display: inline-block;
 			margin-top: 8px;

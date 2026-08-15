@@ -3,7 +3,6 @@
   "common": {
     "name": "Targeta Meteoalarm",
     "description": "La targeta Meteoalarm t'avisa sobre els esdeveniments meteorològics actuals.",
-    "warning": "Advertència",
     "expected": "Esperat",
     "unavailable": {
       "long": "La integració no està disponible",
@@ -39,7 +38,7 @@
     },
     "error": {
       "expected_entity": "No s'ha proporcionat l'entitat d'advertències esperada. No es mostraran els esdeveniments futurs.",
-      "too_many_entities": "S'han proporcionat més entitats de les esperades. S'esperaven {expected} entitats, però se n'han proporcionat {got}.",
+      "too_many_entities": "S'han proporcionat més entitats de les esperades. S'esperaven {expected_entities_count} entitats, però se n'han proporcionat {selected_entities_count}.",
       "duplicate": "S'han trobat duplicats a la llista d'entitats."
     },
     "scaling_mode": "Mode d'escalat",

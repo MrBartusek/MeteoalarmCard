@@ -3,7 +3,6 @@
   "common": {
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
-    "warning": "Hoiatus",
     "expected": "Eeldatavalt",
     "unavailable": {
       "long": "Olem pole saadaval",
