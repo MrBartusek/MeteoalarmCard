@@ -26,7 +26,7 @@
     "module": "meteoalarm-card.js",
     "packageManager": "pnpm@11.9.0",
     "scripts": {
-        "start": "rollup -c rollup.config.dev.js --watch",
+        "start": "rollup -c --watch",
         "build": "pnpm run rollup",
         "build-tools": "tsc -p tools",
         "fix-translations": "node tools/dist/fix-translations.js",
@@ -42,9 +42,6 @@
         "swiper": "^8.2.2"
     },
     "devDependencies": {
-        "@babel/core": "^7.15.0",
-        "@babel/plugin-proposal-class-properties": "^7.14.5",
-        "@babel/plugin-proposal-decorators": "^7.14.5",
         "@rollup/plugin-json": "^4.1.0",
         "@types/node": "^22.20.0",
         "@typescript-eslint/eslint-plugin": "^6.7.5",
@@ -54,7 +51,6 @@
         "eslint-plugin-prettier": "^5.0.1",
         "prettier": "^3.0.3",
         "rollup": "^2.58.0",
-        "rollup-plugin-babel": "^4.4.0",
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-serve": "^1.1.0",
