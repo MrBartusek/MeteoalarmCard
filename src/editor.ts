@@ -193,7 +193,8 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 		Object.keys(value).forEach((key) => value[key] === undefined && delete value[key]);
 
-		fireEvent(this, 'config-changed', { ...this.config, ...value });
+		const config: MeteoalarmCardConfig = { ...this.config, ...value };
+		fireEvent(this, 'config-changed', { config });
 	}
 
 	static styles: CSSResultGroup = css`
