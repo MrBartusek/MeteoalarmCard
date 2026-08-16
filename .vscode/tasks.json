@@ -5,8 +5,29 @@
 			"type": "shell",
 			"command": "pnpm start",
 			"problemMatcher": [],
-			"label": "pnpm: start",
+			"label": "Vite: start",
 			"detail": "vite build --watch + vite preview"
+		},
+		{
+			"type": "shell",
+			"command": "pnpm run dev",
+			"problemMatcher": [],
+			"label": "HASS: start",
+			"detail": "Home Assistant dev instance on http://localhost:8123"
+		},
+		{
+			"type": "shell",
+			"command": "pnpm run dev:down",
+			"problemMatcher": [],
+			"label": "HASS: stop",
+			"detail": "stop the Home Assistant dev instance"
+		},
+		{
+			"type": "shell",
+			"command": "pnpm run dev:clean",
+			"problemMatcher": [],
+			"label": "HASS: cleanup",
+			"detail": "stop the instance and delete hass-dev/config"
 		}
 	]
 }

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "auth",
+  "data": {
+    "users": [
+      {
+        "id": "703183ee28a2b8bdd176195ca28d0b8f",
+        "name": "Admin",
+        "group_ids": ["system-admin"],
+        "is_owner": true,
+        "is_active": true,
+        "system_generated": false
+      }
+    ],
+    "groups": [{ "id": "system-admin", "name": "Administrators" }],
+    "credentials": [],
+    "refresh_tokens": [
+      {
+        "id": "41b8a6fd640d6d33b3eb77aa43310fa4",
+        "user_id": "703183ee28a2b8bdd176195ca28d0b8f",
+        "client_id": null,
+        "token_type": "long_lived_access_token",
+        "created_at": "2026-08-16T00:00:00.000000+00:00",
+        "access_token_expiration": 315360000.0,
+        "token": "f12e24179e946f6056e6009358ceee525ef42e64f93046f4152543bbf67da29bf6157e93c5d4ac23d085a854d1c235d5067eea843c76631c2aa150e7ca6d98e5",
+        "jwt_key": "e6b5ddc983e96791a14a35ca469c9d6120c62160ac1276216ef55cc95144a91e04842a8be34aa55f25809778577aad0072ff40254de05b90ef14793635919565"
+      }
+    ]
+  }
+}

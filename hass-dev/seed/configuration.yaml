@@ -1,0 +1,31 @@
+# Home Assistant configuration.yaml dev environment. Copied on seed
+# https://www.home-assistant.io/docs/configuration/
+
+default_config:
+
+homeassistant:
+  name: MeteoalarmCard Dev
+  latitude: 51.5074
+  longitude: -0.1278
+  country: GB
+  time_zone: Europe/London
+  unit_system: metric
+  external_url: http://localhost:8123
+  internal_url: http://localhost:8123
+
+  # Auto-login as the seeded admin, open to any IP, fine only because the port is loopback-only.
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 0.0.0.0/0
+        - ::/0
+      allow_bypass_login: true
+
+frontend:
+  extra_module_url:
+    - http://localhost:5000/meteoalarm-card.js
+
+logger:
+  default: warning
+
+binary_sensor: !include meteoalarm.yaml
