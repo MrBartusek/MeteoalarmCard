@@ -135,8 +135,13 @@ class EventsParser {
 			return bLevel - aLevel;
 		});
 
-		// Sort by level
-		alerts = alerts.sort((a, b) => b.level - a.level);
+		// Sort by level, the levels list is ordered from most to least dangerous
+		const levelsData = MeteoalarmData.levels;
+		alerts = alerts.sort((a, b) => {
+			const aLevel = levelsData.findIndex((l) => l.type == a.level);
+			const bLevel = levelsData.findIndex((l) => l.type == b.level);
+			return aLevel - bLevel;
+		});
 
 		// Push expected events to back of the list
 		alerts = alerts.sort((a, b) => {

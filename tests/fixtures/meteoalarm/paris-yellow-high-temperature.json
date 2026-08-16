@@ -1,0 +1,41 @@
+{
+  "$schema": "../schema.json",
+  "description": "Yellow high temperature warning issued by METEO-FRANCE, captured live from the dev instance",
+  "entities": [
+    {
+      "entity_id": "binary_sensor.meteoalarm_paris",
+      "state": "on",
+      "active": true,
+      "attributes": {
+        "language": "en-GB",
+        "category": "Met",
+        "event": "Moderate high-temperature warning",
+        "responseType": "Monitor",
+        "urgency": "Future",
+        "severity": "Moderate",
+        "certainty": "Likely",
+        "effective": "2026-08-17T00:00:00+02:00",
+        "onset": "2026-08-17T00:00:00+02:00",
+        "expires": "2026-08-18T00:00:00+02:00",
+        "senderName": "METEO-FRANCE",
+        "headline": "Moderate high-temperature warning",
+        "description": "Moderate damages may occur, especially in vulnerable or in exposed areas and to people who carry out weather-related activities.",
+        "instruction": "Be careful, keep informed of the latest weather forecast.",
+        "web": "https://vigilance.meteofrance.fr/",
+        "contact": "METEO-FRANCE",
+        "awareness_level": "2; yellow; Moderate",
+        "awareness_type": "5; high-temperature",
+        "attribution": "Information provided by MeteoAlarm",
+        "device_class": "safety",
+        "friendly_name": "Meteoalarm Paris"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "high_temperature",
+      "level": "yellow",
+      "headline": "Moderate high-temperature warning"
+    }
+  ]
+}

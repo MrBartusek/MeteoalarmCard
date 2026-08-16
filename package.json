@@ -40,7 +40,9 @@
         "build-tools": "tsc -p tools",
         "fix-translations": "node tools/dist/fix-translations.js",
         "translations-summary": "node tools/dist/translations-summary",
-        "lint": "eslint . --ext .ts,.cjs"
+        "lint": "eslint . --ext .ts,.cjs",
+        "test": "vitest run",
+        "test:watch": "vitest"
     },
     "dependencies": {
         "custom-card-helpers": "^2.0.0",
@@ -59,6 +61,7 @@
         "prettier": "^3.0.3",
         "terser": "^5.50.0",
         "typescript": "^5.9.3",
-        "vite": "^8.2.1"
+        "vite": "^8.2.1",
+        "vitest": "^4.1.10"
     }
 }

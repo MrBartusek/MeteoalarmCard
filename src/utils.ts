@@ -50,6 +50,26 @@ export class Utils {
 	}
 
 	/**
+	 * Some integrations report severity on the numeric meteoalarm scale,
+	 * where 1 is yellow and 3 is red
+	 * @param level level as number (0-3)
+	 */
+	public static getLevelByNumber(level: number): MeteoalarmLevelType {
+		switch (level) {
+			case 0:
+				return MeteoalarmLevelType.None;
+			case 1:
+				return MeteoalarmLevelType.Yellow;
+			case 2:
+				return MeteoalarmLevelType.Orange;
+			case 3:
+				return MeteoalarmLevelType.Red;
+			default:
+				throw new Error(`[Utils.getLevelByNumber] unknown event level: "${level}"`);
+		}
+	}
+
+	/**
 	 * Some integrations store their event mapping in key-value dict, this
 	 * function convert this list for metadata.monitoredConditions
 	 * @param eventTypes eventTypes dict

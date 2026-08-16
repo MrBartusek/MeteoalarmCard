@@ -1,0 +1,23 @@
+{
+  "$schema": "../schema.json",
+  "description": "awareness_level \"1; Green\" is not a valid level and has to be coerced to Yellow, no headline attributes are present at all, see issue #49",
+  "entities": [
+    {
+      "entity_id": "binary_sensor.meteoalarm",
+      "state": "on",
+      "active": true,
+      "attributes": {
+        "awareness_level": "1; Green; Minor",
+        "awareness_type": "3; Thunderstorm",
+        "attribution": "Information provided by MeteoAlarm",
+        "friendly_name": "meteoalarm"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "thunderstorms",
+      "level": "yellow"
+    }
+  ]
+}
