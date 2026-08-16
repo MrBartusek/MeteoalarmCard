@@ -1,7 +1,6 @@
 import type { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmAlertKind, MeteoalarmEventType, MeteoalarmLevelType } from '../src/types';
 
-/** Fixtures only carry entity_id, state and attributes, nothing else is ever read */
 export type FixtureEntity = HassEntity & {
 	active: boolean;
 };
