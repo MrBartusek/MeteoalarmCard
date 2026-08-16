@@ -2,10 +2,10 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "start",
+			"type": "shell",
+			"command": "pnpm start",
 			"problemMatcher": [],
-			"label": "npm: start",
+			"label": "pnpm: start",
 			"detail": "vite build --watch + vite preview"
 		}
 	]
