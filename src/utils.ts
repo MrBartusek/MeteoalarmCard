@@ -8,9 +8,9 @@ export class Utils {
 	public static minHAversion(minYear: number, minMonth: number): boolean {
 		const rawVersion = (window as any).frontendVersion as string;
 		if (!rawVersion) return false;
-		const year = rawVersion.substring(0, 4);
-		const version = rawVersion.substring(4, 6);
-		return Number(year) >= minYear || (Number(year) >= minYear && Number(version) >= minMonth);
+		const year = Number(rawVersion.substring(0, 4));
+		const month = Number(rawVersion.substring(4, 6));
+		return year > minYear || (year == minYear && month >= minMonth);
 	}
 
 	/**
@@ -46,6 +46,26 @@ export class Utils {
 				return MeteoalarmLevelType.Red;
 			default:
 				throw new Error(`[Utils.getLevelBySeverity] unknown event severity: "${severity}"`);
+		}
+	}
+
+	/**
+	 * Some integrations report severity on the numeric meteoalarm scale,
+	 * where 1 is yellow and 3 is red
+	 * @param level level as number (0-3)
+	 */
+	public static getLevelByNumber(level: number): MeteoalarmLevelType {
+		switch (level) {
+			case 0:
+				return MeteoalarmLevelType.None;
+			case 1:
+				return MeteoalarmLevelType.Yellow;
+			case 2:
+				return MeteoalarmLevelType.Orange;
+			case 3:
+				return MeteoalarmLevelType.Red;
+			default:
+				throw new Error(`[Utils.getLevelByNumber] unknown event level: "${level}"`);
 		}
 	}
 

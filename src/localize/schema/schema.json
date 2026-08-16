@@ -20,7 +20,6 @@
             "required": [
                 "name",
                 "description",
-                "warning",
                 "expected",
                 "unavailable"
             ],
@@ -31,10 +30,6 @@
                 },
                 "description": {
                     "$id": "#/properties/common/properties/description",
-                    "type": ["string", "null"]
-                },
-                "warning": {
-                    "$id": "#/properties/common/properties/warning",
                     "type": ["string", "null"]
                 },
                 "expected": {
@@ -112,6 +107,7 @@
             "type": "object",
             "required": [
                 "entity",
+                "entities",
                 "integration",
                 "required",
                 "recommended",
@@ -127,6 +123,10 @@
             "properties": {
                 "entity": {
                     "$id": "#/properties/editor/properties/entity",
+                    "type": ["string", "null"]
+                },
+                "entities": {
+                    "$id": "#/properties/editor/properties/entities",
                     "type": ["string", "null"]
                 },
                 "integration": {

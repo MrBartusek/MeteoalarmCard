@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Integration test fixture",
+  "description": "One captured Home Assistant entity payload and the alerts the integration has to return for it. The directory this file lives in has to match the integration metadata key.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "description", "entities", "expected"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "description": {
+      "description": "Why this case exists, for example the issue it comes from",
+      "type": "string"
+    },
+    "entities": {
+      "description": "Entities in the order the card passes them",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["entity_id", "state", "active", "attributes"],
+        "properties": {
+          "entity_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "active": {
+            "description": "Whether this entity has an active warning, a DWD current sensor can be active while the advance one is not",
+            "type": "boolean"
+          },
+          "attributes": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "expected": {
+      "description": "Alerts getAlerts has to return for the active entities, in order. Empty when no entity is active",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event", "level"],
+        "properties": {
+          "event": {
+            "description": "MeteoalarmEventType value",
+            "type": "string"
+          },
+          "level": {
+            "description": "MeteoalarmLevelType value",
+            "type": "string"
+          },
+          "headline": {
+            "type": "string"
+          },
+          "kind": {
+            "description": "MeteoalarmAlertKind value, only the CurrentExpected integrations return it",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema.json",
+  "description": "Severe thunderstorm watch on the watches sensor, the advisories sensor is left out because the integration only matches \"advisory\"",
+  "entities": [
+    {
+      "entity_id": "sensor.calgary_warnings",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Calgary Warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.calgary_watches",
+      "state": "1",
+      "active": true,
+      "attributes": {
+        "location": "Calgary",
+        "station": "Calgary Int'l Airport",
+        "alert_1": "Severe Thunderstorm Watch",
+        "alert_time_1": "2026-08-16T16:36:10.115Z",
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Calgary Watches"
+      }
+    },
+    {
+      "entity_id": "sensor.calgary_statements",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Calgary Statements"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "thunderstorms",
+      "level": "orange"
+    }
+  ]
+}
