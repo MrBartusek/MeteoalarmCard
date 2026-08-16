@@ -1,6 +1,7 @@
 import { EntityConfig, fireEvent, HomeAssistant, LovelaceCardEditor } from 'custom-card-helpers';
 import { css, CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
+import { isSingleEntity, schemaNames } from './helpers/editor';
 import { processEditorEntities } from './helpers/process-editor-entities';
 import { localize } from './localize/localize';
 import { MeteoalarmCard } from './meteoalarm-card';
@@ -13,17 +14,6 @@ import {
 	MeteoalarmScalingMode,
 	WarningRule,
 } from './types';
-
-function isSingleEntity(integration?: MeteoalarmIntegration): boolean {
-	return integration?.metadata.type === MeteoalarmIntegrationEntityType.SingleEntity;
-}
-
-function schemaNames(schema: HaFormSchema[]): string[] {
-	return schema.reduce<string[]>(
-		(names, field) => names.concat(field.schema ? schemaNames(field.schema) : field.name),
-		[],
-	);
-}
 
 @customElement('meteoalarm-card-editor')
 export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCardEditor {
