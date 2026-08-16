@@ -3,7 +3,6 @@
 
 import { EntityConfig } from 'custom-card-helpers';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function processEditorEntities(entities: Array<any> | string | undefined): EntityConfig[] {
 	if (entities == undefined) {
 		return [];
