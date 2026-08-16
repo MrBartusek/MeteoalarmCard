@@ -13,7 +13,6 @@ import type { HassEntity } from 'home-assistant-js-websocket';
 import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import ResizeObserver from 'resize-observer-polyfill';
 import Swiper, { Pagination } from 'swiper';
 import swiperCss from 'swiper/css?inline';
 import swiperPaginationCss from 'swiper/css/pagination?inline';
