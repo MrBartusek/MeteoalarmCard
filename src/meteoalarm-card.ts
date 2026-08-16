@@ -4,7 +4,6 @@ import {
 	EntityConfig,
 	handleAction,
 	hasAction,
-	hasConfigOrEntityChanged,
 	HomeAssistant,
 	LovelaceCardConfig,
 	LovelaceCardEditor,
@@ -140,9 +139,7 @@ export class MeteoalarmCard extends LitElement {
 
 			// Use the cached entity list instead of recomputing it on every
 			// hass update (which can fire many times per second).
-			return this.trackedEntityIds.some(
-			(id) => oldHass.states[id] !== this.hass.states[id]
-			);
+			return this.trackedEntityIds.some( (id) => oldHass.states[id] !== this.hass.states[id] );
 		}
 
 		return false;
