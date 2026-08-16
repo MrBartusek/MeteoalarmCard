@@ -37,7 +37,7 @@ Now pick where you want to see the card render. Either way the dev server rebuil
 
 ### Option A: the bundled Home Assistant (recommended)
 
-Spins up a preconfigured instance of Home Assistant with the bundled integrations and a development dashboard. The integrations pull live data, so most cards show *No active warnings* unless there is real weather somewhere.
+Spins up a preconfigured instance of Home Assistant with the bundled integrations and a development dashboard. The integrations pull live data, so most cards show *No active warnings* unless there is real weather somewhere. Every `pnpm run dev` starts from scratch, so anything you change in the Home Assistant UI is gone on the next run.
 
 1. Install [Docker](https://docs.docker.com/get-docker/) with the Compose plugin.
 1. Run the Docker containers. The first boot may take a couple of minutes, it will download ~2 GB of images and needs internet access.

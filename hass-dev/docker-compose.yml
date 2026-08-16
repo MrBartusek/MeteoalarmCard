@@ -1,6 +1,8 @@
+x-hass-image: &hass-image ghcr.io/home-assistant/home-assistant:2026.8.2
+
 services:
   homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:2026.8.2
+    image: *hass-image
     volumes:
       - ./config:/config
     ports:
@@ -21,3 +23,12 @@ services:
       MCP_SECRET_PATH: /meteoalarmcard-dev
     depends_on:
       - homeassistant
+
+  # Home Assistant runs as root, so only a container can delete what it wrote. Mounting the
+  # parent removes the config directory itself, which keeps Docker from creating it as root.
+  clean:
+    image: *hass-image
+    profiles: [tools]
+    entrypoint: ["sh", "-c", "rm -rf /work/config"]
+    volumes:
+      - ./:/work
