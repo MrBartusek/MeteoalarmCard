@@ -8,23 +8,23 @@ export default defineConfig({
 		lib: {
 			entry: 'src/meteoalarm-card.ts',
 			formats: ['es'],
-			fileName: () => 'meteoalarm-card.js'
+			fileName: () => 'meteoalarm-card.js',
 		},
 		rollupOptions: {
 			output: {
 				// The card is loaded as a single Lovelace resource, so the lazily
 				// imported editor has to be inlined rather than split out
-				codeSplitting: false
-			}
-		}
+				codeSplitting: false,
+			},
+		},
 	},
 	json: {
-		stringify: false
+		stringify: false,
 	},
 	preview: {
 		port: 5000,
 		strictPort: true,
 		host: '0.0.0.0',
-		cors: true
-	}
+		cors: true,
+	},
 });
