@@ -26,7 +26,7 @@
     "module": "meteoalarm-card.js",
     "packageManager": "pnpm@11.9.0",
     "scripts": {
-        "start": "vite build && concurrently --kill-others --names build,serve \"vite build --watch\" \"vite preview\"",
+        "start": "vite build && concurrently --kill-others --names build,serve \"vite build --watch --emptyOutDir false\" \"vite preview\"",
         "build": "pnpm run typecheck && vite build",
         "typecheck": "tsc --noEmit",
         "build-tools": "tsc -p tools",
