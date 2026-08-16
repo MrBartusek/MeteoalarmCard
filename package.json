@@ -26,37 +26,33 @@
     "module": "meteoalarm-card.js",
     "packageManager": "pnpm@11.9.0",
     "scripts": {
-        "start": "rollup -c --watch",
-        "build": "pnpm run rollup",
+        "start": "vite build && concurrently --kill-others --names build,serve \"vite build --watch --emptyOutDir false\" \"vite preview\"",
+        "build": "pnpm run typecheck && vite build",
+        "typecheck": "tsc --noEmit",
         "build-tools": "tsc -p tools",
         "fix-translations": "node tools/dist/fix-translations.js",
         "translations-summary": "node tools/dist/translations-summary",
-        "lint": "eslint \"src/**/*.ts\"",
-        "rollup": "rollup -c"
+        "lint": "eslint \"src/**/*.ts\""
     },
     "dependencies": {
         "custom-card-helpers": "^1.7.2",
         "home-assistant-js-websocket": "^5.11.1",
-        "lit": "^2.0.0",
+        "lit": "^3.3.0",
         "resize-observer-polyfill": "^1.5.1",
         "swiper": "^8.2.2"
     },
     "devDependencies": {
-        "@rollup/plugin-json": "^4.1.0",
         "@types/node": "^22.20.0",
         "@typescript-eslint/eslint-plugin": "^6.7.5",
         "@typescript-eslint/parser": "^6.7.5",
+        "concurrently": "^9.2.1",
         "eslint": "^8.51.0",
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-prettier": "^5.0.1",
         "prettier": "^3.0.3",
-        "rollup": "^2.58.0",
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-node-resolve": "^5.2.0",
-        "rollup-plugin-serve": "^1.1.0",
-        "rollup-plugin-terser": "^7.0.2",
-        "rollup-plugin-typescript2": "^0.34.0",
+        "terser": "^5.50.0",
         "tslib": "^2.8.1",
-        "typescript": "^4.4.3"
+        "typescript": "^5.9.3",
+        "vite": "^8.2.1"
     }
 }

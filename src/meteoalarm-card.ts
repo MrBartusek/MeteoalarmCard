@@ -10,14 +10,15 @@ import {
 	LovelaceCardEditor,
 } from 'custom-card-helpers';
 import { HassEntity } from 'home-assistant-js-websocket';
-import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
-import { customElement, property, state } from 'lit/decorators';
-import { ifDefined } from 'lit/directives/if-defined';
+import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import ResizeObserver from 'resize-observer-polyfill';
 import Swiper, { Pagination } from 'swiper';
+import swiperCss from 'swiper/css?inline';
+import swiperPaginationCss from 'swiper/css/pagination?inline';
 import { version as CARD_VERSION } from '../package.json';
 import EventsParser from './events-parser';
-import swiperStyles from './external/swiperStyles';
 import { actionHandler } from './helpers/action-handler-directive';
 import { processConfigEntities } from './helpers/process-config-entities';
 import INTEGRATIONS from './integrations/integrations';
@@ -117,7 +118,7 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	static get styles(): CSSResultGroup {
-		return [swiperStyles, styles];
+		return [unsafeCSS(swiperCss), unsafeCSS(swiperPaginationCss), styles];
 	}
 
 	public getCardSize(): number {
