@@ -329,13 +329,15 @@ export class MeteoalarmCard extends LitElement {
 											<div class="content">
 												${this.renderMainIcon(event.icon)} ${this.renderHeadlines(event.headlines)}
 											</div>
-											${event.caption && event.captionIcon
-												? html`
-														<div class="caption">
-															${this.renderCaption(event.captionIcon, event.caption)}
-														</div>
-												  `
-												: ''}
+											${
+												event.caption && event.captionIcon
+													? html`
+															<div class="caption">
+																${this.renderCaption(event.captionIcon, event.caption)}
+															</div>
+														`
+													: ''
+											}
 										</div>
 									`,
 								)}
