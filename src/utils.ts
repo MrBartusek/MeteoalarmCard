@@ -8,9 +8,9 @@ export class Utils {
 	public static minHAversion(minYear: number, minMonth: number): boolean {
 		const rawVersion = (window as any).frontendVersion as string;
 		if (!rawVersion) return false;
-		const year = rawVersion.substring(0, 4);
-		const version = rawVersion.substring(4, 6);
-		return Number(year) >= minYear || (Number(year) >= minYear && Number(version) >= minMonth);
+		const year = Number(rawVersion.substring(0, 4));
+		const month = Number(rawVersion.substring(4, 6));
+		return year > minYear || (year == minYear && month >= minMonth);
 	}
 
 	/**
