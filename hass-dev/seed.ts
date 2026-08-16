@@ -92,11 +92,11 @@ buildDashboardConfig().write(STORAGE);
 buildDashboardRegistry().write(STORAGE);
 
 console.log(`
-[hass-dev] Home Assistant is starting (the first run downloads ~2 GB of images).
+[hass-dev] Home Assistant is starting, ready in about a minute (the first run downloads ~2 GB).
 
-  Home Assistant:  http://localhost:8123  (logs in automatically, ready in about a minute)
-  Card server:     http://localhost:5000  (run \`pnpm start\` in another terminal)
-  MCP endpoint:    http://localhost:9584/meteoalarmcard-dev (for AI agents, see .mcp.json)
+  Home Assistant:  http://localhost:8123                     (logs in automatically)
+  Card server:     http://localhost:5000                     (run \`pnpm start\` in another terminal)
+  MCP endpoint:    http://localhost:9584/meteoalarmcard-dev  (for AI agents, see .mcp.json)
 
   \`pnpm run dev:down\` stops it, \`pnpm run dev:clean\` also wipes it.
 `);

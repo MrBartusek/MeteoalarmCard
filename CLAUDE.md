@@ -21,7 +21,7 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 # Code style
 
 - **Translations** — Untranslated keys in `src/localize/languages/` must be `null`, not English text
-- **Git** — NEVER run git commands that modify state (`add`, `commit`, `push`, `branch`, `tag`, `merge`, `reset`) without an explicit request. Read-only commands (`status`, `log`, `diff`, `show`) are always fine.
+- **Git** — NEVER run git commands that modify state (`add`, `commit`, `push`, `branch`, `tag`, `merge`, `reset`) without an explicit request. Read-only commands (`status`, `log`, `diff`, `show`) are always fine. Never force push or rewrite a commit that is already pushed; add a new commit instead.
 - **Prefer .includes() over chained ||**: use `[A, B, C].includes(value)` instead of `value === A || value === B || value === C`.
 - **Comments are rare** — only write one to explain genuinely tricky code or the *why* behind a questionable decision.
 - **Lint** —  Before you claim you've completed the task make sure to run linter (`pnpm lint`) and typecheck the code
