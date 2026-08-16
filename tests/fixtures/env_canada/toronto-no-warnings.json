@@ -1,0 +1,34 @@
+{
+  "$schema": "../schema.json",
+  "description": "No alerts, the advisories sensor is left out because the integration only matches \"advisory\"",
+  "entities": [
+    {
+      "entity_id": "sensor.toronto_warnings",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Toronto Warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.toronto_watches",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Toronto Watches"
+      }
+    },
+    {
+      "entity_id": "sensor.toronto_statements",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Toronto Statements"
+      }
+    }
+  ],
+  "expected": []
+}

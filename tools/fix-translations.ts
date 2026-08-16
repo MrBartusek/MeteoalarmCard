@@ -16,15 +16,13 @@ const en_data = readPraseFile(path.join(TRANSLATIONS_PATH, 'en.json'));
 fs.readdirSync(TRANSLATIONS_PATH).forEach((file_path) => {
 	const translationData = readPraseFile(path.join(TRANSLATIONS_PATH, file_path));
 	const iterate = (obj, translationValue) => {
-		Object.keys(obj).forEach(key => {
+		Object.keys(obj).forEach((key) => {
 			if (typeof obj[key] === 'object' && obj[key] !== null) {
 				iterate(obj[key], translationValue[key]);
-			}
-			else {
-				if(translationValue && typeof translationValue === 'object' && key in translationValue) {
+			} else {
+				if (translationValue && typeof translationValue === 'object' && key in translationValue) {
 					obj[key] = translationValue[key];
-				}
-				else {
+				} else {
 					obj[key] = null;
 				}
 			}
@@ -33,5 +31,8 @@ fs.readdirSync(TRANSLATIONS_PATH).forEach((file_path) => {
 	const result = { ...en_data };
 	iterate(en_data, translationData);
 	result['$schema'] = '../schema/schema.json';
-	fs.writeFileSync(path.join(TRANSLATIONS_PATH, file_path), JSON.stringify(result, null, 2) + '\r\n');
+	fs.writeFileSync(
+		path.join(TRANSLATIONS_PATH, file_path),
+		JSON.stringify(result, null, 2) + '\r\n',
+	);
 });

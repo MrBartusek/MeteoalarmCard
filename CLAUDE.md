@@ -7,7 +7,10 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 # Commands
 
 - `pnpm start` — dev server; add `http://localhost:5000/meteoalarm-card.js` as a resource in a live Home Assistant instance to see the card
-- `pnpm run lint` and `pnpm run build` — the verification steps (there is no test suite); `build` only bundles, it does not lint
+- `pnpm run dev` - Run Home Assistant dev instance with pre-seeded integrations and cards. Includes MCP server.
+- `pnpm run dev:down` - stop it; `pnpm run dev:clean` - delete `hass-dev/config` once stopped, so the next `dev` is clean
+- `pnpm run lint`, `pnpm test` and `pnpm run build` — the verification steps; `build` typechecks and bundles, it does not lint or test
+- `pnpm test` covers `src/integrations` only and is fixture driven, `pnpm run test:watch` while iterating
 - Translation tools: run `pnpm run build-tools` before `pnpm run fix-translations` or `pnpm run translations-summary`
 
 # Release process
@@ -18,8 +21,13 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 
 # Code style
 
-- Untranslated keys in `src/localize/languages/` must be `null`, not English text
-- NEVER run git commands that modify state (`add`, `commit`, `push`, `branch`, `tag`, `merge`, `reset`) without an explicit request. Read-only commands (`status`, `log`, `diff`, `show`) are always fine.
+- **Translations** — Untranslated keys in `src/localize/languages/` must be `null`, not English text
+- **Git** — NEVER run git commands that modify state (`add`, `commit`, `push`, `branch`, `tag`, `merge`, `reset`) without an explicit request. Read-only commands (`status`, `log`, `diff`, `show`) are always fine. Never force push or rewrite a commit that is already pushed; add a new commit instead.
+- **Prefer .includes() over chained ||**: use `[A, B, C].includes(value)` instead of `value === A || value === B || value === C`.
+- **Comments are rare** — only write one to explain genuinely tricky code or the *why* behind a questionable decision.
+- **Tests** — every case is one JSON file in `tests/fixtures/<integration key>/`, auto discovered by `tests/integrations.test.ts` and validated in CI against `tests/fixtures/schema.json`. Add a fixture, never a new test file. Entity payloads have to be real, pull them from the dev instance over MCP
+- **Lint** —  Before you claim you've completed the task make sure to run linter (`pnpm lint`) and typecheck the code
+- **No em dashes** - never write `—` in code, comments, docs or commit messages; use a comma, colon, semicolon or `-`
 
 # Home Assistant docs
 

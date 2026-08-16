@@ -1,0 +1,34 @@
+{
+  "$schema": "../schema.json",
+  "description": "No warnings in any of the three Berlin slots",
+  "entities": [
+    {
+      "entity_id": "binary_sensor.berlin_warning_1",
+      "state": "off",
+      "active": false,
+      "attributes": {
+        "device_class": "safety",
+        "friendly_name": "Berlin Warning 1"
+      }
+    },
+    {
+      "entity_id": "binary_sensor.berlin_warning_2",
+      "state": "off",
+      "active": false,
+      "attributes": {
+        "device_class": "safety",
+        "friendly_name": "Berlin Warning 2"
+      }
+    },
+    {
+      "entity_id": "binary_sensor.berlin_warning_3",
+      "state": "off",
+      "active": false,
+      "attributes": {
+        "device_class": "safety",
+        "friendly_name": "Berlin Warning 3"
+      }
+    }
+  ],
+  "expected": []
+}

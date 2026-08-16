@@ -1,0 +1,51 @@
+{
+  "$schema": "../schema.json",
+  "description": "Minor civil protection warning about smoke smell, NINA reports no event type so it lands on unknown",
+  "entities": [
+    {
+      "entity_id": "binary_sensor.baden_baden_stadt_warning_1",
+      "state": "on",
+      "active": true,
+      "attributes": {
+        "headline": "Geruchsbelästigung durch Brandgeruch - Stadtkreis Baden-Baden und Landkreis Rastatt",
+        "description": "Die Integrierte Leitstelle Mittelbaden informiert im Auftrag des Stadtkreis Baden-Baden und des Landkreis Rastatt<br/>In kompletten Landkreis und Stadtkreises Baden- Baden kommt  es zu Geruchsbelästigungen durch Wahrnehmung von Brandgeruch.",
+        "sender": "",
+        "severity": "Minor",
+        "recommended_actions": "Meiden Sie das betroffene Gebiet. Informieren Sie Ihre Nachbarn. Wir informieren Sie, wenn die Gefahr vorüber ist. Wählen Sie nur in Notfällen den Notruf 110 (Polizei) und 112 (Feuerwehr). Schließen Sie Fenster und Türen und schalten Sie Lüftungen und Klimaanlagen ab. Bei Wahrnehmung von Brandgeruch sehen sie sich in der Umgebung um und wählen sie den Notruf nur bei konkreten Sichtungen von Rauch",
+        "affected_areas": "Stadtkreis Baden-Baden und Landkreis Rastatt",
+        "web": "",
+        "id": "mow.DE-BW-RA-W025-20260816-002",
+        "sent": "2026-08-16T15:38:29+02:00",
+        "start": "",
+        "expires": "",
+        "device_class": "safety",
+        "friendly_name": "Baden-Baden, Stadt Warning 1"
+      }
+    },
+    {
+      "entity_id": "binary_sensor.baden_baden_stadt_warning_2",
+      "state": "off",
+      "active": false,
+      "attributes": {
+        "device_class": "safety",
+        "friendly_name": "Baden-Baden, Stadt Warning 2"
+      }
+    },
+    {
+      "entity_id": "binary_sensor.baden_baden_stadt_warning_3",
+      "state": "off",
+      "active": false,
+      "attributes": {
+        "device_class": "safety",
+        "friendly_name": "Baden-Baden, Stadt Warning 3"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "unknown",
+      "level": "yellow",
+      "headline": "Geruchsbelästigung durch Brandgeruch - Stadtkreis Baden-Baden und Landkreis Rastatt"
+    }
+  ]
+}

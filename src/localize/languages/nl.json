@@ -3,7 +3,6 @@
   "common": {
     "name": "Meteoalarm Kaart",
     "description": "Meteoalarm kaart waarschuwt u voor actuele weersomstandigheden.",
-    "warning": "Waarschuwing",
     "expected": "Verwacht",
     "unavailable": {
       "long": "De integratie is niet beschikbaar",
@@ -21,6 +20,7 @@
   },
   "editor": {
     "entity": "Entiteit",
+    "entities": null,
     "integration": "Integratie",
     "required": "Verplicht",
     "recommended": "Aanbevolen",
@@ -38,7 +38,7 @@
     },
     "error": {
       "expected_entity": "Er is geen entiteit voor verwachte waarschuwingen opgegeven. Toekomstig evenement wordt niet getoond.",
-      "too_many_entities": "Er zijn niet meer entiteiten opgegeven dan verwacht. Verwachtte {expected} entiteiten, kreeg {got} entiteiten.",
+      "too_many_entities": "Er zijn niet meer entiteiten opgegeven dan verwacht. Verwachtte {expected_entities_count} entiteiten, kreeg {selected_entities_count} entiteiten.",
       "duplicate": "Er zijn duplicaten gevonden in de entiteitenlijst."
     },
     "scaling_mode": "Schalingsmodus",

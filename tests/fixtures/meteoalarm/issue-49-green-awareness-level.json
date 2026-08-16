@@ -1,0 +1,23 @@
+{
+  "$schema": "../schema.json",
+  "description": "awareness_level \"1; Green\" is coerced to yellow, read off the screenshot in issue #49",
+  "entities": [
+    {
+      "entity_id": "binary_sensor.meteoalarm",
+      "state": "on",
+      "active": true,
+      "attributes": {
+        "awareness_level": "1; Green; Minor",
+        "awareness_type": "3; Thunderstorm",
+        "attribution": "Information provided by MeteoAlarm",
+        "friendly_name": "meteoalarm"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "thunderstorms",
+      "level": "yellow"
+    }
+  ]
+}

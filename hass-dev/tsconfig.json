@@ -1,0 +1,12 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "module": "nodenext",
+      "moduleResolution": "nodenext",
+      "types": ["node"],
+      "allowImportingTsExtensions": true,
+      "erasableSyntaxOnly": true,
+      "verbatimModuleSyntax": true
+    },
+    "include": ["*.ts"]
+}
