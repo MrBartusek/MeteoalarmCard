@@ -1,6 +1,6 @@
 {
   "$schema": "../schema.json",
-  "description": "Yellow high temperature warning issued by METEO-FRANCE, captured live from the dev instance",
+  "description": "Yellow high temperature warning",
   "entities": [
     {
       "entity_id": "binary_sensor.meteoalarm_paris",

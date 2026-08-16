@@ -1,6 +1,6 @@
 {
   "$schema": "../schema.json",
-  "description": "awareness_level \"1; Green\" is not a valid level and has to be coerced to Yellow, no headline attributes are present at all, see issue #49",
+  "description": "awareness_level \"1; Green\" is coerced to yellow, see issue #49",
   "entities": [
     {
       "entity_id": "binary_sensor.meteoalarm",

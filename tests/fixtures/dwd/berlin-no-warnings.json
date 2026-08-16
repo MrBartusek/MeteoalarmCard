@@ -1,0 +1,33 @@
+{
+  "$schema": "../schema.json",
+  "description": "No warnings on the current and advance sensors",
+  "entities": [
+    {
+      "entity_id": "sensor.berlin_current_warning_level",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "region_name": "Berlin",
+        "region_id": 111000000,
+        "last_update": "2026-08-16T17:17:52.460000+00:00",
+        "warning_count": 0,
+        "attribution": "Data provided by DWD",
+        "friendly_name": "Berlin Current warning level"
+      }
+    },
+    {
+      "entity_id": "sensor.berlin_advance_warning_level",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "region_name": "Berlin",
+        "region_id": 111000000,
+        "last_update": "2026-08-16T17:17:52.460000+00:00",
+        "warning_count": 0,
+        "attribution": "Data provided by DWD",
+        "friendly_name": "Berlin Advance warning level"
+      }
+    }
+  ],
+  "expected": []
+}

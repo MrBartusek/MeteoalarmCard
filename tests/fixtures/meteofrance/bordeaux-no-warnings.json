@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema.json",
+  "description": "No warnings, every condition is green",
+  "entities": [
+    {
+      "entity_id": "sensor.meteo_france_alert_for_department_33_33_weather_alert",
+      "state": "Vert",
+      "active": false,
+      "attributes": {
+        "Vent violent": "Vert",
+        "Pluie-inondation": "Vert",
+        "Orages": "Vert",
+        "Canicule": "Vert",
+        "Neige-verglas": "Vert",
+        "Inondation": "Vert",
+        "Vagues-submersion": "Vert",
+        "attribution": "Data provided by Météo-France",
+        "icon": "mdi:weather-cloudy-alert",
+        "friendly_name": "Météo-France forecast for city Bordeaux 33 Weather alert"
+      }
+    }
+  ],
+  "expected": []
+}

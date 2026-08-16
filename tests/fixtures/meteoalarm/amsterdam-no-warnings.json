@@ -1,6 +1,6 @@
 {
   "$schema": "../schema.json",
-  "description": "No active warning, the integration drops every attribute except the attribution",
+  "description": "No warnings, every attribute except the attribution is dropped",
   "entities": [
     {
       "entity_id": "binary_sensor.meteoalarm_amsterdam",
