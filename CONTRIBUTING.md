@@ -13,7 +13,7 @@ you can [open a new issue](https://github.com/MrBartusek/MeteoalarmCard/issues/n
 
 If you don't have MeteoalarmCard running locally please follow this setup guide.
 
-1. Install newest LTS release of [Node.js](https://nodejs.org/en/) and the [pnpm](https://pnpm.io/installation) package manager.
+1. Install [Node.js](https://nodejs.org/en/) 24 and the [pnpm](https://pnpm.io/installation) package manager.
 1. Fork this repository using [Fork](https://github.com/MrBartusek/MeteoalarmCard/fork) button. This will create a new
 repository on your account named `<your username>/MeteoalarmCard`
 1. Clone this repo to wherever you want:

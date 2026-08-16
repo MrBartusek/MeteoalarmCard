@@ -1,6 +1,8 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
+      "target": "es2023",
+      "lib": ["es2023"],
       "outDir": "./dist/",
       "noEmit": false,
       "types": ["node"]
