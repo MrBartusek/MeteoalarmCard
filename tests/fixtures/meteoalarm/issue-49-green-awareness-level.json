@@ -1,6 +1,6 @@
 {
   "$schema": "../schema.json",
-  "description": "awareness_level \"1; Green\" is coerced to yellow, see issue #49",
+  "description": "awareness_level \"1; Green\" is coerced to yellow, read off the screenshot in issue #49",
   "entities": [
     {
       "entity_id": "binary_sensor.meteoalarm",
