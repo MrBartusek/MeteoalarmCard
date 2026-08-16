@@ -127,12 +127,12 @@ class EventsParser {
 
 	private sortAlerts(alertsInput: MeteoalarmAlert[]): MeteoalarmAlert[] {
 		let alerts = [...alertsInput];
-		// Sort by how dangerous events are
+		// Sort by event, the events list is ordered from most to least dangerous
+		const eventsData = MeteoalarmData.events;
 		alerts = alerts.sort((a, b) => {
-			const eventsData = MeteoalarmData.events;
-			const aLevel = eventsData.indexOf(eventsData.find((e) => e.type == a.event)!);
-			const bLevel = eventsData.indexOf(eventsData.find((e) => e.type == b.event)!);
-			return bLevel - aLevel;
+			const aEvent = eventsData.findIndex((e) => e.type == a.event);
+			const bEvent = eventsData.findIndex((e) => e.type == b.event);
+			return aEvent - bEvent;
 		});
 
 		// Sort by level, the levels list is ordered from most to least dangerous
