@@ -22,7 +22,6 @@ declare global {
 class ActionHandler extends HTMLElement implements ActionHandler {
 	public holdTime = 500;
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public ripple: any;
 
 	protected timer?: number;
@@ -195,7 +194,7 @@ export const actionHandler = directive(
 			return noChange;
 		}
 
-		// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		render(_options?: ActionHandlerOptions) {}
 	},
 );

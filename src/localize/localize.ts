@@ -55,7 +55,7 @@ export function localize(string: string): string {
 	// Try using specified language
 	try {
 		translated = string.split('.').reduce((o, i) => o[i], languages[lang]);
-	} catch (e) {
+	} catch {
 		// eslint-disable-next-line no-console
 		console.warn(
 			`MeteoalarmCard: Translation for "${string}" is not specified in "${lang}" language.`,
@@ -65,7 +65,7 @@ export function localize(string: string): string {
 	if (translated == undefined) {
 		try {
 			translated = string.split('.').reduce((o, i) => o[i], languages['en']);
-		} catch (e) {
+		} catch {
 			// eslint-disable-next-line no-console
 			console.warn(
 				`MeteoalarmCard: Translation for "${string}" is not specified in fallback english language.`,
