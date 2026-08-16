@@ -87,7 +87,7 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 				// Fallback for https://github.com/MrBartusek/MeteoalarmCard/issues/49
 				levelID = 2;
 			}
-			level = (levelID - 1) as MeteoalarmLevelType;
+			level = Utils.getLevelByNumber(levelID - 1);
 		}
 
 		if (level === undefined && severity !== undefined) {

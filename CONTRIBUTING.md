@@ -72,7 +72,7 @@ Your browser is what loads the file, so this works as long as you browse Home As
        git checkout -b update-polish-translation
    ```
 1. Commit your changes and push it to your fork of the repository.
-1. Make sure your changes are working locally. Run `pnpm run lint` to check code style and `pnpm run build` to build the card.
+1. Make sure your changes are working locally. Run `pnpm run lint` to check code style, `pnpm test` to run the tests and `pnpm run build` to build the card.
 1. Create a Pull Request (PR). Make sure to describe the changes that you made and use the `Fixes: #number` keyword if
 you were working on a issue.
 

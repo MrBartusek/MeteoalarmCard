@@ -123,7 +123,7 @@ export default class DWD implements MeteoalarmIntegration {
 			if (id in this.eventTypes) {
 				result.push({
 					headline: headline,
-					level: this.convertAwarenessLevel(level) as MeteoalarmLevelType,
+					level: this.convertAwarenessLevel(level),
 					event: this.eventTypes[id],
 					kind: kind,
 				});
@@ -136,8 +136,8 @@ export default class DWD implements MeteoalarmIntegration {
 	}
 
 	// Convert DWD scale 1-4 to meteoalarm scale 1-3
-	private convertAwarenessLevel(level: number) {
-		return level == 4 ? 3 : level;
+	private convertAwarenessLevel(level: number): MeteoalarmLevelType {
+		return Utils.getLevelByNumber(level == 4 ? 3 : level);
 	}
 
 	private getEntityKind(entity: HassEntity): MeteoalarmAlertKind | undefined {

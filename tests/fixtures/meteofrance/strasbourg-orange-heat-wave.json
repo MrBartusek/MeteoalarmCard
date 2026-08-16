@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema.json",
+  "description": "Orange heat wave and yellow thunderstorms at once",
+  "entities": [
+    {
+      "entity_id": "sensor.meteo_france_alert_for_department_67_67_weather_alert",
+      "state": "Orange",
+      "active": true,
+      "attributes": {
+        "Canicule": "Orange",
+        "Orages": "Jaune",
+        "Vent violent": "Vert",
+        "Pluie-inondation": "Vert",
+        "Neige-verglas": "Vert",
+        "Inondation": "Vert",
+        "attribution": "Data provided by Météo-France",
+        "icon": "mdi:weather-cloudy-alert",
+        "friendly_name": "Météo-France forecast for city Strasbourg 67 Weather alert"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "thunderstorms",
+      "level": "yellow"
+    },
+    {
+      "event": "high_temperature",
+      "level": "orange"
+    }
+  ]
+}

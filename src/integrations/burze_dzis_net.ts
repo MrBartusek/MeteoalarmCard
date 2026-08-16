@@ -6,6 +6,7 @@ import {
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 } from '../types';
+import { Utils } from '../utils';
 
 type BurzeDzisNetEntity = HassEntity & {
 	attributes: {
@@ -50,7 +51,7 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 		const event = this.getEventType(entity)!;
 		return {
 			event: event,
-			level: entity.attributes.level!,
+			level: Utils.getLevelByNumber(entity.attributes.level!),
 			headline: entity.attributes.description,
 		};
 	}
