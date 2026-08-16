@@ -5,20 +5,23 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-	globalIgnores(['dist/', 'tools/dist/', 'hass-dev/config/', '**/*.json']),
+	globalIgnores(['dist/', 'tools/dist/', 'hass-dev/config/']),
+	js.configs.recommended,
 	{
 		files: ['**/*.ts'],
-		extends: [js.configs.recommended, tseslint.configs.recommended, prettierRecommended],
-		languageOptions: {
-			sourceType: 'module',
-			globals: { ...globals.browser, ...globals.es2021 },
-		},
+		extends: [tseslint.configs.recommended],
+		languageOptions: { globals: globals.browser },
 		rules: {
 			'@typescript-eslint/no-non-null-assertion': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
 			'@typescript-eslint/no-this-alias': 'off',
 			'@typescript-eslint/ban-ts-comment': 'off',
 			'@typescript-eslint/no-unsafe-declaration-merging': 'off',
+		},
+	},
+	prettierRecommended,
+	{
+		rules: {
 			'no-console': 'error',
 			'prettier/prettier': [
 				'error',
@@ -36,22 +39,5 @@ export default defineConfig([
 		files: ['hass-dev/**/*.ts'],
 		languageOptions: { globals: globals.node },
 		rules: { 'no-console': 'off' },
-	},
-	{
-		files: ['eslint.config.js'],
-		extends: [js.configs.recommended, prettierRecommended],
-		languageOptions: { globals: globals.node },
-		rules: {
-			'prettier/prettier': [
-				'error',
-				{
-					endOfLine: 'auto',
-					useTabs: true,
-					singleQuote: true,
-					printWidth: 100,
-					singleAttributePerLine: true,
-				},
-			],
-		},
 	},
 ]);
