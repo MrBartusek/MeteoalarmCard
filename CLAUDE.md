@@ -7,7 +7,7 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 # Commands
 
 - `pnpm start` — dev server; add `http://localhost:5000/meteoalarm-card.js` as a resource in a live Home Assistant instance to see the card
-- `pnpm run lint` and `pnpm run build` — the verification steps (there is no test suite); `build` only bundles, it does not lint
+- `pnpm run lint` and `pnpm run build` — the verification steps (there is no test suite); `build` typechecks and bundles, it does not lint
 - Translation tools: run `pnpm run build-tools` before `pnpm run fix-translations` or `pnpm run translations-summary`
 
 # Release process

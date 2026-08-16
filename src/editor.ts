@@ -1,6 +1,6 @@
 import { EntityConfig, fireEvent, HomeAssistant, LovelaceCardEditor } from 'custom-card-helpers';
 import { css, CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
-import { customElement, property, state } from 'lit/decorators';
+import { customElement, property, state } from 'lit/decorators.js';
 import { isSingleEntity, schemaNames } from './helpers/editor';
 import { processEditorEntities } from './helpers/process-editor-entities';
 import { localize } from './localize/localize';

@@ -6,7 +6,7 @@
 			"script": "start",
 			"problemMatcher": [],
 			"label": "npm: start",
-			"detail": "rollup -c --watch"
+			"detail": "vite build --watch + vite preview"
 		}
 	]
 }
