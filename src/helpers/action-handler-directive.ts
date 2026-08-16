@@ -1,5 +1,4 @@
-import { fireEvent } from 'custom-card-helpers';
-import { ActionHandlerDetail, ActionHandlerOptions } from 'custom-card-helpers/dist/types';
+import { ActionHandlerDetail, ActionHandlerOptions, fireEvent } from 'custom-card-helpers';
 import { noChange } from 'lit';
 import { AttributePart, directive, Directive, DirectiveParameters } from 'lit/directive.js';
 

@@ -35,7 +35,7 @@
         "lint": "eslint \"src/**/*.ts\""
     },
     "dependencies": {
-        "custom-card-helpers": "^1.7.2",
+        "custom-card-helpers": "^2.0.0",
         "lit": "^3.3.0",
         "swiper": "^8.2.2"
     },
