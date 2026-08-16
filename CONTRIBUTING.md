@@ -28,15 +28,37 @@ repository on your account named `<your username>/MeteoalarmCard`
    ```sh
    pnpm install
    ```
-1. Run development server. It's going to watch source files, recompile on changes and server compiled file on local server.
+1. Run the development server in the first terminal. It's going to watch source files, recompile on changes and serve the compiled card on `http://localhost:5000`.
    ```sh
    pnpm start
    ```
-1. Add `http://localhost:5000/meteoalarm-card.js` to your [Lovelace Resources](https://my.home-assistant.io/redirect/lovelace_resources/).
-1. Add `custom: Meteoalarm Card` to your Dashboard.
 
-After successfully following this guide you should have card in your dashboard that is complied from your local code. Development server
-is going to recompile any changes that you make and after that you can see them after refreshing your Home Assistant tab.
+Now pick where you want to see the card render. Either way the dev server rebuilds on save, so you refresh the browser tab to pick up your changes.
+
+### Option A: the bundled Home Assistant (recommended)
+
+Spins up a preconfigured instance of Home Assistant with the bundled integrations and a development dashboard. The integrations pull live data, so most cards show *No active warnings* unless there is real weather somewhere.
+
+1. Install [Docker](https://docs.docker.com/get-docker/) with the Compose plugin.
+1. Run the Docker containers. The first boot may take a couple of minutes, it will download ~2 GB of images and needs internet access.
+   ```sh
+   pnpm run dev
+   ```
+1. Open <http://localhost:8123>. You should auto-login to the preconfigured Home Assistant instance. Open **MeteoalarmCard** in the sidebar.
+
+Other commands:
+
+- `pnpm run dev:down` stops the instance
+- `pnpm run dev:clean` stops it and deletes `hass-dev/config`
+
+### Option B: your own Home Assistant
+
+Use this if you already run Home Assistant and want the card next to your real entities.
+
+1. Add `http://localhost:5000/meteoalarm-card.js` to your [Lovelace Resources](https://my.home-assistant.io/redirect/lovelace_resources/) as a **JavaScript Module**.
+1. Add a **Meteoalarm Card** to any dashboard.
+
+Your browser is what loads the file, so this works as long as you browse Home Assistant from the machine running `pnpm start`.
 
 ## How to contribute
 

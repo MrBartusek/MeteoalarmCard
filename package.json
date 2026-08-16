@@ -25,10 +25,18 @@
     },
     "module": "meteoalarm-card.js",
     "packageManager": "pnpm@11.9.0",
+    "engines": {
+        "node": ">=22.18"
+    },
     "scripts": {
         "start": "vite build && concurrently --kill-others --names build,serve \"vite build --watch --emptyOutDir false\" \"vite preview\"",
+        "dev": "pnpm run env:seed && pnpm run env:up",
+        "dev:down": "docker compose -f hass-dev/docker-compose.yml down",
+        "dev:clean": "pnpm run dev:down && docker compose -f hass-dev/docker-compose.yml run --rm -T --entrypoint sh homeassistant -c \"rm -rf /config/* /config/.[!.]*\"",
+        "env:seed": "node hass-dev/seed.ts",
+        "env:up": "docker compose -f hass-dev/docker-compose.yml up -d",
         "build": "pnpm run typecheck && vite build",
-        "typecheck": "tsc --noEmit",
+        "typecheck": "tsc --noEmit && tsc -p hass-dev",
         "build-tools": "tsc -p tools",
         "fix-translations": "node tools/dist/fix-translations.js",
         "translations-summary": "node tools/dist/translations-summary",
