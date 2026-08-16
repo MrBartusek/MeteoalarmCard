@@ -136,34 +136,6 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		};
 	}
 
-	private computeLabel = (schema: HaFormSchema): string => {
-		if (!schema.name) return '';
-
-		let label = localize(`editor.${schema.name}`);
-
-		if (schema.name === 'entities') {
-			label = localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
-		}
-
-		if (schema.required) {
-			label = `${label} (${localize('editor.required')})`;
-		}
-
-		return label;
-	};
-
-	private computeHelper = (schema: HaFormSchema): string | undefined => {
-		if (schema.name !== 'entities') return undefined;
-		const type = this.integration?.metadata.type;
-		if (type === undefined || type === MeteoalarmIntegrationEntityType.SingleEntity)
-			return undefined;
-		return [
-			localize('editor.description.start'),
-			localize(`editor.description.${type}`),
-			localize('editor.description.end'),
-		].join(' ');
-	};
-
 	private computeWarnings(integration?: MeteoalarmIntegration): Record<string, string> | undefined {
 		if (!integration) return undefined;
 
@@ -198,6 +170,34 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 		return Object.keys(warnings).length > 0 ? warnings : undefined;
 	}
+
+	private computeLabel = (schema: HaFormSchema): string => {
+		if (!schema.name) return '';
+
+		let label = localize(`editor.${schema.name}`);
+
+		if (schema.name === 'entities') {
+			label = localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
+		}
+
+		if (schema.required) {
+			label = `${label} (${localize('editor.required')})`;
+		}
+
+		return label;
+	};
+
+	private computeHelper = (schema: HaFormSchema): string | undefined => {
+		if (schema.name !== 'entities') return undefined;
+		const type = this.integration?.metadata.type;
+		if (type === undefined || type === MeteoalarmIntegrationEntityType.SingleEntity)
+			return undefined;
+		return [
+			localize('editor.description.start'),
+			localize(`editor.description.${type}`),
+			localize('editor.description.end'),
+		].join(' ');
+	};
 
 	private computeWarning = (warning: string): string => {
 		return localize(`editor.error.${warning}`)
