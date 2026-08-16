@@ -7,7 +7,7 @@ it('discovers the fixture files', () => {
 	expect(fixtures.length).toBeGreaterThan(0);
 });
 
-describe.each(fixtures)('$integrationKey / $name', ({ integrationKey, fixture }) => {
+describe.each(fixtures)('$integrationKey ($name)', ({ integrationKey, fixture }) => {
 	const integration = TestUtils.getIntegration(integrationKey);
 
 	it('supports every entity', () => {
