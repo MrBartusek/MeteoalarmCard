@@ -1,0 +1,25 @@
+{
+  "$schema": "../schema.json",
+  "description": "Air quality warning from issue #286",
+  "entities": [
+    {
+      "entity_id": "sensor.calgary_warnings",
+      "state": "1",
+      "active": true,
+      "attributes": {
+        "location": "Calgary",
+        "station": "Calgary Int'l Airport",
+        "alert_1": "Air Quality Warning",
+        "alert_time_1": "Wednesday June 11, 2025 at 04:05 MDT",
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Calgary Warnings"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "air_quality",
+      "level": "red"
+    }
+  ]
+}
