@@ -1,0 +1,71 @@
+{
+  "$schema": "../schema.json",
+  "description": "Orange severe thunderstorm warning on the current sensor while the advance sensor is clear",
+  "entities": [
+    {
+      "entity_id": "sensor.kreis_und_stadt_heilbronn_current_warning_level",
+      "state": "2",
+      "active": true,
+      "attributes": {
+        "region_name": "Kreis und Stadt Heilbronn",
+        "region_id": 908125999,
+        "last_update": "2026-08-16T17:27:43.731000+00:00",
+        "warning_count": 1,
+        "warning_1_name": "STARKES GEWITTER",
+        "warning_1_type": 38,
+        "warning_1_level": 2,
+        "warning_1_headline": "Amtliche WARNUNG vor STARKEM GEWITTER",
+        "warning_1_description": "Es treten Gewitter auf. Dabei gibt es schwere Sturmböen mit Geschwindigkeiten um 90 km/h (25 m/s, 48 kn, Bft 10) sowie Starkregen mit Niederschlagsmengen bis 25 l/m² pro Stunde und Hagel.",
+        "warning_1_instruction": "Gefahr durch: \n · Blitzschlag (Lebensgefahr!)\n · vereinzelt umstürzende Bäume\n · herabstürzende Gegenstände\n · vereinzelte, rasche Überflutungen von Straßen/Unterführungen\n · Aquaplaning\n · Hagelschlag\n\nHandlungsempfehlungen: \n · Aufenthalt im Freien vermeiden oder Schutz suchen (z.B. in Gebäuden)\n · Gewässer meiden\n · Gerüste und frei stehende Objekte (z.B. Leinwände und Bühnen) sichern\n · z.B. Zelte und Abdeckungen befestigen, wenn möglich, rechtzeitig abbauen\n · im Freien auf herabfallende Gegenstände (z.B. große Äste, Dachziegel) achten und ggf. Schutz suchen\n · Verhalten im Straßenverkehr anpassen\n · überflutete und gefährdete Abschnitte (wie Unterführungen) meiden",
+        "warning_1_start": "2026-08-16T17:17:00+00:00",
+        "warning_1_end": "2026-08-16T18:30:00+00:00",
+        "warning_1_parameters": {
+          "Böen": "~90 [km/h]",
+          "Niederschlag": "<25 [l/m² in 1h]",
+          "Hagel": ">0 [cm]"
+        },
+        "warning_1_color": "#fb8c00",
+        "warning_1": {
+          "start_time": "2026-08-16T17:17:00+00:00",
+          "end_time": "2026-08-16T18:30:00+00:00",
+          "event": "STARKES GEWITTER",
+          "event_code": 38,
+          "headline": "Amtliche WARNUNG vor STARKEM GEWITTER",
+          "description": "Es treten Gewitter auf. Dabei gibt es schwere Sturmböen mit Geschwindigkeiten um 90 km/h (25 m/s, 48 kn, Bft 10) sowie Starkregen mit Niederschlagsmengen bis 25 l/m² pro Stunde und Hagel.",
+          "instruction": "Gefahr durch: \n · Blitzschlag (Lebensgefahr!)\n · vereinzelt umstürzende Bäume\n · herabstürzende Gegenstände\n · vereinzelte, rasche Überflutungen von Straßen/Unterführungen\n · Aquaplaning\n · Hagelschlag\n\nHandlungsempfehlungen: \n · Aufenthalt im Freien vermeiden oder Schutz suchen (z.B. in Gebäuden)\n · Gewässer meiden\n · Gerüste und frei stehende Objekte (z.B. Leinwände und Bühnen) sichern\n · z.B. Zelte und Abdeckungen befestigen, wenn möglich, rechtzeitig abbauen\n · im Freien auf herabfallende Gegenstände (z.B. große Äste, Dachziegel) achten und ggf. Schutz suchen\n · Verhalten im Straßenverkehr anpassen\n · überflutete und gefährdete Abschnitte (wie Unterführungen) meiden",
+          "urgency": "immediate",
+          "level": 2,
+          "parameters": {
+            "Böen": "~90 [km/h]",
+            "Niederschlag": "<25 [l/m² in 1h]",
+            "Hagel": ">0 [cm]"
+          },
+          "color": "#fb8c00"
+        },
+        "attribution": "Data provided by DWD",
+        "friendly_name": "Kreis und Stadt Heilbronn Current warning level"
+      }
+    },
+    {
+      "entity_id": "sensor.kreis_und_stadt_heilbronn_advance_warning_level",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "region_name": "Kreis und Stadt Heilbronn",
+        "region_id": 908125999,
+        "last_update": "2026-08-16T17:27:43.731000+00:00",
+        "warning_count": 0,
+        "attribution": "Data provided by DWD",
+        "friendly_name": "Kreis und Stadt Heilbronn Advance warning level"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "thunderstorms",
+      "level": "orange",
+      "headline": "Amtliche WARNUNG vor STARKEM GEWITTER",
+      "kind": "current"
+    }
+  ]
+}

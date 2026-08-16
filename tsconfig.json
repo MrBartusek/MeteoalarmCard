@@ -2,11 +2,14 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "lib": [
       "es2017",
       "dom",
       "dom.iterable"
+    ],
+    "types": [
+      "vite/client"
     ],
     "noEmit": true,
     "noUnusedParameters": true,
@@ -16,6 +19,13 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "experimentalDecorators": true
-  }
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false
+  },
+  "include": [
+    "src",
+    "tests",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
 }

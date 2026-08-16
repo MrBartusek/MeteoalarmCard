@@ -15,6 +15,9 @@ export default css`
 		--red-level-color: var(---error-color, #db4437);
 		--orange-level-background-color: #ee5a24;
 		--yellow-level-background-color: var(--warning-color, #ffa600);
+
+		/* Swiper sets this on :root, which never matches inside a shadow root */
+		--swiper-theme-color: var(--primary-color);
 	}
 
 	:host([hidden]) {
@@ -120,12 +123,7 @@ export default css`
 
 	.swiper {
 		--swiper-pagination-bullet-size: 5px;
-	}
-
-	.swiper-pagination-bullet {
-		background-color: #dfdfdf;
-	}
-	.swiper-pagination-bullet-active {
-		background-color: #ffffff;
+		--swiper-pagination-bullet-inactive-color: #dfdfdf;
+		--swiper-pagination-color: #ffffff;
 	}
 `;

@@ -16,6 +16,14 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: ['@typescript-eslint', 'prettier'],
+    overrides: [
+        {
+            files: ['*.cjs'],
+            env: { node: true },
+            parserOptions: { sourceType: 'script' },
+            rules: { 'prettier/prettier': 'off' },
+        },
+    ],
     rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-explicit-any': 'off',

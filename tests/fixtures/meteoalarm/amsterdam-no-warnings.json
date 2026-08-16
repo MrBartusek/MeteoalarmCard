@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema.json",
+  "description": "No warnings, the alert attributes are gone entirely",
+  "entities": [
+    {
+      "entity_id": "binary_sensor.meteoalarm_amsterdam",
+      "state": "off",
+      "active": false,
+      "attributes": {
+        "attribution": "Information provided by MeteoAlarm",
+        "device_class": "safety",
+        "friendly_name": "Meteoalarm Amsterdam"
+      }
+    }
+  ],
+  "expected": []
+}

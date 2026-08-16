@@ -1,0 +1,34 @@
+x-hass-image: &hass-image ghcr.io/home-assistant/home-assistant:2026.8.2
+
+services:
+  homeassistant:
+    image: *hass-image
+    volumes:
+      - ./config:/config
+    ports:
+      - "127.0.0.1:8123:8123"
+    environment:
+      - TZ=Europe/London
+
+  ha-mcp:
+    image: ghcr.io/homeassistant-ai/ha-mcp:8.2.0
+    command: ha-mcp-web
+    ports:
+      - "127.0.0.1:9584:9584"
+    environment:
+      HOMEASSISTANT_URL: http://homeassistant:8123
+      # Signed with the jwt_key in seed/.storage/auth, so it only works against this seed.
+      HOMEASSISTANT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI0MWI4YTZmZDY0MGQ2ZDMzYjNlYjc3YWE0MzMxMGZhNCIsImlhdCI6MTc4NjgzODQwMCwiZXhwIjozMjUwMzY4MDAwMH0.S3VEq_kv_OzNS9STJYxtVvQfIu1gUBORtfMf6iSJ4Vs
+      MCP_PORT: 9584
+      MCP_SECRET_PATH: /meteoalarmcard-dev
+    depends_on:
+      - homeassistant
+
+  # Home Assistant runs as root, so only a container can delete what it wrote. Mounting the
+  # parent removes the config directory itself, which keeps Docker from creating it as root.
+  clean:
+    image: *hass-image
+    profiles: [tools]
+    entrypoint: ["sh", "-c", "rm -rf /work/config"]
+    volumes:
+      - ./:/work
