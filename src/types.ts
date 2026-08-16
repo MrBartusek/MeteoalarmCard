@@ -1,5 +1,5 @@
 import { ActionConfig, EntityConfig, LovelaceCardConfig } from 'custom-card-helpers';
-import { HassEntity } from 'home-assistant-js-websocket';
+import type { HassEntity } from 'home-assistant-js-websocket';
 
 export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	type: string;

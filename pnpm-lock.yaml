@@ -11,9 +11,6 @@ importers:
       custom-card-helpers:
         specifier: ^1.7.2
         version: 1.9.0
-      home-assistant-js-websocket:
-        specifier: ^5.11.1
-        version: 5.12.0
       lit:
         specifier: ^3.3.0
         version: 3.3.3
@@ -45,6 +42,9 @@ importers:
       eslint-plugin-prettier:
         specifier: ^5.0.1
         version: 5.0.1(eslint-config-prettier@9.0.0(eslint@8.51.0))(eslint@8.51.0)(prettier@3.0.3)
+      home-assistant-js-websocket:
+        specifier: ^9.6.0
+        version: 9.6.0
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -633,11 +633,11 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  home-assistant-js-websocket@5.12.0:
-    resolution: {integrity: sha512-ZSoHeV4CU9RDJ4MfABaGFfM4jef73zG7+53LJr/5BfTJytAsFZD0A+GhtbwAIB1n/ARJ+6orb8Mbi3mfmUyEMA==}
-
   home-assistant-js-websocket@6.1.1:
     resolution: {integrity: sha512-TnZFzF4mn5F/v0XKUTK2GMQXrn/+eQpgaSDSELl6U0HSwSbFwRhGWLz330YT+hiKMspDflamsye//RPL+zwhDw==}
+
+  home-assistant-js-websocket@9.6.0:
+    resolution: {integrity: sha512-TK8HWW6UjCsUdjIBQRB2sBbEya0VniOBFqFjgqSznJiB7YriNgN8jghyThxOkgxwrnt2eN6oWoZMCTSp1o7H+w==}
 
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
@@ -1810,9 +1810,9 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  home-assistant-js-websocket@5.12.0: {}
-
   home-assistant-js-websocket@6.1.1: {}
+
+  home-assistant-js-websocket@9.6.0: {}
 
   human-signals@2.1.0: {}
 
