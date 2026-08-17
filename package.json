@@ -1,6 +1,6 @@
 {
     "name": "meteoalarm-card",
-    "version": "2.8.0",
+    "version": "2.9.0",
     "description": "Meteoalarm card for Home Assistant Lovelace UI",
     "main": "dist/meteoalarm-card.js",
     "keywords": [
@@ -24,9 +24,10 @@
         "url": "https://github.com/MrBartusek/MeteoalarmCard/issues"
     },
     "module": "meteoalarm-card.js",
-    "packageManager": "pnpm@11.9.0",
+    "packageManager": "pnpm@11.22.0",
     "engines": {
-        "node": ">=22.18"
+        "node": ">=24",
+        "pnpm": ">=11"
     },
     "scripts": {
         "start": "vite build && concurrently --kill-others --names build,serve \"vite build --watch --emptyOutDir false\" \"vite preview\"",
@@ -40,27 +41,28 @@
         "build-tools": "tsc -p tools",
         "fix-translations": "node tools/dist/fix-translations.js",
         "translations-summary": "node tools/dist/translations-summary",
-        "lint": "eslint . --ext .ts,.cjs",
+        "lint": "eslint .",
         "test": "vitest run",
         "test:watch": "vitest"
     },
     "dependencies": {
         "custom-card-helpers": "^2.0.0",
-        "lit": "^3.3.0",
+        "lit": "^3.3.3",
         "swiper": "^8.2.2"
     },
     "devDependencies": {
-        "@types/node": "^22.20.0",
-        "@typescript-eslint/eslint-plugin": "^6.7.5",
-        "@typescript-eslint/parser": "^6.7.5",
-        "concurrently": "^9.2.1",
-        "eslint": "^8.51.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-prettier": "^5.0.1",
+        "@eslint/js": "^10.0.1",
+        "@types/node": "^24.13.3",
+        "concurrently": "^10.0.4",
+        "eslint": "^10.8.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.6",
+        "globals": "^17.9.0",
         "home-assistant-js-websocket": "^9.6.0",
-        "prettier": "^3.0.3",
-        "terser": "^5.50.0",
+        "prettier": "^3.9.6",
+        "terser": "^5.49.2",
         "typescript": "^5.9.3",
+        "typescript-eslint": "^8.66.0",
         "vite": "^8.2.1",
         "vitest": "^4.1.10"
     }
