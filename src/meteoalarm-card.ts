@@ -292,6 +292,7 @@ export class MeteoalarmCard extends LitElement {
 				this.config.show_warning_times,
 				this.config.ignored_levels,
 				this.config.ignored_events,
+				this.hass.locale?.language ?? this.hass.language,
 			);
 
 			// Handle hide_when_no_warning
@@ -330,17 +331,19 @@ export class MeteoalarmCard extends LitElement {
 											<div class="content">
 												${this.renderMainIcon(event.icon)} ${this.renderHeadlines(event.headlines)}
 											</div>
-											${event.caption
-												? html`
-														<div class="caption">
-															${this.renderCaption(
-																event.captionPrefixText,
-																event.caption,
-																event.captionSuffixIcon,
-															)}
-														</div>
-													`
-												: ''}
+											${
+												event.caption
+													? html`
+															<div class="caption">
+																${this.renderCaption(
+																	event.captionPrefixText,
+																	event.caption,
+																	event.captionSuffixIcon,
+																)}
+															</div>
+														`
+													: ''
+											}
 										</div>
 									`,
 								)}
@@ -398,29 +401,31 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private renderCaption(
-	prefixText: string | undefined,
-	caption: string,
-	suffixIcon: string | undefined,
-): TemplateResult {
-	return html`
-		${prefixText
-			? html`
-					<span class="caption-text caption-prefix">${prefixText}&nbsp;</span>
-			  `
-			: ''}
+		prefixText: string | undefined,
+		caption: string,
+		suffixIcon: string | undefined,
+	): TemplateResult {
+		return html`
+			${
+				prefixText
+					? html` <span class="caption-text caption-prefix">${prefixText}&nbsp;</span> `
+					: ''
+			}
 
-		<span class="caption-text">${caption}</span>
+			<span class="caption-text">${caption}</span>
 
-		${suffixIcon
-			? html`
-					<ha-icon
-						class="caption-icon caption-icon-suffix"
-						icon="mdi:${suffixIcon}"
-					></ha-icon>
-			  `
-			: ''}
-	`;
-}
+			${
+				suffixIcon
+					? html`
+							<ha-icon
+								class="caption-icon caption-icon-suffix"
+								icon="mdi:${suffixIcon}"
+							></ha-icon>
+						`
+					: ''
+			}
+		`;
+	}
 
 	private setCardMargin(showMargin: boolean): void {
 		const container = this.shadowRoot?.host as HTMLElement;

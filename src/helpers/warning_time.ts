@@ -26,17 +26,18 @@ export function formatWarningCaption(
 	alert: MeteoalarmAlert,
 	showWarningTimes = false,
 	now: Date = new Date(),
+	locale = 'en',
 ): WarningCaption | undefined {
 	if (!showWarningTimes) {
 		return getLegacyCaption(alert);
 	}
 
 	if (alert.kind === MeteoalarmAlertKind.Expected) {
-		return formatExpectedCaption(alert, now);
+		return formatExpectedCaption(alert, now, locale);
 	}
 
 	if (alert.kind === MeteoalarmAlertKind.Current) {
-		return formatCurrentCaption(alert, now);
+		return formatCurrentCaption(alert, now, locale);
 	}
 
 	/*
@@ -51,12 +52,12 @@ export function formatWarningCaption(
 		const notToday = start && getLocalDayDifference(start, now) > 0;
 
 		if (start && notToday) {
-			return formatExpectedCaption(alert, now);
+			return formatExpectedCaption(alert, now, locale);
 		}
 	}
 
 	if (alert.timing?.start || alert.timing?.end) {
-		return formatCurrentCaption(alert, now);
+		return formatCurrentCaption(alert, now, locale);
 	}
 
 	return undefined;
@@ -73,7 +74,7 @@ function getLegacyCaption(alert: MeteoalarmAlert): WarningCaption | undefined {
 	return undefined;
 }
 
-function formatExpectedCaption(alert: MeteoalarmAlert, now: Date): WarningCaption {
+function formatExpectedCaption(alert: MeteoalarmAlert, now: Date, locale: string): WarningCaption {
 	const start = alert.timing?.start;
 
 	if (!start) {
@@ -84,12 +85,16 @@ function formatExpectedCaption(alert: MeteoalarmAlert, now: Date): WarningCaptio
 	}
 
 	return {
-		caption: formatTimingValue(start, alert.timing, now),
+		caption: formatTimingValue(start, alert.timing, now, locale),
 		suffixIcon: CLOCK_ICON,
 	};
 }
 
-function formatCurrentCaption(alert: MeteoalarmAlert, now: Date): WarningCaption | undefined {
+function formatCurrentCaption(
+	alert: MeteoalarmAlert,
+	now: Date,
+	locale: string,
+): WarningCaption | undefined {
 	const start = alert.timing?.start;
 	const end = alert.timing?.end;
 
@@ -108,22 +113,23 @@ function formatCurrentCaption(alert: MeteoalarmAlert, now: Date): WarningCaption
 	// No known end — alert is open-ended, just show when it started.
 	if (!end) {
 		return {
-			caption: formatTimingValue(start!, alert.timing, now),
+			caption: formatTimingValue(start!, alert.timing, now, locale),
 		};
 	}
 
 	if (isNow || !parsedStart) {
 		return {
-			caption: formatTimingValue(end, alert.timing, now),
+			caption: formatTimingValue(end, alert.timing, now, locale),
 			...(fullDay ? {} : { prefixText: localize('common.until') }),
 		};
 	}
 
 	return {
-		caption: `${formatTimingValue(start!, alert.timing, now)}–${formatTimingValue(
+		caption: `${formatTimingValue(start!, alert.timing, now, locale)}–${formatTimingValue(
 			end,
 			alert.timing,
 			now,
+			locale,
 		)}`,
 	};
 }
@@ -145,6 +151,7 @@ function formatTimingValue(
 	value: string,
 	timing: MeteoalarmAlertTiming | undefined,
 	now: Date,
+	locale: string,
 ): string {
 	const parsed = parseTimestamp(value);
 
@@ -153,11 +160,11 @@ function formatTimingValue(
 	}
 
 	if (isFullDayTiming(timing)) {
-		return formatDayReference(parsed, now);
+		return formatDayReference(parsed, now, locale);
 	}
 
-	const dayReference = getDayReference(parsed, now);
-	const time = formatTime(parsed);
+	const dayReference = getDayReference(parsed, now, locale);
+	const time = formatTime(parsed, locale);
 
 	return dayReference ? `${dayReference} ${time}` : time;
 }
@@ -221,7 +228,7 @@ function parseTimestamp(value: string): Date | undefined {
 	return date;
 }
 
-function formatDayReference(date: Date, now: Date): string {
+function formatDayReference(date: Date, now: Date, locale: string): string {
 	const dayDifference = getLocalDayDifference(date, now);
 
 	if (dayDifference === 0) {
@@ -232,10 +239,10 @@ function formatDayReference(date: Date, now: Date): string {
 		return localizeDay('tomorrow');
 	}
 
-	return formatWeekday(date, 'long');
+	return formatWeekday(date, 'long', locale);
 }
 
-function getDayReference(date: Date, now: Date): string {
+function getDayReference(date: Date, now: Date, locale: string): string {
 	const dayDifference = getLocalDayDifference(date, now);
 
 	if (dayDifference === 0) {
@@ -246,19 +253,19 @@ function getDayReference(date: Date, now: Date): string {
 		return localizeDay('tomorrow');
 	}
 
-	return formatWeekday(date, 'short');
+	return formatWeekday(date, 'short', locale);
 }
 
-function formatTime(date: Date): string {
-	return new Intl.DateTimeFormat(getLocale(), {
+function formatTime(date: Date, locale: string): string {
+	return new Intl.DateTimeFormat(locale, {
 		hour: '2-digit',
 		minute: '2-digit',
 		hour12: false,
 	}).format(date);
 }
 
-function formatWeekday(date: Date, dayFormat: 'long' | 'short' | 'narrow'): string {
-	return new Intl.DateTimeFormat(getLocale(), {
+function formatWeekday(date: Date, dayFormat: 'long' | 'short' | 'narrow', locale: string): string {
+	return new Intl.DateTimeFormat(locale, {
 		weekday: dayFormat,
 	}).format(date);
 }
@@ -278,14 +285,6 @@ function localizeDay(day: 'today' | 'tomorrow'): string {
 	}
 
 	return day === 'today' ? 'Today' : 'Tomorrow';
-}
-
-function getLocale(): string {
-	if (typeof navigator !== 'undefined' && navigator.language) {
-		return navigator.language;
-	}
-
-	return 'en-US';
 }
 
 /**

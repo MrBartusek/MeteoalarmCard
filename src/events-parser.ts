@@ -31,6 +31,7 @@ class EventsParser {
 		showWarningTimes = false,
 		ignoredLevels: string[] = [],
 		ignoredEvents: string[] = [],
+		locale = 'en',
 	): MeteoalarmAlertParsed[] {
 		if (this.isAnyEntityUnavailable(entities)) {
 			return [PredefinedCards.unavailableCard()];
@@ -56,7 +57,7 @@ class EventsParser {
 			const now = new Date();
 			const warningCaption = hideCaption
 				? undefined
-				: formatWarningCaption(alert, showWarningTimes, now);
+				: formatWarningCaption(alert, showWarningTimes, now, locale);
 
 			result.push({
 				isActive: true,

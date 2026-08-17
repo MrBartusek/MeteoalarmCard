@@ -82,7 +82,7 @@ export default css`
 		font-size: var(--caption-font-size);
 		line-height: normal;
 	}
-	
+
 	.caption-prefix {
 		font-size: var(--caption-font-size);
 	}

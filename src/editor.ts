@@ -40,10 +40,6 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		}
 	}
 
-	get _show_warning_times(): boolean {
-		return this._config?.show_warning_times || false;
-	}
-
 	protected render(): TemplateResult {
 		if (!this.hass || !this.config) {
 			return html``;
@@ -116,6 +112,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 			switches.push({ name: 'hide_caption', selector: { boolean: {} } });
 		}
 		switches.push({ name: 'hide_when_no_warning', selector: { boolean: {} } });
+		switches.push({ name: 'show_warning_times', selector: { boolean: {} } });
 		schema.push({ name: '', type: 'grid', schema: switches });
 
 		schema.push({

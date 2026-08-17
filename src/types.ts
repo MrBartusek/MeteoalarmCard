@@ -37,8 +37,8 @@ export interface MeteoalarmIntegrationMetadata {
 }
 
 export interface MeteoalarmAlertTiming {
-    start?: string;
-    end?: string;
+	start?: string;
+	end?: string;
 }
 
 export enum MeteoalarmIntegrationEntityType {
