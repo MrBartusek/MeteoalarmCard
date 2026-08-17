@@ -3,7 +3,6 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm karta zobrazuje aktuální meteorologické výstrahy v okolí.",
-    "warning": "Varování",
     "expected": "Očekávané",
     "unavailable": {
       "long": "Výstraha není dostupná",
@@ -25,6 +24,7 @@
   },
   "editor": {
     "entity": "Entita",
+    "entities": null,
     "integration": "Integrace",
     "required": "Povinné",
     "recommended": "Doporučeno",
@@ -42,7 +42,7 @@
     },
     "error": {
       "expected_entity": "Nenalezena entita. Budoucí výstrahy nebudou zobrazeny.",
-      "too_many_entities": "Nalezeno více entit než bylo očekáváno. Očekáváno: {expected} entit, nalezeno {got} entit.",
+      "too_many_entities": "Nalezeno více entit než bylo očekáváno. Očekáváno: {expected_entities_count} entit, nalezeno {selected_entities_count} entit.",
       "duplicate": "Nalezeny duplicity v seznamu entit."
     },
     "scaling_mode": "Režim změny velikosti",

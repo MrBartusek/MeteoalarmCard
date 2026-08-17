@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"homeassistant": {
+			"type": "http",
+			"url": "http://localhost:9584/meteoalarmcard-dev"
+		}
+	}
+}

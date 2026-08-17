@@ -11,21 +11,20 @@ function readPraseFile(file: fs.PathLike) {
 	return JSON.parse(content);
 }
 
-const result: {lang: string, hits: number, misses: number}[] = [];
+const result: { lang: string; hits: number; misses: number }[] = [];
 
 fs.readdirSync(TRANSLATIONS_PATH).forEach((file_path) => {
 	const translationData = readPraseFile(path.join(TRANSLATIONS_PATH, file_path));
-	let hits = 0, misses = 0;
+	let hits = 0,
+		misses = 0;
 	const iterate = (obj) => {
-		Object.keys(obj).forEach(key => {
+		Object.keys(obj).forEach((key) => {
 			if (typeof obj[key] === 'object' && obj[key] !== null) {
 				iterate(obj[key]);
-			}
-			else {
-				if(obj[key] == null) {
+			} else {
+				if (obj[key] == null) {
 					misses++;
-				}
-				else {
+				} else {
 					hits++;
 				}
 			}
@@ -35,7 +34,7 @@ fs.readdirSync(TRANSLATIONS_PATH).forEach((file_path) => {
 	result.push({
 		lang: file_path.replace('.json', ''),
 		hits: hits,
-		misses: misses
+		misses: misses,
 	});
 });
 /* eslint-disable */

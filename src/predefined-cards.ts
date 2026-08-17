@@ -1,4 +1,4 @@
-import { HassEntity } from 'home-assistant-js-websocket';
+import type { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData } from './data';
 import { localize } from './localize/localize';
 import { MeteoalarmAlertParsed, MeteoalarmLevelType } from './types';

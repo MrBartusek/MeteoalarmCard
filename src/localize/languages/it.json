@@ -3,7 +3,6 @@
   "common": {
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti avvisa degli eventi meteorologici in corso.",
-    "warning": "Attenzione",
     "expected": "Previsto",
     "unavailable": {
       "long": "L'integrazione non è disponibile",
@@ -25,6 +24,7 @@
   },
   "editor": {
     "entity": "Entità",
+    "entities": null,
     "integration": "Integrazione",
     "required": "Richiesto",
     "recommended": "Consigliato",
@@ -42,7 +42,7 @@
     },
     "error": {
       "expected_entity": "L'entità di avviso futuro non è stata inserita. Gli eventi futuri non saranno mostrati.",
-      "too_many_entities": "Più entità del previsto non sono state fornite. Entita previste: {expected}; Entita fornite: {got} entità.",
+      "too_many_entities": "Più entità del previsto non sono state fornite. Entita previste: {expected_entities_count}; Entita fornite: {selected_entities_count} entità.",
       "duplicate": "Trovati duplicati nell'elenco delle entità."
     },
     "scaling_mode": null,

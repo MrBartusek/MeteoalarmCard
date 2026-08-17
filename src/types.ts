@@ -1,18 +1,5 @@
-import {
-	ActionConfig,
-	EntityConfig,
-	LovelaceCard,
-	LovelaceCardConfig,
-	LovelaceCardEditor,
-} from 'custom-card-helpers';
-import { HassEntity } from 'home-assistant-js-websocket';
-
-declare global {
-	interface HTMLElementTagNameMap {
-		'meteoalarm-card-editor': LovelaceCardEditor;
-		'hui-error-card': LovelaceCard;
-	}
-}
+import { ActionConfig, EntityConfig, LovelaceCardConfig } from 'custom-card-helpers';
+import type { HassEntity } from 'home-assistant-js-websocket';
 
 export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	type: string;
@@ -55,27 +42,33 @@ export interface MeteoalarmAlertTiming {
 }
 
 export enum MeteoalarmIntegrationEntityType {
-	// Alerts in this integrations all all in attributes of single entity
-	SingleEntity = 0,
-	// Alerts in this integration are split across two entities
-	// one contains current warnings and another future warnings
-	CurrentExpected = 1,
-	// Alerts in this integration are split across multiple (probably unlimited amount) of entities
-	// each one contains one warning
-	Slots = 2,
-	// Alerts in this integration are split across exactly 4 entities: warnings, watches, statements, advisories
-	WarningWatchStatementAdvisory = 3,
-	// Alerts in this integration are split across multiple entities, count is strictly specified
-	// Each warning is dedicated for one entity kind
-	SeparateEvents = 4,
+	/** Alerts in this integrations all all in attributes of single entity */
+	SingleEntity = 'single_entity',
+	/**
+	 * Alerts in this integration are split across two entities
+	 * one contains current warnings and another future warnings
+	 */
+	CurrentExpected = 'current_expected',
+	/**
+	 * Alerts in this integration are split across multiple (probably unlimited amount) of entities
+	 * each one contains one warning
+	 */
+	Slots = 'slots',
+	/** Alerts in this integration are split across exactly 4 entities: warnings, watches, statements, advisories */
+	WarningWatchStatementAdvisory = 'warning_watch_statement_advisory',
+	/**
+	 * Alerts in this integration are split across multiple entities, count is strictly specified
+	 * Each warning is dedicated for one entity kind
+	 */
+	SeparateEvents = 'separate_events',
 }
 /**
  * Is the alert currently active or will be active in the future
  * This is mostly used with type MeteoalarmIntegrationEntityType.CurrentExpected
  */
 export enum MeteoalarmAlertKind {
-	Current = 0,
-	Expected = 1,
+	Current = 'current',
+	Expected = 'expected',
 }
 
 export enum MeteoalarmScalingMode {
@@ -84,6 +77,8 @@ export enum MeteoalarmScalingMode {
 	Scale = 'scale',
 	HeadlineAndScale = 'headline_and_scale',
 }
+
+export const DEFAULT_SCALING_MODE = MeteoalarmScalingMode.HeadlineAndScale;
 
 // Event returned by the integration
 export interface MeteoalarmAlert {
@@ -114,32 +109,48 @@ export interface MeteoalarmAlertParsed {
 }
 
 export enum MeteoalarmEventType {
-	Unknown,
-	Nuclear,
-	Hurricane,
-	Tornado,
-	CoastalEvent,
-	ForestFire,
-	Avalanches,
-	Earthquake,
-	Volcano,
-	Flooding,
-	SeaEvent,
-	Thunderstorms,
-	Rain,
-	SnowIce,
-	HighTemperature,
-	LowTemperature,
-	Wind,
-	Fog,
-	AirQuality,
-	Dust,
-	Tsunami,
+	Unknown = 'unknown',
+	Nuclear = 'nuclear',
+	Hurricane = 'hurricane',
+	Tornado = 'tornado',
+	CoastalEvent = 'coastal_event',
+	ForestFire = 'forest_fire',
+	Avalanches = 'avalanches',
+	Earthquake = 'earthquake',
+	Volcano = 'volcano',
+	Flooding = 'flooding',
+	SeaEvent = 'sea_event',
+	Thunderstorms = 'thunderstorms',
+	Rain = 'rain',
+	SnowIce = 'snow_ice',
+	HighTemperature = 'high_temperature',
+	LowTemperature = 'low_temperature',
+	Wind = 'wind',
+	Fog = 'fog',
+	AirQuality = 'air_quality',
+	Dust = 'dust',
+	Tsunami = 'tsunami',
 }
 
 export enum MeteoalarmLevelType {
-	Red = 3,
-	Orange = 2,
-	Yellow = 1,
-	None = 0,
+	Red = 'red',
+	Orange = 'orange',
+	Yellow = 'yellow',
+	None = 'none',
+}
+
+// Schema for the built-in ha-form component - Home Assistant doesn't ship
+// types for it, see https://developers.home-assistant.io/docs/frontend/custom-ui/custom-card/#using-the-built-in-form-editor
+export interface HaFormSchema {
+	name: string;
+	required?: boolean;
+	type?: string;
+	selector?: Record<string, unknown>;
+	schema?: HaFormSchema[];
+}
+
+export interface WarningRule {
+	field: string;
+	warning: string;
+	condition: boolean;
 }

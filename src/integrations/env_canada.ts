@@ -1,4 +1,4 @@
-import { HassEntity } from 'home-assistant-js-websocket';
+import type { HassEntity } from 'home-assistant-js-websocket';
 import {
 	MeteoalarmAlert,
 	MeteoalarmEventType,
@@ -51,9 +51,12 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 	}
 
 	private get eventTypes(): { en: string; fr: string; type: MeteoalarmEventType }[] {
-		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
-		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
 		return [
+			{
+				en: 'Air Quality',
+				fr: "Qualité De L'Air",
+				type: MeteoalarmEventType.AirQuality,
+			},
 			{
 				en: 'Arctic Outflow',
 				fr: 'Poussée d’air Arctique',
@@ -188,8 +191,6 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 	}
 
 	private get entityTypeTranslation(): { en: string[]; fr: string[]; type: EnvCanadaEntityType }[] {
-		// English from: https://www.canada.ca/en/environment-climate-change/services/types-weather-forecasts-use/public/criteria-alerts.html
-		// French from : https://www.canada.ca/fr/environnement-changement-climatique/services/types-previsions-meteorologiques-utilisation/publiques/criteres-alertes-meteo.html
 		return [
 			{
 				type: EnvCanadaEntityType.Warning,

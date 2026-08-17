@@ -1,4 +1,4 @@
-import { HassEntity } from 'home-assistant-js-websocket';
+import type { HassEntity } from 'home-assistant-js-websocket';
 import { MeteoalarmData, MeteoalarmEventInfo, MeteoalarmLevelInfo } from './data';
 import { localize } from './localize/localize';
 import { PredefinedCards } from './predefined-cards';
@@ -76,7 +76,7 @@ class EventsParser {
 			return [PredefinedCards.noWarningsCard(entities[0])];
 		}
 
-		return disableSweeper ? result.slice(1) : result;
+		return disableSweeper ? result.slice(0, 1) : result;
 	}
 
 	/**
@@ -126,16 +126,21 @@ class EventsParser {
 
 	private sortAlerts(alertsInput: MeteoalarmAlert[]): MeteoalarmAlert[] {
 		let alerts = [...alertsInput];
-		// Sort by how dangerous events are
+		// Sort by event, the events list is ordered from most to least dangerous
+		const eventsData = MeteoalarmData.events;
 		alerts = alerts.sort((a, b) => {
-			const eventsData = MeteoalarmData.events;
-			const aLevel = eventsData.indexOf(eventsData.find((e) => e.type == a.event)!);
-			const bLevel = eventsData.indexOf(eventsData.find((e) => e.type == b.event)!);
-			return bLevel - aLevel;
+			const aEvent = eventsData.findIndex((e) => e.type == a.event);
+			const bEvent = eventsData.findIndex((e) => e.type == b.event);
+			return aEvent - bEvent;
 		});
 
-		// Sort by level
-		alerts = alerts.sort((a, b) => b.level - a.level);
+		// Sort by level, the levels list is ordered from most to least dangerous
+		const levelsData = MeteoalarmData.levels;
+		alerts = alerts.sort((a, b) => {
+			const aLevel = levelsData.findIndex((l) => l.type == a.level);
+			const bLevel = levelsData.findIndex((l) => l.type == b.level);
+			return aLevel - bLevel;
+		});
 
 		// Push expected events to back of the list
 		alerts = alerts.sort((a, b) => {

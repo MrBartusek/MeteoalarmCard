@@ -1,7 +1,6 @@
-import { fireEvent } from 'custom-card-helpers';
-import { ActionHandlerDetail, ActionHandlerOptions } from 'custom-card-helpers/dist/types';
+import { ActionHandlerDetail, ActionHandlerOptions, fireEvent } from 'custom-card-helpers';
 import { noChange } from 'lit';
-import { AttributePart, directive, Directive, DirectiveParameters } from 'lit/directive';
+import { AttributePart, directive, Directive, DirectiveParameters } from 'lit/directive.js';
 
 const isTouch =
 	'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.maxTouchPoints > 0;
@@ -23,7 +22,6 @@ declare global {
 class ActionHandler extends HTMLElement implements ActionHandler {
 	public holdTime = 500;
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public ripple: any;
 
 	protected timer?: number;
@@ -196,7 +194,7 @@ export const actionHandler = directive(
 			return noChange;
 		}
 
-		// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		render(_options?: ActionHandlerOptions) {}
 	},
 );

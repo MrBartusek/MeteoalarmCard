@@ -1,4 +1,4 @@
-import { HassEntity } from 'home-assistant-js-websocket';
+import type { HassEntity } from 'home-assistant-js-websocket';
 import {
 	MeteoalarmAlert,
 	MeteoalarmEventType,
@@ -6,6 +6,7 @@ import {
 	MeteoalarmIntegrationEntityType,
 	MeteoalarmIntegrationMetadata,
 } from '../types';
+import { Utils } from '../utils';
 
 type BurzeDzisNetEntity = HassEntity & {
 	attributes: {
@@ -58,7 +59,7 @@ export default class BurzeDzisNet implements MeteoalarmIntegration {
 		if (to !== undefined) timing.end = to;
 		return {
 			event: event,
-			level: entity.attributes.level!,
+			level: Utils.getLevelByNumber(entity.attributes.level!),
 			headline: entity.attributes.description,
 			timing,
 		};

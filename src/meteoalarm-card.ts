@@ -9,15 +9,15 @@ import {
 	LovelaceCardConfig,
 	LovelaceCardEditor,
 } from 'custom-card-helpers';
-import { HassEntity } from 'home-assistant-js-websocket';
-import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult } from 'lit';
-import { customElement, property, state } from 'lit/decorators';
-import { ifDefined } from 'lit/directives/if-defined';
-import ResizeObserver from 'resize-observer-polyfill';
+import type { HassEntity } from 'home-assistant-js-websocket';
+import { CSSResultGroup, html, LitElement, PropertyValues, TemplateResult, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import Swiper, { Pagination } from 'swiper';
+import swiperCss from 'swiper/css?inline';
+import swiperPaginationCss from 'swiper/css/pagination?inline';
 import { version as CARD_VERSION } from '../package.json';
 import EventsParser from './events-parser';
-import swiperStyles from './external/swiperStyles';
 import { actionHandler } from './helpers/action-handler-directive';
 import { processConfigEntities } from './helpers/process-config-entities';
 import INTEGRATIONS from './integrations/integrations';
@@ -25,6 +25,7 @@ import { localize } from './localize/localize';
 import { getCanvasFont, getTextWidth } from './measure-text';
 import styles from './styles';
 import {
+	DEFAULT_SCALING_MODE,
 	MeteoalarmCardConfig,
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
@@ -116,7 +117,7 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	static get styles(): CSSResultGroup {
-		return [swiperStyles, styles];
+		return [unsafeCSS(swiperCss), unsafeCSS(swiperPaginationCss), styles];
 	}
 
 	public getCardSize(): number {
@@ -273,7 +274,7 @@ export class MeteoalarmCard extends LitElement {
 
 	private get scalingMode(): MeteoalarmScalingMode {
 		const modeString = this.config.scaling_mode;
-		if (!modeString) return MeteoalarmScalingMode.HeadlineAndScale;
+		if (!modeString) return DEFAULT_SCALING_MODE;
 		if (!Object.values(MeteoalarmScalingMode).includes(modeString as any)) {
 			throw new Error('MeteoalarmCard: ' + localize('error.invalid_scaling_mode'));
 		}

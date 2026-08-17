@@ -3,7 +3,6 @@
   "common": {
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
-    "warning": "Aviso",
     "expected": "Esperado",
     "unavailable": {
       "long": "La integración no está disponible",
@@ -25,6 +24,7 @@
   },
   "editor": {
     "entity": "Entidad",
+    "entities": null,
     "integration": "Integración",
     "required": "Necesario",
     "recommended": "Recomendado",
@@ -42,7 +42,7 @@
     },
     "error": {
       "expected_entity": "No se ha proporcionado la entidad de avisos esperada. No se mostrarán futuros eventos.",
-      "too_many_entities": "No se han proporcionado más entidades de las esperadas. Esperaba {expected} entidades, obtuve {obtuve} entidades.",
+      "too_many_entities": "No se han proporcionado más entidades de las esperadas. Esperaba {expected_entities_count} entidades, obtuve {selected_entities_count} entidades.",
       "duplicate": "Encontrados duplicados en la lista de entidades."
     },
     "scaling_mode": "Modo de Escalado",

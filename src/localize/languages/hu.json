@@ -3,7 +3,6 @@
   "common": {
     "name": "Meteoalarm Kártya",
     "description": "A Meteoalarm kártya figyelmeztet az aktuális időjárási eseményekre.",
-    "warning": "Figyelmeztetés",
     "expected": "Várható",
     "unavailable": {
       "long": "Az integráció nem elérhető",
@@ -25,6 +24,7 @@
   },
   "editor": {
     "entity": "Entitás",
+    "entities": null,
     "integration": "Integráció",
     "required": "Kötelező",
     "recommended": "Ajánlott",
@@ -42,7 +42,7 @@
     },
     "error": {
       "expected_entity": "A várható figyelmeztetések entitás nem lett megadva. A jövőbeli események nem jelennek meg.",
-      "too_many_entities": "Több entitás lett megadva a vártnál. Várt: {expected} entitás, kapott: {got} entitás.",
+      "too_many_entities": "Több entitás lett megadva a vártnál. Várt: {expected_entities_count} entitás, kapott: {selected_entities_count} entitás.",
       "duplicate": "Duplikátumok találhatók az entitások listájában."
     },
     "scaling_mode": "Méretezési mód",

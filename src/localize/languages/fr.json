@@ -3,7 +3,6 @@
   "common": {
     "name": "Carte Meteoalarm",
     "description": "La carte Meteoalarm vous avertit des phénomènes météorologiques en cours.",
-    "warning": null,
     "expected": null,
     "unavailable": {
       "long": "L'intégration est indisponible",
@@ -25,6 +24,7 @@
   },
   "editor": {
     "entity": "Entité",
+    "entities": null,
     "integration": "Intégration",
     "required": "Requis",
     "recommended": "Recommandé",

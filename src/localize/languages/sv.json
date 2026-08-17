@@ -3,7 +3,6 @@
   "common": {
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card varnar dig om aktuella väderhändelser.",
-    "warning": "Varning",
     "expected": "förväntad",
     "unavailable": {
       "long": "Integrationen är inte tillgänglig",
@@ -25,6 +24,7 @@
   },
   "editor": {
     "entity": "Enhet",
+    "entities": null,
     "integration": "Integration",
     "required": "Krävs",
     "recommended": "Rekommenderas",
@@ -42,7 +42,7 @@
     },
     "error": {
       "expected_entity": "Förväntad enhet för varningar har inte tilldelats. Framtida event kommer inte visas.",
-      "too_many_entities": "Fler enheter än förväntat har inte tilldelats. Förväntade {expected} entiteter, fick {got} enheter",
+      "too_many_entities": "Fler enheter än förväntat har inte tilldelats. Förväntade {expected_entities_count} entiteter, fick {selected_entities_count} enheter",
       "duplicate": "Hittade dupplicerade enheter i listan"
     },
     "scaling_mode": null,

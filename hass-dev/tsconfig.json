@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "target": "es2023",
+      "lib": ["es2023"],
+      "module": "nodenext",
+      "moduleResolution": "nodenext",
+      "types": ["node"],
+      "allowImportingTsExtensions": true,
+      "erasableSyntaxOnly": true,
+      "verbatimModuleSyntax": true
+    },
+    "include": ["*.ts"]
+}
