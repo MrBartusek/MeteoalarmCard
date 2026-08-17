@@ -1,6 +1,6 @@
 # Meteoalarm Card
 
-[![version](https://img.shields.io/npm/v/meteoalarm-card?label=version)](https://www.npmjs.com/package/meteoalarm-card)
+[![version](https://img.shields.io/github/v/release/MrBartusek/MeteoalarmCard?label=version)](https://github.com/MrBartusek/MeteoalarmCard/releases)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/MrBartusek/MeteoalarmCard/build.yaml?branch=master)](https://github.com/MrBartusek/MeteoalarmCard/actions)
 [![downloads](https://img.shields.io/github/downloads/MrBartusek/MeteoalarmCard/total?color=brightgreen)](https://github.com/MrBartusek/MeteoalarmCard/releases) 
@@ -18,7 +18,9 @@ MeteoalarmCard is a powerful yet simple custom card to show meteorological warni
 
 We recommend installing MeteoalarmCard via [Home Assistant Community Store](https://hacs.xyz)
 
-Just search for `Meteoalarm Card` in `Frontend` tab and hit download.
+Just search for `Meteoalarm Card` in HACS and hit download, or use the button below to open it directly in your instance.
+
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=MrBartusek&repository=MeteoalarmCard&category=plugin)
 
 ### Manual Installation
 

@@ -56,18 +56,20 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 				.computeWarning=${this.computeWarning}
 				@value-changed=${this.valueChanged}
 			></ha-form>
-			${this.integration
-				? html`
-						<a
-							class="docs-link"
-							href="https://github.com/MrBartusek/MeteoalarmCard/blob/master/docs/scaling-mode.md"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Scaling mode documentation
-						</a>
-				  `
-				: ''}
+			${
+				this.integration
+					? html`
+							<a
+								class="docs-link"
+								href="https://github.com/MrBartusek/MeteoalarmCard/blob/master/docs/scaling-mode.md"
+								target="_blank"
+								rel="noreferrer"
+							>
+								Scaling mode documentation
+							</a>
+						`
+					: ''
+			}
 		`;
 	}
 
@@ -132,7 +134,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		return {
 			scaling_mode: DEFAULT_SCALING_MODE,
 			...this.config,
-			entities: isSingleEntity(integration) ? entityIds[0] ?? '' : entityIds,
+			entities: isSingleEntity(integration) ? (entityIds[0] ?? '') : entityIds,
 		};
 	}
 

@@ -1,2 +1,0 @@
-# Dotfiles are ignored by default; the eslint configs should still be linted.
-!.eslintrc.cjs
