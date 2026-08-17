@@ -45,7 +45,11 @@
     {
       "event": "unknown",
       "level": "yellow",
-      "headline": "Geruchsbelästigung durch Brandgeruch - Stadtkreis Baden-Baden und Landkreis Rastatt"
+      "headline": "Geruchsbelästigung durch Brandgeruch - Stadtkreis Baden-Baden und Landkreis Rastatt",
+      "timing": {
+        "start": "",
+        "end": ""
+      }
     }
   ]
 }
