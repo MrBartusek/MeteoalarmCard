@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Integrácia nie je k dispozícii",
       "short": "Nedostupné"
-    }
+    },
+    "today": "Dnes",
+    "tomorrow": "Zajtra",
+    "allday": "Celý deň",
+    "until": "do"
   },
   "error": {
     "missing_entity": "Je potrebné zadať entitu!",
@@ -47,7 +51,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Zobraziť časy výstrah"
   },
   "events": {
     "no_warnings": "Žiadne upozornenia",
