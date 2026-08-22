@@ -4,15 +4,17 @@ import EnvironmentCanada from './env_canada';
 import Meteoalarm from './meteoalarm';
 import MeteoFrance from './meteofrance';
 import NINA from './nina';
+import NWSAlerts from './nwsalerts';
 import Weatheralerts from './weatheralerts';
 
 const INTEGRATIONS = [
+	BurzeDzisNet,
+	DWD,
+	EnvironmentCanada,
 	Meteoalarm,
 	MeteoFrance,
-	DWD,
 	NINA,
-	EnvironmentCanada,
-	BurzeDzisNet,
+	NWSAlerts,
 	Weatheralerts,
 ];
 
