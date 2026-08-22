@@ -239,6 +239,7 @@ export class MeteoalarmCard extends LitElement {
 			}
 		}
 
+		// ha-card only changes height when its slot renders, so -1 is what lets the observer re-measure
 		this.measuredWidth = measured ? card.clientWidth : -1;
 	}
 
