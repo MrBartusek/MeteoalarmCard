@@ -159,15 +159,18 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private attachObserver() {
-		const card = this.shadowRoot!.querySelector('ha-card');
-		if (!card) return;
 		if (!this.resizeObserver) {
 			this.resizeObserver = new ResizeObserver(([entry]) => {
 				if (entry.target.clientWidth != this.measuredWidth) this.measureCard();
 			});
 		}
+
 		this.resizeObserver.disconnect();
-		this.resizeObserver.observe(card);
+
+		const card = this.shadowRoot!.querySelector('ha-card');
+		if (card) {
+			this.resizeObserver.observe(card);
+		}
 	}
 
 	private getHeadlineElements(container: HTMLElement): [HTMLElement, HTMLElement, HTMLElement] {
