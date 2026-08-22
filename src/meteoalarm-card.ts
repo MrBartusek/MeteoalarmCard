@@ -1,6 +1,5 @@
 import {
 	ActionHandlerEvent,
-	debounce,
 	EntityConfig,
 	handleAction,
 	hasAction,
@@ -55,6 +54,10 @@ export class MeteoalarmCard extends LitElement {
 	@state() private config!: MeteoalarmCardConfig;
 
 	private resizeObserver!: ResizeObserver;
+
+	private measuredWidth = -1;
+
+	private observedCard?: Element;
 
 	private swiper!: Swiper;
 
@@ -128,9 +131,12 @@ export class MeteoalarmCard extends LitElement {
 		return hasConfigOrEntityChanged(this, changedProps, false);
 	}
 
-	public firstUpdated(): void {
-		this.measureCard();
+	protected updated(): void {
 		this.attachObserver();
+		this.measureCard();
+	}
+
+	public firstUpdated(): void {
 		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper');
 		if (!swiper) return;
 		this.swiper = new Swiper(swiper, {
@@ -155,12 +161,17 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private attachObserver() {
-		if (!this.resizeObserver) {
-			this.resizeObserver = new ResizeObserver(debounce(() => this.measureCard(), 250, false));
-		}
 		const card = this.shadowRoot!.querySelector('ha-card');
-		if (!card) return;
+		if (!card || card === this.observedCard) return;
+		if (!this.resizeObserver) {
+			// Resize observers run before paint, so this rescales without a visible frame
+			this.resizeObserver = new ResizeObserver(([entry]) => {
+				if (entry.target.clientWidth != this.measuredWidth) this.measureCard();
+			});
+		}
+		if (this.observedCard) this.resizeObserver.unobserve(this.observedCard);
 		this.resizeObserver.observe(card);
+		this.observedCard = card;
 	}
 
 	private getHeadlineElements(container: HTMLElement): [HTMLElement, HTMLElement, HTMLElement] {
@@ -190,7 +201,12 @@ export class MeteoalarmCard extends LitElement {
 		// Scale headlines of each swiper card
 		const swiper = card.querySelector('.swiper-wrapper');
 		const slides = swiper?.getElementsByClassName('swiper-slide') as HTMLCollectionOf<HTMLElement>;
+		let measured = false;
 		for (const slide of slides) {
+			// Not laid out yet, measuring would collapse the card to icon only
+			if (slide.clientWidth <= 0) continue;
+			measured = true;
+
 			const [regular, narrow, veryNarrow] = this.getHeadlineElements(slide);
 			const sizes: [string, HTMLElement][] = [['regular', regular]];
 			if (swapHeadline) {
@@ -226,6 +242,8 @@ export class MeteoalarmCard extends LitElement {
 				}
 			}
 		}
+
+		this.measuredWidth = measured ? card.clientWidth : -1;
 	}
 
 	private setCardScaling(
