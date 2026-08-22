@@ -1,6 +1,5 @@
 import {
 	ActionHandlerEvent,
-	debounce,
 	EntityConfig,
 	handleAction,
 	hasAction,
@@ -128,9 +127,12 @@ export class MeteoalarmCard extends LitElement {
 		return hasConfigOrEntityChanged(this, changedProps, false);
 	}
 
-	public firstUpdated(): void {
-		this.measureCard();
+	protected updated(): void {
 		this.attachObserver();
+		this.measureCard();
+	}
+
+	public firstUpdated(): void {
 		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper');
 		if (!swiper) return;
 		this.swiper = new Swiper(swiper, {
@@ -156,11 +158,15 @@ export class MeteoalarmCard extends LitElement {
 
 	private attachObserver() {
 		if (!this.resizeObserver) {
-			this.resizeObserver = new ResizeObserver(debounce(() => this.measureCard(), 250, false));
+			this.resizeObserver = new ResizeObserver(() => this.measureCard());
 		}
+
+		this.resizeObserver.disconnect();
+
 		const card = this.shadowRoot!.querySelector('ha-card');
-		if (!card) return;
-		this.resizeObserver.observe(card);
+		if (card) {
+			this.resizeObserver.observe(card);
+		}
 	}
 
 	private getHeadlineElements(container: HTMLElement): [HTMLElement, HTMLElement, HTMLElement] {
@@ -191,6 +197,9 @@ export class MeteoalarmCard extends LitElement {
 		const swiper = card.querySelector('.swiper-wrapper');
 		const slides = swiper?.getElementsByClassName('swiper-slide') as HTMLCollectionOf<HTMLElement>;
 		for (const slide of slides) {
+			// Not laid out yet, measuring would collapse the card to icon only
+			if (slide.clientWidth <= 0) continue;
+
 			const [regular, narrow, veryNarrow] = this.getHeadlineElements(slide);
 			const sizes: [string, HTMLElement][] = [['regular', regular]];
 			if (swapHeadline) {
