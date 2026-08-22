@@ -55,8 +55,6 @@ export class MeteoalarmCard extends LitElement {
 
 	private resizeObserver!: ResizeObserver;
 
-	private measuredWidth = -1;
-
 	private swiper!: Swiper;
 
 	// Entity of which alert is displayed on currently selected slide
@@ -160,9 +158,7 @@ export class MeteoalarmCard extends LitElement {
 
 	private attachObserver() {
 		if (!this.resizeObserver) {
-			this.resizeObserver = new ResizeObserver(([entry]) => {
-				if (entry.target.clientWidth != this.measuredWidth) this.measureCard();
-			});
+			this.resizeObserver = new ResizeObserver(() => this.measureCard());
 		}
 
 		this.resizeObserver.disconnect();
@@ -200,11 +196,9 @@ export class MeteoalarmCard extends LitElement {
 		// Scale headlines of each swiper card
 		const swiper = card.querySelector('.swiper-wrapper');
 		const slides = swiper?.getElementsByClassName('swiper-slide') as HTMLCollectionOf<HTMLElement>;
-		let measured = false;
 		for (const slide of slides) {
 			// Not laid out yet, measuring would collapse the card to icon only
 			if (slide.clientWidth <= 0) continue;
-			measured = true;
 
 			const [regular, narrow, veryNarrow] = this.getHeadlineElements(slide);
 			const sizes: [string, HTMLElement][] = [['regular', regular]];
@@ -241,9 +235,6 @@ export class MeteoalarmCard extends LitElement {
 				}
 			}
 		}
-
-		// ha-card only changes height when its slot renders, so -1 is what lets the observer re-measure
-		this.measuredWidth = measured ? card.clientWidth : -1;
 	}
 
 	private setCardScaling(
