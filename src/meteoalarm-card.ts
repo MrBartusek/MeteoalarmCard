@@ -57,8 +57,6 @@ export class MeteoalarmCard extends LitElement {
 
 	private measuredWidth = -1;
 
-	private observedCard?: Element;
-
 	private swiper!: Swiper;
 
 	// Entity of which alert is displayed on currently selected slide
@@ -162,16 +160,13 @@ export class MeteoalarmCard extends LitElement {
 
 	private attachObserver() {
 		const card = this.shadowRoot!.querySelector('ha-card');
-		if (!card || card === this.observedCard) return;
+		if (!card) return;
 		if (!this.resizeObserver) {
-			// Resize observers run before paint, so this rescales without a visible frame
 			this.resizeObserver = new ResizeObserver(([entry]) => {
 				if (entry.target.clientWidth != this.measuredWidth) this.measureCard();
 			});
 		}
-		if (this.observedCard) this.resizeObserver.unobserve(this.observedCard);
 		this.resizeObserver.observe(card);
-		this.observedCard = card;
 	}
 
 	private getHeadlineElements(container: HTMLElement): [HTMLElement, HTMLElement, HTMLElement] {
