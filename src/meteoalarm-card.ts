@@ -166,6 +166,7 @@ export class MeteoalarmCard extends LitElement {
 				if (entry.target.clientWidth != this.measuredWidth) this.measureCard();
 			});
 		}
+		this.resizeObserver.disconnect();
 		this.resizeObserver.observe(card);
 	}
 
