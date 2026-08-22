@@ -20,14 +20,7 @@
 			"command": "pnpm run dev:down",
 			"problemMatcher": [],
 			"label": "HASS: stop",
-			"detail": "stop the Home Assistant dev instance"
-		},
-		{
-			"type": "shell",
-			"command": "pnpm run dev:clean",
-			"problemMatcher": [],
-			"label": "HASS: cleanup",
-			"detail": "stop the instance and delete hass-dev/config"
+			"detail": "stop the Home Assistant dev instance and delete hass-dev/config"
 		}
 	]
 }

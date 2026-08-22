@@ -46,10 +46,9 @@ Spins up a preconfigured instance of Home Assistant with the bundled integration
    ```
 1. Open <http://localhost:8123>. You should auto-login to the preconfigured Home Assistant instance. Open **MeteoalarmCard** in the sidebar.
 
-Other commands:
+Commands:
 
-- `pnpm run dev:down` stops the instance
-- `pnpm run dev:clean` stops it and deletes `hass-dev/config`
+- `pnpm run dev:down` stops the instance and deletes `hass-dev/config`
 
 ### Option B: your own Home Assistant
 

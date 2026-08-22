@@ -8,7 +8,7 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 
 - `pnpm start` — dev server; add `http://localhost:5000/meteoalarm-card.js` as a resource in a live Home Assistant instance to see the card
 - `pnpm run dev` - Run Home Assistant dev instance with pre-seeded integrations and cards. Includes MCP server.
-- `pnpm run dev:down` - stop it; `pnpm run dev:clean` - delete `hass-dev/config` once stopped, so the next `dev` is clean
+- `pnpm run dev:down` - stop it and delete `hass-dev/config`, so the next `dev` is clean
 - `pnpm run lint`, `pnpm test` and `pnpm run build` — the verification steps; `build` typechecks and bundles, it does not lint or test
 - `pnpm test` covers `src/integrations` only and is fixture driven, `pnpm run test:watch` while iterating
 - Translation tools: run `pnpm run build-tools` before `pnpm run fix-translations` or `pnpm run translations-summary`

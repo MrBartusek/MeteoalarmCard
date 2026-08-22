@@ -98,5 +98,5 @@ console.log(`
   Card server:     http://localhost:5000                     (run \`pnpm start\` in another terminal)
   MCP endpoint:    http://localhost:9584/meteoalarmcard-dev  (for AI agents, see .mcp.json)
 
-  \`pnpm run dev:down\` stops it, \`pnpm run dev:clean\` also wipes it.
+  \`pnpm run dev:down\` stops and wipes it.
 `);
