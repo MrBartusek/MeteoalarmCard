@@ -2,18 +2,17 @@
   "$schema": "../schema/schema.json",
   "common": {
     "name": "Meteoalarm Card",
-    "description": "Meteoalarm kartica vas upozorava na trenutne vremenske prilike.",
-    "warning": "Upozorenje",
+    "description": "Meteoalarm kartica vas upozorava na trenutne vremenske događaje.",
     "expected": "Očekivano",
     "unavailable": {
-      "long": "Integracija je nedostupna",
+      "long": "Integracija nije dostupna",
       "short": "Nedostupno"
     }
   },
   "error": {
-    "missing_entity": "Izbor entiteta je obavezan!",
-    "invalid_integration": "Integracija nije ispravna!",
-    "invalid_scaling_mode": "Način prilagođavanja veličine nije ispravan!",
+    "missing_entity": "Potrebno je navesti entitete!",
+    "invalid_integration": "Ova integracija nije važeća!",
+    "invalid_scaling_mode": "Ovaj režim skaliranja nije važeći!",
     "entity_invalid": {
       "single": "Izabrana integracija ne odgovara izabranom entitetu.",
       "multiple": "Izabrana integracija ne odgovara izabranim entitetima: {entity}."
@@ -21,27 +20,28 @@
   },
   "editor": {
     "entity": "Entitet",
+    "entities": "Entiteti",
     "integration": "Integracija",
     "required": "Obavezno",
     "recommended": "Preporučeno",
-    "override_headline": "Zameni naslov koji pruža integracija",
+    "override_headline": "Zameni naslov koji daje integracija",
     "hide_when_no_warning": "Sakrij kada nema upozorenja",
-    "hide_caption": "Sakrij opis",
-    "disable_swiper": "Onemogući slajder za upozorenja",
+    "hide_caption": "Sakrij natpis",
+    "disable_swiper": "Onemogući klizač upozorenja",
     "description": {
       "start": "Izabrana integracija kreira više entiteta.",
-      "current_expected": "Prvi sa trenutnim događajima, a drugi sa budućim.",
-      "slots": "Tačan broj kreiranih entiteta određen je njenom konfiguracijom.",
+      "current_expected": "Prvi sa trenutnim događajima i drugi sa budućim.",
+      "slots": "Tačan broj kreiranih entiteta određuje konfiguracija.",
       "separate_events": "Svaka vrsta događaja ima poseban entitet.",
-      "warning_watch_statement_advisory": "Postoje 4 entiteta: upozorenja, osmatranja, saopštenja i saveti.",
-      "end": "Trebalo bi da ih dodate sve kako biste bili sigurni da ne propustite nijedno obaveštenje."
+      "warning_watch_statement_advisory": "Postoje 4 entiteta: upozorenja, nadzori, saopštenja i saveti.",
+      "end": "Dodajte sve da biste bili sigurni da nećete propustiti nijedno upozorenje."
     },
     "error": {
-      "expected_entity": "Entitet za najavljena upozorenja nije naveden. Budući događaji neće biti prikazani.",
-      "too_many_entities": "Navedeno je više entiteta nego što je očekivano. Očekivano entiteta: {expected}, navedeno: {got}.",
-      "duplicate": "Pronađeni su duplikati u listi entiteta."
+      "expected_entity": "Očekivani entitet upozorenja nije obezbeđen. Budući događaj neće biti prikazan.",
+      "too_many_entities": "Obezbeđeno je više entiteta nego što je očekivano. Očekivano {expected_entities_count}, dobijeno {selected_entities_count}.",
+      "duplicate": "Pronađeni duplikati u listi entiteta."
     },
-    "scaling_mode": "Prilagođavanje veličine",
+    "scaling_mode": "Režim skaliranja",
     "scaling_mode_options": {
       "disabled": "Onemogućeno",
       "headline": "Samo naslov",
@@ -61,31 +61,31 @@
     "fog": "magla",
     "high_temperature": "visoka temperatura",
     "low_temperature": "niska temperatura",
-    "coastal_event": "talasi/plima",
-    "tsunami": "cunami",
+    "coastal_event": "obalni događaj",
+    "tsunami": "tsunami",
     "sea_event": "nepogode na moru",
     "forest_fire": "šumski požar",
     "avalanches": "lavine",
-    "thunderstorms": "grmljavina",
+    "thunderstorms": "grmljavinske oluje",
     "rain": "kiša",
-    "flooding": "poplava",
+    "flooding": "poplave",
     "air_quality": "kvalitet vazduha",
     "dust": "prašina"
   },
   "messages": {
     "yellow": {
-      "event": "Žuti alarm: {event}",
-      "generic": "Žuti alarm",
+      "event": "Žuto upozorenje za {event}",
+      "generic": "Žuto upozorenje",
       "color": "Žuto"
     },
     "orange": {
-      "event": "Narandžasti alarm: {event}",
-      "generic": "Narandžasti alarm",
+      "event": "Narandžasto upozorenje za {event}",
+      "generic": "Narandžasto upozorenje",
       "color": "Narandžasto"
     },
     "red": {
-      "event": "Crveni alarm: {event}",
-      "generic": "Crveni alarm",
+      "event": "Crveno upozorenje za {event}",
+      "generic": "Crveno upozorenje",
       "color": "Crveno"
     }
   }
