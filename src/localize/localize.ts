@@ -50,9 +50,7 @@ export function localize(string: string): string {
 	if (storedLang === 'null') {
 		storedLang = null;
 	}
-	const lang = (storedLang || navigator.language.split('-')[0] || 'en')
-		.replace(/['"]+/g, '')
-		.replace('-', '_');
+	const lang = (storedLang || navigator.language.split('-')[0] || 'en').replace(/['"]+/g, '');
 
 	let translated: string | undefined = undefined;
 
