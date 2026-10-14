@@ -59,6 +59,14 @@
           "kind": {
             "description": "MeteoalarmAlertKind value, only the CurrentExpected integrations return it",
             "type": "string"
+          },
+          "timing": {
+            "type": "object",
+            "properties": {
+              "start": { "type": ["string", "null"] },
+              "end": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
           }
         }
       }

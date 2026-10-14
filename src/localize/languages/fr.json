@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "L'intégration est indisponible",
       "short": "Indisponible"
-    }
+    },
+    "today": "Aujourd'hui",
+    "tomorrow": "Demain",
+    "allday": "Toute la journée",
+    "until": "jusqu'à"
   },
   "error": {
     "missing_entity": "L'entité est requise !",
@@ -47,7 +51,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Afficher les heures d'alerte"
   },
   "events": {
     "no_warnings": "Aucune alerte",

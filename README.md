@@ -58,6 +58,7 @@ Here is what configuration options mean:
 | `disable_swiper`       | `boolean` | `false`      | _[Only some integrations]_ Disable slider when displaying multiple alerts, you may not see some important alerts. |
 | `hide_caption`         | `boolean` | `false`      | _[DWD only]_ Hide top-right caption when showing advance alerts.
 | `hide_when_no_warning` | `boolean` | `false`      | Hide the card when no warning is active. This works like a [conditional card](https://www.home-assistant.io/lovelace/conditional/). |
+| `show_warning_times` | `boolean` | `false` | _[Supported integrations only]_ Show the warning period in the top-right caption. Expected warnings show their start time; active warnings show their end time. |
 | `ignored_levels` *     | `array`   | `[]`         | List of levels that will not be shown on the card. Possible values are: `Yellow`, `Orange` and `Red` |
 | `ignored_events` *     | `array`   | `[]`         | List of events that will not be shown on the card. Possible values are: `Nuclear Event`, `Hurricane`, `Tornado`,`Coastal Event`,`Tsunami`,`Forest Fire`,`Avalanches`,`Earthquake`,`Volcanic Activity`,`Flooding`,`Sea Event`,`Thunderstorms`,`Rain`,`Snow/Ice`,`High Temperature`,`Low Temperature`,`Dust`,`Wind`, `Fog`, `Air Quality` and `Unknown Event` |
 

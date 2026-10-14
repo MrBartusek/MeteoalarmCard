@@ -10,6 +10,7 @@ import {
 	MeteoalarmIntegration,
 	MeteoalarmIntegrationEntityType,
 } from './types';
+import { formatWarningCaption } from './helpers/warning_time';
 
 /**
  * This is the class that stands between integration and rendering code.
@@ -27,8 +28,10 @@ class EventsParser {
 		disableSweeper = false,
 		overrideHeadline = false,
 		hideCaption = false,
+		showWarningTimes = false,
 		ignoredLevels: string[] = [],
 		ignoredEvents: string[] = [],
+		locale = 'en',
 	): MeteoalarmAlertParsed[] {
 		if (this.isAnyEntityUnavailable(entities)) {
 			return [PredefinedCards.unavailableCard()];
@@ -51,23 +54,20 @@ class EventsParser {
 				headlines.unshift(alert.headline);
 			}
 
-			let caption: string | undefined = undefined;
-			let captionIcon: string | undefined = undefined;
-			if (!hideCaption) {
-				if (alert.kind == MeteoalarmAlertKind.Expected) {
-					caption = localize('common.expected');
-					captionIcon = 'clock-outline';
-				}
-			}
+			const now = new Date();
+			const warningCaption = hideCaption
+				? undefined
+				: formatWarningCaption(alert, showWarningTimes, now, locale);
 
 			result.push({
 				isActive: true,
 				entity: alert._entity!,
 				icon: event.icon,
 				cssClass: level.cssClass,
-				headlines: headlines,
-				caption: caption,
-				captionIcon: captionIcon,
+				headlines,
+				caption: warningCaption?.caption,
+				captionPrefixText: warningCaption?.prefixText,
+				captionSuffixIcon: warningCaption?.suffixIcon,
 			});
 		}
 

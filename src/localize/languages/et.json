@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Olem pole saadaval",
       "short": "Pole saadaval"
-    }
+    },
+    "today": "Täna",
+    "tomorrow": "Homme",
+    "allday": "Kogu päev",
+    "until": "kuni"
   },
   "error": {
     "missing_entity": "Vajalik on Meteoalarmi olem!",
@@ -47,7 +51,8 @@
       "headline": "päis",
       "scale": "suurus",
       "headline_and_scale": "päis ja suurus"
-    }
+    },
+    "show_warning_times": "Näita hoiatusaegu"
   },
   "events": {
     "no_warnings": "Hoiatusi hetkel pole",

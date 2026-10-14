@@ -1,5 +1,10 @@
 import type { HassEntity } from 'home-assistant-js-websocket';
-import { MeteoalarmAlertKind, MeteoalarmEventType, MeteoalarmLevelType } from '../src/types';
+import {
+	MeteoalarmAlertKind,
+	MeteoalarmEventType,
+	MeteoalarmLevelType,
+	MeteoalarmAlertTiming,
+} from '../src/types';
 
 export type FixtureEntity = HassEntity & {
 	active: boolean;
@@ -10,6 +15,7 @@ export interface FixtureAlert {
 	level: MeteoalarmLevelType;
 	headline?: string;
 	kind?: MeteoalarmAlertKind;
+	timing?: MeteoalarmAlertTiming;
 }
 
 export interface Fixture {

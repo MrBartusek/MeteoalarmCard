@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Интеграцията не е достъпна",
       "short": "Недостъпно"
-    }
+    },
+    "today": "Днес",
+    "tomorrow": "Утре",
+    "allday": "Цял ден",
+    "until": "до"
   },
   "error": {
     "missing_entity": "Изисква се посочване на обекти!",
@@ -47,7 +51,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Показване на времената за предупреждение"
   },
   "events": {
     "no_warnings": "Без опасни явления",

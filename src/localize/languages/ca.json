@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "La integració no està disponible",
       "short": "No disponible"
-    }
+    },
+    "today": "Avui",
+    "tomorrow": "Demà",
+    "allday": "Tot el dia",
+    "until": "fins"
   },
   "error": {
     "missing_entity": "Cal especificar les entitats!",
@@ -47,7 +51,8 @@
       "headline": "Només títol",
       "scale": "Només escala",
       "headline_and_scale": "Títol i escala"
-    }
+    },
+    "show_warning_times": "Mostra les hores d'avís"
   },
   "events": {
     "no_warnings": "Sense advertències",
