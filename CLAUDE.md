@@ -2,7 +2,7 @@
 
 **MeteoalarmCard** is a custom dashboard card for Home Assistant that displays weather warnings.
 
-README.md holds the user-facing docs — read it when a task touches one of these: installation (HACS/manual), the configuration options table with example YAML, the supported languages list, the supported integrations table, and themable CSS variables.
+README.md holds the user-facing docs; read it when a task touches one of these: installation (Marketplace/manual), the configuration options table with example YAML, the supported languages list, the supported integrations table, and themable CSS variables.
 
 # Commands
 
@@ -17,7 +17,7 @@ README.md holds the user-facing docs — read it when a task touches one of thes
 
 1. `pnpm version patch|minor|major` — creates the version commit (titled e.g. `2.7.2`) and the `v*` tag; push both to `master`
 2. `pnpm run build`, then create a GitHub release for the tag and attach `dist/meteoalarm-card.js` as the asset
-3. HACS picks up the new release asset on its own
+3. The Marketplace picks up the new release asset on its own
 
 # Code style
 
