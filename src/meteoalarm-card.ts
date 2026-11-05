@@ -308,10 +308,12 @@ export class MeteoalarmCard extends LitElement {
 				console.log(
 					'MeteoalarmCard: Card is hidden - hide_when_no_warning is enabled and there are no warnings',
 				);
+				this.hidden = true;
 				this.setCardMargin(false);
 				return html``;
 			}
 
+			this.hidden = false;
 			this.setCardMargin(true);
 
 			return html`
