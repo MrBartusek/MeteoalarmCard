@@ -3,7 +3,6 @@ import {
 	EntityConfig,
 	handleAction,
 	hasAction,
-	hasConfigOrEntityChanged,
 	HomeAssistant,
 	LovelaceCardConfig,
 	LovelaceCardEditor,
@@ -52,6 +51,9 @@ export class MeteoalarmCard extends LitElement {
 	@property({ attribute: false }) public hass!: HomeAssistant;
 
 	@state() private config!: MeteoalarmCardConfig;
+	// Cache of entity IDs derived from config.entities.
+	// Recomputed only when the config changes, not on every hass update.
+	private trackedEntityIds: string[] = [];
 
 	private resizeObserver!: ResizeObserver;
 
@@ -113,6 +115,10 @@ export class MeteoalarmCard extends LitElement {
 			name: 'Meteoalarm',
 			...config,
 		};
+
+		// Recompute the tracked entity list once, here, instead of on every
+		// shouldUpdate() call triggered by a hass change.
+		this.trackedEntityIds = processConfigEntities(this.config.entities!).map((e) => e.entity);
 	}
 
 	static get styles(): CSSResultGroup {
@@ -124,7 +130,18 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	protected shouldUpdate(changedProps: PropertyValues): boolean {
-		return hasConfigOrEntityChanged(this, changedProps, false);
+		if (changedProps.has('config')) return true;
+
+		if (changedProps.has('hass')) {
+			const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
+			if (!oldHass) return true;
+
+			// Use the cached entity list instead of recomputing it on every
+			// hass update (which can fire many times per second).
+			return this.trackedEntityIds.some((id) => oldHass.states[id] !== this.hass.states[id]);
+		}
+
+		return false;
 	}
 
 	protected updated(): void {
