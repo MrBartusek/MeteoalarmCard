@@ -13,6 +13,8 @@ type NinaEntity = HassEntity & {
 	attributes: {
 		headline: string;
 		severity: string;
+		start: string;
+		expires: string;
 	};
 };
 
@@ -39,7 +41,7 @@ export default class NINA implements MeteoalarmIntegration {
 	}
 
 	public getAlerts(entity: NinaEntity): MeteoalarmAlert[] {
-		const { severity, headline } = entity.attributes;
+		const { severity, headline, start, expires } = entity.attributes;
 
 		return [
 			{
@@ -48,6 +50,10 @@ export default class NINA implements MeteoalarmIntegration {
 				level: Utils.getLevelBySeverity(severity, {
 					Moderate: MeteoalarmLevelType.Orange,
 				}),
+				timing: {
+					start: start,
+					end: expires,
+				},
 			},
 		];
 	}

@@ -17,7 +17,8 @@
   "expected": [
     {
       "event": "thunderstorms",
-      "level": "yellow"
+      "level": "yellow",
+      "timing": {}
     }
   ]
 }

@@ -13,6 +13,8 @@ type WeatheralertsAlert = {
 	event: string;
 	severity: string;
 	title: string;
+	onset?: string;
+	expires?: string;
 };
 
 type WeatheralertsEntity = HassEntity & {
@@ -160,6 +162,8 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 
 		for (const alert of alerts) {
 			const fullAlertName = alert.event;
+			const alertOnset = alert.onset;
+			const alertExpires = alert.expires;
 			let alertLevel: MeteoalarmLevelType | undefined = undefined;
 			let alertType: MeteoalarmEventType | undefined = undefined;
 
@@ -177,10 +181,15 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 				throw Error(`Unknown weatheralerts alert level: ${fullAlertName}`);
 			}
 
+			const timing: MeteoalarmAlert['timing'] = {};
+			if (alertOnset !== undefined) timing.start = alertOnset;
+			if (alertExpires !== undefined) timing.end = alertExpires;
+
 			result.push({
 				headline: fullAlertName,
 				level: alertLevel,
 				event: alertType!,
+				timing,
 			});
 		}
 		return result;

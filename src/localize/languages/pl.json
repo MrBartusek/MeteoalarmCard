@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Integracja nie jest dostępna",
       "short": "Niedostępny"
-    }
+    },
+    "today": "Dziś",
+    "tomorrow": "Jutro",
+    "allday": "Cały dzień",
+    "until": "do"
   },
   "error": {
     "missing_entity": "Podanie encji jest wymagane!",
@@ -47,7 +51,8 @@
       "headline": "Tylko Nagłówek",
       "scale": "Tylko Skala",
       "headline_and_scale": "Nagłówek i skala"
-    }
+    },
+    "show_warning_times": "Pokaż godziny ostrzeżeń"
   },
   "events": {
     "no_warnings": "Brak ostrzeżeń",

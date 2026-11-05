@@ -112,6 +112,7 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 			switches.push({ name: 'hide_caption', selector: { boolean: {} } });
 		}
 		switches.push({ name: 'hide_when_no_warning', selector: { boolean: {} } });
+		switches.push({ name: 'show_warning_times', selector: { boolean: {} } });
 		schema.push({ name: '', type: 'grid', schema: switches });
 
 		schema.push({

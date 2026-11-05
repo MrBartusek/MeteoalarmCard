@@ -22,6 +22,8 @@ type MeteoalarmEntity = HassEntity & {
 		headline?: string;
 		description?: string;
 		attribution: string;
+		onset?: string;
+		expires?: string;
 	};
 };
 
@@ -72,6 +74,8 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			severity,
 			awareness_type: awarenessType,
 			awareness_level: awarenessLevel,
+			onset: startTime,
+			expires: endTime,
 		} = entity.attributes;
 
 		let event: MeteoalarmEventType | undefined;
@@ -97,11 +101,16 @@ export default class Meteoalarm implements MeteoalarmIntegration {
 			throw new Error('Failed to determine alert level. awareness_level nor severity are provided');
 		}
 
+		const timing: MeteoalarmAlert['timing'] = {};
+		if (startTime !== undefined) timing.start = startTime;
+		if (endTime !== undefined) timing.end = endTime;
+
 		return [
 			{
 				headline: eventHeadline || headline,
 				level: level,
 				event: event || MeteoalarmEventType.Unknown,
+				timing,
 			},
 		];
 	}
