@@ -22,6 +22,8 @@
     "entity": "Encja",
     "entities": null,
     "integration": "Integracja",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Wymagane",
     "recommended": "Zalecane",
     "override_headline": "Nadpisz nagłówek",
@@ -34,12 +36,14 @@
       "slots": "Dokładna ilość określana jest przez jej konfiguracje.",
       "separate_events": "Każde ostrzeżenie ma swoją własną encję",
       "warning_watch_statement_advisory": "Tworzone są 3 encje: warnings, watches, statements, advisories.",
-      "end": "Powinieneś dodać wszystkie encje aby mieć pewność że nie przegapisz żadnych ostrzeżeń."
+      "end": "Powinieneś dodać wszystkie encje aby mieć pewność że nie przegapisz żadnych ostrzeżeń.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Nie podano encji z przyszłymi zdarzeniami pogodowymi. Przyszłe ostrzeżenia nie bedą pokazywane.",
       "too_many_entities": "Podano więcej encji niż się spodziewano. Spodziewano: {expected_entities_count} encji, otrzymano {selected_entities_count} encji.",
-      "duplicate": "Znaleziono duplikaty w liście encji."
+      "duplicate": "Znaleziono duplikaty w liście encji.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Tryb skalowania",
     "scaling_mode_options": {

@@ -22,6 +22,8 @@
     "entity": "Olem",
     "entities": null,
     "integration": "Sidumine",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Nõutav",
     "recommended": "Soovituslik",
     "override_headline": "Pealdise alistamine",
@@ -34,12 +36,14 @@
       "slots": "esinemist",
       "separate_events": "eraldi nähtused",
       "warning_watch_statement_advisory": null,
-      "end": "Lõpp"
+      "end": "Lõpp",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Eeldatav olem",
       "too_many_entities": "Liiga palju olemeid",
-      "duplicate": "Duplikaat"
+      "duplicate": "Duplikaat",
+      "missing_config_entry": null
     },
     "scaling_mode": "Skaleerimine",
     "scaling_mode_options": {

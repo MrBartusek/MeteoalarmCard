@@ -9,6 +9,6 @@ export type ConfigEntry = {
 export type Integration = {
 	title: string;
 	path: string;
-	cards: { integration: string; entities: string[] }[];
+	cards: { integration: string; entities: string[]; config_entry_id?: string }[];
 	entries: ConfigEntry[];
 };

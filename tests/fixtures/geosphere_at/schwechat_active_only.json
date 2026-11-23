@@ -1,0 +1,71 @@
+{
+  "$schema": "../schema.json",
+  "description": "Only the active bucket has warnings, the advance bucket is empty",
+  "entities": [
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_active",
+      "state": "2",
+      "active": true,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "active",
+        "warnings": [
+          {
+            "warning_id": 4149,
+            "change_id": 6,
+            "course_id": 12,
+            "type": "storm",
+            "level": "orange",
+            "start": "2023-03-27T06:00:00+00:00",
+            "end": "2023-03-27T16:00:00+00:00",
+            "text": "Orange storm warning from Mon, 27.03.2023 08:00 until Mon, 27.03.2023 18:00",
+            "impacts": "* Branches may fall and objects may be thrown around.",
+            "recommendations": "* Be careful in forests, parks and avenues!",
+            "meteo_text": "Strong northwest winds with gusts between 60 and 80 km/h.",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 10,
+            "change_id": 1,
+            "course_id": 11,
+            "type": "heat",
+            "level": "yellow",
+            "start": "2023-03-26T22:00:00+00:00",
+            "end": "2023-03-27T21:59:00+00:00",
+            "text": "Enhanced heat stress can be expected.",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          }
+        ],
+        "friendly_name": "GeoSphere Austria active warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_advance",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "advance",
+        "warnings": [],
+        "friendly_name": "GeoSphere Austria advance warnings"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "wind",
+      "level": "orange",
+      "headline": "Orange storm warning from Mon, 27.03.2023 08:00 until Mon, 27.03.2023 18:00",
+      "kind": "current"
+    },
+    {
+      "event": "high_temperature",
+      "level": "yellow",
+      "headline": "Enhanced heat stress can be expected.",
+      "kind": "current"
+    }
+  ]
+}

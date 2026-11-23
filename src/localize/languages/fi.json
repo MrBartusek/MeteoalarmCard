@@ -22,6 +22,8 @@
     "entity": "Entiteetti",
     "entities": null,
     "integration": "Integraatio",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Vaadittu",
     "recommended": "Suositeltu",
     "override_headline": "Ohita integraation tarjoama otsikko",
@@ -34,12 +36,14 @@
       "slots": "Niiden tarkempi määrä on päätetään asetuksissa.",
       "separate_events": "Jokaisella tapahtumatyypillä on oma erillinen entiteetti.",
       "warning_watch_statement_advisory": "There are 4 entities: warnings, watches, statements and advisories.",
-      "end": "You should add all of them to make sure you don't miss any alerts."
+      "end": "You should add all of them to make sure you don't miss any alerts.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Odotettavissa olevia varoituksia-entiteettiä ei ole lisätty. Tulevia varoituksia ei voida näyttää.",
       "too_many_entities": "More entities than expected haven't been provided. Expected {expected_entities_count} entities, got {selected_entities_count} entities.",
-      "duplicate": "Duplikaatti entiteettejä löydetty."
+      "duplicate": "Duplikaatti entiteettejä löydetty.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Skaalausasetus",
     "scaling_mode_options": {

@@ -1,10 +1,29 @@
-import { ActionConfig, EntityConfig, LovelaceCardConfig } from 'custom-card-helpers';
-import type { HassEntity } from 'home-assistant-js-websocket';
+import {
+	ActionConfig,
+	EntityConfig,
+	HomeAssistant,
+	LovelaceCard,
+	LovelaceCardConfig,
+	LovelaceCardEditor,
+} from 'custom-card-helpers';
+import { HassEntity } from 'home-assistant-js-websocket';
+
+declare global {
+	interface HTMLElementTagNameMap {
+		'meteoalarm-card-editor': LovelaceCardEditor;
+		'hui-error-card': LovelaceCard;
+	}
+}
 
 export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	type: string;
 	entities?: string | string[] | EntityConfig[];
 	integration?: string;
+	/**
+	 * Optional integration-specific configuration-entry ID.
+	 * Currently used by the GeoSphere Austria action-backed adapter.
+	 */
+	config_entry_id?: string;
 	override_headline?: boolean;
 	hide_when_no_warning?: boolean;
 	hide_caption?: boolean;
@@ -23,6 +42,29 @@ export interface MeteoalarmIntegration {
 	supports(entity: HassEntity): boolean;
 	alertActive(entity: HassEntity): boolean;
 	getAlerts(entity: HassEntity): MeteoalarmAlert[] | MeteoalarmAlert;
+
+	/**
+	 * Optional action-backed source.
+	 *
+	 * Most adapters use ordinary Home Assistant entity states. An adapter may
+	 * implement these methods when it needs to retrieve its warning lists via a
+	 * Home Assistant action that returns response data.
+	 */
+	getActionEntities?(hass: HomeAssistant, config: MeteoalarmCardConfig): Promise<HassEntity[]>;
+
+	/**
+	 * A value that changes whenever the action should be called again.
+	 *
+	 * For example, an adapter may derive this from selected entity states and
+	 * their last_updated timestamps.
+	 */
+	getActionEntitiesRefreshKey?(hass: HomeAssistant, config: MeteoalarmCardConfig): string;
+
+	/**
+	 * Entities to use until the first action result is received, or after an
+	 * action failure. Usually these should be unavailable virtual entities.
+	 */
+	getInitialActionEntities?(): HassEntity[];
 }
 
 export interface MeteoalarmIntegrationMetadata {
@@ -33,6 +75,7 @@ export interface MeteoalarmIntegrationMetadata {
 	returnHeadline: boolean;
 	returnMultipleAlerts: boolean;
 	monitoredConditions: MeteoalarmEventType[];
+	configEntryDomain?: string;
 }
 
 export enum MeteoalarmIntegrationEntityType {

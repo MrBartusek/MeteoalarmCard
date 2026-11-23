@@ -22,6 +22,8 @@
     "entity": "Entità",
     "entities": null,
     "integration": "Integrazione",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Richiesto",
     "recommended": "Consigliato",
     "override_headline": "Sovrascrivere l'intestazione fornita dall'integrazione",
@@ -34,12 +36,14 @@
       "slots": "L'esatta quantità è determinata dalla sua configurazione.",
       "separate_events": "Ogni evento ha un'entità propria e separata.",
       "warning_watch_statement_advisory": null,
-      "end": "Dovresti aggiungerle tutte per essere sicuro di non perdere nessun avviso."
+      "end": "Dovresti aggiungerle tutte per essere sicuro di non perdere nessun avviso.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "L'entità di avviso futuro non è stata inserita. Gli eventi futuri non saranno mostrati.",
       "too_many_entities": "Più entità del previsto non sono state fornite. Entita previste: {expected_entities_count}; Entita fornite: {selected_entities_count} entità.",
-      "duplicate": "Trovati duplicati nell'elenco delle entità."
+      "duplicate": "Trovati duplicati nell'elenco delle entità.",
+      "missing_config_entry": null
     },
     "scaling_mode": null,
     "scaling_mode_options": {

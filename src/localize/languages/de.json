@@ -22,6 +22,8 @@
     "entity": "Entität",
     "entities": null,
     "integration": "Integration",
+    "config_entry_id": "Ort",
+    "refresh_entities": "Entität/en (zum Aktualisieren)",
     "required": "Erforderlich",
     "recommended": "Empfohlen",
     "override_headline": "Von der Integration bereitgestellte Überschrift überschreiben",
@@ -34,12 +36,14 @@
       "slots": "Die exakte Anzahl wird durch die Konfiguration bestimmt.",
       "separate_events": "Jeder Ereignistyp erhält eine eigene Entität.",
       "warning_watch_statement_advisory": null,
-      "end": "Um keine Warnhinweise zu verpassen, sollten alle ausgewählt werden."
+      "end": "Um keine Warnhinweise zu verpassen, sollten alle ausgewählt werden.",
+      "action_backed": "Eine oder mehrere Entitäten der Wetterwarnungsintegration auswählen. Deren Statusupdates lösen eine neue Abfrage der Warnungsliste aus; die Karte rendert keine der Entitätsattribute."
     },
     "error": {
       "expected_entity": "Die erwartete Warnungs-Entität wurde nicht bereitgestellt. Zukünftige Ereignisse werden nicht angezeigt.",
       "too_many_entities": "Es wurden mehr Entitäten als erwartet erzeugt. Erwarten wurde(n) {expected_entities_count}, vorhanden sind {selected_entities_count}.",
-      "duplicate": "Doppelte Entitäten in Liste gefunden"
+      "duplicate": "Doppelte Entitäten in Liste gefunden",
+      "missing_config_entry": "Für diese Integration ist eine Config Entry ID erforderlich."
     },
     "scaling_mode": null,
     "scaling_mode_options": {

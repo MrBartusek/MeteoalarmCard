@@ -22,6 +22,8 @@
     "entity": "Entiteit",
     "entities": null,
     "integration": "Integratie",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Verplicht",
     "recommended": "Aanbevolen",
     "override_headline": "Koptekst overschrijven",
@@ -34,12 +36,14 @@
       "slots": "Het precieze aantal is afhankelijk van de configuratie.",
       "separate_events": "Ieder waarschuwingssoort heeft een eigen entiteit.",
       "warning_watch_statement_advisory": "Er zijn 4 entiteittypen: waarschuwingen, berichten, verklaringen en adviezen.",
-      "end": "U zult alle typen moeten toevoegen zodat u geen bericht mist."
+      "end": "U zult alle typen moeten toevoegen zodat u geen bericht mist.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Er is geen entiteit voor verwachte waarschuwingen opgegeven. Toekomstig evenement wordt niet getoond.",
       "too_many_entities": "Er zijn niet meer entiteiten opgegeven dan verwacht. Verwachtte {expected_entities_count} entiteiten, kreeg {selected_entities_count} entiteiten.",
-      "duplicate": "Er zijn duplicaten gevonden in de entiteitenlijst."
+      "duplicate": "Er zijn duplicaten gevonden in de entiteitenlijst.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Schalingsmodus",
     "scaling_mode_options": {

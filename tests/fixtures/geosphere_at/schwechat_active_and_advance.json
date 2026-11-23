@@ -1,0 +1,172 @@
+{
+  "$schema": "../schema.json",
+  "description": "get_warnings response for Schwechat: 2 active (orange storm, yellow heat) and 5 advance warnings, in core ordering",
+  "entities": [
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_active",
+      "state": "2",
+      "active": true,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "active",
+        "warnings": [
+          {
+            "warning_id": 4149,
+            "change_id": 6,
+            "course_id": 12,
+            "type": "storm",
+            "level": "orange",
+            "start": "2023-03-27T06:00:00+00:00",
+            "end": "2023-03-27T16:00:00+00:00",
+            "text": "Orange storm warning from Mon, 27.03.2023 08:00 until Mon, 27.03.2023 18:00",
+            "impacts": "* Branches may fall and objects may be thrown around.",
+            "recommendations": "* Be careful in forests, parks and avenues!",
+            "meteo_text": "Strong northwest winds with gusts between 60 and 80 km/h.",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 10,
+            "change_id": 1,
+            "course_id": 11,
+            "type": "heat",
+            "level": "yellow",
+            "start": "2023-03-26T22:00:00+00:00",
+            "end": "2023-03-27T21:59:00+00:00",
+            "text": "Enhanced heat stress can be expected.",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          }
+        ],
+        "friendly_name": "GeoSphere Austria active warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_advance",
+      "state": "5",
+      "active": true,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "advance",
+        "warnings": [
+          {
+            "warning_id": 4150,
+            "change_id": 2,
+            "course_id": 52,
+            "type": "rain",
+            "level": "orange",
+            "start": "2023-03-28T04:00:00+00:00",
+            "end": "2023-03-28T14:00:00+00:00",
+            "text": "Orange rain warning from Tue, 28.03.2023 06:00 until Tue, 28.03.2023 16:00",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 4149,
+            "change_id": 6,
+            "course_id": 31,
+            "type": "storm",
+            "level": "orange",
+            "start": "2023-03-28T06:00:00+00:00",
+            "end": "2023-03-28T16:00:00+00:00",
+            "text": "Orange storm warning from Tue, 28.03.2023 08:00 until Tue, 28.03.2023 18:00",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 4150,
+            "change_id": 2,
+            "course_id": 61,
+            "type": "rain",
+            "level": "yellow",
+            "start": "2023-03-29T06:00:00+00:00",
+            "end": "2023-03-29T16:00:00+00:00",
+            "text": "Yellow rain warning from Wed, 29.03.2023 08:00 until Wed, 29.03.2023 18:00",
+            "impacts": "* Local flooding is possible.",
+            "recommendations": "* Avoid underpasses and flooded roads!",
+            "meteo_text": "Persistent rain with amounts between 40 and 60 mm.",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 4837,
+            "change_id": 1,
+            "course_id": 2,
+            "type": "thunderstorm",
+            "level": "yellow",
+            "start": "2023-03-29T12:00:00+00:00",
+            "end": "2023-03-29T19:00:00+00:00",
+            "text": "Yellow thunderstorm warning from Wed, 29.03.2023 14:00 until Wed, 29.03.2023 21:00",
+            "impacts": "* Caution! Heightened likelihood of thunderstorms. From region to region, heavy rainfall and storm-strength winds can be expected. The major danger stems from strokes of lightning, falling tree branches and loosed flying objects. From place to place, inundations are possible.",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 10,
+            "change_id": 1,
+            "course_id": 51,
+            "type": "heat",
+            "level": "orange",
+            "start": "2023-03-28T22:00:00+00:00",
+            "end": "2023-03-29T21:59:00+00:00",
+            "text": "Enhanced heat stress can be expected.",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          }
+        ],
+        "friendly_name": "GeoSphere Austria advance warnings"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "wind",
+      "level": "orange",
+      "headline": "Orange storm warning from Mon, 27.03.2023 08:00 until Mon, 27.03.2023 18:00",
+      "kind": "current"
+    },
+    {
+      "event": "high_temperature",
+      "level": "yellow",
+      "headline": "Enhanced heat stress can be expected.",
+      "kind": "current"
+    },
+    {
+      "event": "rain",
+      "level": "orange",
+      "headline": "Orange rain warning from Tue, 28.03.2023 06:00 until Tue, 28.03.2023 16:00",
+      "kind": "expected"
+    },
+    {
+      "event": "wind",
+      "level": "orange",
+      "headline": "Orange storm warning from Tue, 28.03.2023 08:00 until Tue, 28.03.2023 18:00",
+      "kind": "expected"
+    },
+    {
+      "event": "rain",
+      "level": "yellow",
+      "headline": "Yellow rain warning from Wed, 29.03.2023 08:00 until Wed, 29.03.2023 18:00",
+      "kind": "expected"
+    },
+    {
+      "event": "thunderstorms",
+      "level": "yellow",
+      "headline": "Yellow thunderstorm warning from Wed, 29.03.2023 14:00 until Wed, 29.03.2023 21:00",
+      "kind": "expected"
+    },
+    {
+      "event": "high_temperature",
+      "level": "orange",
+      "headline": "Enhanced heat stress can be expected.",
+      "kind": "expected"
+    }
+  ]
+}

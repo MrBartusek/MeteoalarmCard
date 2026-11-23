@@ -22,6 +22,8 @@
     "entity": "Entitás",
     "entities": null,
     "integration": "Integráció",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Kötelező",
     "recommended": "Ajánlott",
     "override_headline": "Az integráció által biztosított címsor felülírása",
@@ -34,12 +36,14 @@
       "slots": "A létrehozott pontos mennyiséget a konfigurációja határozza meg.",
       "separate_events": "Minden eseménytípusnak külön entitása van.",
       "warning_watch_statement_advisory": "4 entitás van: figyelmeztetések, figyelések, nyilatkozatok és tanácsadások.",
-      "end": "Az összeset hozzá kell adnia, hogy ne maradjon le egyetlen riasztásról sem."
+      "end": "Az összeset hozzá kell adnia, hogy ne maradjon le egyetlen riasztásról sem.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "A várható figyelmeztetések entitás nem lett megadva. A jövőbeli események nem jelennek meg.",
       "too_many_entities": "Több entitás lett megadva a vártnál. Várt: {expected_entities_count} entitás, kapott: {selected_entities_count} entitás.",
-      "duplicate": "Duplikátumok találhatók az entitások listájában."
+      "duplicate": "Duplikátumok találhatók az entitások listájában.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Méretezési mód",
     "scaling_mode_options": {

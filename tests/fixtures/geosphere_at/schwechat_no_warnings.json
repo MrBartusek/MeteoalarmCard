@@ -1,0 +1,29 @@
+{
+  "$schema": "../schema.json",
+  "description": "get_warnings response with both buckets empty",
+  "entities": [
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_active",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "active",
+        "warnings": [],
+        "friendly_name": "GeoSphere Austria active warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_advance",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "advance",
+        "warnings": [],
+        "friendly_name": "GeoSphere Austria advance warnings"
+      }
+    }
+  ],
+  "expected": []
+}

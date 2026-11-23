@@ -133,6 +133,14 @@
                     "$id": "#/properties/editor/properties/integration",
                     "type": ["string", "null"]
                 },
+                "refresh_entities": {
+                    "$id": "#/properties/editor/properties/refresh_entities",
+                    "type": ["string", "null"]
+                },
+                "config_entry_id": {
+                    "$id": "#/properties/editor/properties/config_entry_id",
+                    "type": ["string", "null"]
+                },
                 "required": {
                     "$id": "#/properties/editor/properties/required",
                     "type": ["string", "null"]
@@ -192,6 +200,10 @@
                         "end": {
                             "$id": "#/properties/editor/properties/description/properties/end",
                             "type": ["string", "null"]
+                        },
+                        "action_backed": {
+                            "$id": "#/properties/editor/properties/description/properties/action_backed",
+                            "type": ["string", "null"]
                         }
                     },
                     "additionalProperties": false
@@ -215,6 +227,10 @@
                         },
                         "duplicate": {
                             "$id": "#/properties/editor/properties/error/properties/duplicate",
+                            "type": ["string", "null"]
+                        },
+                        "missing_config_entry": {
+                            "$id": "#/properties/editor/properties/error/properties/missing_config_entry",
                             "type": ["string", "null"]
                         }
                     },

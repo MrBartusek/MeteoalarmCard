@@ -95,10 +95,24 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		];
 		if (!integration) return schema;
 
+		if (integration.metadata.configEntryDomain) {
+			schema.push({
+				name: 'config_entry_id',
+				required: true,
+				selector: { config_entry: { integration: integration.metadata.configEntryDomain } },
+			});
+		}
+
 		schema.push({
 			name: 'entities',
 			required: true,
-			selector: { entity: isSingleEntity(integration) ? {} : { multiple: true } },
+			selector: {
+				entity: integration.metadata.configEntryDomain
+					? { multiple: true, integration: integration.metadata.configEntryDomain }
+					: isSingleEntity(integration)
+						? {}
+						: { multiple: true },
+			},
 		});
 
 		const switches: HaFormSchema[] = [];
@@ -158,7 +172,16 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 			{
 				field: 'entities',
 				warning: 'expected_entity',
-				condition: type == MeteoalarmIntegrationEntityType.CurrentExpected && entities.length == 1,
+				condition:
+					!integration.metadata.configEntryDomain &&
+					type == MeteoalarmIntegrationEntityType.CurrentExpected &&
+					entities.length == 1,
+			},
+			{
+				field: 'config_entry_id',
+				warning: 'missing_config_entry',
+				condition:
+					!!integration.metadata.configEntryDomain && !this.config?.config_entry_id?.trim(),
 			},
 		];
 
@@ -179,7 +202,9 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		let label = localize(`editor.${schema.name}`);
 
 		if (schema.name === 'entities') {
-			label = localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
+			label = this.integration?.metadata.configEntryDomain
+				? localize('editor.refresh_entities')
+				: localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
 		}
 
 		if (schema.required) {
@@ -191,6 +216,9 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 	private computeHelper = (schema: HaFormSchema): string | undefined => {
 		if (schema.name !== 'entities') return undefined;
+		if (this.integration?.metadata.configEntryDomain) {
+			return localize('editor.description.action_backed');
+		}
 		const type = this.integration?.metadata.type;
 		if (type === undefined || type === MeteoalarmIntegrationEntityType.SingleEntity)
 			return undefined;
