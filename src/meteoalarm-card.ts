@@ -3,7 +3,6 @@ import {
 	EntityConfig,
 	handleAction,
 	hasAction,
-	hasConfigOrEntityChanged,
 	HomeAssistant,
 	LovelaceCardConfig,
 	LovelaceCardEditor,
@@ -52,10 +51,13 @@ export class MeteoalarmCard extends LitElement {
 	@property({ attribute: false }) public hass!: HomeAssistant;
 
 	@state() private config!: MeteoalarmCardConfig;
+	// Cache of entity IDs derived from config.entities.
+	// Recomputed only when the config changes, not on every hass update.
+	private trackedEntityIds: string[] = [];
 
 	private resizeObserver!: ResizeObserver;
 
-	private swiper!: Swiper;
+	private swiper?: Swiper;
 
 	// Entity of which alert is displayed on currently selected slide
 	// Used to display correct entity on click
@@ -113,6 +115,10 @@ export class MeteoalarmCard extends LitElement {
 			name: 'Meteoalarm',
 			...config,
 		};
+
+		// Recompute the tracked entity list once, here, instead of on every
+		// shouldUpdate() call triggered by a hass change.
+		this.trackedEntityIds = processConfigEntities(this.config.entities!).map((e) => e.entity);
 	}
 
 	static get styles(): CSSResultGroup {
@@ -124,36 +130,68 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	protected shouldUpdate(changedProps: PropertyValues): boolean {
-		return hasConfigOrEntityChanged(this, changedProps, false);
+		if (changedProps.has('config')) return true;
+
+		if (changedProps.has('hass')) {
+			const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
+			if (!oldHass) return true;
+
+			// Use the cached entity list instead of recomputing it on every
+			// hass update (which can fire many times per second).
+			return this.trackedEntityIds.some((id) => oldHass.states[id] !== this.hass.states[id]);
+		}
+
+		return false;
 	}
 
 	protected updated(): void {
+		if (!this.isConnected) return;
+
+		this.syncSwiper();
 		this.attachObserver();
 		this.measureCard();
 	}
 
-	public firstUpdated(): void {
-		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper');
-		if (!swiper) return;
-		this.swiper = new Swiper(swiper, {
-			modules: [Pagination],
-			pagination: {
-				el: swiper.getElementsByClassName('swiper-pagination')[0] as HTMLElement,
-			},
-			observer: true,
-		});
-		this.swiper.on('transitionEnd', () => {
-			this.updateCurrentEntity();
-		});
-		this.swiper.on('observerUpdate', () => {
-			this.updateCurrentEntity();
-		});
+	private syncSwiper(): void {
+		const element = (this.renderRoot as ShadowRoot).getElementById('swiper');
+
+		// Dispose of the instance if the card was hidden or the element replaced.
+		if (this.swiper && this.swiper.el !== element) {
+			this.destroySwiper();
+		}
+
+		if (!element) return;
+
+		if (!this.swiper) {
+			this.swiper = new Swiper(element, {
+				modules: [Pagination],
+				pagination: {
+					el: element.getElementsByClassName('swiper-pagination')[0] as HTMLElement,
+				},
+				observer: true,
+			});
+
+			this.swiper.on('transitionEnd', () => this.updateCurrentEntity());
+			this.swiper.on('observerUpdate', () => this.updateCurrentEntity());
+		} else {
+			// The element is unchanged, but its slides may have changed.
+			this.swiper.update();
+		}
+
+		this.updateCurrentEntity();
 	}
 
-	// Updates the currentEntity variable
+	private destroySwiper(): void {
+		this.swiper?.destroy(true, true);
+		this.swiper = undefined;
+		this.currentEntity = undefined;
+	}
+
 	private updateCurrentEntity(): void {
-		const slide = this.swiper.slides[this.swiper.realIndex];
-		this.currentEntity = slide.getAttribute('entity_id') as string;
+		const swiper = this.swiper;
+		const slide = swiper?.slides[swiper.realIndex];
+
+		this.currentEntity = slide?.getAttribute('entity_id') ?? undefined;
 	}
 
 	private attachObserver() {
