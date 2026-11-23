@@ -65,7 +65,7 @@ body:
   attributes:
     label: Installation type
     options:
-      - Home Assistant Community Store (HACS)
+      - Home Assistant Marketplace
       - Manual
       - Other
 

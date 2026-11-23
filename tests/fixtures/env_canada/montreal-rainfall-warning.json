@@ -1,0 +1,52 @@
+{
+  "$schema": "../schema.json",
+  "description": "Live yellow rainfall warning, title in the post-2026.4 format, plus the advisories sensor from #301",
+  "entities": [
+    {
+      "entity_id": "sensor.montreal_warnings",
+      "state": "1",
+      "active": true,
+      "attributes": {
+        "location": "Montréal",
+        "station": "Montréal-Trudeau Int'l Airport",
+        "alert_1": "Rainfall Warning",
+        "alert_time_1": "2026-10-13T18:28:01.790Z",
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Montréal Warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.montreal_watches",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Montréal Watches"
+      }
+    },
+    {
+      "entity_id": "sensor.montreal_statements",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Montréal Statements"
+      }
+    },
+    {
+      "entity_id": "sensor.montreal_advisories",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "attribution": "Data provided by Environment Canada",
+        "friendly_name": "Montréal Advisories"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "rain",
+      "level": "red"
+    }
+  ]
+}

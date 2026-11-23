@@ -89,7 +89,7 @@ export const INTEGRATIONS: Integration[] = [
 		path: 'env-canada',
 		cards: ENV_CANADA.map((location) => ({
 			integration: 'env_canada',
-			entities: ['warnings', 'watches', 'statements'].map(
+			entities: ['warnings', 'watches', 'statements', 'advisories'].map(
 				(alert) => `sensor.${slug(location.city)}_${alert}`,
 			),
 		})),

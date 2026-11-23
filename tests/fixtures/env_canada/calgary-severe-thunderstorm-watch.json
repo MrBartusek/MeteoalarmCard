@@ -1,6 +1,6 @@
 {
   "$schema": "../schema.json",
-  "description": "Severe thunderstorm watch on the watches sensor, the advisories sensor is left out because the integration only matches \"advisory\"",
+  "description": "Severe thunderstorm watch on the watches sensor",
   "entities": [
     {
       "entity_id": "sensor.calgary_warnings",
