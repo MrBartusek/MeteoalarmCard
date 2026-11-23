@@ -281,7 +281,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 				return EnvCanadaEntityType.Watch;
 			} else if (attribute.includes('statements')) {
 				return EnvCanadaEntityType.Statement;
-			} else if (attribute.includes('advisory')) {
+			} else if (['advisories', 'advisory'].some((s) => attribute.includes(s))) {
 				return EnvCanadaEntityType.Advisory;
 			}
 		}
