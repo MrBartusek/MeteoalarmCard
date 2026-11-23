@@ -22,6 +22,8 @@
     "entity": "Entita",
     "entities": null,
     "integration": "Integrace",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Povinné",
     "recommended": "Doporučeno",
     "override_headline": "Přepsat nadpis poskytnutý integrací",
@@ -34,12 +36,14 @@
       "slots": "Jejich přesný počet závisí na nastavení.",
       "separate_events": "Každý druh výstrahy má vlastní entitu.",
       "warning_watch_statement_advisory": "Jsou 4 entity: varování, sledování, oznámení a doporučení.",
-      "end": "Je doporučeno přidat všechny ať nepřijdete o žádná upozornění."
+      "end": "Je doporučeno přidat všechny ať nepřijdete o žádná upozornění.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Nenalezena entita. Budoucí výstrahy nebudou zobrazeny.",
       "too_many_entities": "Nalezeno více entit než bylo očekáváno. Očekáváno: {expected_entities_count} entit, nalezeno {selected_entities_count} entit.",
-      "duplicate": "Nalezeny duplicity v seznamu entit."
+      "duplicate": "Nalezeny duplicity v seznamu entit.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Režim změny velikosti",
     "scaling_mode_options": {

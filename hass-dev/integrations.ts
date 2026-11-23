@@ -1,4 +1,4 @@
-import { slug } from './helpers.ts';
+import { slug, generateEntryId } from './helpers.ts';
 import type { Integration } from './types.ts';
 
 export const METEOALARM = [
@@ -56,6 +56,25 @@ const NINA = [
 	{ name: 'Frankfurt', ars: '064120000000' },
 	{ name: 'Dresden', ars: '146120000000' },
 ];
+
+const GEOSPHERE_AUSTRIA = [
+	{ name: 'Bregenz', latitude: 47.5025, longitude: 9.7458 },
+	{ name: 'Innsbruck', latitude: 47.2458, longitude: 11.3952 },
+	{ name: 'Salzburg', latitude: 47.7978, longitude: 13.0455 },
+	{ name: 'Linz', latitude: 48.3064, longitude: 14.2856 },
+	{ name: 'St. Pölten', latitude: 48.2053, longitude: 15.6211 },
+	{ name: 'Wien', latitude: 48.2081, longitude: 16.3728 },
+	{ name: 'Eisenstadt', latitude: 47.8453, longitude: 16.5248 },
+	{ name: 'Graz', latitude: 47.0551, longitude: 15.4357 },
+	{ name: 'Klagenfurt', latitude: 46.6229, longitude: 14.2987 },
+];
+
+const GEOSPHERE_AUSTRIA_ENTRIES = GEOSPHERE_AUSTRIA.map((location) => ({
+	domain: 'geosphere_austria_warnings',
+	title: location.name,
+	uniqueId: null,
+	data: { latitude: location.latitude, longitude: location.longitude },
+}));
 
 export const INTEGRATIONS: Integration[] = [
 	{
@@ -144,5 +163,15 @@ export const INTEGRATIONS: Integration[] = [
 				},
 			},
 		],
+	},
+	{
+		title: 'GeoSphere Austria Warnings',
+		path: 'geosphere_austria_warnings',
+		cards: GEOSPHERE_AUSTRIA.map((location, i) => ({
+			integration: 'geosphere_at',
+			entities: [`sensor.${slug(location.name)}_active_warning_level`],
+			config_entry_id: generateEntryId(GEOSPHERE_AUSTRIA_ENTRIES[i]),
+		})),
+		entries: GEOSPHERE_AUSTRIA_ENTRIES,
 	},
 ];

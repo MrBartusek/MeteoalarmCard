@@ -22,6 +22,8 @@
     "entity": "Entity",
     "entities": "Entities",
     "integration": "Integration",
+    "config_entry_id": "Location",
+    "refresh_entities": "Refresh entities",
     "required": "Required",
     "recommended": "Recommended",
     "override_headline": "Override headline provided by integration",
@@ -34,12 +36,14 @@
       "slots": "The exact amount of them created is determined by it's configuration.",
       "separate_events": "Each event kind has a separate entity.",
       "warning_watch_statement_advisory": "There are 4 entities: warnings, watches, statements and advisories.",
-      "end": "You should add all of them to make sure you don't miss any alerts."
+      "end": "You should add all of them to make sure you don't miss any alerts.",
+      "action_backed": "Select one or more entities belonging to the selected weather-warning integration. Their state changes trigger a new warning-list request; the card does not render their attributes directly."
     },
     "error": {
       "expected_entity": "Expected warnings entity haven't been provided. Future event won't be shown.",
       "too_many_entities": "More entities than expected haven't been provided. Expected {expected_entities_count} entities, got {selected_entities_count} entities.",
-      "duplicate": "Found duplicates in entities list."
+      "duplicate": "Found duplicates in entities list.",
+      "missing_config_entry": "A config entry ID is required for this integration."
     },
     "scaling_mode": "Scaling Mode",
     "scaling_mode_options": {

@@ -22,6 +22,8 @@
     "entity": "Обект",
     "entities": null,
     "integration": "Интеграция",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Задължително",
     "recommended": "Препоръчително",
     "override_headline": "Заменете заглавието, предоставено от интеграцията",
@@ -34,12 +36,14 @@
       "slots": "The exact amount of them created is determined by it's configuration.",
       "separate_events": "Всеки вид събитие има отделен обект.",
       "warning_watch_statement_advisory": null,
-      "end": "Трябва да добавите всички тях, за да сте сигурни, че няма да пропуснете никакви сигнали."
+      "end": "Трябва да добавите всички тях, за да сте сигурни, че няма да пропуснете никакви сигнали.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Expected warnings entity haven't been provided. Future event won't be shown.",
       "too_many_entities": "More entities than expected haven't been provided. Expected {expected_entities_count} entities, got {selected_entities_count} entities.",
-      "duplicate": "Открити са дубликати в списъка с обекти."
+      "duplicate": "Открити са дубликати в списъка с обекти.",
+      "missing_config_entry": null
     },
     "scaling_mode": null,
     "scaling_mode_options": {

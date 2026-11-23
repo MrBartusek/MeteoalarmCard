@@ -23,7 +23,7 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	 * Optional integration-specific configuration-entry ID.
 	 * Currently used by the GeoSphere Austria action-backed adapter.
 	 */
-	config_entry?: string;
+	config_entry_id?: string;
 	override_headline?: boolean;
 	hide_when_no_warning?: boolean;
 	hide_caption?: boolean;
@@ -50,10 +50,7 @@ export interface MeteoalarmIntegration {
 	 * implement these methods when it needs to retrieve its warning lists via a
 	 * Home Assistant action that returns response data.
 	 */
-	getActionEntities?(
-		hass: HomeAssistant,
-		config: MeteoalarmCardConfig,
-	): Promise<HassEntity[]>;
+	getActionEntities?(hass: HomeAssistant, config: MeteoalarmCardConfig): Promise<HassEntity[]>;
 
 	/**
 	 * A value that changes whenever the action should be called again.
@@ -61,10 +58,7 @@ export interface MeteoalarmIntegration {
 	 * For example, an adapter may derive this from selected entity states and
 	 * their last_updated timestamps.
 	 */
-	getActionEntitiesRefreshKey?(
-		hass: HomeAssistant,
-		config: MeteoalarmCardConfig,
-	): string;
+	getActionEntitiesRefreshKey?(hass: HomeAssistant, config: MeteoalarmCardConfig): string;
 
 	/**
 	 * Entities to use until the first action result is received, or after an
@@ -81,6 +75,7 @@ export interface MeteoalarmIntegrationMetadata {
 	returnHeadline: boolean;
 	returnMultipleAlerts: boolean;
 	monitoredConditions: MeteoalarmEventType[];
+	configEntryDomain?: string;
 }
 
 export enum MeteoalarmIntegrationEntityType {

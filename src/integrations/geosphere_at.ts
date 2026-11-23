@@ -20,11 +20,11 @@ type GeoSphereWarning = {
 	level: string;
 	start: string;
 	end: string;
-	text?: string;
-	impacts?: string;
-	recommendations?: string;
-	meteo_text?: string;
-	update_reason?: string;
+	text?: string | null;
+	impacts?: string | null;
+	recommendations?: string | null;
+	meteo_text?: string | null;
+	update_reason?: string | null;
 };
 
 type GeoSphereWarningsResponse = {
@@ -63,6 +63,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 			// GeoSphere creates current/advance virtual entities internally.
 			// The user-selected entities are refresh triggers, not warning entities.
 			entitiesCount: 0,
+			configEntryDomain: 'geosphere_austria_warnings',
 			monitoredConditions: [
 				MeteoalarmEventType.Wind,
 				MeteoalarmEventType.Rain,
@@ -93,10 +94,6 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 			level: this.mapWarningLevel(warning.level),
 			headline: warning.text || this.getFallbackHeadline(warning.type),
 			kind,
-			timing: {
-				start: warning.start,
-				end: warning.end,
-			},
 		}));
 	}
 
@@ -139,7 +136,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 			domain: 'geosphere_austria_warnings',
 			service: 'get_warnings',
 			service_data: {
-				config_entry: configEntry,
+				config_entry_id: configEntry,
 			},
 			return_response: true,
 		});
@@ -161,8 +158,8 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 	}
 
 	private getConfigEntry(config: MeteoalarmCardConfig): string {
-		if (!config.config_entry) {
-			throw new Error('MeteoalarmCard: config_entry is required for integration geosphere_at.');
+		if (!config.config_entry_id) {
+			throw new Error('MeteoalarmCard: config_entry_id is required for integration geosphere_at.');
 		}
 
 		if (!config.entities) {
@@ -171,7 +168,7 @@ export default class GeoSphereAustria implements MeteoalarmIntegration {
 			);
 		}
 
-		return config.config_entry;
+		return config.config_entry_id;
 	}
 
 	private createVirtualEntity(

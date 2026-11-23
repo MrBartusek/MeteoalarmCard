@@ -84,6 +84,20 @@ entities:
 override_headline: false
 ```
 
+Example configuration for [Geosphere Austria Warnings](geosphere_at):
+
+```yaml
+type: 'custom:meteoalarm-card'
+integration: 'geosphere_at'
+config_entry_id: 01JD5X7Q8M2R4T6V9W0YZABCDE
+entities:
+  - entity: 'sensor.schwechat_active_warning_level'
+override_headline: false
+```
+The `config_entry_id` can be selected in the card editor or copied from `Settings` -> `Devices & Services` -> `GeoSphere Austria Warnings` -> the location's menu -> `Copy entry ID`.
+
+For this integration, `tap_action` defaults to `none`. The card reloads the warnings whenever one of the listed entities updates, so use the `*_active_warning_level` and `*_advance_warning_level` sensors.
+
 ## Supported languages
 
 This card supports translations. Please, help to add more translations and improve existing ones. Here's a list of supported languages:
@@ -112,17 +126,18 @@ This card supports translations. Please, help to add more translations and impro
 
 ## Supported integrations
 
-Expect Meteoalarm this card supports many other integrations:
+Next to Meteoalarm this card supports many other integrations:
 
-| Integration                         | Key              | Description              |
-| ----------------------------------- | ---------------- | ------------------------ |
-| [MeteoAlarm][meteoalarm]            | `meteoalarm`     | Warnings for Europe collected by [MeteoAlarm][meteoalarm-direct] (EUMETNET). The website integrates all important severe weather information originating from the official National Public Weather Services across a large number of European countries  |
-| [Météo-France][meteo-france]        | `meteofrance`    | Warnings for France from [Météo-France][meteo-france-direct]. |
-| [Deutscher Wetterdienst (DWD)][dwd] | `dwd`            | Warnings for Germany from [Deutscher Wetterdienst][dwd-direct]. |
-| [Environnement Canada][env-canada]  | `env_canada`     | Warnings for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
-| [NINA][nina]                        | `nina`           | Warnings for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct]. This integration doesn't provide much atributes thus using it generates very generic card. |
-| [Burze.dzis.net][burze]             | `burze_dzis_net` | Custom integration for warnings in Poland from [Burze.dzis.net][burze-direct]. These warnings are issued by [Skywarn / Polscy Łowcy Burz ](https://lowcyburz.pl) which is not backed by government or any official agency. |
-| [weatheralerts][weatheralerts]      | `weatheralerts`  | Custom integration for USA from [National Weather Service (NWS)][weatheralerts-direct]. |
+| Integration                                | Key              | Description              |
+| ------------------------------------------ | ---------------- | ------------------------ |
+| [MeteoAlarm][meteoalarm]                   | `meteoalarm`     | Warnings for Europe collected by [MeteoAlarm][meteoalarm-direct] (EUMETNET). The website integrates all important severe weather information originating from the official National Public Weather Services across a large number of European countries  |
+| [Météo-France][meteo-france]               | `meteofrance`    | Warnings for France from [Météo-France][meteo-france-direct]. |
+| [Deutscher Wetterdienst (DWD)][dwd]        | `dwd`            | Warnings for Germany from [Deutscher Wetterdienst][dwd-direct]. |
+| [Environnement Canada][env-canada]         | `env_canada`     | Warnings for Canada from [Environment and Climate Change Canada][env-canada-direct]. |
+| [NINA][nina]                               | `nina`           | Warnings for Germany from [Bundesamt für Bevölkerungsschutz und Katastrophenhilfe][nina-direct]. This integration doesn't provide much atributes thus using it generates very generic card. |
+| [Geosphere Austria Warnings][geosphere_at] | `geosphere_at`   | Warnings for Austria from [Geosphere Austria (formerly ZAMG)][geosphere_at-direct]. |
+| [Burze.dzis.net][burze]                    | `burze_dzis_net` | Custom integration for warnings in Poland from [Burze.dzis.net][burze-direct]. These warnings are issued by [Skywarn / Polscy Łowcy Burz ](https://lowcyburz.pl) which is not backed by government or any official agency. |
+| [weatheralerts][weatheralerts]             | `weatheralerts`  | Custom integration for USA from [National Weather Service (NWS)][weatheralerts-direct]. |
 | [_New integration?_](https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose) | | [You can request a new integration to be added here!]((https://github.com/MrBartusek/MeteoalarmCard/issues/new/choose)) |
 
 [meteoalarm]: https://www.home-assistant.io/integrations/meteoalarm/
@@ -135,6 +150,8 @@ Expect Meteoalarm this card supports many other integrations:
 [env-canada-direct]: https://weather.gc.ca/
 [nina]: https://www.home-assistant.io/integrations/nina/
 [nina-direct]: https://www.bbk.bund.de/
+[geosphere_at]: https://www.home-assistant.io/integrations/geosphere_austria_warnings/
+[geosphere_at-direct]: https://warnungen.zamg.at/
 [burze]: https://github.com/PiotrMachowski/Home-Assistant-custom-components-Burze.dzis.net
 [burze-direct]: https://burze.dzis.net
 [weatheralerts]: https://github.com/custom-components/weatheralerts

@@ -22,6 +22,8 @@
     "entity": "Entidad",
     "entities": null,
     "integration": "Integración",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Necesario",
     "recommended": "Recomendado",
     "override_headline": "Sobreescribir cabecera",
@@ -34,12 +36,14 @@
       "slots": "La cantidad exacta creada está determinada por su configuración.",
       "separate_events": "Cada tipo de evento tiene una entidad separada.",
       "warning_watch_statement_advisory": "Hay 4 entidades: advertencias, alertas, declaraciones y avisos.",
-      "end": "Debes agregarlos todos para asegurarte de no perderte ninguna alerta."
+      "end": "Debes agregarlos todos para asegurarte de no perderte ninguna alerta.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "No se ha proporcionado la entidad de avisos esperada. No se mostrarán futuros eventos.",
       "too_many_entities": "No se han proporcionado más entidades de las esperadas. Esperaba {expected_entities_count} entidades, obtuve {selected_entities_count} entidades.",
-      "duplicate": "Encontrados duplicados en la lista de entidades."
+      "duplicate": "Encontrados duplicados en la lista de entidades.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Modo de Escalado",
     "scaling_mode_options": {

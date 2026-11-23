@@ -47,6 +47,7 @@ function buildDashboardConfig() {
 			integration: card.integration,
 			override_headline: false,
 			entities: card.entities.length === 1 ? card.entities[0] : card.entities,
+			...(card.config_entry_id && { config_entry_id: card.config_entry_id }),
 		})),
 	}));
 	return new HassStore(`lovelace.${DASHBOARD_URL_PATH}`, {

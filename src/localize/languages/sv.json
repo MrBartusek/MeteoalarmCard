@@ -22,6 +22,8 @@
     "entity": "Enhet",
     "entities": null,
     "integration": "Integration",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Krävs",
     "recommended": "Rekommenderas",
     "override_headline": "Överrida titel",
@@ -34,12 +36,14 @@
       "slots": "Den exakta mängden av dem som skapas bestäms av dess konfiguration.",
       "separate_events": "Varje evenemangstyp har en enskild enhet.",
       "warning_watch_statement_advisory": null,
-      "end": "Du bör lägga till samtliga för att inte missa några varningar."
+      "end": "Du bör lägga till samtliga för att inte missa några varningar.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Förväntad enhet för varningar har inte tilldelats. Framtida event kommer inte visas.",
       "too_many_entities": "Fler enheter än förväntat har inte tilldelats. Förväntade {expected_entities_count} entiteter, fick {selected_entities_count} enheter",
-      "duplicate": "Hittade dupplicerade enheter i listan"
+      "duplicate": "Hittade dupplicerade enheter i listan",
+      "missing_config_entry": null
     },
     "scaling_mode": null,
     "scaling_mode_options": {

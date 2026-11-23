@@ -1,0 +1,71 @@
+{
+  "$schema": "../schema.json",
+  "description": "Only the advance bucket has warnings (heat and rain), the active bucket is empty",
+  "entities": [
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_active",
+      "state": "0",
+      "active": false,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "active",
+        "warnings": [],
+        "friendly_name": "GeoSphere Austria active warnings"
+      }
+    },
+    {
+      "entity_id": "sensor.meteoalarm_card_geosphere_advance",
+      "state": "2",
+      "active": true,
+      "attributes": {
+        "integration": "geosphere_austria_warnings",
+        "warning_kind": "advance",
+        "warnings": [
+          {
+            "warning_id": 4150,
+            "change_id": 2,
+            "course_id": 52,
+            "type": "rain",
+            "level": "orange",
+            "start": "2023-03-28T04:00:00+00:00",
+            "end": "2023-03-28T14:00:00+00:00",
+            "text": "Orange rain warning from Tue, 28.03.2023 06:00 until Tue, 28.03.2023 16:00",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          },
+          {
+            "warning_id": 10,
+            "change_id": 1,
+            "course_id": 51,
+            "type": "heat",
+            "level": "orange",
+            "start": "2023-03-28T22:00:00+00:00",
+            "end": "2023-03-29T21:59:00+00:00",
+            "text": "Enhanced heat stress can be expected.",
+            "impacts": "",
+            "recommendations": "",
+            "meteo_text": "",
+            "update_reason": ""
+          }
+        ],
+        "friendly_name": "GeoSphere Austria advance warnings"
+      }
+    }
+  ],
+  "expected": [
+    {
+      "event": "rain",
+      "level": "orange",
+      "headline": "Orange rain warning from Tue, 28.03.2023 06:00 until Tue, 28.03.2023 16:00",
+      "kind": "expected"
+    },
+    {
+      "event": "high_temperature",
+      "level": "orange",
+      "headline": "Enhanced heat stress can be expected.",
+      "kind": "expected"
+    }
+  ]
+}

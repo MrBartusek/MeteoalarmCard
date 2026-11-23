@@ -60,7 +60,7 @@ export class MeteoalarmCard extends LitElement {
 	// Entity of which alert is displayed on currently selected slide
 	// Used to display correct entity on click
 	private currentEntity?: string;
-	
+
 	/**
 	 * Entities returned by an adapter that fetches warning data through a
 	 * response-capable Home Assistant action.
@@ -122,15 +122,21 @@ export class MeteoalarmCard extends LitElement {
 		} else if (config.integration == undefined) {
 			throw new Error(localize('error.invalid_integration'));
 		}
-		
+
 		// Prevent a response from a previously configured action-backed integration
 		// from being rendered after a card configuration change.
 		this.actionEntities = undefined;
 		this.actionEntitiesRefreshKey = undefined;
 		this.pendingActionEntitiesRefreshKey = undefined;
 
+		const integration = MeteoalarmCard.integrations.find(
+			(i) => i.metadata.key === config.integration,
+		);
+		if (integration === undefined) throw new Error(localize('error.invalid_integration'));
+
 		this.config = {
 			name: 'Meteoalarm',
+			...(integration.getActionEntities && { tap_action: { action: 'none' } }),
 			...config,
 		};
 	}
@@ -162,9 +168,11 @@ export class MeteoalarmCard extends LitElement {
 		return hasConfigOrEntityChanged(this, changedProps, false);
 	}
 
-	protected updated(): void {
+	protected updated(changedProps: PropertyValues): void {
+		super.updated(changedProps);
 		this.attachObserver();
 		this.measureCard();
+		if (changedProps.has('hass') || changedProps.has('config')) void this.updateActionEntities();
 	}
 
 	public firstUpdated(): void {
@@ -307,11 +315,7 @@ export class MeteoalarmCard extends LitElement {
 		// An adapter can supply virtual entities from an action response instead
 		// of reading its warning details from hass.states.
 		if (integration.getActionEntities) {
-			return (
-				this.actionEntities ??
-				integration.getInitialActionEntities?.() ??
-				[]
-			);
+			return this.actionEntities ?? integration.getInitialActionEntities?.() ?? [];
 		}
 
 		const entities: EntityConfig[] = processConfigEntities(this.config.entities!);
@@ -335,18 +339,6 @@ export class MeteoalarmCard extends LitElement {
 			throw new Error('MeteoalarmCard: ' + localize('error.invalid_scaling_mode'));
 		}
 		return modeString as MeteoalarmScalingMode;
-	}
-
-	protected updated(changedProps: PropertyValues): void {
-		super.updated(changedProps);
-
-		// Action responses themselves trigger an update, but must not trigger a
-		// further request.
-		if (!changedProps.has('hass') && !changedProps.has('config')) {
-			return;
-		}
-
-		void this.updateActionEntities();
 	}
 
 	private getActionEntitiesRefreshKey(
@@ -404,6 +396,7 @@ export class MeteoalarmCard extends LitElement {
 		try {
 			refreshKey = this.getActionEntitiesRefreshKey(integration, hass, config);
 		} catch (error) {
+			// eslint-disable-next-line no-console
 			console.error(
 				'[METEOALARM CARD ERROR] Failed to prepare action-backed integration refresh',
 				error,
@@ -432,6 +425,7 @@ export class MeteoalarmCard extends LitElement {
 			this.actionEntitiesRefreshKey = refreshKey;
 		} catch (error) {
 			if (this.isCurrentActionRequest(integration, hass, config, refreshKey)) {
+				// eslint-disable-next-line no-console
 				console.error(
 					'[METEOALARM CARD ERROR] Failed to obtain warnings from action-backed integration',
 					error,
@@ -590,30 +584,12 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	private handleAction(ev: ActionHandlerEvent): void {
-		const config = {
-			...this.config,
-			entity: this.integration.getActionEntities 
-				? this.triggerEntityId()
-				: this.integration.getActionEntities ? undefined : this.currentEntity,
-		};
-		
+		const config = this.integration.getActionEntities
+			? this.config
+			: { ...this.config, entity: this.currentEntity };
+
 		if (this.hass && this.config && ev.detail.action) {
 			handleAction(this, this.hass, config, ev.detail.action);
 		}
-	}
-
-	private triggerEntityId(): string | undefined {
-		const kind = this.actionEntities?.find((e) => e.entity_id === this.currentEntity)
-			?.attributes.warning_kind as 'active' | 'advance' | undefined;
-
-		if (!kind) return undefined;
-
-		const configuredEntity = processConfigEntities(this.config.entities!)[0]?.entity;
-		if (!configuredEntity) return undefined;
-
-		// Both sensors follow the same naming convention as the virtual entities
-		// (`_active_` / `_advance_`), so derive the id for the shown slide's kind
-		// from whichever one the user configured.
-		return configuredEntity.replace(/_(active|advance)_/, `_${kind}_`);
 	}
 }

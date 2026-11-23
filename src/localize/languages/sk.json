@@ -22,6 +22,8 @@
     "entity": "Entity",
     "entities": null,
     "integration": "Integrácia",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Požadovaný",
     "recommended": "Odporúčané",
     "override_headline": "Prepísať nadpis",
@@ -34,12 +36,14 @@
       "slots": "Ich presné množstvo je určené jeho konfiguráciou.",
       "separate_events": "Každý druh udalosti má samostatnú entitu.",
       "warning_watch_statement_advisory": null,
-      "end": "Mali by ste ich pridať všetky, aby ste sa uistili, že vám žiadne upozornenia neuniknú."
+      "end": "Mali by ste ich pridať všetky, aby ste sa uistili, že vám žiadne upozornenia neuniknú.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Nebola poskytnutá entita očakávaných upozornení. Budúca udalosť sa nebude zobrazovať.",
       "too_many_entities": "Nebolo poskytnutých viac entít, ako sa očakávalo. Očakávaných entít: {expected_entities_count}, počet entít: {selected_entities_count}.",
-      "duplicate": "V zozname entít sa našli duplikáty."
+      "duplicate": "V zozname entít sa našli duplikáty.",
+      "missing_config_entry": null
     },
     "scaling_mode": null,
     "scaling_mode_options": {

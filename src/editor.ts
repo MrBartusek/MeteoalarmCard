@@ -27,47 +27,17 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 	private warning?: Record<string, string>;
 
 	public setConfig(config: MeteoalarmCardConfig): void {
-		this._config = config;
-		this._configEntities = processEditorEntities(config.entities!);
+		this.config = config;
 	}
 
-	protected firstUpdated(): void {
-		this.loadLovelaceElements();
-	}
-
-	protected shouldUpdate(): boolean {
-		if (!this._initialized) {
-			this._initialize();
+	protected willUpdate(changedProperties: PropertyValues): void {
+		if (changedProperties.has('config')) {
+			this.integration = this.findIntegration(this.config?.integration);
+			this.configEntities = processEditorEntities(this.config?.entities);
+			this.schema = this.computeSchema(this.integration);
+			this.formData = this.computeFormData(this.integration);
+			this.warning = this.computeWarnings(this.integration);
 		}
-		return true;
-	}
-
-	get _integration(): string {
-		return this._config?.integration || '';
-	}
-
-	get _config_entry(): string {
-		return this._config?.config_entry || '';
-	}
-
-	get _override_headline(): boolean {
-		return this._config?.override_headline || false;
-	}
-
-	get _hide_when_no_warning(): boolean {
-		return this._config?.hide_when_no_warning || false;
-	}
-
-	get _hide_caption(): boolean {
-		return this._config?.hide_caption || false;
-	}
-
-	get _disable_swiper(): boolean {
-		return this._config?.disable_swiper || false;
-	}
-
-	get _scaling_mode(): string {
-		return this._config?.scaling_mode || 'headline_and_scale';
 	}
 
 	protected render(): TemplateResult {
@@ -75,142 +45,19 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 			return html``;
 		}
 
-		const integration = MeteoalarmCard.integrations.find(
-			(i) => i.metadata.key === this._integration,
-		);
-
-		const isActionBacked = integration?.getActionEntities !== undefined;
-
 		return html`
-			<!-- Warnings-->
-			${isActionBacked ? html`` : generateEditorWarnings(integration, this._configEntities)}
-
-			<!-- Integration select -->
-			<mwc-select
-				naturalMenuWidth
-				fixedMenuPosition
-				label=${`${localize('editor.integration')} (${localize('editor.required')})`}
-				.configValue=${'integration'}
-				.value=${this._integration}
-				@selected=${this._valueChanged}
-				@closed=${(ev) => ev.stopPropagation()}
-			>
-				${MeteoalarmCard.integrations.map((integration) => {
-					return html`<mwc-list-item .value=${integration.metadata.key}
-						>${integration.metadata.name}</mwc-list-item
-					>`;
-				})}
-			</mwc-select>
-
-			<!-- Action-backed integration configuration -->
-			${isActionBacked
-				? html`
-						<mwc-textfield
-							label="GeoSphere Austria config entry ID (required)"
-							helper="Paste the config-entry ID of the GeoSphere Austria Warnings integration."
-							helperPersistent
-							.configValue=${'config_entry'}
-							.value=${this._config_entry}
-							@input=${this._valueChanged}
-						></mwc-textfield>
-				`
-				: ''}
-
-			<!-- Entity selector -->
-			${isActionBacked
-				? html`
-						<h3>Refresh entities (${localize('editor.required')})</h3>
-						<p>
-							Select one or more entities belonging to the selected weather-warning
-							integration. Their state changes trigger a new warning-list request.
-							The card does not render their attributes directly.
-						</p>
-
-						<p>
-							For GeoSphere Austria, each warning-level sensor will provide current and advance warnings.
-						</p>
-
-						<hui-entity-editor
-							.label=${' '}
-							.hass=${this.hass}
-							.entities=${this._configEntities}
-							@entities-changed=${this._entitiesChanged}
-						></hui-entity-editor>
-				`
-				: integration?.metadata.type == MeteoalarmIntegrationEntityType.SingleEntity
-				? html`
-						<ha-entity-picker
-							label=${`${localize('editor.entity')} (${localize('editor.required')})`}
-							allow-custom-entity
-							hideClearIcon
-							.hass=${this.hass}
-							.configValue=${'entities'}
-							.value=${(this._configEntities?.length || 0) > 0
-								? this._configEntities![0].entity
-								: ''}
-							@value-changed=${this._valueChanged}
-						></ha-entity-picker>
-				`
-				: html`
-						<h3>${localize('editor.entity')} (${localize('editor.required')})</h3>
-						<p>
-							${localize('editor.description.start')}
-							${' '}
-							${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected
-								? localize('editor.description.current_expected')
-								: ''}
-							${integration?.metadata.type == MeteoalarmIntegrationEntityType.Slots
-								? localize('editor.description.slots')
-								: ''}
-							${integration?.metadata.type ==
-							MeteoalarmIntegrationEntityType.WarningWatchStatementAdvisory
-								? localize('editor.description.warning_watch_statement_advisory')
-								: ''}
-							${integration?.metadata.type == MeteoalarmIntegrationEntityType.SeparateEvents
-								? localize('editor.description.separate_events')
-								: ''}
-							${' '}
-							${localize('editor.description.end')}
-						</p>
-
-						<hui-entity-editor
-							.label=${' '}
-							.hass=${this.hass}
-							.entities=${this._configEntities}
-							@entities-changed=${this._entitiesChanged}
-						></hui-entity-editor>
-				`}
-
-			<!-- Switches section -->
-			<div class="options">
-				<!-- Disable slider -->
-				${integration?.metadata.returnMultipleAlerts
-					? html`
-							<mwc-formfield .label=${localize('editor.disable_swiper')}>
-								<mwc-switch
-									.checked=${this._disable_swiper !== false}
-									.configValue=${'disable_swiper'}
-									@change=${this._valueChanged}
-								></mwc-switch>
-							</mwc-formfield>
-					  `
-					: ''}
-
-				<!-- Override headline -->
-				${integration?.metadata.returnHeadline
-					? html`
-							<mwc-formfield .label=${localize('editor.override_headline')}>
-								<mwc-switch
-									.checked=${this._override_headline !== false}
-									.configValue=${'override_headline'}
-									@change=${this._valueChanged}
-								></mwc-switch>
-							</mwc-formfield>
-					  `
-					: ''}
-
-				<!-- Hide caption -->
-				${integration?.metadata.type == MeteoalarmIntegrationEntityType.CurrentExpected
+			<ha-form
+				.hass=${this.hass}
+				.data=${this.formData}
+				.schema=${this.schema}
+				.warning=${this.warning}
+				.computeLabel=${this.computeLabel}
+				.computeHelper=${this.computeHelper}
+				.computeWarning=${this.computeWarning}
+				@value-changed=${this.valueChanged}
+			></ha-form>
+			${
+				this.integration
 					? html`
 							<a
 								class="docs-link"
@@ -248,10 +95,24 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		];
 		if (!integration) return schema;
 
+		if (integration.metadata.configEntryDomain) {
+			schema.push({
+				name: 'config_entry_id',
+				required: true,
+				selector: { config_entry: { integration: integration.metadata.configEntryDomain } },
+			});
+		}
+
 		schema.push({
 			name: 'entities',
 			required: true,
-			selector: { entity: isSingleEntity(integration) ? {} : { multiple: true } },
+			selector: {
+				entity: integration.metadata.configEntryDomain
+					? { multiple: true, integration: integration.metadata.configEntryDomain }
+					: isSingleEntity(integration)
+						? {}
+						: { multiple: true },
+			},
 		});
 
 		const switches: HaFormSchema[] = [];
@@ -311,7 +172,16 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 			{
 				field: 'entities',
 				warning: 'expected_entity',
-				condition: type == MeteoalarmIntegrationEntityType.CurrentExpected && entities.length == 1,
+				condition:
+					!integration.metadata.configEntryDomain &&
+					type == MeteoalarmIntegrationEntityType.CurrentExpected &&
+					entities.length == 1,
+			},
+			{
+				field: 'config_entry_id',
+				warning: 'missing_config_entry',
+				condition:
+					!!integration.metadata.configEntryDomain && !this.config?.config_entry_id?.trim(),
 			},
 		];
 
@@ -332,7 +202,9 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 		let label = localize(`editor.${schema.name}`);
 
 		if (schema.name === 'entities') {
-			label = localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
+			label = this.integration?.metadata.configEntryDomain
+				? localize('editor.refresh_entities')
+				: localize(`editor.${isSingleEntity(this.integration) ? 'entity' : 'entities'}`);
 		}
 
 		if (schema.required) {
@@ -344,6 +216,9 @@ export class MeteoalarmCardCardEditor extends LitElement implements LovelaceCard
 
 	private computeHelper = (schema: HaFormSchema): string | undefined => {
 		if (schema.name !== 'entities') return undefined;
+		if (this.integration?.metadata.configEntryDomain) {
+			return localize('editor.description.action_backed');
+		}
 		const type = this.integration?.metadata.type;
 		if (type === undefined || type === MeteoalarmIntegrationEntityType.SingleEntity)
 			return undefined;

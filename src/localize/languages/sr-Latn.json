@@ -22,6 +22,8 @@
     "entity": "Entitet",
     "entities": "Entiteti",
     "integration": "Integracija",
+    "config_entry_id": null,
+    "refresh_entities": null,
     "required": "Obavezno",
     "recommended": "Preporučeno",
     "override_headline": "Zameni naslov koji daje integracija",
@@ -34,12 +36,14 @@
       "slots": "Tačan broj kreiranih entiteta određuje konfiguracija.",
       "separate_events": "Svaka vrsta događaja ima poseban entitet.",
       "warning_watch_statement_advisory": "Postoje 4 entiteta: upozorenja, nadzori, saopštenja i saveti.",
-      "end": "Dodajte sve da biste bili sigurni da nećete propustiti nijedno upozorenje."
+      "end": "Dodajte sve da biste bili sigurni da nećete propustiti nijedno upozorenje.",
+      "action_backed": null
     },
     "error": {
       "expected_entity": "Očekivani entitet upozorenja nije obezbeđen. Budući događaj neće biti prikazan.",
       "too_many_entities": "Obezbeđeno je više entiteta nego što je očekivano. Očekivano {expected_entities_count}, dobijeno {selected_entities_count}.",
-      "duplicate": "Pronađeni duplikati u listi entiteta."
+      "duplicate": "Pronađeni duplikati u listi entiteta.",
+      "missing_config_entry": null
     },
     "scaling_mode": "Režim skaliranja",
     "scaling_mode_options": {
