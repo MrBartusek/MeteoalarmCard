@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Integrationen är inte tillgänglig",
       "short": "Inte tillgänglig"
-    }
+    },
+    "today": "Idag",
+    "tomorrow": "Imorgon",
+    "allday": "Hela dagen",
+    "until": "till"
   },
   "error": {
     "missing_entity": "Det är nödvändigt att ange en enhet!",
@@ -47,7 +51,8 @@
       "headline": null,
       "scale": null,
       "headline_and_scale": null
-    }
+    },
+    "show_warning_times": "Visa varningstider"
   },
   "events": {
     "no_warnings": "Inga varningar",

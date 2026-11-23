@@ -4,3 +4,4 @@ yarn.lock
 /dist
 /tools/dist
 /hass-dev/config/
+.DS_Store

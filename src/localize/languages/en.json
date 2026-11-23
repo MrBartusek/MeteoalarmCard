@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Integration is unavailable",
       "short": "Unavailable"
-    }
+    },
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "allday": "All day",
+    "until": "until"
   },
   "error": {
     "missing_entity": "Specifying entities is required!",
@@ -47,7 +51,8 @@
       "headline": "Headline Only",
       "scale": "Scale Only",
       "headline_and_scale": "Headline and scale"
-    }
+    },
+    "show_warning_times": "Show warning times"
   },
   "events": {
     "no_warnings": "No warnings",

@@ -126,6 +126,10 @@ export default class DWD implements MeteoalarmIntegration {
 					level: this.convertAwarenessLevel(level),
 					event: this.eventTypes[id],
 					kind: kind,
+					timing: {
+						start: entity.attributes[`warning_${i}_start`],
+						end: entity.attributes[`warning_${i}_end`],
+					},
 				});
 			} else {
 				throw new Error('Unknown event ID: ' + id);

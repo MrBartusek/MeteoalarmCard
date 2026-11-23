@@ -7,7 +7,11 @@
     "unavailable": {
       "long": "Integracija nije dostupna",
       "short": "Nedostupno"
-    }
+    },
+    "today": null,
+    "tomorrow": null,
+    "allday": null,
+    "until": null
   },
   "error": {
     "missing_entity": "Potrebno je navesti entitete!",
@@ -47,7 +51,8 @@
       "headline": "Samo naslov",
       "scale": "Samo skala",
       "headline_and_scale": "Naslov i skala"
-    }
+    },
+    "show_warning_times": null
   },
   "events": {
     "no_warnings": "Nema upozorenja",
