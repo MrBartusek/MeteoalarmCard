@@ -35,6 +35,9 @@ repository on your account named `<your username>/MeteoalarmCard`
 
 Now pick where you want to see the card render. Either way the dev server rebuilds on save, so you refresh the browser tab to pick up your changes.
 
+> [!NOTE]
+> **macOS users:** AirPlay Receiver listens on port 5000 and will answer the card server's requests with `403 Forbidden`, causing a `Custom element doesn't exist: meteoalarm-card` error in Home Assistant. Turn it off under **System Settings → General → AirDrop & Handoff → AirPlay Receiver**, or run the card server on another port and update the resource URL in `hass-dev/seed.ts` to match.
+
 ### Option A: the bundled Home Assistant (recommended)
 
 Spins up a preconfigured instance of Home Assistant with the bundled integrations and a development dashboard. The integrations pull live data, so most cards show *No active warnings* unless there is real weather somewhere. Every `pnpm run dev` starts from scratch, so anything you change in the Home Assistant UI is gone on the next run.

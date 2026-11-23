@@ -57,7 +57,7 @@ export class MeteoalarmCard extends LitElement {
 
 	private resizeObserver!: ResizeObserver;
 
-	private swiper!: Swiper;
+	private swiper?: Swiper;
 
 	// Entity of which alert is displayed on currently selected slide
 	// Used to display correct entity on click
@@ -145,32 +145,53 @@ export class MeteoalarmCard extends LitElement {
 	}
 
 	protected updated(): void {
+		if (!this.isConnected) return;
+
+		this.syncSwiper();
 		this.attachObserver();
 		this.measureCard();
 	}
 
-	public firstUpdated(): void {
-		const swiper = (this.renderRoot as ShadowRoot).getElementById('swiper');
-		if (!swiper) return;
-		this.swiper = new Swiper(swiper, {
-			modules: [Pagination],
-			pagination: {
-				el: swiper.getElementsByClassName('swiper-pagination')[0] as HTMLElement,
-			},
-			observer: true,
-		});
-		this.swiper.on('transitionEnd', () => {
-			this.updateCurrentEntity();
-		});
-		this.swiper.on('observerUpdate', () => {
-			this.updateCurrentEntity();
-		});
+	private syncSwiper(): void {
+		const element = (this.renderRoot as ShadowRoot).getElementById('swiper');
+
+		// Dispose of the instance if the card was hidden or the element replaced.
+		if (this.swiper && this.swiper.el !== element) {
+			this.destroySwiper();
+		}
+
+		if (!element) return;
+
+		if (!this.swiper) {
+			this.swiper = new Swiper(element, {
+				modules: [Pagination],
+				pagination: {
+					el: element.getElementsByClassName('swiper-pagination')[0] as HTMLElement,
+				},
+				observer: true,
+			});
+
+			this.swiper.on('transitionEnd', () => this.updateCurrentEntity());
+			this.swiper.on('observerUpdate', () => this.updateCurrentEntity());
+		} else {
+			// The element is unchanged, but its slides may have changed.
+			this.swiper.update();
+		}
+
+		this.updateCurrentEntity();
 	}
 
-	// Updates the currentEntity variable
+	private destroySwiper(): void {
+		this.swiper?.destroy(true, true);
+		this.swiper = undefined;
+		this.currentEntity = undefined;
+	}
+
 	private updateCurrentEntity(): void {
-		const slide = this.swiper.slides[this.swiper.realIndex];
-		this.currentEntity = slide.getAttribute('entity_id') as string;
+		const swiper = this.swiper;
+		const slide = swiper?.slides[swiper.realIndex];
+
+		this.currentEntity = slide?.getAttribute('entity_id') ?? undefined;
 	}
 
 	private attachObserver() {
