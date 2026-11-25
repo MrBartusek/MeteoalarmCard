@@ -4,6 +4,9 @@
     "name": "Targeta Meteoalarm",
     "description": "La targeta Meteoalarm t'avisa sobre els esdeveniments meteorològics actuals.",
     "expected": "Esperat",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "La integració no està disponible",
       "short": "No disponible"

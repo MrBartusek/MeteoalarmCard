@@ -4,6 +4,9 @@
     "name": "Meteoalarm-Karte",
     "description": "Die Meteoalarm-Karte warnt dich vor bevorstehenden Wetterereignissen.",
     "expected": "Erwartet",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Integration nicht verfügbar",
       "short": "Nicht verfügbar"

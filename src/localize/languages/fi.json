@@ -4,6 +4,9 @@
     "name": "Meteoalarm kortti",
     "description": "Meteoalarm kortti ilmoittaa voimassa olevista säävaroituksista.",
     "expected": "Odotettavissa",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Integraatio ei saatavilla",
       "short": "Ei saatavilla"

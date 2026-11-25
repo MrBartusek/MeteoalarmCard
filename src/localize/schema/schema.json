@@ -21,6 +21,9 @@
                 "name",
                 "description",
                 "expected",
+                "dismiss_confirmation",
+                "dismissed",
+                "undo",
                 "unavailable"
             ],
             "properties": {
@@ -34,6 +37,18 @@
                 },
                 "expected": {
                     "$id": "#/properties/common/properties/expected",
+                    "type": ["string", "null"]
+                },
+                "dismiss_confirmation": {
+                    "$id": "#/properties/common/properties/dismiss_confirmation",
+                    "type": ["string", "null"]
+                },
+                "dismissed": {
+                    "$id": "#/properties/common/properties/dismissed",
+                    "type": ["string", "null"]
+                },
+                "undo": {
+                    "$id": "#/properties/common/properties/undo",
                     "type": ["string", "null"]
                 },
                 "unavailable": {

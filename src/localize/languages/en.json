@@ -4,6 +4,9 @@
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card warns you about current weather events.",
     "expected": "Expected",
+    "dismiss_confirmation": "Hide this warning?",
+    "dismissed": "Warning hidden",
+    "undo": "Undo",
     "unavailable": {
       "long": "Integration is unavailable",
       "short": "Unavailable"

@@ -4,6 +4,9 @@
     "name": "Meteoalarm Card",
     "description": "Meteoalarm karta zobrazuje aktuální meteorologické výstrahy v okolí.",
     "expected": "Očekávané",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Výstraha není dostupná",
       "short": "Není k dispozici"

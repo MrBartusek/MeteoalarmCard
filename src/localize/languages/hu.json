@@ -4,6 +4,9 @@
     "name": "Meteoalarm Kártya",
     "description": "A Meteoalarm kártya figyelmeztet az aktuális időjárási eseményekre.",
     "expected": "Várható",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Az integráció nem elérhető",
       "short": "Nem elérhető"

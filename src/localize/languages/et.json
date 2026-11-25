@@ -4,6 +4,9 @@
     "name": "Ohtlike ilmanähtuste kaart",
     "description": "Äärmuslike ilmaolude hoiatus.",
     "expected": "Eeldatavalt",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Olem pole saadaval",
       "short": "Pole saadaval"

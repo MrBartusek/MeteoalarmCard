@@ -4,6 +4,9 @@
     "name": "Cartão Meteoalarm",
     "description": "O cartão Meteoalarm adverte sobre eventos meteorológicos actuais.",
     "expected": "Esperado",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "A integração não está disponível",
       "short": "Indisponível"

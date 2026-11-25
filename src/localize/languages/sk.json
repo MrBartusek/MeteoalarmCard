@@ -4,6 +4,9 @@
     "name": "Meteoalarm Card",
     "description": "Karta Meteoalarm vás upozorní na aktuálne udalosti počasia.",
     "expected": "Očakavanie",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Integrácia nie je k dispozícii",
       "short": "Nedostupné"
