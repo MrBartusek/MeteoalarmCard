@@ -70,7 +70,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			{
 				en: 'Blowing Snow',
 				fr: 'Poudrerie',
-				type: MeteoalarmEventType.SnowIce,
+				type: MeteoalarmEventType.Snow,
 			},
 			{
 				en: 'Dust Storm',
@@ -85,7 +85,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			{
 				en: 'Flash Freeze',
 				fr: 'Refroidissement Soudain',
-				type: MeteoalarmEventType.SnowIce,
+				type: MeteoalarmEventType.BlackIce,
 			},
 			{
 				en: 'Fog',
@@ -105,7 +105,7 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			{
 				en: 'Frost',
 				fr: 'Gel',
-				type: MeteoalarmEventType.SnowIce,
+				type: MeteoalarmEventType.LowTemperature,
 			},
 			{
 				en: 'Heat',
@@ -135,12 +135,12 @@ export default class EnvironmentCanada implements MeteoalarmIntegration {
 			{
 				en: 'Snowfall',
 				fr: 'Neige',
-				type: MeteoalarmEventType.SnowIce,
+				type: MeteoalarmEventType.Snow,
 			},
 			{
 				en: 'Snow Squall',
 				fr: 'Bourrasques de Neige',
-				type: MeteoalarmEventType.SnowIce,
+				type: MeteoalarmEventType.Snow,
 			},
 			{
 				en: 'Storm Surge',
