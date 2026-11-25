@@ -4,6 +4,9 @@
     "name": "Carte Meteoalarm",
     "description": "La carte Meteoalarm vous avertit des phénomènes météorologiques en cours.",
     "expected": null,
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "L'intégration est indisponible",
       "short": "Indisponible"

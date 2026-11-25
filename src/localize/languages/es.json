@@ -4,6 +4,9 @@
     "name": "Tarjeta Meteoalarm",
     "description": "La tarjeta Meteoalarm le advierte sobre eventos meteorológicos actuales.",
     "expected": "Esperado",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "La integración no está disponible",
       "short": "No disponible"

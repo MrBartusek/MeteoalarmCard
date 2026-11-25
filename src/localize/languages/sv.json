@@ -4,6 +4,9 @@
     "name": "Meteoalarm Card",
     "description": "Meteoalarm card varnar dig om aktuella väderhändelser.",
     "expected": "förväntad",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Integrationen är inte tillgänglig",
       "short": "Inte tillgänglig"

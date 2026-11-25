@@ -4,6 +4,9 @@
     "name": "Karta Meteoalarm",
     "description": "Meteoalarm ostrzega cię przed aktualnymi zdarzeniami pogodowymi.",
     "expected": "Spodziewane",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Integracja nie jest dostępna",
       "short": "Niedostępny"

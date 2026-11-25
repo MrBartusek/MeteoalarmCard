@@ -13,10 +13,14 @@ export interface MeteoalarmCardConfig extends LovelaceCardConfig {
 	ignored_events?: string[];
 	ignored_levels?: string[];
 
-	tap_action?: ActionConfig;
-	hold_action?: ActionConfig;
-	double_tap_action?: ActionConfig;
+	tap_action?: MeteoalarmActionConfig;
+	hold_action?: MeteoalarmActionConfig;
+	double_tap_action?: MeteoalarmActionConfig;
 }
+
+/** Home Assistant actions plus `dismiss`, which hides the currently shown alert on this device, asking for confirmation unless `confirmation: false` */
+export type MeteoalarmActionConfig =
+	ActionConfig | { action: 'dismiss'; confirmation?: boolean | { text?: string } };
 
 export interface MeteoalarmIntegration {
 	metadata: MeteoalarmIntegrationMetadata;
@@ -87,6 +91,10 @@ export interface MeteoalarmAlert {
  * Event transformed from MeteoalarmEvent used for rendering card
  */
 export interface MeteoalarmAlertParsed {
+	/**
+	 * Fingerprint used to remember that the alert was dismissed
+	 */
+	id?: string;
 	/**
 	 * Should this alert be shown when hide_when_no_warnings is enabled
 	 */

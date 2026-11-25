@@ -4,6 +4,9 @@
     "name": "Scheda Meteoalarm",
     "description": "La scheda Meteoalarm ti avvisa degli eventi meteorologici in corso.",
     "expected": "Previsto",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "L'integrazione non è disponibile",
       "short": "Non disponibile"

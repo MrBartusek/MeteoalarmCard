@@ -4,6 +4,9 @@
     "name": "Meteoalarm Card",
     "description": "Метеоаларм картица вас упозорава на тренутне временске догађаје.",
     "expected": "Очекивано",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Интеграција није доступна",
       "short": "Недоступно"

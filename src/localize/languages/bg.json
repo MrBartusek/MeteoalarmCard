@@ -4,6 +4,9 @@
     "name": "Meteoalarm Card",
     "description": "Картата Meteoalarm Ви предупреждава за текущите метеорологични събития.",
     "expected": "Очаквано",
+    "dismiss_confirmation": null,
+    "dismissed": null,
+    "undo": null,
     "unavailable": {
       "long": "Интеграцията не е достъпна",
       "short": "Недостъпно"
