@@ -265,6 +265,8 @@
                 "hurricane",
                 "wind",
                 "snow_ice",
+                "snow",
+                "black_ice",
                 "thunderstorms",
                 "fog",
                 "high_temperature",
@@ -301,6 +303,18 @@
                 },
                 "snow_ice": {
                     "$id": "#/properties/events/properties/snow_ice",
+                    "type": ["string", "null"]
+                },
+                "snow": {
+                    "$id": "#/properties/events/properties/snow",
+                    "type": ["string", "null"]
+                },
+                "black_ice": {
+                    "$id": "#/properties/events/properties/black_ice",
+                    "type": ["string", "null"]
+                },
+                "thaw": {
+                    "$id": "#/properties/events/properties/thaw",
                     "type": ["string", "null"]
                 },
                 "thunderstorms": {

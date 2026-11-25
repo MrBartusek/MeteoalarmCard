@@ -63,6 +63,9 @@ export class MeteoalarmData {
 			),
 			new MeteoalarmEventInfo(MeteoalarmEventType.Rain, 'Rain', 'weather-pouring'),
 			new MeteoalarmEventInfo(MeteoalarmEventType.SnowIce, 'Snow/Ice', 'weather-snowy-heavy'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Snow, 'Snow', 'weather-snowy-heavy'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.BlackIce, 'Black Ice', 'snowflake-thermometer'),
+			new MeteoalarmEventInfo(MeteoalarmEventType.Thaw, 'Thaw', 'snowflake-melt'),
 			new MeteoalarmEventInfo(
 				MeteoalarmEventType.HighTemperature,
 				'High Temperature',

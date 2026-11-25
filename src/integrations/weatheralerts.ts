@@ -113,7 +113,7 @@ export default class Weatheralerts implements MeteoalarmIntegration {
 			'Short Term': MeteoalarmEventType.Unknown,
 			'Small Craft': MeteoalarmEventType.SeaEvent,
 			'Small Stream Flood': MeteoalarmEventType.Flooding,
-			'Snow Squall': MeteoalarmEventType.SnowIce,
+			'Snow Squall': MeteoalarmEventType.Snow,
 			'Special Marine': MeteoalarmEventType.SeaEvent,
 			'Special Weather': MeteoalarmEventType.Unknown,
 			'Storm Surge': MeteoalarmEventType.CoastalEvent,
